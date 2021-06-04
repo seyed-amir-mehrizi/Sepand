@@ -1,0 +1,48 @@
+<div class="card border-dark">
+    <div class="card-header bg-secondary text-white">
+        لیست کاربران کاربران
+    </div>
+    <div class="card-body bg-light">
+        <div class="float-left" (click)="onOpenModalClick()">
+            <i class="fa fa-plus-square cursor-pointer" aria-hidden="true" style="font-size: 2rem;"></i>
+
+        </div>
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                        
+                            <tr>
+                                <th>ردیف</th>
+                                <th>نام کاربری</th>
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>تلفن همراه</th>
+                                <th>رایانامه</th>
+                                <th>نقش کاربر</th>
+                                <th>توضیحات</th>
+                                <th>فعال|غیرفعال</th>
+                                <th>عوض کردن کلمه عبور</th>
+                            </tr>
+                        
+                    </thead>
+                  
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- <span class="w-100 d-flex justify-content-center"> 
+                <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true" [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
+                    <ng-template ngbPaginationPrevious>قبلی</ng-template>
+                    <ng-template ngbPaginationNext>بعدی</ng-template>
+                    <ng-template ngbPaginationFirst>ابتدا</ng-template>
+                    <ng-template ngbPaginationLast>انتها</ng-template>
+                </ngb-pagination>
+            </span> -->
+        </div>
+    </div>
+</div>

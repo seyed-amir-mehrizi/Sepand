@@ -1,0 +1,38 @@
+
+
+
+
+<div class="card">
+    <div class="card-header ">
+        درخواست تغییر کدپستی
+    </div>
+    <div class="card-body">
+        <form [formGroup]="changePostalCodeForm" autocomplete="off" role="form">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-4">
+                        <label for="customerNo" >شماره مشتری</label>
+                        <input id="customerNo" type="text" formControlName="customerNo" class="form-control"
+                            [ngClass]="{'is-invalid': isChangePostalCodeFormSubmitted && changePostalCodeFormSubmittedInfo.customerNo.errors}" />
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-4">
+                        <label for="postalCode" > کد پستی  </label>
+                        <input id="postalCode" type="text" formControlName="postalCode" class="form-control"
+                            [ngClass]="{'is-invalid': isChangePostalCodeFormSubmitted && changePostalCodeFormSubmittedInfo.postalCode.errors}" />
+                    </div>
+                </div>
+            </div>
+    
+        </form>
+    </div>
+    <div class="card-footer float-left">
+        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
+        <button type="button" class="btn btn-secondary">
+            انصراف
+        </button>
+    </div>
+</div>

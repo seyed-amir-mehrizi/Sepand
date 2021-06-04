@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/font-awesome/css/font-awesome.css";
+@font-face {
+    font-family: "isw";
+    src: url("/assets/fonts/IRANSansWeb(FaNum)1.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html , body{
+    min-height: 100%;
+    width: 100%;
+    direction: rtl;
+    text-align: right;
+    font-family: "isw"
+}
+
+.dir-ltr{
+    direction: ltr;
+}
+
+.dir-rtl{
+    direction: rtl;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.size-14{
+    font-size: 14px;
+}
+.size-15{
+    font-size: 15px;
+}
+.size-16{
+    font-size: 16px;
+}

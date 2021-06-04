@@ -1,0 +1,81 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        افزودن کاربر
+    </h4>
+</div>
+<div class="modal-body text-justify line-height-3">
+    <form [formGroup]="addUserForm" autocomplete="off" role="form">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group mb-4">
+                    <label for="firstName">نام</label>
+                    <input id="firstName" type="text" formControlName="firstName" class="form-control"
+                        [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.firstName.errors}" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group mb-4">
+                    <label for="lastName">نام خانوادگی</label>
+                    <input id="lastName" type="text" formControlName="lastName" class="form-control"
+                        [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.lastName.errors}" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group mb-4">
+                    <label for="email">یارانامه</label>
+                    <input id="email" type="email" formControlName="email" class="form-control"
+                        [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.email.errors}" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="mobile">تلفن همراه</label>
+                <input id="mobile" type="text" formControlName="mobile" class="form-control"
+                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.mobile.errors}" />
+            </div>
+
+            <div class="col-md-4">
+                <label for="role">نقش</label>
+                <select id="role" class="form-control" formControlName="role"
+                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.role.errors}">
+                    <!-- <option *ngFor="let item of this.categoryList" [value]="item.id">{{item.title}}</option> -->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="username">نام کاربری</label>
+                <input id="username" type="text" formControlName="username" class="form-control"
+                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.username.errors}" />
+            </div>
+            <div class="col-md-4 my-2">
+                <label for="password">کلمه عبور</label>
+                <input id="password" type="password" formControlName="password" class="form-control"
+                  [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.password.errors}" />
+            </div>
+            <div class="col-md-4 my-2">
+                <label for="rePass">تکرار کلمه عبور</label>
+                <input id="rePass" type="password" formControlName="rePass" class="form-control"
+                  [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.rePass.errors}" />
+            </div>
+            <div class="col-md-12 my-2">
+                <label for="description"> توضیحات</label>
+                <textarea id="description" formControlName="description" class="form-control"
+                  [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.description.errors}">
+                  </textarea>
+            </div>
+            <div class="form-group form-check my-2">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"  formControlName="isActive"> فعال است
+                </label>
+              </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+        بستن
+    </button>
+    <button class="btn btn-primary" type="button" (click)="addUser(ngbActiveModal)">افزودن</button>
+</div>

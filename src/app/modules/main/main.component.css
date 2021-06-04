@@ -1,0 +1,20 @@
+
+
+.main{
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 280px;
+    background-color: #34495e;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .content{
+      margin-right: 280px;
+  }

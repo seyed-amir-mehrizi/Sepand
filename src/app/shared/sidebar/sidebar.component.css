@@ -1,0 +1,62 @@
+.sidebar {
+    margin: 0;
+    padding: 0;
+  
+    background-color: #34495e;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .sidebar a {
+    display: block;
+    color: #fff;
+    padding: 16px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .active {
+
+    background-color: #59636d	;
+    
+  }
+  .site_title i {
+    border: 1px solid #eaeaea;
+    padding: 5px 6px;
+    border-radius: 50%;
+}
+
+
+.arrow-style{
+  color: white;
+   font-size: 38px;
+}
+#sidebar  ::ng-deep .card  {
+  border: none;
+}
+#sidebar  ::ng-deep .card .card-header  {
+  background-color: #34495e;
+  border: none;
+}
+
+#sidebar ::ng-deep .card .card-header> button  {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.25rem ;
+}
+#sidebar  ::ng-deep .card .card-header> .btn .btn-link:active  {
+  outline: 0 !important;
+  outline-style: none;
+}
+
+#sidebar  ::ng-deep .card .card-body  {
+  background-color: #697b8e;
+
+}
+.logo-container{
+  height: 10% !important;
+}
+
+.user-info{
+  height: 15% !important;
+}

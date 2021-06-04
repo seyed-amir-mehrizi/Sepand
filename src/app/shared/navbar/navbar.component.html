@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 dir-ltr">
+    <div  class="collapse navbar-collapse">
+      <ul class="navbar-nav float-left">
+        <li>
+            <div ngbDropdown class="d-inline-block">
+                <a class="btn" id="dropdownBasic1" ngbDropdownToggle>admin</a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <a class="text-right cursor-pointer" ngbDropdownItem routerLink='/my/orders'>نمایه</a>
+                    <a class="text-right cursor-pointer" ngbDropdownItem routerLink='/admin/orders'>تنظیمات</a>
+                    <a class="text-right cursor-pointer" ngbDropdownItem routerLink='/admin/products'>کمک</a>
+                    <a class="text-right cursor-pointer" ngbDropdownItem (click)="logOut()">خروج</a>
+                </div>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </nav>

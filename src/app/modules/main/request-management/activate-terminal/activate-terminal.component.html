@@ -1,0 +1,37 @@
+
+
+
+<div class="card">
+    <div class="card-header ">
+        درخواست فعال کردن ترمینال
+    </div>
+    <div class="card-body">
+        <form [formGroup]="addActivateTerminalForm" autocomplete="off" role="form">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-4">
+                        <label for="customerNo" >شماره مشتری</label>
+                        <input id="customerNo" type="text" formControlName="customerNo" class="form-control"
+                            [ngClass]="{'is-invalid': isActivateTerminalFormSubmitted && activateTerminalFormInfo.customerNo.errors}" />
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-4">
+                        <label for="companyPayCode" > کد شرکت پرداخت </label>
+                        <input id="companyPayCode" type="text" formControlName="companyPayCode" class="form-control"
+                            [ngClass]="{'is-invalid': isActivateTerminalFormSubmitted && activateTerminalFormInfo.companyPayCode.errors}" />
+                    </div>
+                </div>
+            </div>
+    
+        </form>
+    </div>
+    <div class="card-footer float-left">
+        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
+        <button type="button" class="btn btn-secondary">
+            انصراف
+        </button>
+    </div>
+</div>
