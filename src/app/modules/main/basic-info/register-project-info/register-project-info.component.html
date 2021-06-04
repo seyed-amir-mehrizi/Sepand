@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="card-header ">
+        ثبت اطلاعات پروژه
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerProjectInfo" autocomplete="off" role="form">
+            <div >
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="projectName">نام پروژه </label>
+                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="projectName"> نوع تسهیم </label>
+                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="projectName"> مبلغ تسهیم </label>
+                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="projectName"> بیشترین مبلغ تسهیم </label>
+                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="projectName">کمترین مبلغ تسهیم</label>
+                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer float-left">
+        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
+        <button type="button" class="btn btn-secondary">
+            انصراف
+        </button>
+    </div>
+</div>

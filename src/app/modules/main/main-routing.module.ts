@@ -16,6 +16,10 @@ const routes: Routes = [
         path:'requestManagement' ,
         loadChildren: () => import('./request-management/request-management.module').then(m => m.RequestManagementModule)
       },
+      {
+        path:'basicInfo' ,
+        loadChildren: () => import('./basic-info/basic-info.module').then(m => m.BasicInfoModule)
+      },
     ]
   },
  
