@@ -1,1 +1,122 @@
-<p>register-company-info works!</p>
+<div class="card">
+    <div class="card-header ">
+        ثبت اطلاعات شرکت پرداخت
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerShaCompanyForm" autocomplete="off" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">یوزر شاپرک</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">پسورد شاپرک</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">یوزر پورتال شرکت پرداخت</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">پسورد پورتال شرکت پرداخت </label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">کلید عمومی پورتال شرکت پرداخت </label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">کلید خصوصی پورتال شرکت پرداخت</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">کلید عمومی ftp شاپرک</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">کلید خصوصی ftp شاپرک</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">  نام  </label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">Alias </label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">یوزر ftp شاپرک</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">پسورد ftp شاپرک </label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">IIN  </label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">شماره ترمینال</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="shaUser">شماره پذیرنده</label>
+                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <div class="card-footer float-left">
+        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
+        <button type="button" class="btn btn-secondary">
+            انصراف
+        </button>
+    </div>
+</div>

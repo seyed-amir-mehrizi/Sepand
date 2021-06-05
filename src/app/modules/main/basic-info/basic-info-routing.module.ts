@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompaniesPayListComponent } from './companies-pay-list/companies-pay-list.component';
 import { ContractListComponent } from './contract-list/contract-list.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { RegisterCompanyInfoComponent } from './register-company-info/register-company-info.component';
 import { RegisterNewContractComponent } from './register-new-contract/register-new-contract.component';
 import { RegisterNewRepresentativeContractComponent } from './register-new-representative-contract/register-new-representative-contract.component';
 import { RegisterProjectInfoComponent } from './register-project-info/register-project-info.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
     {
       path: 'ProjectList' ,
       component: ProjectListComponent
+    },
+    {
+      path: 'PspAdd' ,
+      component: RegisterCompanyInfoComponent
     }
 
 ];
