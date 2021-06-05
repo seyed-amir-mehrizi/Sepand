@@ -4,11 +4,25 @@ import { CommonModule } from '@angular/common';
 import { BasicInfoRoutingModule } from './basic-info-routing.module';
 import { RegisterProjectInfoComponent } from './register-project-info/register-project-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { RegisterCompanyInfoComponent } from './register-company-info/register-company-info.component';
+import { CompaniesPayListComponent } from './companies-pay-list/companies-pay-list.component';
+import { ContractListComponent } from './contract-list/contract-list.component';
+import { RegisterNewContractComponent } from './register-new-contract/register-new-contract.component';
+import { RepresentativeContractsListComponent } from './representative-contracts-list/representative-contracts-list.component';
+import { RegisterNewRepresentativeContractComponent } from './register-new-representative-contract/register-new-representative-contract.component';
 
 
 @NgModule({
   declarations: [
-    RegisterProjectInfoComponent
+    RegisterProjectInfoComponent,
+    ProjectListComponent,
+    RegisterCompanyInfoComponent,
+    CompaniesPayListComponent,
+    ContractListComponent,
+    RegisterNewContractComponent,
+    RepresentativeContractsListComponent,
+    RegisterNewRepresentativeContractComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BasicInfoRoutingModule
   ],
   exports: [
-    RegisterProjectInfoComponent
+    RegisterProjectInfoComponent,
+    RegisterNewRepresentativeContractComponent
   ]
 })
 export class BasicInfoModule { }

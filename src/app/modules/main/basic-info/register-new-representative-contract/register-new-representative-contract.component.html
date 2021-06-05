@@ -1,0 +1,98 @@
+<div class="card">
+    <div class="card-header ">
+        ثبت قرارداد جدید نماینده
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerNewContractForm" autocomplete="off" role="form">
+            <div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="contractDate">تاریخ قرارداد </label>
+                            <input id="contractDate" type="text" formControlName="contractDate" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.contractDate.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> توضیحات </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> نوع تسهیم </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> مبلغ تسهیم </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> بیشترین مبلغ تسهیم </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> کمترین مبلغ تسهیم </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> شماره نماینده </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> شماره مشتری </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="description"> شماره شبا </label>
+                            <input id="description" type="text" formControlName="description" class="form-control"
+                                [ngClass]="{'is-invalid': isRegisterNewContractFormSubmitted && registerNewContractFormSubmittedInfo.description.errors}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer float-left">
+        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
+        <button type="button" class="btn btn-secondary">
+            انصراف
+        </button>
+    </div>
+</div>
