@@ -5,44 +5,46 @@
     <div class="card-body bg-light">
         <div class="float-left" (click)="onOpenModalClick()">
             <i class="fa fa-plus-square cursor-pointer" aria-hidden="true" style="font-size: 2rem;"></i>
-
         </div>
         <br>
         <br>
 
         <div class="row">
             <div class="col-sm-12">
+                <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
-                        
                             <tr>
-                                <th>ردیف</th>
                                 <th>نام کاربری</th>
                                 <th>نام</th>
                                 <th>نام خانوادگی</th>
                                 <th>تلفن همراه</th>
                                 <th>رایانامه</th>
                                 <th>نقش کاربر</th>
-                                <th>توضیحات</th>
                                 <th>فعال|غیرفعال</th>
                                 <th>عوض کردن کلمه عبور</th>
                             </tr>
-                        
                     </thead>
-                  
                     <tbody>
-
+                        <tr *ngFor="let item of userList">
+                            <td>{{item?.username}}</td>
+                            <td>{{item?.firstname}}</td>
+                            <td>{{item?.lastname}}</td>
+                            <td>{{item?.phoneNumber}}</td>
+                            <td>{{item?.email}}</td>
+                            <td>{{item?.role}}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm">فعال کردن</button>
+                                <button class="btn btn-danger btn-sm mx-2">غیر فعال کردن</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" (click)="changePasswordOpen(item)">بازنشانی کلمه عبور</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
-            <!-- <span class="w-100 d-flex justify-content-center"> 
-                <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true" [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
-                    <ng-template ngbPaginationPrevious>قبلی</ng-template>
-                    <ng-template ngbPaginationNext>بعدی</ng-template>
-                    <ng-template ngbPaginationFirst>ابتدا</ng-template>
-                    <ng-template ngbPaginationLast>انتها</ng-template>
-                </ngb-pagination>
-            </span> -->
         </div>
     </div>
 </div>
