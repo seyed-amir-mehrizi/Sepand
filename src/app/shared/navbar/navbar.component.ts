@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut(){
-    window.location.href = "/"
+    window.location.href = '/';
   }
 
 }

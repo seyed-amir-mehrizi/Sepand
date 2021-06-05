@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(){
-    window.location.href = "/main";
+    window.location.href = '/main';
   }
 
 }

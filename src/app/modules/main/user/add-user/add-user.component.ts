@@ -12,7 +12,7 @@ export class AddUserComponent implements OnInit {
   isAddUserSubmitted = false;
   constructor(
     public ngbActiveModal: NgbActiveModal,
-    private fb : FormBuilder
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class AddUserComponent implements OnInit {
     return this.addUserForm.controls;
   }
 
-  addUser(ngbActiveModalL:any) {
+  addUser(ngbActiveModalL: any) {
     this.isAddUserSubmitted = true;
     if (this.addUserForm.invalid) {
       return;
@@ -51,7 +51,7 @@ export class AddUserComponent implements OnInit {
     // });
   }
 
-  prepareDataForSend(addUserFormValue:any) {
+  prepareDataForSend(addUserFormValue: any) {
     const dataSending = addUserFormValue;
     // dataSending.type = parseInt(dataSending.type);
     dataSending.parentId = parseInt(dataSending.parentId);
@@ -76,5 +76,5 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     } else {
       matchingControl.setErrors(null);
     }
-  }
+  };
 }

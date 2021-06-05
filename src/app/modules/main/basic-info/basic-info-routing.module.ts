@@ -4,8 +4,8 @@ import { RegisterProjectInfoComponent } from './register-project-info/register-p
 
 const routes: Routes = [
     {
-      path:'registerProject' , 
-      component:RegisterProjectInfoComponent
+      path: 'registerProject' ,
+      component: RegisterProjectInfoComponent
     }
 ];
 

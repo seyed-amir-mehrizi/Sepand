@@ -9,10 +9,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterProjectInfoComponent implements OnInit {
 
   registerProjectInfo!: FormGroup;
-  isRegisterProjectInfoFormSubmitted:boolean = false;
+  isRegisterProjectInfoFormSubmitted = false;
   constructor(
 
-    private fb : FormBuilder,
+    private fb: FormBuilder,
 
   ) { }
 

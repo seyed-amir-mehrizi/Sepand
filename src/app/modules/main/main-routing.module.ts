@@ -6,25 +6,25 @@ import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
-    path:'' ,component:MainComponent ,
+    path: '' , component: MainComponent ,
     children : [
       {
-        path:'userList' ,
+        path: 'userList' ,
         loadChildren: () => import('./user/user.module').then(m => m.UserModule)
       },
       {
-        path:'requestManagement' ,
+        path: 'requestManagement' ,
         loadChildren: () => import('./request-management/request-management.module').then(m => m.RequestManagementModule)
       },
       {
-        path:'basicInfo' ,
+        path: 'basicInfo' ,
         loadChildren: () => import('./basic-info/basic-info.module').then(m => m.BasicInfoModule)
       },
     ]
   },
- 
-  
-  
+
+
+
 
 ];
 

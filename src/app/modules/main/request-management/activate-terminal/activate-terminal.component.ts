@@ -12,7 +12,7 @@ export class ActivateTerminalComponent implements OnInit {
   isActivateTerminalFormSubmitted = false;
   constructor(
 
-    private fb : FormBuilder,
+    private fb: FormBuilder,
 
   ) { }
 

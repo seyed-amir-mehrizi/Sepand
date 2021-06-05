@@ -17,6 +17,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     NgbModule,
     MainRoutingModule
   ],
-  exports:[SidebarComponent , NavbarComponent]
+  exports: [SidebarComponent , NavbarComponent]
 })
 export class SharedModule { }

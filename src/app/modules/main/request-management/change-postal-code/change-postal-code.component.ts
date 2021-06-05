@@ -8,10 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ChangePostalCodeComponent implements OnInit {
   changePostalCodeForm!: FormGroup;
-  isChangePostalCodeFormSubmitted:boolean = false;
+  isChangePostalCodeFormSubmitted = false;
   constructor(
 
-    private fb : FormBuilder,
+    private fb: FormBuilder,
 
   ) { }
 

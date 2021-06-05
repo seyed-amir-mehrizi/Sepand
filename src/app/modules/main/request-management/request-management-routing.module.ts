@@ -8,25 +8,25 @@ import { RequestStatusComponent } from './request-status/request-status.componen
 
 const routes: Routes = [
   {
-    path:'status' , 
-    component:RequestStatusComponent
+    path: 'status' ,
+    component: RequestStatusComponent
   },
   {
-    path:'changeClass' , 
-    component:ChangeClassComponent
+    path: 'changeClass' ,
+    component: ChangeClassComponent
   },
   {
-    path:'changePostalcode' , 
-    component:ChangePostalCodeComponent
+    path: 'changePostalcode' ,
+    component: ChangePostalCodeComponent
   },
   {
-    path:'removeTerminal' , 
-    component:RemoveTerminalComponent
+    path: 'removeTerminal' ,
+    component: RemoveTerminalComponent
   }
   ,
   {
-    path:'activateTerminal' , 
-    component:ActivateTerminalComponent
+    path: 'activateTerminal' ,
+    component: ActivateTerminalComponent
   }
 ];
 

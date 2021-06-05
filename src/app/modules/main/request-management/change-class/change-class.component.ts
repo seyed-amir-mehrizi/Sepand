@@ -9,10 +9,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ChangeClassComponent implements OnInit {
 
   changeClassCodeForm!: FormGroup;
-  isChangeClassFormSubmitted:boolean = false;
+  isChangeClassFormSubmitted = false;
   constructor(
 
-    private fb : FormBuilder,
+    private fb: FormBuilder,
 
   ) { }
 

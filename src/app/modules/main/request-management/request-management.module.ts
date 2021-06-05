@@ -24,6 +24,6 @@ import { ActivateTerminalComponent } from './activate-terminal/activate-terminal
     ReactiveFormsModule,
     RequestManagementRoutingModule
   ],
-  exports:[RequestStatusComponent]
+  exports: [RequestStatusComponent]
 })
 export class RequestManagementModule { }

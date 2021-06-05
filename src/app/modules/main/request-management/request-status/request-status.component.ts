@@ -14,7 +14,7 @@ export class RequestStatusComponent implements OnInit {
   isAddRequestFormSubmitted = false;
   constructor(
 
-    private fb : FormBuilder,
+    private fb: FormBuilder,
 
   ) { }
 

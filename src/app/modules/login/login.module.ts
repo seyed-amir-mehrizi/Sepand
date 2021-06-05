@@ -10,7 +10,7 @@ import { LoginRoutingModule } from './login-routing.module';
     CommonModule,
     LoginRoutingModule
   ],
-  exports:[
+  exports: [
     LoginComponent
   ]
 })

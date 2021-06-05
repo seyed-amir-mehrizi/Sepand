@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     BasicInfoRoutingModule
   ],
-  exports:[
+  exports: [
     RegisterProjectInfoComponent
   ]
 })

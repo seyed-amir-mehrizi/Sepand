@@ -26,7 +26,7 @@ export class UsersListComponent implements OnInit {
       // this.getNewsList(this.command);
     }, () => {
     });
-    
+
   }
 
 }
