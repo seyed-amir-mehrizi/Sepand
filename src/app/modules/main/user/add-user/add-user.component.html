@@ -44,12 +44,12 @@
             <div class="col-md-4">
                 <label for="username">نام کاربری</label>
                 <input id="username" type="text" formControlName="username" class="form-control"
-                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.username.errors}" />
+                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.username.errors}" autocomplete="off" />
             </div>
             <div class="col-md-4 my-2">
                 <label for="password">کلمه عبور</label>
                 <input id="password" type="password" formControlName="password" class="form-control"
-                  [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.password.errors}" />
+                  [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.password.errors}" autocomplete="off"/>
             </div>
             <div class="col-md-4 my-2">
                 <label for="rePass">تکرار کلمه عبور</label>

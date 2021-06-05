@@ -35,7 +35,8 @@ export class AddUserComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       roleName: ['', Validators.required],
       username: ['', [Validators.required , Validators.minLength(3)]],
-      password: ['', [Validators.required , Validators.minLength(6)]]
+      password: ['', [Validators.required , Validators.minLength(6)]],
+      rePass: ['', [Validators.required , Validators.minLength(6)]],
     }, {
       validator: MustMatch('password', 'rePass')
     });
@@ -51,12 +52,11 @@ export class AddUserComponent implements OnInit {
       return;
     }
     const dataSending = this.createUserForm.value;
+    delete dataSending.rePass;
     this.service.createNewUser(dataSending).subscribe(() => {
         this.ngbActiveModal.close();
     });
   }
-
-
   getAllRolesList(){
     this.service.getRolesList()
     .subscribe((result:any)=>{
@@ -64,8 +64,6 @@ export class AddUserComponent implements OnInit {
     })
   }
 }
-
-
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
