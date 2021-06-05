@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { ChangePasswordModalComponent } from '../change-password-modal/change-password-modal.component';
@@ -15,7 +16,9 @@ export class UsersListComponent implements OnInit {
   constructor(
 
     private ngbModal: NgbModal,
-    private service : UserService
+    private service : UserService,
+    private router : Router
+    
 
   ) { }
 
@@ -30,12 +33,10 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  onOpenModalClick(){
+  addUser(){
     const modalRef = this.ngbModal.open(AddUserComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
-    // modalRef.componentInstance.newsInfo = news;
-    // modalRef.componentInstance.isAdd = isAdd;
     modalRef.result.then(() => {
-      // this.getNewsList(this.command);
+      this.getListOfUsers();
     }, () => {
     });
   }
@@ -43,6 +44,21 @@ export class UsersListComponent implements OnInit {
   changePasswordOpen(item: any){
     const modalRef = this.ngbModal.open(ChangePasswordModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
     modalRef.componentInstance.userInfo = item;
+  }
+
+  changeUserStatus(item:any){
+    let data = {username : item.username};
+    if(item.isActive){
+      this.service.lockUser(data)
+      .subscribe((result:any)=>{
+        this.getListOfUsers();
+      });
+    }else{
+      this.service.unlockUser(data)
+      .subscribe((result:any)=>{
+        this.getListOfUsers();
+      });
+    }
   }
 
 }

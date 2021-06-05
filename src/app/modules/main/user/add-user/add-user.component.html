@@ -4,7 +4,7 @@
     </h4>
 </div>
 <div class="modal-body text-justify line-height-3">
-    <form [formGroup]="addUserForm" autocomplete="off" role="form">
+    <form [formGroup]="createUserForm" autocomplete="off" role="form">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group mb-4">
@@ -28,18 +28,16 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="mobile">تلفن همراه</label>
-                <input id="mobile" type="text" formControlName="mobile" class="form-control"
-                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.mobile.errors}" />
+                <label for="phoneNumber">تلفن همراه</label>
+                <input id="phoneNumber" type="text" formControlName="phoneNumber" class="form-control"
+                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.phoneNumber.errors}" />
             </div>
 
             <div class="col-md-4">
-                <label for="role">نقش</label>
-                <select id="role" class="form-control" formControlName="role"
-                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.role.errors}">
-                    <!-- <option *ngFor="let item of this.categoryList" [value]="item.id">{{item.title}}</option> -->
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                <label for="roleName">نقش</label>
+                <select id="roleName" class="form-control" formControlName="roleName"
+                    [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.roleName.errors}">
+                    <option *ngFor="let item of Roleslist" [value]="item.id">{{item.name}}</option>
 
                 </select>
             </div>
@@ -58,17 +56,6 @@
                 <input id="rePass" type="password" formControlName="rePass" class="form-control"
                   [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.rePass.errors}" />
             </div>
-            <div class="col-md-12 my-2">
-                <label for="description"> توضیحات</label>
-                <textarea id="description" formControlName="description" class="form-control"
-                  [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.description.errors}">
-                  </textarea>
-            </div>
-            <div class="form-group form-check my-2">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox"  formControlName="isActive"> فعال است
-                </label>
-              </div>
         </div>
 
     </form>
@@ -77,5 +64,5 @@
     <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
         بستن
     </button>
-    <button class="btn btn-primary" type="button" (click)="addUser(ngbActiveModal)">افزودن</button>
+    <button class="btn btn-primary" type="button" (click)="addUser(createUserForm.value)">افزودن</button>
 </div>

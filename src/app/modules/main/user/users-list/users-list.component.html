@@ -3,7 +3,7 @@
         لیست کاربران کاربران
     </div>
     <div class="card-body bg-light">
-        <div class="float-left" (click)="onOpenModalClick()">
+        <div class="float-left" (click)="addUser()">
             <i class="fa fa-plus-square cursor-pointer" aria-hidden="true" style="font-size: 2rem;"></i>
         </div>
         <br>
@@ -34,8 +34,8 @@
                             <td>{{item?.email}}</td>
                             <td>{{item?.role}}</td>
                             <td>
-                                <button class="btn btn-success btn-sm">فعال کردن</button>
-                                <button class="btn btn-danger btn-sm mx-2">غیر فعال کردن</button>
+                                <button *ngIf="!item.isActive" class="btn btn-success btn-sm" (click)="changeUserStatus(item)">فعال کردن</button>
+                                <button *ngIf="item.isActive" class="btn btn-danger btn-sm mx-2" (click)="changeUserStatus(item)">غیر فعال کردن</button>
                             </td>
                             <td>
                                 <button class="btn btn-warning btn-sm" (click)="changePasswordOpen(item)">بازنشانی کلمه عبور</button>
