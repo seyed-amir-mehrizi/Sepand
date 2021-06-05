@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut(){
+    localStorage.removeItem('token');
     window.location.href = '/';
   }
 

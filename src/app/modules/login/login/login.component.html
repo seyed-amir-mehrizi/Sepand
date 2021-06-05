@@ -3,10 +3,17 @@
         <h2 class="fadeIn first mt-3 text-dark">
             فرم ورود
         </h2>
-        <form autocomplete="off" role="form">
-            <input type="text" id="login" class="fadeIn second dir-ltr" name="login" placeholder="نام کاربری">
-            <input type="password" id="password" class="fadeIn third dir-ltr" name="login" placeholder="رمزعبور">
-            <input class="fadeIn fourth" type="button" value="ورود" (click)="signIn()" >
+        <form [formGroup]="loginForm" autocomplete="off" role="form">
+            <input formControlName="username" type="text" id="login" class="fadeIn second dir-ltr"
+             name="login" placeholder="نام کاربری"
+             [ngClass]="{ 'error-validation': isLoginClicked && loginFromSubmitted.username.errors }">
+             
+
+            <input formControlName="password" type="password"
+             id="password" class="fadeIn third dir-ltr" name="login" placeholder="رمزعبور"
+             [ngClass]="{ 'error-validation': isLoginClicked && loginFromSubmitted.password.errors }"
+             >
+            <input class="fadeIn fourth" type="submit" value="ورود" (click)="signIn(loginForm.value)" >
         </form>
 
         <div class="d-flex justify-content-center">
