@@ -21,7 +21,9 @@ export class RegisterNewRepresentativeContractComponent implements OnInit {
   }
   initFormBuilder() {
     this.registerNewContractForm = this.fb.group({
-      projectName: ['', Validators.required],
+      contractDate: ['', Validators.required],
+      description: ['', Validators.required],
+
 
     });
   }
