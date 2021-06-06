@@ -37,7 +37,7 @@
                 <label for="roleName">نقش</label>
                 <select id="roleName" class="form-control" formControlName="roleName"
                     [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.roleName.errors}">
-                    <option *ngFor="let item of Roleslist" [value]="item.id">{{item.name}}</option>
+                    <option *ngFor="let item of Roleslist" [value]="item.name">{{item.name}}</option>
 
                 </select>
             </div>
