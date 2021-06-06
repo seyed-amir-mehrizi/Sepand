@@ -11,6 +11,7 @@ import { ActivateTerminalComponent } from './activate-terminal/activate-terminal
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ChangePostalCodeComponent,
     RemoveTerminalComponent,
     ActivateTerminalComponent,
-    RegisterCustomerComponent
+    RegisterCustomerComponent,
+    CustomerListComponent
   ],
   imports: [
     NgbModule,
