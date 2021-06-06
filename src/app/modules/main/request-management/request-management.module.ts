@@ -8,7 +8,9 @@ import { ChangeClassComponent } from './change-class/change-class.component';
 import { ChangePostalCodeComponent } from './change-postal-code/change-postal-code.component';
 import { RemoveTerminalComponent } from './remove-terminal/remove-terminal.component';
 import { ActivateTerminalComponent } from './activate-terminal/activate-terminal.component';
-
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,18 @@ import { ActivateTerminalComponent } from './activate-terminal/activate-terminal
     ChangeClassComponent,
     ChangePostalCodeComponent,
     RemoveTerminalComponent,
-    ActivateTerminalComponent
+    ActivateTerminalComponent,
+    RegisterCustomerComponent
   ],
   imports: [
+    NgbModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RequestManagementRoutingModule
+    RequestManagementRoutingModule,
+    NgSelectModule
+
   ],
-  exports: [RequestStatusComponent]
+  exports: [RequestStatusComponent,RegisterCustomerComponent]
 })
 export class RequestManagementModule { }

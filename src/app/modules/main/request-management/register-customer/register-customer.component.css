@@ -1,0 +1,11 @@
+::ng-deep .dropdown-menu .show {
+    background-color: red !important;
+    display: contents !important;
+    text-align: right !important;
+ 
+}
+
+label input {
+    margin-right:75px;
+ }
+
