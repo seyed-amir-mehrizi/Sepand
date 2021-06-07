@@ -12,7 +12,8 @@ export class CustomersService {
 
       let params = {
         NationalId : data.NationalId,
-        ShopName:data.ShopName
+        ShopName:data.ShopName,
+        Page:data.Page
       }
         return this.http.get(this.customerApi+'/customers' , {params});
     

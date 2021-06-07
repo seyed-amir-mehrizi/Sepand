@@ -9,48 +9,60 @@ import { CustomersService } from './customers.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customerslist:any = [];
-  page:number =1;
-  customerFilter:FormGroup;
-  constructor(private service : CustomersService , private fb:FormBuilder) { }
+  customerslist: any = [];
+  page: number = 1;
+  customerFilter: FormGroup;
+  maxSize: number;
+  totalRecords: number;
+  params = {
+    NationalId: '',
+    ShopName: '',
+    Page: 1,
+
+  }
+  constructor(private service: CustomersService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getCustomers();
+    this.getCustomers(this.params);
     this.initForm();
   }
 
-  initForm(){
+  initForm() {
     this.customerFilter = this.fb.group({
-      NationalId:[''],
-      ShopName:[''],
+      NationalId: [''],
+      ShopName: [''],
     });
   }
 
 
-  getCustomers(){
-    let data = {
-      NationalId:'',
-      ShopName:''
-    };
-    this.service.getListOFCustomers(data)
-    .subscribe((result:any)=>{
-      this.customerslist = result.data;
-    });
+  getCustomers(params: any) {
+
+    this.service.getListOFCustomers(params)
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord
+      });
   }
 
-  // clickOnPage(pageNumber){
-  //   this.command.optionalFilter.page = pageNumber;
-  //    this.getCommentList(this.command)
-  //  }
+  clickOnPage(pageNumber: any) {
+    this.params.Page = pageNumber;
+    this.service.getListOFCustomers(this.params)
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord
+      });
+
+  }
 
 
-  serachCustomer(item:any){
+  serachCustomer(item: any) {
     this.service.getListOFCustomers(item)
-    .subscribe((result:any)=>{
-      this.customerslist = result.data;
-    });
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord
+      });
 
-    
+
   }
 
 }

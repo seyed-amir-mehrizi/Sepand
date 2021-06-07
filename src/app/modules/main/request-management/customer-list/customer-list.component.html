@@ -1,5 +1,5 @@
 <div id="customerList">
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <ngb-panel title="فیلتر جستجو">
             <ng-template ngbPanelContent>
                 <form [formGroup]="customerFilter">
@@ -21,7 +21,7 @@
                 </form>
             </ng-template>
         </ngb-panel>
-    </ngb-accordion>
+    </ngb-accordion> -->
 
     <div class="card border-dark">
         <div class="card-header bg-secondary text-white">
@@ -68,7 +68,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- <span class="w-100 d-flex justify-content-center">
+                    <span class="w-100 d-flex justify-content-center">
                         <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true"
                             [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
                             <ng-template ngbPaginationPrevious>قبلی</ng-template>
@@ -76,7 +76,7 @@
                             <ng-template ngbPaginationFirst>ابتدا</ng-template>
                             <ng-template ngbPaginationLast>انتها</ng-template>
                         </ngb-pagination>
-                    </span> -->
+                    </span>
 
                 </div>
             </div>
