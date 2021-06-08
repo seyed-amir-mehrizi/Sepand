@@ -24,6 +24,7 @@ import { BaseUrlInterceptor } from '../core/interceptor/base.interceptor';
     SharedModule,
     CoreModule,
     LoginModule,
+
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true }],
   bootstrap: [AppComponent]

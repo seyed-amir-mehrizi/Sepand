@@ -14,6 +14,14 @@ export class RegisterCustomerService {
     return this.http.post(this.customerApi + '/add-person', data).pipe(map(response => response));
 }
 
+getPersonData(data){
+  let params = {
+    uniqueIdentifier : data.uniqueIdentifier,
+    type : data.type
+}
+return this.http.get(this.customerApi+'/get-person',{params});
+}
+
 
 
 }

@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 
+
 @NgModule({
   declarations: [
     RequestStatusComponent,
@@ -29,7 +30,9 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
     FormsModule,
     ReactiveFormsModule,
     RequestManagementRoutingModule,
-    NgSelectModule
+    NgSelectModule,
+
+    
 
   ],
   exports: [RequestStatusComponent,RegisterCustomerComponent]

@@ -6,6 +6,8 @@ import { SharedDataService } from 'src/app/shared/service/shared-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'jalali-moment';
 import { RegisterCustomerService } from './register-customer.service';
+import {NgbNavChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 const WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
@@ -28,13 +30,15 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
   selector: 'app-register-customer',
   templateUrl: './register-customer.component.html',
   styleUrls: ['./register-customer.component.css'],
-  encapsulation: ViewEncapsulation.None,
+
   providers: [
     { provide: NgbCalendar, useClass: NgbCalendarPersian },
     { provide: NgbDatepickerI18n, useClass: NgbDatepickerI18nPersian }
   ]
 })
 export class RegisterCustomerComponent implements OnInit {
+  active;
+  disabled = true;
   public model: any;
   allNationalities: any = [];
   personTypeList: any = [];
@@ -50,9 +54,19 @@ export class RegisterCustomerComponent implements OnInit {
   isForeign: boolean = false;
   isEmpty:boolean = true;
   degreeList: any = [];
+  firstForm!: FormGroup;
+  secondForm!: FormGroup;
+  thirdForm!: FormGroup;
+  changePasswordForm!: FormGroup;
+  isChangePasswordSubmitted: boolean = false;
+  customerType:number;
+  hasNationalNumber:boolean = false;
+  hasRegisterNumber:boolean = false;
 
+  registerRealCustomerFormValue:any = {};
+  registerLegalCustomerFormValue:any = {};
   constructor(private sharedService: SharedDataService, private fb: FormBuilder
-    , private service : RegisterCustomerService
+    , private service : RegisterCustomerService , private toastr: ToastrService,
     
     ) { }
 
@@ -60,11 +74,24 @@ export class RegisterCustomerComponent implements OnInit {
     this.getPersonType();
     this.getListOfDegrees();
     this.getListOfAllAlphabet();
-
   }
 
+  onNavChange(changeEvent: NgbNavChangeEvent) {
+    if (changeEvent.nextId === 3) {
+      changeEvent.preventDefault();
+    }
+  }
 
+  goToNext(nav){
+    nav.select(2)
+  }
 
+  toggleDisabled() {
+    this.disabled = !this.disabled;
+    if (this.disabled) {
+      this.active = 1;
+    }
+  }
   getListOfDegrees() {
     this.sharedService.getDegreeType()
       .subscribe((result: any) => {
@@ -141,6 +168,8 @@ export class RegisterCustomerComponent implements OnInit {
       birthCertificateSerial: ['', Validators.required],
       birthCertificateAlphabiticNoId: ['', Validators.required],
       birthCertificateNumericNo: ['', Validators.required],
+      postalCode: ['', Validators.required],
+
       isDisable: [''],
     })
   }
@@ -155,6 +184,27 @@ export class RegisterCustomerComponent implements OnInit {
       comNameEn: ['', Validators.required],
       comNameFa: ['', Validators.required],
       commercialCode: ['', Validators.required],
+      degreeId: ['', Validators.required],
+      // customerType: ['', Validators.required],
+      nationalNumber: ['', Validators.required],
+      firstNameFa: ['', Validators.required],
+      lastNameFa: ['', Validators.required],
+      firstNameEn: ['', Validators.required],
+      lastNameEn: ['', Validators.required],
+      nationalityId: ['', Validators.required],
+      birthLocation: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      birthCertificatePlaceOfIssue: ['', Validators.required],
+      fatherNameFa: ['', Validators.required],
+      fatherNameEn: ['', Validators.required],
+      sex: ['', Validators.required],
+      birthCertificateNo: ['', Validators.required],
+      birthCertificateSerial: ['', Validators.required],
+      birthCertificateAlphabiticNoId: ['', Validators.required],
+      birthCertificateNumericNo: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      nationalLegalCode: ['', Validators.required],
+      isDisable: [''],
     });
   }
   get registerLegalCustomerFormInfo() {
@@ -182,6 +232,7 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   onOptionsSelected(item: any) {
+    this.customerType = item;
     switch (item) {
       case "1":
         this.initRealForm();
@@ -224,22 +275,258 @@ export class RegisterCustomerComponent implements OnInit {
     return moment.from(this.formatDate(date), 'fa', 'YYYY/MM/DD').format(`YYYY-MM-DD`);
   }
 
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
 
-  submitRealCustomer(item:any){
+  }
+
+
+  submitRealCustomer(nav:any){
     if (this.registerRealCustomerForm.invalid) {
       this.isRegisterCustomerSubmitted = true;
       return;
     }
+    else if(this.hasNationalNumber === false){
+      this.toastr.error("در ابتدا استعلام کد ملی خود را بررسی کنید");
+    }
     const dataSending = this.registerRealCustomerForm.value;
     dataSending.birthDate = this.changeJalaliToGregorian(dataSending.birthDate);
-    dataSending.nationalityId = dataSending.nationalityId.id;
+    dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    dataSending.sex = parseInt(dataSending.sex);
+    dataSending.birthCertificateNo = parseInt(dataSending.birthCertificateNo);
+    dataSending.birthCertificateSerial = parseInt(dataSending.birthCertificateSerial);
     dataSending.birthCertificateAlphabiticNoId = parseInt(dataSending.birthCertificateAlphabiticNoId);
+    dataSending.birthCertificateNumericNo = parseInt(dataSending.birthCertificateNumericNo);
+    dataSending.degreeId = parseInt(dataSending.degreeId);
+    this.registerRealCustomerFormValue = this.registerRealCustomerForm.value;
+    nav.select(2)
+  }
+
+  splitGregorianToJalaliDate(date) {
+    return moment(date, 'YYYY/MM/DD').locale('fa').format(`YYYY-MM-DD`).split('-');
+  }
+  checkNationalNumber(){
+    const dataSending = this.registerRealCustomerForm.value;
+    if( dataSending.nationalNumber){
+      let data = {
+        type : this.customerType,
+        uniqueIdentifier : dataSending.nationalNumber
+      }
+      this.service.getPersonData(data)
+      .subscribe((res:any)=>{
+        if(res){
+          this.hasNationalNumber = true;
+          this.registerRealCustomerForm.setValue({
+            degreeId: res.degreeId,
+            nationalNumber: res.nationalNumber,
+            firstNameFa:res.firstNameFa,
+            lastNameFa: res.lastNameFa,
+            firstNameEn: res.firstNameEn,
+            lastNameEn:res.lastNameEn,
+            nationalityId:[{id : res.nationalityId , nationalName : "ایران"}],
+            birthLocation: res.birthLocation,
+            birthDate: {
+              year: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[0]),
+              month: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[1]),
+              day: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[2]),
+            },
+            birthCertificatePlaceOfIssue: res.birthCertificatePlaceOfIssue,
+            fatherNameFa: res.fatherNameFa,
+            fatherNameEn: res.fatherNameEn,
+            sex: res.sex,
+            birthCertificateNo: res.birthCertificateNo,
+            birthCertificateSerial: res.birthCertificateSerial,
+            birthCertificateAlphabiticNoId: res.birthCertificateAlphabiticNoId,
+            birthCertificateNumericNo: res.birthCertificateNumericNo,
+            postalCode: res.postalCode,
+            isDisable: res.isDisable,
+          });
+        }
+      });
+    }else{
+      this.toastr.error('ابتدا کد ملی خود را وارد کنید...')
+    }
+  }
+
+
+  checkRegisterNumber(){
+    const dataSending = this.registerLegalCustomerForm.value;
+    if(dataSending.registerNo){
+      let data = {
+        type : this.customerType,
+        uniqueIdentifier : dataSending.registerNo
+      }
+      this.service.getPersonData(data)
+      .subscribe((res:any)=>{
+        if(res){
+          this.hasRegisterNumber = true;
+          this.registerLegalCustomerForm.setValue({
+            degreeId: res.degreeId,
+            nationalNumber: res.nationalNumber,
+            firstNameFa:res.firstNameFa,
+            lastNameFa: res.lastNameFa,
+            firstNameEn: res.firstNameEn,
+            lastNameEn:res.lastNameEn,
+            nationalityId:[{id : res.nationalityId , nationalName : "ایران"}],
+            birthLocation: res.birthLocation,
+            birthDate: {
+              year: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[0]),
+              month: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[1]),
+              day: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[2]),
+            },
+            birthCertificatePlaceOfIssue: res.birthCertificatePlaceOfIssue,
+            fatherNameFa: res.fatherNameFa,
+            fatherNameEn: res.fatherNameEn,
+            sex: res.sex,
+            birthCertificateNo: res.birthCertificateNo,
+            birthCertificateSerial: res.birthCertificateSerial,
+            birthCertificateAlphabiticNoId: res.birthCertificateAlphabiticNoId,
+            birthCertificateNumericNo: res.birthCertificateNumericNo,
+            postalCode: res.postalCode,
+            isDisable: res.isDisable,
+            registerDate:  {
+              year: parseInt(this.splitGregorianToJalaliDate(res.registerDate)[0]),
+              month: parseInt(this.splitGregorianToJalaliDate(res.registerDate)[1]),
+              day: parseInt(this.splitGregorianToJalaliDate(res.registerDate)[2]),
+            },
+            registerNo: res.registerNo,
+            comNameEn: res.comNameEn,
+            comNameFa: res.comNameFa,
+            nationalLegalCod: res.nationalLegalCod,
+            commercialCode: res.commercialCode,
+            nationalLegalCode : res.nationalLegalCode
+          });
+        }
+      });
+    }else{
+      this.toastr.error('ابتدا شماره ثبت خود را وارد کنید...')
+    }
+  }
+
+  checkForeignPervasiveCode(){
+    const dataSending = this.registerForeignForm.value;
+    if(dataSending.foreignPervasiveCode){
+      let data = {
+        type : this.customerType,
+        uniqueIdentifier : dataSending.foreignPervasiveCode
+      }
+      this.service.getPersonData(data)
+      .subscribe((res:any)=>{
+        if(res){
+          this.hasRegisterNumber = true;
+          this.registerForeignForm.setValue({
+            degreeId: res.degreeId,
+            nationalNumber: res.nationalNumber,
+            firstNameFa:res.firstNameFa,
+            lastNameFa: res.lastNameFa,
+            firstNameEn: res.firstNameEn,
+            lastNameEn:res.lastNameEn,
+            nationalityId:[{id : res.nationalityId , nationalName : "ایران"}],
+            birthLocation: res.birthLocation,
+            birthDate: {
+              year: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[0]),
+              month: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[1]),
+              day: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[2]),
+            },
+            birthCertificatePlaceOfIssue: res.birthCertificatePlaceOfIssue,
+            fatherNameFa: res.fatherNameFa,
+            fatherNameEn: res.fatherNameEn,
+            sex: res.sex,
+            birthCertificateNo: res.birthCertificateNo,
+            birthCertificateSerial: res.birthCertificateSerial,
+            birthCertificateAlphabiticNoId: res.birthCertificateAlphabiticNoId,
+            birthCertificateNumericNo: res.birthCertificateNumericNo,
+            postalCode: res.postalCode,
+            isDisable: res.isDisable,
+            registerDate:  {
+              year: parseInt(this.splitGregorianToJalaliDate(res.registerDate)[0]),
+              month: parseInt(this.splitGregorianToJalaliDate(res.registerDate)[1]),
+              day: parseInt(this.splitGregorianToJalaliDate(res.registerDate)[2]),
+            },
+            registerNo: res.registerNo,
+            comNameEn: res.comNameEn,
+            comNameFa: res.comNameFa,
+            nationalLegalCod: res.nationalLegalCod,
+            commercialCode: res.commercialCode,
+            nationalLegalCode : res.nationalLegalCode
+          });
+        }
+      });
+    }else{
+      this.toastr.error('ابتدا شماره ثبت خود را وارد کنید...')
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  submitLegalCustomer(nav:any){
+    if (this.registerLegalCustomerForm.invalid) {
+      this.isRegisterLegalCustomerSubmitted = true;
+      return;
+    }
+    else if(this.hasRegisterNumber === false){
+      this.toastr.error("در ابتدا استعلام شماره ثبت شرکت را بررسی کنید");
+    }
+    const dataSending = this.registerLegalCustomerForm.value;
+    dataSending.registerDate = this.changeJalaliToGregorian(dataSending.registerDate);
+    dataSending.birthDate = this.changeJalaliToGregorian(dataSending.birthDate);
+    dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    dataSending.sex = parseInt(dataSending.sex);
+    dataSending.birthCertificateNo = parseInt(dataSending.birthCertificateNo);
+    dataSending.birthCertificateSerial = parseInt(dataSending.birthCertificateSerial);
+    dataSending.birthCertificateAlphabiticNoId = parseInt(dataSending.birthCertificateAlphabiticNoId);
+    dataSending.birthCertificateNumericNo = parseInt(dataSending.birthCertificateNumericNo);
+    dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.isLegal = true;
-    console.log("dataSending : " , dataSending);
-    this.service.createCustomer(dataSending)
-    .subscribe((result:any)=>{
-      console.log("result : " , result);
-    })
+    this.registerLegalCustomerFormValue = this.registerLegalCustomerForm.value;
+    nav.select(2)
+  }
+
+
+
+
+  submitForeignCustomer(nav:any){
+    if (this.registerForeignForm.invalid) {
+      this.isRegisterForeignCustomerSubmitted = true;
+      return;
+    }
+    else if(this.hasRegisterNumber === false){
+      this.toastr.error("در ابتدا استعلام شماره ثبت شرکت را بررسی کنید");
+    }
+    const dataSending = this.registerForeignForm.value;
+    dataSending.registerDate = this.changeJalaliToGregorian(dataSending.registerDate);
+    dataSending.birthDate = this.changeJalaliToGregorian(dataSending.birthDate);
+    dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    dataSending.sex = parseInt(dataSending.sex);
+    dataSending.birthCertificateNo = parseInt(dataSending.birthCertificateNo);
+    dataSending.birthCertificateSerial = parseInt(dataSending.birthCertificateSerial);
+    dataSending.birthCertificateAlphabiticNoId = parseInt(dataSending.birthCertificateAlphabiticNoId);
+    dataSending.birthCertificateNumericNo = parseInt(dataSending.birthCertificateNumericNo);
+    dataSending.degreeId = parseInt(dataSending.degreeId);
+    dataSending.isLegal = true;
+    this.registerLegalCustomerFormValue = this.registerForeignForm.value;
+    nav.select(2)
   }
 
 
