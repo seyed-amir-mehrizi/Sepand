@@ -438,6 +438,25 @@
             </div>
 
             <div class="col-md-4">
+              <label for="nationalNumber">کد ملی</label>
+
+              <input
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                id="nationalNumber"
+                type="text"
+                formControlName="nationalNumber"
+                class="form-control dir-ltr"
+                (keypress)="numberOnly($event)"
+                [ngClass]="{
+                  'is-invalid':
+                    isRegisterLegalCustomerSubmitted &&
+                    registerLegalCustomerFormInfo.nationalityId.errors
+                }"
+              />
+            </div>
+
+            <div class="col-md-4">
               <label for="nationalityId">ملیت</label>
               <input
                 id="typeahead-config"
@@ -621,9 +640,6 @@
               <label for="birthCertificateAlphabiticNoId">
                 حرف شماره سریال شناسنامه
               </label>
-              <!-- <input id="birthCertificateAlphabiticNoId" type="text"
-                  formControlName="birthCertificateAlphabiticNoId" class="form-control"
-                  [ngClass]="{'is-invalid': isRegisterLegalCustomerSubmitted && registerLegalCustomerFormInfo.birthCertificateAlphabiticNoId.errors}" /> -->
               <select
                 id="customerType"
                 #mySelect
@@ -670,7 +686,7 @@
                   class="form-control"
                   name="dp"
                   ngbDatepicker
-                  #d="ngbDatepicker"
+                  #b="ngbDatepicker"
                   formControlName="registerDate"
                   [ngClass]="{
                     'is-invalid':
@@ -681,7 +697,7 @@
                 <div class="input-group-append">
                   <button
                     class="btn btn-primary py-0 px-2"
-                    (click)="d.toggle()"
+                    (click)="b.toggle()"
                     type="button"
                   >
                     <i class="fa fa-calendar" aria-hidden="true"></i>
