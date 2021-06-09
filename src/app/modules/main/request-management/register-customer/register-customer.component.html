@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="2" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
     <li [ngbNavItem]="1">
         <a ngbNavLink>دریافت اطلاعات شخصی</a>
         <ng-template ngbNavContent>
@@ -36,7 +36,7 @@
                 />
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
               <input
                 id="firstNameFa"
@@ -50,7 +50,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
               <input
                 id="lastNameFa"
@@ -64,7 +64,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="firstNameEn">نام لاتین</label>
               <input
                 id="firstNameEn"
@@ -78,7 +78,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
               <input
                 id="lastNameEn"
@@ -93,7 +93,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="nationalityId">ملیت</label>
               <input
                 id="typeahead-config"
@@ -111,7 +111,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
               <input
                 id="birthLocation"
@@ -125,7 +125,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthDate"> تاریخ تولد </label>
               <div class="input-group dir-ltr">
                 <input
@@ -152,7 +152,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificatePlaceOfIssue">محل صدور </label>
               <input
                 id="birthCertificatePlaceOfIssue"
@@ -167,7 +167,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="postalCode"> کد پستی </label>
               <input
                 id="postalCode"
@@ -181,7 +181,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
               <input
                 id="fatherNameFa"
@@ -195,7 +195,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="fatherNameEn"> نام پدر لاتین </label>
               <input
                 id="fatherNameEn"
@@ -210,7 +210,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="sex">جنسیت</label>
               <select
                 id="sex"
@@ -227,7 +227,7 @@
                 <option [value]="1">مرد</option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="degreeId">مدرک تحصیلی</label>
               <select
                 id="degreeId"
@@ -244,7 +244,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateNo"> شماره شناسنامه </label>
               <input
                 id="birthCertificateNo"
@@ -259,7 +259,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateSerial"> شماره سریال شناسنامه </label>
               <input
                 id="birthCertificateSerial"
@@ -274,7 +274,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateAlphabiticNoId">
                 حرف شماره سریال شناسنامه
               </label>
@@ -297,7 +297,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateNumericNo">
                 عدد دو رقمی شماره سریال شناسنامه
               </label>
@@ -315,7 +315,7 @@
                 }"
               />
             </div>
-            <div class="form-group form-check col-md-4">
+            <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
                 <input
                   formControlName="isDisable"
@@ -337,7 +337,7 @@
       <div *ngIf="isLegal">
         <form [formGroup]="registerLegalCustomerForm">
           <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="registerNo">شماره ثبت</label>
               <div class="input-group mb-3 dir-ltr">
                 <span
@@ -363,7 +363,7 @@
                 />
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
               <input
                 id="firstNameFa"
@@ -377,7 +377,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
               <input
                 id="lastNameFa"
@@ -391,7 +391,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="firstNameEn">نام لاتین</label>
               <input
                 id="firstNameEn"
@@ -405,7 +405,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
               <input
                 id="lastNameEn"
@@ -420,7 +420,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="nationalNumber">کد ملی</label>
 
               <input
@@ -439,7 +439,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="nationalityId">ملیت</label>
               <input
                 id="typeahead-config"
@@ -457,7 +457,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
               <input
                 id="birthLocation"
@@ -471,7 +471,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthDate"> تاریخ تولد </label>
               <div class="input-group dir-ltr">
                 <input
@@ -498,7 +498,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificatePlaceOfIssue">محل صدور </label>
               <input
                 id="birthCertificatePlaceOfIssue"
@@ -513,7 +513,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="postalCode"> کد پستی </label>
               <input
                 id="postalCode"
@@ -527,7 +527,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
               <input
                 id="fatherNameFa"
@@ -541,7 +541,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="fatherNameEn"> نام پدر لاتین </label>
               <input
                 id="fatherNameEn"
@@ -556,7 +556,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="sex">جنسیت</label>
               <select
                 id="sex"
@@ -573,7 +573,7 @@
                 <option [value]="1">مرد</option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="degreeId">مدرک تحصیلی</label>
               <select
                 id="degreeId"
@@ -590,7 +590,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateNo"> شماره شناسنامه </label>
               <input
                 id="birthCertificateNo"
@@ -605,7 +605,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateSerial"> شماره سریال شناسنامه </label>
               <input
                 id="birthCertificateSerial"
@@ -620,7 +620,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateAlphabiticNoId">
                 حرف شماره سریال شناسنامه
               </label>
@@ -643,7 +643,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthCertificateNumericNo">
                 عدد دو رقمی شماره سریال شناسنامه
               </label>
@@ -662,7 +662,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="registerDate"> تاریخ ثبت </label>
               <div class="input-group dir-ltr">
                 <input
@@ -689,7 +689,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="comNameFa"> نام شرکت </label>
               <input
                 id="comNameFa"
@@ -703,7 +703,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="comNameEn"> نام شرکت لاتین </label>
               <input
                 id="comNameEn"
@@ -717,7 +717,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
               <input
                 id="commercialCode"
@@ -731,7 +731,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="nationalLegalCode"> کد حقوقی ملی </label>
               <input
                 id="nationalLegalCode"
@@ -745,7 +745,7 @@
                 }"
               />
             </div>
-            <div class="form-group form-check col-md-4">
+            <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
                 <input
                   formControlName="isDisable"
@@ -767,7 +767,7 @@
       <div *ngIf="isForeign">
         <form [formGroup]="registerForeignForm">
           <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="foreignPervasiveCode"> کد اتباع فراگیر </label>
               <div class="input-group mb-3 dir-ltr">
                 <span
@@ -792,7 +792,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
               <input
                 id="firstNameFa"
@@ -806,7 +806,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
               <input
                 id="lastNameFa"
@@ -820,7 +820,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="firstNameEn">نام لاتین</label>
               <input
                 id="firstNameEn"
@@ -834,7 +834,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
               <input
                 id="lastNameEn"
@@ -849,7 +849,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="nationalityId">ملیت</label>
               <input
                 id="typeahead-config"
@@ -867,7 +867,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
               <input
                 id="birthLocation"
@@ -882,7 +882,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="birthDate"> تاریخ تولد </label>
               <div class="input-group dir-ltr">
                 <input
@@ -909,7 +909,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
               <input
                 id="fatherNameFa"
@@ -923,7 +923,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="fatherNameEn"> نام پدر لاتین </label>
               <input
                 id="fatherNameEn"
@@ -938,7 +938,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="sex">جنسیت</label>
               <select
                 id="sex"
@@ -956,7 +956,7 @@
               </select>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="degreeId">مدرک تحصیلی</label>
               <select
                 id="degreeId"
@@ -974,7 +974,7 @@
               </select>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="postalCode"> کد پستی </label>
               <input
                 id="postalCode"
@@ -989,7 +989,7 @@
               />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="countryCode">نام کشور</label>
               <input
                 id="countryCode"
@@ -1007,7 +1007,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="passportNo"> شماره پاسپورت </label>
               <input
                 id="passportNo"
@@ -1021,7 +1021,7 @@
                 }"
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="passportExpireDate"> تاریخ انقضای پاسپورت </label>
               <div class="input-group dir-ltr">
                 <input
@@ -1049,7 +1049,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
               <input
                 id="commercialCode"
@@ -1084,7 +1084,7 @@
     <ng-template ngbNavContent>
       <form [formGroup]="LocationInfoForm">
         <div class="row mt-3">
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="mobileNumber"> شماره موبایل </label>
             <input
               id="mobileNumber"
@@ -1099,7 +1099,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="telephone"> تلفن </label>
             <input
               id="telephone"
@@ -1114,7 +1114,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="email"> رایانامه </label>
             <input
               id="email"
@@ -1128,7 +1128,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="webSiteAddress"> وب سایت </label>
             <input
               id="webSiteAddress"
@@ -1143,7 +1143,7 @@
             />
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-6 my-2">
             <label for="addressFa"> آدرس فارسی </label>
             <input
               id="addressFa"
@@ -1157,7 +1157,7 @@
               }"
             />
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 my-2">
             <label for="addressEn"> آدرس انگلیسی </label>
             <input
               id="addressEn"
@@ -1172,7 +1172,7 @@
             />
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopPostalCode"> کد پستی فروشگاه </label>
             <input
               id="shopPostalCode"
@@ -1187,7 +1187,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopFaxNumber"> فکس فروشگاه </label>
             <input
               id="shopFaxNumber"
@@ -1202,7 +1202,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopTelephoneNumber"> شماره تلفن فروشگاه </label>
             <input
               id="shopTelephoneNumber"
@@ -1217,7 +1217,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopCityPreCode"> پیش شماره شهر فروشگاه </label>
             <input
               id="shopCityPreCode"
@@ -1232,7 +1232,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseNumber">شماره مجوز کسب و کار </label>
             <input
               id="shopBusinessLicenseNumber"
@@ -1247,7 +1247,37 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+
+
+          <div class="col-md-3 my-2">
+            <label for="shopEmail"> ایمیل فروشگاه </label>
+            <input
+              id="shopEmail"
+              type="text"
+              formControlName="shopEmail"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopEmail.errors
+              }"
+            />
+          </div>
+          <div class="col-md-6 my-2">
+            <label for="shopAddress"> آدرس فروشگاه </label>
+            <input
+              id="shopAddress"
+              type="text"
+              formControlName="shopAddress"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopAddress.errors
+              }"
+            />
+          </div>
+          <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseIssueDate">
               تاریخ صدور مجوز کسب و کار
             </label>
@@ -1276,7 +1306,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseExpireDate">
               تاریخ انقضای مجوز کسب و کار</label
             >
@@ -1305,36 +1335,7 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-3">
-            <label for="shopEmail"> ایمیل فروشگاه </label>
-            <input
-              id="shopEmail"
-              type="text"
-              formControlName="shopEmail"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid':
-                  isLocationInfoFormSubmitted &&
-                  locationInfoFormInfo.shopEmail.errors
-              }"
-            />
-          </div>
-          <div class="col-md-6">
-            <label for="shopAddress"> آدرس فروشگاه </label>
-            <input
-              id="shopAddress"
-              type="text"
-              formControlName="shopAddress"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid':
-                  isLocationInfoFormSubmitted &&
-                  locationInfoFormInfo.shopAddress.errors
-              }"
-            />
-          </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="redirectUrl"> redirectUrl </label>
             <input
               id="redirectUrl"
@@ -1348,7 +1349,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="guildId">صنف</label>
             <select
               id="guildId"
@@ -1366,7 +1367,7 @@
             </select>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopLogo"> لوگوی فروشگاه </label>
             <input
               id="shopLogo"
@@ -1374,7 +1375,7 @@
               formControlName="shopLogo"
               accept=".png"
               class="form-control"
-              (change)="imageUpload($event)"
+              (change)="changeListener($event)"
               [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -1382,7 +1383,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopNameFa">نام فروشگاه </label>
             <input
               id="shopNameFa"
@@ -1396,7 +1397,7 @@
               }"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
             <label for="shopNameEn">نام فروشگاه انگلیسی </label>
             <input
               id="shopNameEn"
@@ -1410,8 +1411,42 @@
               }"
             />
           </div>
+          <div class="col-md-3 my-2">
+            <label for="taxPayerCode"> کد مالیات دهنده </label>
+            <input
+              id="taxPayerCode"
+              type="text"
+              formControlName="taxPayerCode"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.taxPayerCode.errors
+              }"
+            />
+          </div>
+         
 
-          <div class="col-md-3">
+          <div class="col-md-3 my-2">
+            <label for="countryAbbreviation"> کشور</label>
+            <input
+              id="countryAbbreviation"
+              type="text"
+              class="form-control"
+              formControlName="countryAbbreviation"
+              [ngbTypeahead]="countries_Serach"
+              [resultFormatter]="countriesFormatter"
+              [inputFormatter]="countriesInputFormatter"
+              placement="bottom-right"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.countryAbbreviation.errors
+              }"
+            />
+          </div>
+
+          <div class="col-md-3 my-2">
             <label for="provinceAbbreviation">استان</label>
             <select
               #province
@@ -1434,25 +1469,10 @@
             </select>
           </div>
 
-          <div class="col-md-3">
-            <label for="countryAbbreviation"> کشور</label>
-            <input
-              id="countryAbbreviation"
-              type="text"
-              class="form-control"
-              formControlName="countryAbbreviation"
-              [ngbTypeahead]="countries_Serach"
-              [resultFormatter]="countriesFormatter"
-              [inputFormatter]="countriesInputFormatter"
-              placement="bottom-right"
-              [ngClass]="{
-                'is-invalid':
-                  isLocationInfoFormSubmitted &&
-                  locationInfoFormInfo.countryAbbreviation.errors
-              }"
-            />
-          </div>
-          <div class="col-md-3">
+
+
+
+          <div class="col-md-3 my-2">
             <label for="cityCode">شهر</label>
             <select
               id="cityCode"
@@ -1472,20 +1492,7 @@
               </option>
             </select>
           </div>
-          <div class="col-md-3">
-            <label for="taxPayerCode"> کد مالیات دهنده </label>
-            <input
-              id="taxPayerCode"
-              type="text"
-              formControlName="taxPayerCode"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid':
-                  isLocationInfoFormSubmitted &&
-                  locationInfoFormInfo.taxPayerCode.errors
-              }"
-            />
-          </div>
+
           <div class="form-group form-check col-md-4">
             <label class="form-check-label">
               <input

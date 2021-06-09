@@ -6,9 +6,10 @@ import { SharedDataService } from 'src/app/shared/service/shared-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'jalali-moment';
 import { RegisterCustomerService } from './register-customer.service';
-import {NgbNavChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { BaseInfoService } from '../../basic-info/base-info.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 const WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
@@ -41,6 +42,8 @@ export class RegisterCustomerComponent implements OnInit {
   active;
   disabled = true;
   public model: any;
+  public image: any;
+
   allNationalities: any = [];
   personTypeList: any = [];
   registerRealCustomerForm: FormGroup;
@@ -70,6 +73,8 @@ export class RegisterCustomerComponent implements OnInit {
   registerRealCustomerFormValue: any = {};
   registerLegalCustomerFormValue: any = {};
   registerForeignCustomerFormValue: any = {};
+  locationInfoValue: any = {};
+
   imageUrl: any;
   disabledLocationInfo: boolean = true;
   disabledBankInfo: boolean = true;
@@ -80,8 +85,9 @@ export class RegisterCustomerComponent implements OnInit {
     private fb: FormBuilder,
     private service: RegisterCustomerService,
     private toastr: ToastrService,
-    private baseInfoService: BaseInfoService
-  ) {}
+    private baseInfoService: BaseInfoService,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.getPersonType();
@@ -211,7 +217,7 @@ export class RegisterCustomerComponent implements OnInit {
       dataSending.birthCertificateNumericNo
     );
     dataSending.degreeId = parseInt(dataSending.degreeId);
-    this.registerRealCustomerFormValue = this.registerRealCustomerForm.value;
+    this.registerRealCustomerFormValue = dataSending;
     nav.select(2);
     this.disabledLocationInfo = false;
   }
@@ -450,7 +456,7 @@ export class RegisterCustomerComponent implements OnInit {
     );
     dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.isLegal = true;
-    this.registerLegalCustomerFormValue = this.registerLegalCustomerForm.value;
+    this.registerLegalCustomerFormValue = dataSending;
     nav.select(2);
     this.disabledLocationInfo = false;
   }
@@ -526,7 +532,7 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.rsidencyType = true;
     dataSending.vitalStatus = true;
-    this.registerForeignCustomerFormValue = this.registerForeignForm.value;
+    this.registerForeignCustomerFormValue = dataSending;
     nav.select(2);
   }
 
@@ -559,7 +565,7 @@ export class RegisterCustomerComponent implements OnInit {
     this.LocationInfoForm = this.fb.group({
       mobileNumber: ['', Validators.required],
       telephone: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required , Validators.email]],
       addressFa: ['', Validators.required],
       addressEn: ['', Validators.required],
       shopPostalCode: ['', Validators.required],
@@ -569,7 +575,7 @@ export class RegisterCustomerComponent implements OnInit {
       shopBusinessLicenseNumber: ['', Validators.required],
       shopBusinessLicenseIssueDate: ['', Validators.required],
       shopBusinessLicenseExpireDate: ['', Validators.required],
-      shopEmail: ['', Validators.required],
+      shopEmail: ['', [Validators.required , Validators.email]],
       shopAddress: ['', Validators.required],
       redirectUrl: ['', Validators.required],
       guildId: ['', Validators.required],
@@ -618,42 +624,42 @@ export class RegisterCustomerComponent implements OnInit {
       });
   }
 
- imageUpload = (e)=> {
-        let reader = new FileReader();
-        //get the selected file from event
-        let file = e.target.files[0];
-        reader.onloadend = () => {
-          //Assign the result to variable for setting the src of image element
-          this.imageUrl = reader.result;
-        }
-   reader.readAsDataURL(file);
-   console.log('file : ', file);
-   
-      }
+
+
+
+  changeListener($event) : void {
+    this.readThis($event.target);
+  }
+  
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+  
+    myReader.onloadend = (e) => {
+      this.image = myReader.result;
+    }
+    myReader.readAsDataURL(file);
     
+  }
 
   submitLocationInfo(nav: any) {
-    // if (this.LocationInfoForm.invalid) {
-    //   this.isLocationInfoFormSubmitted = true;
-    //   return;
-    // }
-    const formData: FormData = new FormData();
+    if (this.LocationInfoForm.invalid) {
+      this.isLocationInfoFormSubmitted = true;
+      return;
+    }
     const dataSending = this.LocationInfoForm.value;
-    console.log(dataSending.shopLogo);
+    dataSending.shopLogo = this.image;
 
-    // dataSending.birthDate = this.changeJalaliToGregorian(
-    //   dataSending.birthDate
-    // );
-    // dataSending.passportExpireDate = this.changeJalaliToGregorian(
-    //   dataSending.passportExpireDate
-    // );
-    // dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
-    // dataSending.countryCode = parseInt(dataSending.countryCode['id']);
-    // dataSending.sex = parseInt(dataSending.sex);
-    // dataSending.degreeId = parseInt(dataSending.degreeId);
-    // dataSending.rsidencyType = true;
-    // dataSending.vitalStatus = true;
-    // this.registerForeignCustomerFormValue = this.registerForeignForm.value;
-    // nav.select(2);
+    dataSending.shopBusinessLicenseIssueDate = this.changeJalaliToGregorian(
+      dataSending.shopBusinessLicenseIssueDate
+    );
+    dataSending.shopBusinessLicenseExpireDate = this.changeJalaliToGregorian(
+      dataSending.shopBusinessLicenseExpireDate
+    );
+    dataSending.countryAbbreviation = parseInt(dataSending.countryAbbreviation['abbrivation']);
+    dataSending.cityCode = parseInt(dataSending.cityCode);
+    dataSending.guildId = parseInt(dataSending.guildId);
+    this.locationInfoValue = dataSending;
+    nav.select(3);
   }
 }
