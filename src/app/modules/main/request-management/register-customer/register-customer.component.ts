@@ -59,6 +59,8 @@ export class RegisterCustomerComponent implements OnInit {
   isEmpty: boolean = true;
   degreeList: any = [];
   guildList: any = [];
+  fileToUpload: File = null;
+  proviceCitiesList: any = [];
   isChangePasswordSubmitted: boolean = false;
   customerType: number;
   hasNationalNumber: boolean = false;
@@ -68,10 +70,11 @@ export class RegisterCustomerComponent implements OnInit {
   registerRealCustomerFormValue: any = {};
   registerLegalCustomerFormValue: any = {};
   registerForeignCustomerFormValue: any = {};
-
+  imageUrl: any;
   disabledLocationInfo: boolean = true;
   disabledBankInfo: boolean = true;
   disabledContractInfo: boolean = true;
+  provinceId: number;
   constructor(
     private sharedService: SharedDataService,
     private fb: FormBuilder,
@@ -85,6 +88,8 @@ export class RegisterCustomerComponent implements OnInit {
     this.getListOfDegrees();
     this.getListOfAllAlphabet();
     this.initLocationInfoForm();
+    this.getListOfProvince();
+    this.getListOfGuild();
   }
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
@@ -93,7 +98,6 @@ export class RegisterCustomerComponent implements OnInit {
     if (changeEvent.nextId === 3) {
       changeEvent.preventDefault();
     }
-
   }
 
   goToNext(nav) {
@@ -572,14 +576,22 @@ export class RegisterCustomerComponent implements OnInit {
       shopLogo: ['', Validators.required],
       shopNameFa: ['', Validators.required],
       shopNameEn: ['', Validators.required],
+      webSiteAddress: ['', Validators.required],
       provinceAbbreviation: ['', Validators.required],
       countryAbbreviation: ['', Validators.required],
       cityCode: ['', Validators.required],
+      taxPayerCode: ['', Validators.required],
+      isSharedAccount: [''],
+      isMultiAccount: [''],
     });
   }
 
   get locationInfoFormInfo() {
     return this.LocationInfoForm.controls;
+  }
+  onProvinceSelected(value: any) {
+    this.provinceId = parseInt(value.value.provinceAbbreviation);
+    this.getListOfProvinceCities();
   }
 
   getListOfAllAlphabet() {
@@ -589,7 +601,7 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   getListOfGuild() {
-    this.baseInfoService.getListOfGuild().subscribe((res: any) => {
+    this.sharedService.getAllGuildsCategories().subscribe((res: any) => {
       this.guildList = res;
     });
   }
@@ -597,5 +609,51 @@ export class RegisterCustomerComponent implements OnInit {
     this.sharedService.getAllProvince().subscribe((res: any) => {
       this.proviceList = res;
     });
+  }
+  getListOfProvinceCities() {
+    this.sharedService
+      .getCitiesOfProvince(this.provinceId)
+      .subscribe((res: any) => {
+        this.proviceCitiesList = res;
+      });
+  }
+
+ imageUpload = (e)=> {
+        let reader = new FileReader();
+        //get the selected file from event
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+          //Assign the result to variable for setting the src of image element
+          this.imageUrl = reader.result;
+        }
+   reader.readAsDataURL(file);
+   console.log('file : ', file);
+   
+      }
+    
+
+  submitLocationInfo(nav: any) {
+    // if (this.LocationInfoForm.invalid) {
+    //   this.isLocationInfoFormSubmitted = true;
+    //   return;
+    // }
+    const formData: FormData = new FormData();
+    const dataSending = this.LocationInfoForm.value;
+    console.log(dataSending.shopLogo);
+
+    // dataSending.birthDate = this.changeJalaliToGregorian(
+    //   dataSending.birthDate
+    // );
+    // dataSending.passportExpireDate = this.changeJalaliToGregorian(
+    //   dataSending.passportExpireDate
+    // );
+    // dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    // dataSending.countryCode = parseInt(dataSending.countryCode['id']);
+    // dataSending.sex = parseInt(dataSending.sex);
+    // dataSending.degreeId = parseInt(dataSending.degreeId);
+    // dataSending.rsidencyType = true;
+    // dataSending.vitalStatus = true;
+    // this.registerForeignCustomerFormValue = this.registerForeignForm.value;
+    // nav.select(2);
   }
 }

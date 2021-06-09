@@ -35,6 +35,9 @@ export class SharedDataService {
   getAllProvince() {
     return this.http.get(this.sharedDataApi + '/provinces');
   }
+  getAllGuildsCategories() {
+    return this.http.get(this.sharedDataApi + '/guilds-categories');
+  }
 
   getCitiesOfProvince(data: any) {
     let params = {

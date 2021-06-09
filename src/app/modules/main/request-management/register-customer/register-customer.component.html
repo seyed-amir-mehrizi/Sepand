@@ -1084,10 +1084,11 @@
     <ng-template ngbNavContent>
       <form [formGroup]="LocationInfoForm">
         <div class="row mt-3">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="mobileNumber"> شماره موبایل </label>
             <input
               id="mobileNumber"
+              (keypress)="numberOnly($event)"
               type="text"
               formControlName="mobileNumber"
               class="form-control"
@@ -1098,10 +1099,11 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="telephone"> تلفن </label>
             <input
               id="telephone"
+              (keypress)="numberOnly($event)"
               type="text"
               formControlName="telephone"
               class="form-control"
@@ -1112,7 +1114,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="email"> رایانامه </label>
             <input
               id="email"
@@ -1126,6 +1128,21 @@
               }"
             />
           </div>
+          <div class="col-md-3">
+            <label for="webSiteAddress"> وب سایت </label>
+            <input
+              id="webSiteAddress"
+              type="text"
+              formControlName="webSiteAddress"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.webSiteAddress.errors
+              }"
+            />
+          </div>
+
           <div class="col-md-6">
             <label for="addressFa"> آدرس فارسی </label>
             <input
@@ -1154,25 +1171,13 @@
               }"
             />
           </div>
-          <div class="col-md-4">
-            <label for="webSiteAddress"> وب سایت </label>
-            <input
-              id="webSiteAddress"
-              type="text"
-              formControlName="webSiteAddress"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid':
-                  isLocationInfoFormSubmitted &&
-                  locationInfoFormInfo.webSiteAddress.errors
-              }"
-            />
-          </div>
-          <div class="col-md-4">
+
+          <div class="col-md-3">
             <label for="shopPostalCode"> کد پستی فروشگاه </label>
             <input
               id="shopPostalCode"
               type="text"
+              (keypress)="numberOnly($event)"
               formControlName="shopPostalCode"
               class="form-control"
               [ngClass]="{
@@ -1182,11 +1187,12 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopFaxNumber"> فکس فروشگاه </label>
             <input
               id="shopFaxNumber"
               type="text"
+              (keypress)="numberOnly($event)"
               formControlName="shopFaxNumber"
               class="form-control"
               [ngClass]="{
@@ -1196,12 +1202,13 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopTelephoneNumber"> شماره تلفن فروشگاه </label>
             <input
               id="shopTelephoneNumber"
               type="text"
               formControlName="shopTelephoneNumber"
+              (keypress)="numberOnly($event)"
               class="form-control"
               [ngClass]="{
                 'is-invalid':
@@ -1210,13 +1217,14 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopCityPreCode"> پیش شماره شهر فروشگاه </label>
             <input
               id="shopCityPreCode"
               type="text"
               formControlName="shopCityPreCode"
               class="form-control"
+              (keypress)="numberOnly($event)"
               [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -1224,12 +1232,13 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopBusinessLicenseNumber">شماره مجوز کسب و کار </label>
             <input
               id="shopBusinessLicenseNumber"
               type="text"
               formControlName="shopBusinessLicenseNumber"
+              (keypress)="numberOnly($event)"
               class="form-control"
               [ngClass]="{
                 'is-invalid':
@@ -1238,7 +1247,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopBusinessLicenseIssueDate">
               تاریخ صدور مجوز کسب و کار
             </label>
@@ -1267,7 +1276,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopBusinessLicenseExpireDate">
               تاریخ انقضای مجوز کسب و کار</label
             >
@@ -1297,7 +1306,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopEmail"> ایمیل فروشگاه </label>
             <input
               id="shopEmail"
@@ -1325,7 +1334,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="redirectUrl"> redirectUrl </label>
             <input
               id="redirectUrl"
@@ -1339,7 +1348,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="guildId">صنف</label>
             <select
               id="guildId"
@@ -1347,23 +1356,25 @@
               formControlName="guildId"
               [ngClass]="{
                 'is-invalid':
-                  isRegisterCustomerSubmitted &&
-                  registerRealCustomerFormInfo.guildId.errors
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.guildId.errors
               }"
             >
               <option *ngFor="let item of guildList" [value]="item.id">
-                {{ item.contractNumber }}
+                {{ item.categoryName }}
               </option>
             </select>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopLogo"> لوگوی فروشگاه </label>
             <input
               id="shopLogo"
-              type="text"
+              type="file"
               formControlName="shopLogo"
+              accept=".png"
               class="form-control"
+              (change)="imageUpload($event)"
               [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -1371,7 +1382,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopNameFa">نام فروشگاه </label>
             <input
               id="shopNameFa"
@@ -1385,7 +1396,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="shopNameEn">نام فروشگاه انگلیسی </label>
             <input
               id="shopNameEn"
@@ -1400,12 +1411,14 @@
             />
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="provinceAbbreviation">استان</label>
             <select
+              #province
               id="provinceAbbreviation"
               class="form-control"
               formControlName="provinceAbbreviation"
+              (change)="onProvinceSelected(LocationInfoForm)"
               [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -1414,14 +1427,14 @@
             >
               <option
                 *ngFor="let item of proviceList"
-                [value]="item.provinceAbbreviation"
+                [value]="item.provinceId"
               >
                 {{ item.provinceName }}
               </option>
             </select>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="countryAbbreviation"> کشور</label>
             <input
               id="countryAbbreviation"
@@ -1439,7 +1452,7 @@
               }"
             />
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="cityCode">شهر</label>
             <select
               id="cityCode"
@@ -1451,12 +1464,15 @@
                   locationInfoFormInfo.cityCode.errors
               }"
             >
-              <option *ngFor="let item of proviceList" [value]="item.id">
-                {{ item.provinceName }}
+              <option
+                *ngFor="let item of proviceCitiesList"
+                [value]="item.cityId"
+              >
+                {{ item.cityName }}
               </option>
             </select>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="taxPayerCode"> کد مالیات دهنده </label>
             <input
               id="taxPayerCode"
@@ -1470,20 +1486,41 @@
               }"
             />
           </div>
+          <div class="form-group form-check col-md-4">
+            <label class="form-check-label">
+              <input
+                formControlName="isSharedAccount"
+                class="form-check-input"
+                type="checkbox"
+              />
+              حساب مشترک
+            </label>
+          </div>
+
+          <div class="form-group form-check col-md-4">
+            <label class="form-check-label">
+              <input
+                formControlName="isMultiAccount"
+                class="form-check-input"
+                type="checkbox"
+              />
+              چند حسابی
+            </label>
+          </div>
         </div>
       </form>
 
       <button
-        class="btn btn-sm btn-outline-primary mx-2"
+        class="btn btn-sm btn-primary mt-2 mx-2"
         [disabled]="active === 1"
         (click)="nav.select(1)"
       >
         قبلی
       </button>
       <button
-        class="btn btn-sm btn-outline-primary"
+        class="btn btn-sm btn-primary mt-2"
         [disabled]="active === 3"
-        (click)="nav.select(3)"
+        (click)="submitLocationInfo(nav)"
       >
         بعدی
       </button>
