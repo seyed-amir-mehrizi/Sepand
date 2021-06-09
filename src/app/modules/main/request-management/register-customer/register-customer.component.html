@@ -1,42 +1,24 @@
-<ul
-  ngbNav
-  #nav="ngbNav"
-  [(activeId)]="active"
-  (navChange)="onNavChange($event)"
-  class="nav-tabs"
->
-  <li [ngbNavItem]="1">
-    <a ngbNavLink>دریافت اطلاعات شخصی</a>
-    <ng-template ngbNavContent>
-      <div class="col-md-4 mb-5">
-        <label for="customerType">نوع مشتری</label>
-        <select
-          [(ngModel)]="customerTypeValue"
-          id="customerType"
-          #mySelect
-          class="form-control"
-          (change)="onOptionsSelected(mySelect.value)"
-          [value]="customerTypeValue"
-        >
+<ul ngbNav #nav="ngbNav" [activeId]="2" (navChange)="onNavChange($event)" class="nav-tabs">
+    <li [ngbNavItem]="1">
+        <a ngbNavLink>دریافت اطلاعات شخصی</a>
+        <ng-template ngbNavContent>
+            <div class="col-md-4 mb-5">
+                <label for="customerType">نوع مشتری</label>
+                <select [(ngModel)]="customerTypeValue" id="customerType" #mySelect class="form-control" (change)="onOptionsSelected(mySelect.value)" [value]="customerTypeValue">
           <option></option>
           <option *ngFor="let item of personTypeList" [value]="item.id">
             {{ item.name }}
           </option>
         </select>
-      </div>
+            </div>
 
-      <div *ngIf="isReal">
-        <form [formGroup]="registerRealCustomerForm">
-          <div class="row mt-3">
-            <div class="col-md-4">
-              <label for="nationalNumber">کد ملی</label>
-              <div class="input-group mb-3 dir-ltr">
-                <span
-                  title="بررسی کد ملی"
-                  class="input-group-text dir-rtl cursor-pointer"
-                  id="basic-addon1"
-                  (click)="checkNationalNumber()"
-                  >?</span
+            <div *ngIf="isReal">
+                <form [formGroup]="registerRealCustomerForm">
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="nationalNumber">کد ملی</label>
+                            <div class="input-group mb-3 dir-ltr">
+                                <span title="بررسی کد ملی" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1" (click)="checkNationalNumber()">?</span
                 >
                 <input
                   aria-label="Username"
@@ -121,6 +103,7 @@
                 [ngbTypeahead]="nationalities_Serach"
                 [resultFormatter]="nationalitiesFormatter"
                 [inputFormatter]="nationalitiesInputFormatter"
+                placement="bottom-right"
                 [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
@@ -466,6 +449,7 @@
                 [ngbTypeahead]="nationalities_Serach"
                 [resultFormatter]="nationalitiesFormatter"
                 [inputFormatter]="nationalitiesInputFormatter"
+                placement="bottom-right"
                 [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
@@ -875,6 +859,7 @@
                 [ngbTypeahead]="nationalities_Serach"
                 [resultFormatter]="nationalitiesFormatter"
                 [inputFormatter]="nationalitiesInputFormatter"
+                placement="bottom-right"
                 [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
@@ -1014,6 +999,7 @@
                 [ngbTypeahead]="countries_Serach"
                 [resultFormatter]="countriesFormatter"
                 [inputFormatter]="countriesInputFormatter"
+                placement="bottom-right"
                 [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
@@ -1096,17 +1082,397 @@
   <li [ngbNavItem]="2" [disabled]="disabledLocationInfo">
     <a ngbNavLink>دریافت اطلاعات مکانی</a>
     <ng-template ngbNavContent>
-      <p>
-        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes
-        anderson artisan four loko farm-to-table craft beer twee. Qui photo
-        booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore
-        aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero
-        magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
-        anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
-        richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-        sint qui sapiente accusamus tattooed echo park.
-      </p>
+      <form [formGroup]="LocationInfoForm">
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="mobileNumber"> شماره موبایل </label>
+            <input
+              id="mobileNumber"
+              type="text"
+              formControlName="mobileNumber"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.mobileNumber.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="telephone"> تلفن </label>
+            <input
+              id="telephone"
+              type="text"
+              formControlName="telephone"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.telephone.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="email"> رایانامه </label>
+            <input
+              id="email"
+              type="text"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.email.errors
+              }"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="addressFa"> آدرس فارسی </label>
+            <input
+              id="addressFa"
+              type="text"
+              formControlName="addressFa"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.addressFa.errors
+              }"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="addressEn"> آدرس انگلیسی </label>
+            <input
+              id="addressEn"
+              type="text"
+              formControlName="addressEn"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.addressEn.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="webSiteAddress"> وب سایت </label>
+            <input
+              id="webSiteAddress"
+              type="text"
+              formControlName="webSiteAddress"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.webSiteAddress.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopPostalCode"> کد پستی فروشگاه </label>
+            <input
+              id="shopPostalCode"
+              type="text"
+              formControlName="shopPostalCode"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopPostalCode.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopFaxNumber"> فکس فروشگاه </label>
+            <input
+              id="shopFaxNumber"
+              type="text"
+              formControlName="shopFaxNumber"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopFaxNumber.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopTelephoneNumber"> شماره تلفن فروشگاه </label>
+            <input
+              id="shopTelephoneNumber"
+              type="text"
+              formControlName="shopTelephoneNumber"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopTelephoneNumber.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopCityPreCode"> پیش شماره شهر فروشگاه </label>
+            <input
+              id="shopCityPreCode"
+              type="text"
+              formControlName="shopCityPreCode"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopCityPreCode.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopBusinessLicenseNumber">شماره مجوز کسب و کار </label>
+            <input
+              id="shopBusinessLicenseNumber"
+              type="text"
+              formControlName="shopBusinessLicenseNumber"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopBusinessLicenseNumber.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopBusinessLicenseIssueDate">
+              تاریخ صدور مجوز کسب و کار
+            </label>
+            <div class="input-group dir-ltr">
+              <input
+                id="shopBusinessLicenseIssueDate"
+                class="form-control"
+                name="dp"
+                ngbDatepicker
+                #shop="ngbDatepicker"
+                formControlName="shopBusinessLicenseIssueDate"
+                [ngClass]="{
+                  'is-invalid':
+                    isLocationInfoFormSubmitted &&
+                    locationInfoFormInfo.shopBusinessLicenseIssueDate.errors
+                }"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary py-0 px-2"
+                  (click)="shop.toggle()"
+                  type="button"
+                >
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="shopBusinessLicenseExpireDate">
+              تاریخ انقضای مجوز کسب و کار</label
+            >
+            <div class="input-group dir-ltr">
+              <input
+                id="shopBusinessLicenseExpireDate"
+                class="form-control"
+                name="dp"
+                ngbDatepicker
+                #shopEp="ngbDatepicker"
+                formControlName="shopBusinessLicenseExpireDate"
+                [ngClass]="{
+                  'is-invalid':
+                    isLocationInfoFormSubmitted &&
+                    locationInfoFormInfo.shopBusinessLicenseExpireDate.errors
+                }"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary py-0 px-2"
+                  (click)="shopEp.toggle()"
+                  type="button"
+                >
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="shopEmail"> ایمیل فروشگاه </label>
+            <input
+              id="shopEmail"
+              type="text"
+              formControlName="shopEmail"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopEmail.errors
+              }"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="shopAddress"> آدرس فروشگاه </label>
+            <input
+              id="shopAddress"
+              type="text"
+              formControlName="shopAddress"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopAddress.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="redirectUrl"> redirectUrl </label>
+            <input
+              id="redirectUrl"
+              type="text"
+              formControlName="redirectUrl"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.redirectUrl.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="guildId">صنف</label>
+            <select
+              id="guildId"
+              class="form-control"
+              formControlName="guildId"
+              [ngClass]="{
+                'is-invalid':
+                  isRegisterCustomerSubmitted &&
+                  registerRealCustomerFormInfo.guildId.errors
+              }"
+            >
+              <option *ngFor="let item of guildList" [value]="item.id">
+                {{ item.contractNumber }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="shopLogo"> لوگوی فروشگاه </label>
+            <input
+              id="shopLogo"
+              type="text"
+              formControlName="shopLogo"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopLogo.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopNameFa">نام فروشگاه </label>
+            <input
+              id="shopNameFa"
+              type="text"
+              formControlName="shopNameFa"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopNameFa.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="shopNameEn">نام فروشگاه انگلیسی </label>
+            <input
+              id="shopNameEn"
+              type="text"
+              formControlName="shopNameEn"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.shopNameEn.errors
+              }"
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label for="provinceAbbreviation">استان</label>
+            <select
+              id="provinceAbbreviation"
+              class="form-control"
+              formControlName="provinceAbbreviation"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.provinceAbbreviation.errors
+              }"
+            >
+              <option
+                *ngFor="let item of proviceList"
+                [value]="item.provinceAbbreviation"
+              >
+                {{ item.provinceName }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="countryAbbreviation"> کشور</label>
+            <input
+              id="countryAbbreviation"
+              type="text"
+              class="form-control"
+              formControlName="countryAbbreviation"
+              [ngbTypeahead]="countries_Serach"
+              [resultFormatter]="countriesFormatter"
+              [inputFormatter]="countriesInputFormatter"
+              placement="bottom-right"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.countryAbbreviation.errors
+              }"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="cityCode">شهر</label>
+            <select
+              id="cityCode"
+              class="form-control"
+              formControlName="cityCode"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.cityCode.errors
+              }"
+            >
+              <option *ngFor="let item of proviceList" [value]="item.id">
+                {{ item.provinceName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="taxPayerCode"> کد مالیات دهنده </label>
+            <input
+              id="taxPayerCode"
+              type="text"
+              formControlName="taxPayerCode"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  isLocationInfoFormSubmitted &&
+                  locationInfoFormInfo.taxPayerCode.errors
+              }"
+            />
+          </div>
+        </div>
+      </form>
+
       <button
         class="btn btn-sm btn-outline-primary mx-2"
         [disabled]="active === 1"

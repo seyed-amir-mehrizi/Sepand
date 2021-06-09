@@ -2,10 +2,23 @@
     background-color: red !important;
     display: contents !important;
     text-align: right !important;
- 
 }
 
 label input {
-    margin-right:75px;
- }
+    margin-right: 75px;
+}
 
+.dropdown-menu {
+    left: auto !important;
+    right: 10px;
+}
+
+.type-ahead .dropdown-menu.show {
+    display: contents !important;
+    text-align: right !important;
+}
+
+.type-ahead .dropdown-item.active,
+.dropdown-item:active {
+    width: -1% !important;
+}

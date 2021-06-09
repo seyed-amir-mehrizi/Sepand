@@ -8,6 +8,7 @@ import * as moment from 'jalali-moment';
 import { RegisterCustomerService } from './register-customer.service';
 import {NgbNavChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { BaseInfoService } from '../../basic-info/base-info.service';
 
 const WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
@@ -45,19 +46,19 @@ export class RegisterCustomerComponent implements OnInit {
   registerRealCustomerForm: FormGroup;
   registerLegalCustomerForm: FormGroup;
   registerForeignForm: FormGroup;
+  LocationInfoForm: FormGroup;
   isRegisterCustomerSubmitted: boolean = false;
   isRegisterLegalCustomerSubmitted: boolean = false;
   isRegisterForeignCustomerSubmitted: boolean = false;
+  isLocationInfoFormSubmitted: boolean = false;
   listOfAlphabets: any = [];
+  proviceList: any = [];
   isReal: boolean = false;
   isLegal: boolean = false;
   isForeign: boolean = false;
   isEmpty: boolean = true;
   degreeList: any = [];
-  firstForm!: FormGroup;
-  secondForm!: FormGroup;
-  thirdForm!: FormGroup;
-  changePasswordForm!: FormGroup;
+  guildList: any = [];
   isChangePasswordSubmitted: boolean = false;
   customerType: number;
   hasNationalNumber: boolean = false;
@@ -75,20 +76,24 @@ export class RegisterCustomerComponent implements OnInit {
     private sharedService: SharedDataService,
     private fb: FormBuilder,
     private service: RegisterCustomerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private baseInfoService: BaseInfoService
   ) {}
 
   ngOnInit(): void {
     this.getPersonType();
     this.getListOfDegrees();
     this.getListOfAllAlphabet();
+    this.initLocationInfoForm();
   }
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
     this.customerTypeValue = localStorage.getItem('item');
+
     if (changeEvent.nextId === 3) {
       changeEvent.preventDefault();
     }
+
   }
 
   goToNext(nav) {
@@ -456,7 +461,6 @@ export class RegisterCustomerComponent implements OnInit {
       this.hasForeignNumber = true;
       this.service.getPersonData(data).subscribe((res: any) => {
         if (res) {
-
           this.registerForeignForm.setValue({
             degreeId: res.degreeId,
             nationalNumber: res.nationalNumber,
@@ -547,9 +551,51 @@ export class RegisterCustomerComponent implements OnInit {
     return this.registerForeignForm.controls;
   }
 
+  initLocationInfoForm() {
+    this.LocationInfoForm = this.fb.group({
+      mobileNumber: ['', Validators.required],
+      telephone: ['', Validators.required],
+      email: ['', Validators.required],
+      addressFa: ['', Validators.required],
+      addressEn: ['', Validators.required],
+      shopPostalCode: ['', Validators.required],
+      shopFaxNumber: ['', Validators.required],
+      shopTelephoneNumber: ['', Validators.required],
+      shopCityPreCode: ['', Validators.required],
+      shopBusinessLicenseNumber: ['', Validators.required],
+      shopBusinessLicenseIssueDate: ['', Validators.required],
+      shopBusinessLicenseExpireDate: ['', Validators.required],
+      shopEmail: ['', Validators.required],
+      shopAddress: ['', Validators.required],
+      redirectUrl: ['', Validators.required],
+      guildId: ['', Validators.required],
+      shopLogo: ['', Validators.required],
+      shopNameFa: ['', Validators.required],
+      shopNameEn: ['', Validators.required],
+      provinceAbbreviation: ['', Validators.required],
+      countryAbbreviation: ['', Validators.required],
+      cityCode: ['', Validators.required],
+    });
+  }
+
+  get locationInfoFormInfo() {
+    return this.LocationInfoForm.controls;
+  }
+
   getListOfAllAlphabet() {
     this.sharedService.getAllAlphabetList().subscribe((result: any) => {
       this.listOfAlphabets = result;
+    });
+  }
+
+  getListOfGuild() {
+    this.baseInfoService.getListOfGuild().subscribe((res: any) => {
+      this.guildList = res;
+    });
+  }
+  getListOfProvince() {
+    this.sharedService.getAllProvince().subscribe((res: any) => {
+      this.proviceList = res;
     });
   }
 }
