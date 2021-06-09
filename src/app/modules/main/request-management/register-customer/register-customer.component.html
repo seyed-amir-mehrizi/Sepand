@@ -793,20 +793,18 @@
                   (click)="checkForeignPervasiveCode()"
                   >?</span
                 >
-                <div class="col-md-4">
-                  <input
-                    id="foreignPervasiveCode"
-                    type="text"
-                    formControlName="foreignPervasiveCode"
-                    class="form-control"
-                    [ngClass]="{
-                      'is-invalid':
-                        isRegisterForeignCustomerSubmitted &&
-                        registerForeignCustomerFormInfo.foreignPervasiveCode
-                          .errors
-                    }"
-                  />
-                </div>
+                <input
+                  id="foreignPervasiveCode"
+                  type="text"
+                  formControlName="foreignPervasiveCode"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      isRegisterForeignCustomerSubmitted &&
+                      registerForeignCustomerFormInfo.foreignPervasiveCode
+                        .errors
+                  }"
+                />
               </div>
             </div>
 
@@ -907,7 +905,7 @@
                   class="form-control"
                   name="dp"
                   ngbDatepicker
-                  #d="ngbDatepicker"
+                  #h="ngbDatepicker"
                   formControlName="birthDate"
                   [ngClass]="{
                     'is-invalid':
@@ -918,7 +916,7 @@
                 <div class="input-group-append">
                   <button
                     class="btn btn-primary py-0 px-2"
-                    (click)="d.toggle()"
+                    (click)="h.toggle()"
                     type="button"
                   >
                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -1018,27 +1016,11 @@
                 [inputFormatter]="countriesInputFormatter"
                 [ngClass]="{
                   'is-invalid':
-                    isRegisterLegalCustomerSubmitted &&
-                    registerLegalCustomerFormInfo.countryCode.errors
-                }"
-              />
-            </div>
-
-            <div class="col-md-4">
-              <label for="rsidencyType"> نوع اقامت </label>
-              <input
-                id="rsidencyType"
-                type="text"
-                formControlName="rsidencyType"
-                class="form-control"
-                [ngClass]="{
-                  'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
-                    registerForeignCustomerFormInfo.rsidencyType.errors
+                    registerForeignCustomerFormInfo.countryCode.errors
                 }"
               />
             </div>
-
             <div class="col-md-4">
               <label for="passportNo"> شماره پاسپورت </label>
               <input
@@ -1061,7 +1043,7 @@
                   class="form-control"
                   name="dp"
                   ngbDatepicker
-                  #d="ngbDatepicker"
+                  #g="ngbDatepicker"
                   formControlName="passportExpireDate"
                   [ngClass]="{
                     'is-invalid':
@@ -1072,13 +1054,28 @@
                 <div class="input-group-append">
                   <button
                     class="btn btn-primary py-0 px-2"
-                    (click)="d.toggle()"
+                    (click)="g.toggle()"
                     type="button"
                   >
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="commercialCode"> کد اقتصادی </label>
+              <input
+                id="commercialCode"
+                type="text"
+                formControlName="commercialCode"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    isRegisterForeignCustomerSubmitted &&
+                    registerForeignCustomerFormInfo.commercialCode.errors
+                }"
+              />
             </div>
           </div>
           <button

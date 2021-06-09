@@ -66,6 +66,7 @@ export class RegisterCustomerComponent implements OnInit {
   customerTypeValue;
   registerRealCustomerFormValue: any = {};
   registerLegalCustomerFormValue: any = {};
+  registerForeignCustomerFormValue: any = {};
 
   disabledLocationInfo: boolean = true;
   disabledBankInfo: boolean = true;
@@ -206,19 +207,6 @@ export class RegisterCustomerComponent implements OnInit {
     this.disabledLocationInfo = false;
   }
 
-  initForeignForm() {
-    this.registerForeignForm = this.fb.group({
-      passportExpireDate: ['', Validators.required],
-      comNameEn: ['', Validators.required],
-      passportNo: ['', Validators.required],
-      foreignPervasiveCode: ['', Validators.required],
-      countryCode: ['', Validators.required],
-      rsidencyType: ['', Validators.required],
-    });
-  }
-  get registerForeignCustomerFormInfo() {
-    return this.registerForeignForm.controls;
-  }
   getPersonType() {
     this.sharedService.getPersonType().subscribe((result: any) => {
       this.personTypeList = result;
@@ -430,8 +418,7 @@ export class RegisterCustomerComponent implements OnInit {
     if (this.registerLegalCustomerForm.invalid) {
       this.isRegisterLegalCustomerSubmitted = true;
       return;
-    }
-    else if (this.hasRegisterNumber === false) {
+    } else if (this.hasRegisterNumber === false) {
       this.toastr.error('در ابتدا استعلام شماره ثبت شرکت را بررسی کنید');
       return;
     }
@@ -466,9 +453,10 @@ export class RegisterCustomerComponent implements OnInit {
         type: this.customerType,
         uniqueIdentifier: dataSending.foreignPervasiveCode,
       };
+      this.hasForeignNumber = true;
       this.service.getPersonData(data).subscribe((res: any) => {
         if (res) {
-          this.hasForeignNumber = true;
+
           this.registerForeignForm.setValue({
             degreeId: res.degreeId,
             nationalNumber: res.nationalNumber,
@@ -485,33 +473,24 @@ export class RegisterCustomerComponent implements OnInit {
               ),
               day: parseInt(this.splitGregorianToJalaliDate(res.birthDate)[2]),
             },
-            birthCertificatePlaceOfIssue: res.birthCertificatePlaceOfIssue,
             fatherNameFa: res.fatherNameFa,
             fatherNameEn: res.fatherNameEn,
             sex: res.sex,
-            birthCertificateNo: res.birthCertificateNo,
-            birthCertificateSerial: res.birthCertificateSerial,
-            birthCertificateAlphabiticNoId: res.birthCertificateAlphabiticNoId,
-            birthCertificateNumericNo: res.birthCertificateNumericNo,
             postalCode: res.postalCode,
-            isDisable: res.isDisable,
-            registerDate: {
+            passportExpireDate: {
               year: parseInt(
-                this.splitGregorianToJalaliDate(res.registerDate)[0]
+                this.splitGregorianToJalaliDate(res.passportExpireDate)[0]
               ),
               month: parseInt(
-                this.splitGregorianToJalaliDate(res.registerDate)[1]
+                this.splitGregorianToJalaliDate(res.passportExpireDate)[1]
               ),
               day: parseInt(
-                this.splitGregorianToJalaliDate(res.registerDate)[2]
+                this.splitGregorianToJalaliDate(res.passportExpireDate)[2]
               ),
             },
-            registerNo: res.registerNo,
-            comNameEn: res.comNameEn,
-            comNameFa: res.comNameFa,
-            nationalLegalCod: res.nationalLegalCod,
             commercialCode: res.commercialCode,
-            nationalLegalCode: res.nationalLegalCode,
+            foreignPervasiveCode: res.foreignPervasiveCode,
+            passportNo: res.passportNo,
           });
         }
       });
@@ -525,29 +504,47 @@ export class RegisterCustomerComponent implements OnInit {
       this.isRegisterForeignCustomerSubmitted = true;
       return;
     } else if (this.hasForeignNumber === false) {
-      this.toastr.error('در ابتدا استعلام شماره ثبت شرکت را بررسی کنید');
+      this.toastr.error('در ابتدا استعلام شماره اتباع را بررسی کنید');
+      return;
     }
     const dataSending = this.registerForeignForm.value;
-    dataSending.registerDate = this.changeJalaliToGregorian(
-      dataSending.registerDate
-    );
     dataSending.birthDate = this.changeJalaliToGregorian(dataSending.birthDate);
+    dataSending.passportExpireDate = this.changeJalaliToGregorian(
+      dataSending.passportExpireDate
+    );
     dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    dataSending.countryCode = parseInt(dataSending.countryCode['id']);
     dataSending.sex = parseInt(dataSending.sex);
-    dataSending.birthCertificateNo = parseInt(dataSending.birthCertificateNo);
-    dataSending.birthCertificateSerial = parseInt(
-      dataSending.birthCertificateSerial
-    );
-    dataSending.birthCertificateAlphabiticNoId = parseInt(
-      dataSending.birthCertificateAlphabiticNoId
-    );
-    dataSending.birthCertificateNumericNo = parseInt(
-      dataSending.birthCertificateNumericNo
-    );
     dataSending.degreeId = parseInt(dataSending.degreeId);
-    dataSending.isLegal = true;
-    this.registerLegalCustomerFormValue = this.registerForeignForm.value;
+    dataSending.rsidencyType = true;
+    dataSending.vitalStatus = true;
+    this.registerForeignCustomerFormValue = this.registerForeignForm.value;
     nav.select(2);
+  }
+
+  initForeignForm() {
+    this.registerForeignForm = this.fb.group({
+      passportExpireDate: ['', Validators.required],
+      passportNo: ['', Validators.required],
+      foreignPervasiveCode: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      firstNameFa: ['', Validators.required],
+      lastNameFa: ['', Validators.required],
+      firstNameEn: ['', Validators.required],
+      lastNameEn: ['', Validators.required],
+      nationalityId: ['', Validators.required],
+      birthLocation: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      fatherNameFa: ['', Validators.required],
+      fatherNameEn: ['', Validators.required],
+      sex: ['', Validators.required],
+      degreeId: ['', Validators.required],
+      commercialCode: ['', Validators.required],
+      postalCode: ['', Validators.required],
+    });
+  }
+  get registerForeignCustomerFormInfo() {
+    return this.registerForeignForm.controls;
   }
 
   getListOfAllAlphabet() {
