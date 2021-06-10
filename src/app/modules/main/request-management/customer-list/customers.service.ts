@@ -31,4 +31,13 @@ export class CustomersService {
     return this.http.post(this.customerApi + '/edit-postalCode', data).pipe(map(response => response));
 
   }
+
+  activateTerminal(data){
+    return this.http.post(this.customerApi + '/activate-terminals', data).pipe(map(response => response));
+
+  }
+  deActivateTerminal(data){
+    return this.http.post(this.customerApi + '/deactivate-terminals', data).pipe(map(response => response));
+
+  }
 }
