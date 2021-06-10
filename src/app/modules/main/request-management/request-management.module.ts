@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { ChangeClassModalComponent } from './change-class-modal/change-class-modal.component';
+import { ChangePostalCodeModalComponent } from './change-postal-code-modal/change-postal-code-modal.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ChangeClassModalComponent } from './change-class-modal/change-class-mod
     ActivateTerminalComponent,
     RegisterCustomerComponent,
     CustomerListComponent,
-    ChangeClassModalComponent
+    ChangeClassModalComponent,
+    ChangePostalCodeModalComponent
   ],
   imports: [
     NgbModule,

@@ -1,38 +1,97 @@
+<div id="customerList">
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="فیلتر جستجو">
+            <ng-template ngbPanelContent>
+                <form [formGroup]="customerFilter">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="NationalId">کد ملی</label>
+                            <input (keypress)="numberOnly($event)" id="NationalId" type="text" formControlName="NationalId" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ForeignPervasiveCode">کد اتباع</label>
+                            <input (keypress)="numberOnly($event)" id="ForeignPervasiveCode" type="text" formControlName="ForeignPervasiveCode" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="RegisterNo">شماره ثبت</label>
+                            <input (keypress)="numberOnly($event)" id="RegisterNo" type="text" formControlName="RegisterNo" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="Name">نام </label>
+                            <input id="Name" type="text" formControlName="Name" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="LastName">نام خانوادگی</label>
+                            <input id="LastName" type="text" formControlName="LastName" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ShopName">نام فروشگاه</label>
+                            <input id="ShopName" type="text" formControlName="ShopName" class="form-control" />
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <button class="btn btn-primary" type="submit"
+                                (click)="serachCustomer(customerFilter.value)">جستجو</button>
+                        </div>
+                    </div>
 
+                </form>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
 
-
-
-<div class="card">
-    <div class="card-header ">
-        درخواست تغییر کدپستی
-    </div>
-    <div class="card-body">
-        <form [formGroup]="changePostalCodeForm" autocomplete="off" role="form">
+    <div class="card border-dark">
+        <div class="card-header bg-secondary text-white">
+            تغییر کد پستی 
+        </div>
+        <div class="card-body bg-light">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group mb-4">
-                        <label for="customerNo" >شماره مشتری</label>
-                        <input id="customerNo" type="text" formControlName="customerNo" class="form-control"
-                            [ngClass]="{'is-invalid': isChangePostalCodeFormSubmitted && changePostalCodeFormSubmittedInfo.customerNo.errors}" />
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th>موبایل</th>
+                                    <th>تلفن</th>
+                                    <th>رایانامه</th>
+                                    <th>وب سایت</th>
+                                    <th>کد پستی فروشگاه</th>
+                                    <th> رایانامه فروشگاه</th>
+                                    <th>redirect url</th>
+                                    <th>صنف</th>
+                                    <th>
+                                        عملیات
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of customerslist">
+                                    <td>{{item?.mobileNumber}}</td>
+                                    <td>{{item?.telephone}}</td>
+                                    <td>{{item?.email}}</td>
+                                    <td>{{item?.webSiteAddress}}</td>
+                                    <td>{{item?.shopPostalCode}}</td>
+                                    <td>{{item?.shopEmail}}</td>
+                                    <td>{{item?.redirectUrl}}</td>
+                                    <td>{{item?.guild}}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm"  (click)="openChangePostalCodeModal(item)">تغییر کد پستی</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group mb-4">
-                        <label for="postalCode" > کد پستی  </label>
-                        <input id="postalCode" type="text" formControlName="postalCode" class="form-control"
-                            [ngClass]="{'is-invalid': isChangePostalCodeFormSubmitted && changePostalCodeFormSubmittedInfo.postalCode.errors}" />
-                    </div>
+                    <span class="w-100 d-flex justify-content-center">
+                        <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true"
+                            [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
+                            <ng-template ngbPaginationPrevious>قبلی</ng-template>
+                            <ng-template ngbPaginationNext>بعدی</ng-template>
+                            <ng-template ngbPaginationFirst>ابتدا</ng-template>
+                            <ng-template ngbPaginationLast>انتها</ng-template>
+                        </ngb-pagination>
+                    </span>
+
                 </div>
             </div>
-    
-        </form>
-    </div>
-    <div class="card-footer float-left">
-        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
-        <button type="button" class="btn btn-secondary">
-            انصراف
-        </button>
+        </div>
     </div>
 </div>

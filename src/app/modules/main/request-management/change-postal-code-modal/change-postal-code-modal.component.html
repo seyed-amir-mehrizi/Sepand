@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        تغییر کد پستی
+    </h4>
+</div>
+<div class="modal-body text-justify line-height-3">
+    <form [formGroup]="editPostalcodeForm" autocomplete="off" role="form">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="shopPostalCode">کد پستی فروشگاه</label>
+                <input type="text" id="shopPostalCode" class="form-control" formControlName="shopPostalCode" [ngClass]="{
+                    'is-invalid':
+                    isPostalcodeSubmitted &&
+                    changePostalCodeFormInfo.shopPostalCode.errors
+                  }">
+
+        </div>
+    </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+        بستن
+    </button>
+    <button class="btn btn-success" type="button" (click)="editPostalcode(editPostalcodeForm.value)">ویرایش</button>
+</div>

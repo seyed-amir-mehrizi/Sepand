@@ -27,4 +27,8 @@ export class CustomersService {
     return this.http.post(this.customerApi + '/edit-guild', data).pipe(map(response => response));
 
   }
+  editPostalCode(data){
+    return this.http.post(this.customerApi + '/edit-postalCode', data).pipe(map(response => response));
+
+  }
 }

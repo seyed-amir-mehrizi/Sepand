@@ -25,8 +25,7 @@ export class ChangeClassComponent implements OnInit {
     Page: 1,
 
   }
-  changeClassCodeForm!: FormGroup;
-  isChangeClassFormSubmitted = false;
+
   constructor(private service: CustomersService, private fb: FormBuilder ,
     private ngbModal: NgbModal,
     ) { }
@@ -85,6 +84,14 @@ export class ChangeClassComponent implements OnInit {
       this.getCustomers(this.params);
     }, () => {
     });
+  }
+
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
 }

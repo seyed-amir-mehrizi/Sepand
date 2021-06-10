@@ -6,15 +6,15 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="NationalId">کد ملی</label>
-                            <input id="NationalId" type="text" formControlName="NationalId" class="form-control" />
+                            <input (keypress)="numberOnly($event)" id="NationalId" type="text" formControlName="NationalId" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label for="ForeignPervasiveCode">کد اتباع</label>
-                            <input id="ForeignPervasiveCode" type="text" formControlName="ForeignPervasiveCode" class="form-control" />
+                            <input (keypress)="numberOnly($event)" id="ForeignPervasiveCode" type="text" formControlName="ForeignPervasiveCode" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label for="RegisterNo">شماره ثبت</label>
-                            <input id="RegisterNo" type="text" formControlName="RegisterNo" class="form-control" />
+                            <input (keypress)="numberOnly($event)" id="RegisterNo" type="text" formControlName="RegisterNo" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label for="Name">نام </label>
