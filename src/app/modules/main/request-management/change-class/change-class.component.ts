@@ -17,6 +17,10 @@ export class ChangeClassComponent implements OnInit {
   totalRecords: number;
   params = {
     NationalId: '',
+    ForeignPervasiveCode: '',
+    RegisterNo: '',
+    Name: '',
+    LastName: '',
     ShopName: '',
     Page: 1,
 
@@ -35,13 +39,16 @@ export class ChangeClassComponent implements OnInit {
   initForm() {
     this.customerFilter = this.fb.group({
       NationalId: [''],
-      ShopName: [''],
+      ForeignPervasiveCode: [''],
+      RegisterNo: [''],
+      Name: [''] ,
+      LastName: [''] ,
+      ShopName: [''] ,
     });
   }
 
 
-  getCustomers(params: any) {
-
+  getCustomers(params: any) {    
     this.service.getListOFCustomers(params)
       .subscribe((result: any) => {
         this.customerslist = result.data;
@@ -61,6 +68,7 @@ export class ChangeClassComponent implements OnInit {
 
 
   serachCustomer(item: any) {
+    item.Page = 1;
     this.service.getListOFCustomers(item)
       .subscribe((result: any) => {
         this.customerslist = result.data;

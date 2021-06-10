@@ -1,14 +1,30 @@
 <div id="customerList">
-    <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <ngb-panel title="فیلتر جستجو">
             <ng-template ngbPanelContent>
                 <form [formGroup]="customerFilter">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="NationalId">کد ملی</label>
                             <input id="NationalId" type="text" formControlName="NationalId" class="form-control" />
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label for="ForeignPervasiveCode">کد اتباع</label>
+                            <input id="ForeignPervasiveCode" type="text" formControlName="ForeignPervasiveCode" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="RegisterNo">شماره ثبت</label>
+                            <input id="RegisterNo" type="text" formControlName="RegisterNo" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="Name">نام </label>
+                            <input id="Name" type="text" formControlName="Name" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="LastName">نام خانوادگی</label>
+                            <input id="LastName" type="text" formControlName="LastName" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
                             <label for="ShopName">نام فروشگاه</label>
                             <input id="ShopName" type="text" formControlName="ShopName" class="form-control" />
                         </div>
@@ -21,7 +37,7 @@
                 </form>
             </ng-template>
         </ngb-panel>
-    </ngb-accordion> -->
+    </ngb-accordion>
 
     <div class="card border-dark">
         <div class="card-header bg-secondary text-white">

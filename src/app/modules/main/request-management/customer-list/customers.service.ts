@@ -10,11 +10,14 @@ export class CustomersService {
   constructor(private http: HttpClient) { }
 
   getListOFCustomers(data:any){
-
       let params = {
         NationalId : data.NationalId,
         ShopName:data.ShopName,
-        Page:data.Page
+        Page:data.Page,
+        LastName : data.LastName,
+        Name:data.Name,
+        RegisterNo:data.RegisterNo,
+        ForeignPervasiveCode:data.ForeignPervasiveCode,
       }
         return this.http.get(this.customerApi+'/customers' , {params});
     

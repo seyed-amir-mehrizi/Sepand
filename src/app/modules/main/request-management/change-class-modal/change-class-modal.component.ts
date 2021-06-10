@@ -23,7 +23,6 @@ export class ChangeClassModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("classInfo : ", this.classInfo);
     this.getListOFGuilds();
     this.initLoginform();
     this.setValueForGuild();
