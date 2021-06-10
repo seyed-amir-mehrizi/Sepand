@@ -603,8 +603,8 @@ export class RegisterCustomerComponent implements OnInit {
       countryAbbreviation: ['', Validators.required],
       cityCode: ['', Validators.required],
       taxPayerCode: ['', Validators.required],
-      isSharedAccount: [''],
-      isMultiAccount: [''],
+      isSharedAccount: [false],
+      isMultiAccount: [false],
     });
   }
 
@@ -681,7 +681,7 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.shopBusinessLicenseExpireDate = this.changeJalaliToGregorian(
       dataSending.shopBusinessLicenseExpireDate
     );
-    dataSending.countryAbbreviation = parseInt(dataSending.countryAbbreviation['abbrivation']);
+    dataSending.countryAbbreviation = dataSending.countryAbbreviation['abbrivation'];
     dataSending.cityCode = parseInt(dataSending.cityCode);
     dataSending.guildId = parseInt(dataSending.guildId);
     this.locationInfoValue = dataSending;
@@ -704,7 +704,7 @@ export class RegisterCustomerComponent implements OnInit {
       shareAmountMax : [''],
       shareAmountMin : [''],
       sharedAmount : [''],
-      isMain : [''],
+      isMain : [false],
     });
   }
 
@@ -821,9 +821,9 @@ export class RegisterCustomerComponent implements OnInit {
       return;
     }
     let dataSending = this.contractFormInfo.value;
-    dataSending.introduced = null;
-    dataSending.introducedSharedType = null;
-    dataSending.introducedSharedAmount = null;
+    dataSending.introduced = 0;
+    dataSending.introducedSharedType = "";
+    dataSending.introducedSharedAmount = 0;
     dataSending.projectId = parseInt(dataSending.projectId)
     dataSending.expireDate = this.changeJalaliToGregorian(dataSending.expireDate);
     dataSending.serviceStartDate = this.changeJalaliToGregorian(dataSending.serviceStartDate);
