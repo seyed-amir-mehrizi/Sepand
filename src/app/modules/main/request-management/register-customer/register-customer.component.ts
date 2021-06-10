@@ -51,12 +51,13 @@ export class RegisterCustomerComponent implements OnInit {
   registerForeignForm: FormGroup;
   LocationInfoForm: FormGroup;
   BankInfoForm:FormGroup;
+  contractFormInfo:FormGroup;
   isRegisterCustomerSubmitted: boolean = false;
   isRegisterLegalCustomerSubmitted: boolean = false;
   isRegisterForeignCustomerSubmitted: boolean = false;
   isLocationInfoFormSubmitted: boolean = false;
   isBankInfoFormSubmitted: boolean = false;
-
+  isContractInfoFormSubmitted: boolean = false;
   listOfAlphabets: any = [];
   proviceList: any = [];
   isReal: boolean = false;
@@ -70,7 +71,7 @@ export class RegisterCustomerComponent implements OnInit {
   proviceCitiesList: any = [];
   sharedTypeList: any = [];
   BankInfoList: any = [];
-
+  isProject:boolean = false;
   sharedTypeId:number;
   isChangePasswordSubmitted: boolean = false;
   customerType: number;
@@ -83,7 +84,8 @@ export class RegisterCustomerComponent implements OnInit {
   registerLegalCustomerFormValue: any = {};
   registerForeignCustomerFormValue: any = {};
   locationInfoValue: any = {};
-
+  contractInfoValue: any = {};
+  listOfProject:any = [];
   imageUrl: any;
   disabledLocationInfo: boolean = true;
   disabledBankInfo: boolean = true;
@@ -96,6 +98,7 @@ export class RegisterCustomerComponent implements OnInit {
     private toastr: ToastrService,
     private baseInfoService: BaseInfoService,
     private cd: ChangeDetectorRef
+
   ) { }
 
   ngOnInit(): void {
@@ -107,6 +110,8 @@ export class RegisterCustomerComponent implements OnInit {
     this.getListOfGuild();
     this.initBankInfoForm();
     this.getListOfSharedTypes();
+    this.initContractInfo();
+    this.getAllProjects();
   }
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
@@ -307,9 +312,9 @@ export class RegisterCustomerComponent implements OnInit {
         type: this.customerType,
         uniqueIdentifier: dataSending.nationalNumber,
       };
+      this.hasNationalNumber = true;
       this.service.getPersonData(data).subscribe((res: any) => {
         if (res) {
-          this.hasNationalNumber = true;
           this.registerRealCustomerForm.setValue({
             degreeId: res.degreeId,
             nationalNumber: res.nationalNumber,
@@ -654,6 +659,9 @@ export class RegisterCustomerComponent implements OnInit {
   
     myReader.onloadend = (e) => {
       this.image = myReader.result;
+      this.LocationInfoForm.patchValue({
+        shopLogo: myReader.result
+      });
     }
     myReader.readAsDataURL(file);
     
@@ -765,4 +773,86 @@ export class RegisterCustomerComponent implements OnInit {
       this.toastr.error('هیچ حساب بانکی وارد نشده است')
     }
   }
+
+
+
+
+  get contractInfo() {
+    return this.contractFormInfo.controls;
+  }
+
+  initContractInfo(){
+    this.contractFormInfo = this.fb.group({
+      contractNumber : ['' , Validators.required],
+      expireDate : ['' , Validators.required],
+      serviceStartDate : ['' , Validators.required],
+      description : ['' , Validators.required],
+      projectId : ['' , Validators.required],
+      shareType :  [''],
+      sharedAmount :  [''],
+      shareAmountMax :  [''],
+      shareAmountMin :  [''],
+    })
+  }
+
+  getAllProjects(){
+    this.baseInfoService.getListOfProjects()
+    .subscribe((res:any)=>{
+      this.listOfProject = res;
+    })
+  }
+
+  onSelectProject(event){
+    this.isProject = true;
+    let projectId = parseInt(event.target.value)
+    let selectedProject = this.listOfProject.filter(item=>item.id === projectId)[0];
+    this.contractFormInfo.patchValue({
+      shareType :  selectedProject.shareType,
+      sharedAmount :  selectedProject.sharedAmount,
+      shareAmountMax :  selectedProject.shareAmountMax,
+      shareAmountMin :  selectedProject.shareAmountMin,
+    })
+  }
+
+
+  registerCustomer(){
+    if (this.contractFormInfo.invalid) {
+      this.isContractInfoFormSubmitted = true;
+      return;
+    }
+    let dataSending = this.contractFormInfo.value;
+    dataSending.introduced = null;
+    dataSending.introducedSharedType = null;
+    dataSending.introducedSharedAmount = null;
+    dataSending.projectId = parseInt(dataSending.projectId)
+    dataSending.expireDate = this.changeJalaliToGregorian(dataSending.expireDate);
+    dataSending.serviceStartDate = this.changeJalaliToGregorian(dataSending.serviceStartDate);
+    this.contractInfoValue = dataSending;
+    let data = {}
+    data = Object.assign(data ,this.registerRealCustomerFormValue , this.registerLegalCustomerFormValue , this.registerForeignCustomerFormValue);
+    let customer = {};
+    customer = Object.assign(customer , this.locationInfoValue);
+    customer['ibans'] = this.BankInfoList;
+    customer['contract'] = this.contractInfoValue;
+    data['customer'] = Object.assign(customer , this.locationInfoValue);
+    console.log("data : " , data);
+    
+    this.service.defineAcceptor(data)
+    .subscribe((res=>{
+      this.toastr.success('مشتری با موفقیت ثبت گردید');
+      window.location.reload();
+    }))
+    
+
+
+    
+    
+
+
+
+
+  }
+
+
+
 }

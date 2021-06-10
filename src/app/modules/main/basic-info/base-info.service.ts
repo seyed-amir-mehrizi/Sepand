@@ -9,7 +9,7 @@ export class BaseInfoService {
 
   constructor(private http: HttpClient) {}
 
-  getListOfGuild() {
-    return this.http.get(this.baseInfoApi + '/guilds');
+  getListOfProjects() {
+    return this.http.get(this.baseInfoApi + '/projects');
   }
 }

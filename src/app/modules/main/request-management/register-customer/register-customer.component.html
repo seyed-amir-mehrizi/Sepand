@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="3" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
@@ -849,7 +849,7 @@
 
           <div class="col-md-3 my-2">
             <label for="shopLogo"> لوگوی فروشگاه </label>
-            <input id="shopLogo" type="file" formControlName="shopLogo" accept=".png" class="form-control"
+            <input id="shopLogo" type="file"  accept=".png" class="form-control"
               (change)="changeListener($event)" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -958,12 +958,11 @@
         </div>
         <div class="card-body">
           <form [formGroup]="BankInfoForm">
-          <div class="row mt-3">
-        
+            <div class="row mt-3">
+
               <div class="col-md-6">
                 <label for="iban"> شماره شبا </label>
-                <input id="iban" type="text" formControlName="iban" class="form-control"
-                  name="iban" [ngClass]="{
+                <input id="iban" type="text" formControlName="iban" class="form-control" name="iban" [ngClass]="{
                     'is-invalid':
                     isBankInfoFormSubmitted &&
                       bankAccountInfoForm.iban.errors
@@ -971,8 +970,8 @@
               </div>
               <div class="col-md-6">
                 <label for="accountNumber"> شماره حساب </label>
-                <input id="accountNumber" (keypress)="numberOnly($event)" type="text" formControlName="accountNumber" class="form-control"
-                  name="accountNumber" [ngClass]="{
+                <input id="accountNumber" (keypress)="numberOnly($event)" type="text" formControlName="accountNumber"
+                  class="form-control" name="accountNumber" [ngClass]="{
                     'is-invalid':
                     isBankInfoFormSubmitted &&
                       bankAccountInfoForm.accountNumber.errors
@@ -984,9 +983,7 @@
                     'is-invalid':
                     isBankInfoFormSubmitted &&
                     bankAccountInfoForm.shareType.errors
-                  }"
-                  (change)="onSharedTypeSelected(BankInfoForm)"
-                  >
+                  }" (change)="onSharedTypeSelected(BankInfoForm)">
                   <option *ngFor="let item of sharedTypeList" [value]="item.id">
                     {{ item.name }}
                   </option>
@@ -995,8 +992,8 @@
               <ng-container *ngIf="hasPercentage">
                 <div class="col-md-3">
                   <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
-                  <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text" formControlName="shareAmountMin" class="form-control"
-                    name="shareAmountMin" [ngClass]="{
+                  <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
+                    formControlName="shareAmountMin" class="form-control" name="shareAmountMin" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&
                         bankAccountInfoForm.shareAmountMax.errors
@@ -1004,72 +1001,72 @@
                 </div>
                 <div class="col-md-3">
                   <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
-                  <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text" formControlName="shareAmountMax" class="form-control"
-                    name="shareAmountMax" [ngClass]="{
+                  <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
+                    formControlName="shareAmountMax" class="form-control" name="shareAmountMax" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&
                         bankAccountInfoForm.shareAmountMax.errors
                     }" />
-              </div>
+                </div>
 
               </ng-container>
               <div class="col-md-3" *ngIf="hasAmount">
                 <label for="sharedAmount"> مبلغ تسهیم</label>
-                <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount" class="form-control"
-                  name="sharedAmount" [ngClass]="{
+                <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
+                  class="form-control" name="sharedAmount" [ngClass]="{
                     'is-invalid':
                     isBankInfoFormSubmitted &&
                       bankAccountInfoForm.sharedAmount.errors
                   }" />
+              </div>
+
+              <div class="form-group form-check col-md-4 my-2">
+                <label class="form-check-label">
+                  <input formControlName="isMain" class="form-check-input" type="checkbox" />
+                  حساب اصلی
+                </label>
+              </div>
+              <div class="col-md-12 my-2">
+
+                <button class="btn btn-success btn-sm" (click)="addBankInfo()">ثبت</button>
+              </div>
+
             </div>
+          </form>
 
-            <div class="form-group form-check col-md-4 my-2">
-              <label class="form-check-label">
-                <input formControlName="isMain" class="form-check-input" type="checkbox" />
-                 حساب اصلی
-              </label>
-            </div>
-            <div class="col-md-12 my-2">
-
-              <button class="btn btn-success btn-sm" (click)="addBankInfo()">ثبت</button>
-            </div>
-
-          </div>
-        </form>
-
-        <div class="row mt-3" *ngIf="BankInfoList.length > 0">
-          <div class="col-sm-12">
+          <div class="row mt-3" *ngIf="BankInfoList.length > 0">
+            <div class="col-sm-12">
               <div class="table-responsive">
-              <table class="table table-bordered table-striped text-center">
+                <table class="table table-bordered table-striped text-center">
                   <thead>
-                          <tr>
-                              <th>شماره شبا</th>
-                              <th>شماره حساب</th>
-                              <th>نوع تسهیم</th>
-                              <th>مبلغ تسهیم</th>
-                              <th>کمترین مبلغ تسهیم</th>
-                              <th>بیشترین مبلغ تسهیم</th>
-                              <th>حساب اصلی</th>
-                          </tr>
+                    <tr>
+                      <th>شماره شبا</th>
+                      <th>شماره حساب</th>
+                      <th>نوع تسهیم</th>
+                      <th>مبلغ تسهیم</th>
+                      <th>کمترین مبلغ تسهیم</th>
+                      <th>بیشترین مبلغ تسهیم</th>
+                      <th>حساب اصلی</th>
+                    </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let item of BankInfoList">
-                          <td>{{item?.iban}}</td>
-                          <td>{{item?.accountNumber}}</td>
-                          <td>{{item?.shareType === 1 ? 'درصدی' : 'ثابت'}}</td>
-                          <td>{{item?.sharedAmount}}</td>
-                          <td>{{item?.shareAmountMin}}</td>
-                          <td>{{item?.shareAmountMax}}</td>
-                          <td>
-                             {{item?.isMain === true ? 'بله' : 'خیر'}}
-                          </td>
+                    <tr *ngFor="let item of BankInfoList">
+                      <td>{{item?.iban}}</td>
+                      <td>{{item?.accountNumber}}</td>
+                      <td>{{item?.shareType === 1 ? 'درصدی' : 'ثابت'}}</td>
+                      <td>{{item?.sharedAmount}}</td>
+                      <td>{{item?.shareAmountMin}}</td>
+                      <td>{{item?.shareAmountMax}}</td>
+                      <td>
+                        {{item?.isMain === true ? 'بله' : 'خیر'}}
+                      </td>
 
-                      </tr>
+                    </tr>
                   </tbody>
-              </table>
+                </table>
               </div>
+            </div>
           </div>
-      </div>
         </div>
       </div>
 
@@ -1084,19 +1081,124 @@
   <li [ngbNavItem]="4" [disabled]="disabledContractInfo">
     <a ngbNavLink>دریافت اطلاعات قراردادی</a>
     <ng-template ngbNavContent>
-      <p>
-        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes
-        anderson artisan four loko farm-to-table craft beer twee. Qui photo
-        booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore
-        aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero
-        magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
-        anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
-        richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-        sint qui sapiente accusamus tattooed echo park.
-      </p>
-      <button class="btn btn-sm btn-outline-primary mx-2" [disabled]="active === 1" (click)="nav.select(3)">
+      <form [formGroup]="contractFormInfo">
+        <div class="row mt-3">
+          <div class="col-md-4 my-2">
+            <label for="contractNumber">شماره قرارداد</label>
+            <input id="contractNumber" type="text" formControlName="contractNumber" class="form-control dir-ltr"
+              (keypress)="numberOnly($event)" [ngClass]="{
+                  'is-invalid':
+                  isContractInfoFormSubmitted &&
+                  contractInfo.contractNumber.errors
+                }" />
+          </div>
+          <div class="col-md-4 my-2">
+            <label for="expireDate"> تاریخ انقضا </label>
+            <div class="input-group dir-ltr">
+              <input id="expireDate" class="form-control" name="dp" ngbDatepicker #exDate="ngbDatepicker"
+                formControlName="expireDate" [ngClass]="{
+                  'is-invalid':
+                  isContractInfoFormSubmitted &&
+                  contractInfo.expireDate.errors
+                }" />
+              <div class="input-group-append">
+                <button class="btn btn-primary py-0 px-2" (click)="exDate.toggle()" type="button">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+           <div class="col-md-4 my-2">
+            <label for="serviceStartDate">تاریخ شروع خدمات</label>
+            <div class="input-group dir-ltr">
+              <input id="serviceStartDate" class="form-control" name="dp" ngbDatepicker #serviceDate="ngbDatepicker"
+                formControlName="serviceStartDate" [ngClass]="{
+                  'is-invalid':
+                  isContractInfoFormSubmitted &&
+                  contractInfo.serviceStartDate.errors
+                }" />
+              <div class="input-group-append">
+                <button class="btn btn-primary py-0 px-2" (click)="serviceDate.toggle()" type="button">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 my-2">
+            <label for="description">توضیحات</label>
+              <textarea  name="" id="" cols="30" rows="5"
+              id="description" class="form-control"
+                formControlName="description" [ngClass]="{
+                  'is-invalid':
+                  isContractInfoFormSubmitted &&
+                  contractInfo.description.errors
+                }"
+              ></textarea>
+            </div>
+            <div class="col-md-3 my-2">
+
+              <label for="projectId">لیست پروژه ها</label>
+              <select #province id="projectId" class="form-control" formControlName="projectId"
+                [ngClass]="{
+                  'is-invalid':
+                  isContractInfoFormSubmitted &&
+                    contractInfo.projectId.errors
+                }"(change)="onSelectProject($event)">
+                <option *ngFor="let item of listOfProject" [value]="item.id" >
+                  {{ item.projectName }}
+                </option>
+              </select>
+            </div>
+            <ng-container *ngIf="isProject">
+              <div class="col-md-4 my-2">
+                <label for="shareType">نوع تسهیم</label>
+                <input id="shareType" type="text" formControlName="shareType" class="form-control dir-ltr"
+                [readonly]="true"/>
+              </div>
+              <ng-container>
+                <div class="col-md-3 my-2">
+                  <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
+                  <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
+                    formControlName="shareAmountMin" class="form-control" name="shareAmountMin" [ngClass]="{
+                      'is-invalid':
+                      isContractInfoFormSubmitted &&
+                        contractInfo.shareAmountMin.errors
+                    }" />
+                </div>
+                <div class="col-md-3">
+                  <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
+                  <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
+                    formControlName="shareAmountMax" class="form-control" name="shareAmountMax" [ngClass]="{
+                      'is-invalid':
+                      isContractInfoFormSubmitted &&
+                      contractInfo.shareAmountMax.errors
+                    }" />
+                </div>
+  
+              </ng-container>
+              <div class="col-md-3">
+                <label for="sharedAmount"> مبلغ تسهیم</label>
+                <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
+                  class="form-control" name="sharedAmount" [ngClass]="{
+                    'is-invalid':
+                    isContractInfoFormSubmitted &&
+                    contractInfo.sharedAmount.errors
+                  }" />
+              </div>
+            </ng-container>
+            
+
+
+        </div>
+      </form>
+
+
+      <button class="btn btn-sm btn-primary mx-2 my-2" [disabled]="active === 1" (click)="nav.select(3)">
         قبلی
+      </button>
+      <button class="btn btn-sm btn-success mx-2 my-2"  (click)="registerCustomer()">
+        ثبت اطلاعات
       </button>
     </ng-template>
   </li>

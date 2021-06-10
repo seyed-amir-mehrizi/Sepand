@@ -22,6 +22,11 @@ getPersonData(data){
 return this.http.get(this.customerApi+'/get-person',{params});
 }
 
+defineAcceptor(data){
+  return this.http.post(this.customerApi + '/define-acceptor', data).pipe(map(response => response));
+
+}
+
 
 
 }
