@@ -1,0 +1,6 @@
+#customerList td {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 125px;
+    height: 25px;
+}

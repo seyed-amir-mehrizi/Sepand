@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,10 @@ export class CustomersService {
       }
         return this.http.get(this.customerApi+'/customers' , {params});
     
+  }
+
+  editGuild(data){
+    return this.http.post(this.customerApi + '/edit-guild', data).pipe(map(response => response));
+
   }
 }

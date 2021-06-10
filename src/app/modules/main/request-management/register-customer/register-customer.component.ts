@@ -842,17 +842,6 @@ export class RegisterCustomerComponent implements OnInit {
       this.toastr.success('مشتری با موفقیت ثبت گردید');
       window.location.reload();
     }))
-    
-
-
-    
-    
-
-
-
-
+  
   }
-
-
-
 }

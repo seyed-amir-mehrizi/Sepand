@@ -12,6 +12,7 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { ChangeClassModalComponent } from './change-class-modal/change-class-modal.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
     RemoveTerminalComponent,
     ActivateTerminalComponent,
     RegisterCustomerComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    ChangeClassModalComponent
   ],
   imports: [
     NgbModule,
