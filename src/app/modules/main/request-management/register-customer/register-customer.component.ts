@@ -50,25 +50,34 @@ export class RegisterCustomerComponent implements OnInit {
   registerLegalCustomerForm: FormGroup;
   registerForeignForm: FormGroup;
   LocationInfoForm: FormGroup;
+  BankInfoForm:FormGroup;
   isRegisterCustomerSubmitted: boolean = false;
   isRegisterLegalCustomerSubmitted: boolean = false;
   isRegisterForeignCustomerSubmitted: boolean = false;
   isLocationInfoFormSubmitted: boolean = false;
+  isBankInfoFormSubmitted: boolean = false;
+
   listOfAlphabets: any = [];
   proviceList: any = [];
   isReal: boolean = false;
   isLegal: boolean = false;
   isForeign: boolean = false;
   isEmpty: boolean = true;
+  hasAmount:boolean = false;
   degreeList: any = [];
   guildList: any = [];
   fileToUpload: File = null;
   proviceCitiesList: any = [];
+  sharedTypeList: any = [];
+  BankInfoList: any = [];
+
+  sharedTypeId:number;
   isChangePasswordSubmitted: boolean = false;
   customerType: number;
   hasNationalNumber: boolean = false;
   hasRegisterNumber: boolean = false;
   hasForeignNumber: boolean = false;
+  hasPercentage : boolean = false;
   customerTypeValue;
   registerRealCustomerFormValue: any = {};
   registerLegalCustomerFormValue: any = {};
@@ -96,6 +105,8 @@ export class RegisterCustomerComponent implements OnInit {
     this.initLocationInfoForm();
     this.getListOfProvince();
     this.getListOfGuild();
+    this.initBankInfoForm();
+    this.getListOfSharedTypes();
   }
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
@@ -623,7 +634,13 @@ export class RegisterCustomerComponent implements OnInit {
         this.proviceCitiesList = res;
       });
   }
-
+  getListOfSharedTypes() {
+    this.sharedService
+      .getSharedTypeCategories()
+      .subscribe((res: any) => {
+        this.sharedTypeList = res;
+      });
+  }
 
 
 
@@ -661,5 +678,91 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.guildId = parseInt(dataSending.guildId);
     this.locationInfoValue = dataSending;
     nav.select(3);
+  }
+
+
+
+
+
+  get bankAccountInfoForm() {
+    return this.BankInfoForm.controls;
+  }
+
+  initBankInfoForm(){
+    this.BankInfoForm = this.fb.group({
+      iban : ['' , Validators.required],
+      accountNumber : ['' , Validators.required],
+      shareType : ['' , Validators.required],
+      shareAmountMax : [''],
+      shareAmountMin : [''],
+      sharedAmount : [''],
+      isMain : [''],
+    });
+  }
+
+  onSharedTypeSelected(value: any) {
+    this.sharedTypeId = parseInt(value.value.shareType);
+    switch (this.sharedTypeId) {
+      case 1:
+        this.hasPercentage = true;
+        this.hasAmount = false;
+
+        value.value.sharedAmount = 0;
+        break;
+        case 2:
+          this.hasPercentage = false;
+          value.value.shareAmountMax = 0;
+          value.value.shareAmountMin = 0;
+          this.hasAmount = true;
+        break;
+    
+      default:
+        break;
+    }
+    
+    
+  }
+
+  addBankInfo(){
+    if (this.BankInfoForm.invalid) {
+      this.isBankInfoFormSubmitted = true;
+      return;
+    }
+    let dataSending = this.BankInfoForm.value;
+    switch (this.sharedTypeId) {
+      case 1:
+        dataSending.sharedAmount = 0;
+        if(dataSending.shareAmountMax === '' || dataSending.shareAmountMin === ''){
+          this.toastr.error('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
+          return;
+        }
+        break;
+        case 2:
+          dataSending.shareAmountMax = 0;
+          dataSending.shareAmountMin = 0;
+          if(dataSending.sharedAmount=== '' ){
+            this.toastr.error(' مبلغ تسهیم را وارد کنید');
+            return;
+          }
+        break;
+      default:
+        break;
+    }
+    dataSending.sharedAmount = parseInt(dataSending.sharedAmount);
+    dataSending.shareAmountMax = parseInt(dataSending.shareAmountMax);
+    dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
+    dataSending.shareType = parseInt(dataSending.shareType);
+    dataSending.customerId = 0;
+    this.BankInfoList.push(dataSending);
+    this.BankInfoForm.reset();
+  }
+
+
+  submitBankInfo(nav:any){
+    if(this.BankInfoList.length > 0){
+      nav.select(4)
+    }else{
+      this.toastr.error('هیچ حساب بانکی وارد نشده است')
+    }
   }
 }

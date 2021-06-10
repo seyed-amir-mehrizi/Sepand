@@ -38,6 +38,12 @@ export class SharedDataService {
   getAllGuildsCategories() {
     return this.http.get(this.sharedDataApi + '/guilds-categories');
   }
+  getSharedTypeCategories() {
+    return this.http.get(this.sharedDataApi + '/share-type');
+  }
+
+
+  getSharedType
 
   getCitiesOfProvince(data: any) {
     let params = {

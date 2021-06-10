@@ -1,152 +1,97 @@
-<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
-    <li [ngbNavItem]="1">
-        <a ngbNavLink>دریافت اطلاعات شخصی</a>
-        <ng-template ngbNavContent>
-            <div class="col-md-4 mb-5">
-                <label for="customerType">نوع مشتری</label>
-                <select [(ngModel)]="customerTypeValue" id="customerType" #mySelect class="form-control" (change)="onOptionsSelected(mySelect.value)" [value]="customerTypeValue">
+<ul ngbNav #nav="ngbNav" [activeId]="3" (navChange)="onNavChange($event)" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>دریافت اطلاعات شخصی</a>
+    <ng-template ngbNavContent>
+      <div class="col-md-4 mb-5">
+        <label for="customerType">نوع مشتری</label>
+        <select [(ngModel)]="customerTypeValue" id="customerType" #mySelect class="form-control"
+          (change)="onOptionsSelected(mySelect.value)" [value]="customerTypeValue">
           <option></option>
           <option *ngFor="let item of personTypeList" [value]="item.id">
             {{ item.name }}
           </option>
         </select>
-            </div>
+      </div>
 
-            <div *ngIf="isReal">
-                <form [formGroup]="registerRealCustomerForm">
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <label for="nationalNumber">کد ملی</label>
-                            <div class="input-group mb-3 dir-ltr">
-                                <span title="بررسی کد ملی" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1" (click)="checkNationalNumber()">?</span
-                >
-                <input
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                  id="nationalNumber"
-                  type="text"
-                  formControlName="nationalNumber"
-                  class="form-control dir-ltr"
-                  (keypress)="numberOnly($event)"
+      <div *ngIf="isReal">
+        <form [formGroup]="registerRealCustomerForm">
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <label for="nationalNumber">کد ملی</label>
+              <div class="input-group mb-3 dir-ltr">
+                <span title="بررسی کد ملی" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                  (click)="checkNationalNumber()">?</span>
+                <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
+                  formControlName="nationalNumber" class="form-control dir-ltr" (keypress)="numberOnly($event)"
                   [ngClass]="{
                     'is-invalid':
                       isRegisterCustomerSubmitted &&
                       registerRealCustomerFormInfo.nationalNumber.errors
-                  }"
-                />
+                  }" />
               </div>
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
-              <input
-                id="firstNameFa"
-                type="text"
-                formControlName="firstNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="firstNameFa" type="text" formControlName="firstNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.firstNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
-              <input
-                id="lastNameFa"
-                type="text"
-                formControlName="lastNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="lastNameFa" type="text" formControlName="lastNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.lastNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameEn">نام لاتین</label>
-              <input
-                id="firstNameEn"
-                type="text"
-                formControlName="firstNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="firstNameEn" type="text" formControlName="firstNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.firstNameEn.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
-              <input
-                id="lastNameEn"
-                type="text"
-                formControlName="lastNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="lastNameEn" type="text" formControlName="lastNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.lastNameEn.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="nationalityId">ملیت</label>
-              <input
-                id="typeahead-config"
-                type="text"
-                class="form-control"
-                formControlName="nationalityId"
-                [ngbTypeahead]="nationalities_Serach"
-                [resultFormatter]="nationalitiesFormatter"
-                [inputFormatter]="nationalitiesInputFormatter"
-                placement="bottom-right"
-                [ngClass]="{
+              <input id="typeahead-config" type="text" class="form-control" formControlName="nationalityId"
+                [ngbTypeahead]="nationalities_Serach" [resultFormatter]="nationalitiesFormatter"
+                [inputFormatter]="nationalitiesInputFormatter" placement="bottom-right" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.nationalityId.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
-              <input
-                id="birthLocation"
-                type="text"
-                formControlName="birthLocation"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthLocation" type="text" formControlName="birthLocation" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.birthLocation.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthDate"> تاریخ تولد </label>
               <div class="input-group dir-ltr">
-                <input
-                  id="birthDate"
-                  class="form-control"
-                  name="dp"
-                  ngbDatepicker
-                  #d="ngbDatepicker"
-                  formControlName="birthDate"
-                  [ngClass]="{
+                <input id="birthDate" class="form-control" name="dp" ngbDatepicker #d="ngbDatepicker"
+                  formControlName="birthDate" [ngClass]="{
                     'is-invalid':
                       isRegisterCustomerSubmitted &&
                       registerRealCustomerFormInfo.birthDate.errors
-                  }"
-                />
+                  }" />
                 <div class="input-group-append">
-                  <button
-                    class="btn btn-primary py-0 px-2"
-                    (click)="d.toggle()"
-                    type="button"
-                  >
+                  <button class="btn btn-primary py-0 px-2" (click)="d.toggle()" type="button">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -154,74 +99,46 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificatePlaceOfIssue">محل صدور </label>
-              <input
-                id="birthCertificatePlaceOfIssue"
-                type="text"
-                formControlName="birthCertificatePlaceOfIssue"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificatePlaceOfIssue" type="text" formControlName="birthCertificatePlaceOfIssue"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.birthCertificatePlaceOfIssue
                       .errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="postalCode"> کد پستی </label>
-              <input
-                id="postalCode"
-                type="text"
-                formControlName="postalCode"
-                class="form-control"
-                [ngClass]="{
+              <input id="postalCode" type="text" formControlName="postalCode" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.postalCode.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
-              <input
-                id="fatherNameFa"
-                type="text"
-                formControlName="fatherNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="fatherNameFa" type="text" formControlName="fatherNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.fatherNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameEn"> نام پدر لاتین </label>
-              <input
-                id="fatherNameEn"
-                type="text"
-                formControlName="fatherNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="fatherNameEn" type="text" formControlName="fatherNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.fatherNameEn.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="sex">جنسیت</label>
-              <select
-                id="sex"
-                class="form-control"
-                formControlName="sex"
-                [ngClass]="{
+              <select id="sex" class="form-control" formControlName="sex" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.sex.errors
-                }"
-              >
+                }">
                 <option></option>
                 <option [value]="0">زن</option>
                 <option [value]="1">مرد</option>
@@ -229,16 +146,11 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="degreeId">مدرک تحصیلی</label>
-              <select
-                id="degreeId"
-                class="form-control"
-                formControlName="degreeId"
-                [ngClass]="{
+              <select id="degreeId" class="form-control" formControlName="degreeId" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.degreeId.errors
-                }"
-              >
+                }">
                 <option *ngFor="let item of degreeList" [value]="item.id">
                   {{ item.degreeName }}
                 </option>
@@ -246,51 +158,33 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificateNo"> شماره شناسنامه </label>
-              <input
-                id="birthCertificateNo"
-                (keypress)="numberOnly($event)"
-                type="text"
-                formControlName="birthCertificateNo"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificateNo" (keypress)="numberOnly($event)" type="text"
+                formControlName="birthCertificateNo" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.birthCertificateNo.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificateSerial"> شماره سریال شناسنامه </label>
-              <input
-                id="birthCertificateSerial"
-                (keypress)="numberOnly($event)"
-                type="text"
-                formControlName="birthCertificateSerial"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificateSerial" (keypress)="numberOnly($event)" type="text"
+                formControlName="birthCertificateSerial" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.birthCertificateSerial.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificateAlphabiticNoId">
                 حرف شماره سریال شناسنامه
               </label>
-              <select
-                id="customerType"
-                #mySelect
-                class="form-control"
-                formControlName="birthCertificateAlphabiticNoId"
-                class="form-control"
-                [ngClass]="{
+              <select id="customerType" #mySelect class="form-control" formControlName="birthCertificateAlphabiticNoId"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.birthCertificateAlphabiticNoId
                       .errors
-                }"
-              >
+                }">
                 <option></option>
                 <option *ngFor="let item of listOfAlphabets" [value]="item.id">
                   {{ item.alphabiticChar }}
@@ -301,35 +195,22 @@
               <label for="birthCertificateNumericNo">
                 عدد دو رقمی شماره سریال شناسنامه
               </label>
-              <input
-                id="birthCertificateNumericNo"
-                (keypress)="numberOnly($event)"
-                type="text"
-                formControlName="birthCertificateNumericNo"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificateNumericNo" (keypress)="numberOnly($event)" type="text"
+                formControlName="birthCertificateNumericNo" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.birthCertificateNumericNo
                       .errors
-                }"
-              />
+                }" />
             </div>
             <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
-                <input
-                  formControlName="isDisable"
-                  class="form-check-input"
-                  type="checkbox"
-                />
+                <input formControlName="isDisable" class="form-check-input" type="checkbox" />
                 فعال است
               </label>
             </div>
           </div>
-          <button
-            class="btn btn-sm btn-primary mt-2"
-            (click)="submitRealCustomer(nav)"
-          >
+          <button class="btn btn-sm btn-primary mt-2" (click)="submitRealCustomer(nav)">
             بعدی
           </button>
         </form>
@@ -340,159 +221,89 @@
             <div class="col-md-4 my-2">
               <label for="registerNo">شماره ثبت</label>
               <div class="input-group mb-3 dir-ltr">
-                <span
-                  title="بررسی  شماره ثبت"
-                  class="input-group-text dir-rtl cursor-pointer"
-                  id="basic-addon1"
-                  (click)="checkRegisterNumber()"
-                  >?</span
-                >
-                <input
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                  id="registerNo"
-                  type="text"
-                  formControlName="registerNo"
-                  class="form-control dir-ltr"
-                  (keypress)="numberOnly($event)"
-                  [ngClass]="{
+                <span title="بررسی  شماره ثبت" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                  (click)="checkRegisterNumber()">?</span>
+                <input aria-label="Username" aria-describedby="basic-addon1" id="registerNo" type="text"
+                  formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
                     'is-invalid':
                       isRegisterLegalCustomerSubmitted &&
                       registerLegalCustomerFormInfo.registerNo.errors
-                  }"
-                />
+                  }" />
               </div>
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
-              <input
-                id="firstNameFa"
-                type="text"
-                formControlName="firstNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="firstNameFa" type="text" formControlName="firstNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.firstNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
-              <input
-                id="lastNameFa"
-                type="text"
-                formControlName="lastNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="lastNameFa" type="text" formControlName="lastNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.lastNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameEn">نام لاتین</label>
-              <input
-                id="firstNameEn"
-                type="text"
-                formControlName="firstNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="firstNameEn" type="text" formControlName="firstNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.firstNameEn.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
-              <input
-                id="lastNameEn"
-                type="text"
-                formControlName="lastNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="lastNameEn" type="text" formControlName="lastNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.lastNameEn.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="nationalNumber">کد ملی</label>
 
-              <input
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-                id="nationalNumber"
-                type="text"
-                formControlName="nationalNumber"
-                class="form-control dir-ltr"
-                (keypress)="numberOnly($event)"
-                [ngClass]="{
+              <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
+                formControlName="nationalNumber" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.nationalityId.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="nationalityId">ملیت</label>
-              <input
-                id="typeahead-config"
-                type="text"
-                class="form-control"
-                formControlName="nationalityId"
-                [ngbTypeahead]="nationalities_Serach"
-                [resultFormatter]="nationalitiesFormatter"
-                [inputFormatter]="nationalitiesInputFormatter"
-                placement="bottom-right"
-                [ngClass]="{
+              <input id="typeahead-config" type="text" class="form-control" formControlName="nationalityId"
+                [ngbTypeahead]="nationalities_Serach" [resultFormatter]="nationalitiesFormatter"
+                [inputFormatter]="nationalitiesInputFormatter" placement="bottom-right" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.nationalityId.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
-              <input
-                id="birthLocation"
-                type="text"
-                formControlName="birthLocation"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthLocation" type="text" formControlName="birthLocation" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.birthLocation.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthDate"> تاریخ تولد </label>
               <div class="input-group dir-ltr">
-                <input
-                  id="birthDate"
-                  class="form-control"
-                  name="dp"
-                  ngbDatepicker
-                  #d="ngbDatepicker"
-                  formControlName="birthDate"
-                  [ngClass]="{
+                <input id="birthDate" class="form-control" name="dp" ngbDatepicker #d="ngbDatepicker"
+                  formControlName="birthDate" [ngClass]="{
                     'is-invalid':
                       isRegisterLegalCustomerSubmitted &&
                       registerLegalCustomerFormInfo.birthDate.errors
-                  }"
-                />
+                  }" />
                 <div class="input-group-append">
-                  <button
-                    class="btn btn-primary py-0 px-2"
-                    (click)="d.toggle()"
-                    type="button"
-                  >
+                  <button class="btn btn-primary py-0 px-2" (click)="d.toggle()" type="button">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -500,74 +311,46 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificatePlaceOfIssue">محل صدور </label>
-              <input
-                id="birthCertificatePlaceOfIssue"
-                type="text"
-                formControlName="birthCertificatePlaceOfIssue"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificatePlaceOfIssue" type="text" formControlName="birthCertificatePlaceOfIssue"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.birthCertificatePlaceOfIssue
                       .errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="postalCode"> کد پستی </label>
-              <input
-                id="postalCode"
-                type="text"
-                formControlName="postalCode"
-                class="form-control"
-                [ngClass]="{
+              <input id="postalCode" type="text" formControlName="postalCode" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.postalCode.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
-              <input
-                id="fatherNameFa"
-                type="text"
-                formControlName="fatherNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="fatherNameFa" type="text" formControlName="fatherNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.fatherNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameEn"> نام پدر لاتین </label>
-              <input
-                id="fatherNameEn"
-                type="text"
-                formControlName="fatherNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="fatherNameEn" type="text" formControlName="fatherNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.fatherNameEn.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="sex">جنسیت</label>
-              <select
-                id="sex"
-                class="form-control"
-                formControlName="sex"
-                [ngClass]="{
+              <select id="sex" class="form-control" formControlName="sex" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.sex.errors
-                }"
-              >
+                }">
                 <option></option>
                 <option [value]="0">زن</option>
                 <option [value]="1">مرد</option>
@@ -575,16 +358,11 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="degreeId">مدرک تحصیلی</label>
-              <select
-                id="degreeId"
-                class="form-control"
-                formControlName="degreeId"
-                [ngClass]="{
+              <select id="degreeId" class="form-control" formControlName="degreeId" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.degreeId.errors
-                }"
-              >
+                }">
                 <option *ngFor="let item of degreeList" [value]="item.id">
                   {{ item.degreeName }}
                 </option>
@@ -592,51 +370,33 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificateNo"> شماره شناسنامه </label>
-              <input
-                id="birthCertificateNo"
-                (keypress)="numberOnly($event)"
-                type="text"
-                formControlName="birthCertificateNo"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificateNo" (keypress)="numberOnly($event)" type="text"
+                formControlName="birthCertificateNo" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.birthCertificateNo.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificateSerial"> شماره سریال شناسنامه </label>
-              <input
-                id="birthCertificateSerial"
-                (keypress)="numberOnly($event)"
-                type="text"
-                formControlName="birthCertificateSerial"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificateSerial" (keypress)="numberOnly($event)" type="text"
+                formControlName="birthCertificateSerial" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.birthCertificateSerial.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthCertificateAlphabiticNoId">
                 حرف شماره سریال شناسنامه
               </label>
-              <select
-                id="customerType"
-                #mySelect
-                class="form-control"
-                formControlName="birthCertificateAlphabiticNoId"
-                class="form-control"
-                [ngClass]="{
+              <select id="customerType" #mySelect class="form-control" formControlName="birthCertificateAlphabiticNoId"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.birthCertificateAlphabiticNoId
                       .errors
-                }"
-              >
+                }">
                 <option></option>
                 <option *ngFor="let item of listOfAlphabets" [value]="item.id">
                   {{ item.alphabiticChar }}
@@ -647,43 +407,26 @@
               <label for="birthCertificateNumericNo">
                 عدد دو رقمی شماره سریال شناسنامه
               </label>
-              <input
-                id="birthCertificateNumericNo"
-                (keypress)="numberOnly($event)"
-                type="text"
-                formControlName="birthCertificateNumericNo"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthCertificateNumericNo" (keypress)="numberOnly($event)" type="text"
+                formControlName="birthCertificateNumericNo" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.birthCertificateNumericNo
                       .errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="registerDate"> تاریخ ثبت </label>
               <div class="input-group dir-ltr">
-                <input
-                  id="registerDate"
-                  class="form-control"
-                  name="dp"
-                  ngbDatepicker
-                  #b="ngbDatepicker"
-                  formControlName="registerDate"
-                  [ngClass]="{
+                <input id="registerDate" class="form-control" name="dp" ngbDatepicker #b="ngbDatepicker"
+                  formControlName="registerDate" [ngClass]="{
                     'is-invalid':
                       isRegisterLegalCustomerSubmitted &&
                       registerLegalCustomerFormInfo.registerDate.errors
-                  }"
-                />
+                  }" />
                 <div class="input-group-append">
-                  <button
-                    class="btn btn-primary py-0 px-2"
-                    (click)="b.toggle()"
-                    type="button"
-                  >
+                  <button class="btn btn-primary py-0 px-2" (click)="b.toggle()" type="button">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -691,75 +434,45 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="comNameFa"> نام شرکت </label>
-              <input
-                id="comNameFa"
-                type="text"
-                formControlName="comNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="comNameFa" type="text" formControlName="comNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.comNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="comNameEn"> نام شرکت لاتین </label>
-              <input
-                id="comNameEn"
-                type="text"
-                formControlName="comNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="comNameEn" type="text" formControlName="comNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.comNameEn.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
-              <input
-                id="commercialCode"
-                type="text"
-                formControlName="commercialCode"
-                class="form-control"
-                [ngClass]="{
+              <input id="commercialCode" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.commercialCode.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="nationalLegalCode"> کد حقوقی ملی </label>
-              <input
-                id="nationalLegalCode"
-                type="text"
-                formControlName="nationalLegalCode"
-                class="form-control"
+              <input id="nationalLegalCode" type="text" formControlName="nationalLegalCode" class="form-control"
                 [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.nationalLegalCode.errors
-                }"
-              />
+                }" />
             </div>
             <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
-                <input
-                  formControlName="isDisable"
-                  class="form-check-input"
-                  type="checkbox"
-                />
+                <input formControlName="isDisable" class="form-check-input" type="checkbox" />
                 فعال است
               </label>
             </div>
           </div>
-          <button
-            class="btn btn-sm btn-primary mt-2"
-            (click)="submitLegalCustomer(nav)"
-          >
+          <button class="btn btn-sm btn-primary mt-2" (click)="submitLegalCustomer(nav)">
             بعدی
           </button>
         </form>
@@ -770,140 +483,81 @@
             <div class="col-md-4 my-2">
               <label for="foreignPervasiveCode"> کد اتباع فراگیر </label>
               <div class="input-group mb-3 dir-ltr">
-                <span
-                  title="بررسی کد ملی"
-                  class="input-group-text dir-rtl cursor-pointer"
-                  id="basic-addon1"
-                  (click)="checkForeignPervasiveCode()"
-                  >?</span
-                >
-                <input
-                  id="foreignPervasiveCode"
-                  type="text"
-                  formControlName="foreignPervasiveCode"
-                  class="form-control"
+                <span title="بررسی کد ملی" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                  (click)="checkForeignPervasiveCode()">?</span>
+                <input id="foreignPervasiveCode" type="text" formControlName="foreignPervasiveCode" class="form-control"
                   [ngClass]="{
                     'is-invalid':
                       isRegisterForeignCustomerSubmitted &&
                       registerForeignCustomerFormInfo.foreignPervasiveCode
                         .errors
-                  }"
-                />
+                  }" />
               </div>
             </div>
 
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
-              <input
-                id="firstNameFa"
-                type="text"
-                formControlName="firstNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="firstNameFa" type="text" formControlName="firstNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.firstNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
-              <input
-                id="lastNameFa"
-                type="text"
-                formControlName="lastNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="lastNameFa" type="text" formControlName="lastNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.lastNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameEn">نام لاتین</label>
-              <input
-                id="firstNameEn"
-                type="text"
-                formControlName="firstNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="firstNameEn" type="text" formControlName="firstNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.firstNameEn.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
-              <input
-                id="lastNameEn"
-                type="text"
-                formControlName="lastNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="lastNameEn" type="text" formControlName="lastNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.lastNameEn.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="nationalityId">ملیت</label>
-              <input
-                id="typeahead-config"
-                type="text"
-                class="form-control"
-                formControlName="nationalityId"
-                [ngbTypeahead]="nationalities_Serach"
-                [resultFormatter]="nationalitiesFormatter"
-                [inputFormatter]="nationalitiesInputFormatter"
-                placement="bottom-right"
-                [ngClass]="{
+              <input id="typeahead-config" type="text" class="form-control" formControlName="nationalityId"
+                [ngbTypeahead]="nationalities_Serach" [resultFormatter]="nationalitiesFormatter"
+                [inputFormatter]="nationalitiesInputFormatter" placement="bottom-right" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.nationalityId.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
-              <input
-                id="birthLocation"
-                type="text"
-                formControlName="birthLocation"
-                class="form-control"
-                [ngClass]="{
+              <input id="birthLocation" type="text" formControlName="birthLocation" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.birthLocation.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="birthDate"> تاریخ تولد </label>
               <div class="input-group dir-ltr">
-                <input
-                  id="birthDate"
-                  class="form-control"
-                  name="dp"
-                  ngbDatepicker
-                  #h="ngbDatepicker"
-                  formControlName="birthDate"
-                  [ngClass]="{
+                <input id="birthDate" class="form-control" name="dp" ngbDatepicker #h="ngbDatepicker"
+                  formControlName="birthDate" [ngClass]="{
                     'is-invalid':
                       isRegisterForeignCustomerSubmitted &&
                       registerForeignCustomerFormInfo.birthDate.errors
-                  }"
-                />
+                  }" />
                 <div class="input-group-append">
-                  <button
-                    class="btn btn-primary py-0 px-2"
-                    (click)="h.toggle()"
-                    type="button"
-                  >
+                  <button class="btn btn-primary py-0 px-2" (click)="h.toggle()" type="button">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -911,45 +565,28 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
-              <input
-                id="fatherNameFa"
-                type="text"
-                formControlName="fatherNameFa"
-                class="form-control"
-                [ngClass]="{
+              <input id="fatherNameFa" type="text" formControlName="fatherNameFa" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.fatherNameFa.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameEn"> نام پدر لاتین </label>
-              <input
-                id="fatherNameEn"
-                type="text"
-                formControlName="fatherNameEn"
-                class="form-control"
-                [ngClass]="{
+              <input id="fatherNameEn" type="text" formControlName="fatherNameEn" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.fatherNameEn.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="sex">جنسیت</label>
-              <select
-                id="sex"
-                class="form-control"
-                formControlName="sex"
-                [ngClass]="{
+              <select id="sex" class="form-control" formControlName="sex" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.sex.errors
-                }"
-              >
+                }">
                 <option></option>
                 <option [value]="0">زن</option>
                 <option [value]="1">مرد</option>
@@ -958,16 +595,11 @@
 
             <div class="col-md-4 my-2">
               <label for="degreeId">مدرک تحصیلی</label>
-              <select
-                id="degreeId"
-                class="form-control"
-                formControlName="degreeId"
-                [ngClass]="{
+              <select id="degreeId" class="form-control" formControlName="degreeId" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.degreeId.errors
-                }"
-              >
+                }">
                 <option *ngFor="let item of degreeList" [value]="item.id">
                   {{ item.degreeName }}
                 </option>
@@ -976,73 +608,42 @@
 
             <div class="col-md-4 my-2">
               <label for="postalCode"> کد پستی </label>
-              <input
-                id="postalCode"
-                type="text"
-                formControlName="postalCode"
-                class="form-control"
-                [ngClass]="{
+              <input id="postalCode" type="text" formControlName="postalCode" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.postalCode.errors
-                }"
-              />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="countryCode">نام کشور</label>
-              <input
-                id="countryCode"
-                type="text"
-                class="form-control"
-                formControlName="countryCode"
-                [ngbTypeahead]="countries_Serach"
-                [resultFormatter]="countriesFormatter"
-                [inputFormatter]="countriesInputFormatter"
-                placement="bottom-right"
-                [ngClass]="{
+              <input id="countryCode" type="text" class="form-control" formControlName="countryCode"
+                [ngbTypeahead]="countries_Serach" [resultFormatter]="countriesFormatter"
+                [inputFormatter]="countriesInputFormatter" placement="bottom-right" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.countryCode.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="passportNo"> شماره پاسپورت </label>
-              <input
-                id="passportNo"
-                type="text"
-                formControlName="passportNo"
-                class="form-control"
-                [ngClass]="{
+              <input id="passportNo" type="text" formControlName="passportNo" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.passportNo.errors
-                }"
-              />
+                }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="passportExpireDate"> تاریخ انقضای پاسپورت </label>
               <div class="input-group dir-ltr">
-                <input
-                  id="passportExpireDate"
-                  class="form-control"
-                  name="dp"
-                  ngbDatepicker
-                  #g="ngbDatepicker"
-                  formControlName="passportExpireDate"
-                  [ngClass]="{
+                <input id="passportExpireDate" class="form-control" name="dp" ngbDatepicker #g="ngbDatepicker"
+                  formControlName="passportExpireDate" [ngClass]="{
                     'is-invalid':
                       isRegisterForeignCustomerSubmitted &&
                       registerForeignCustomerFormInfo.passportExpireDate.errors
-                  }"
-                />
+                  }" />
                 <div class="input-group-append">
-                  <button
-                    class="btn btn-primary py-0 px-2"
-                    (click)="g.toggle()"
-                    type="button"
-                  >
+                  <button class="btn btn-primary py-0 px-2" (click)="g.toggle()" type="button">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -1051,23 +652,14 @@
 
             <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
-              <input
-                id="commercialCode"
-                type="text"
-                formControlName="commercialCode"
-                class="form-control"
-                [ngClass]="{
+              <input id="commercialCode" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.commercialCode.errors
-                }"
-              />
+                }" />
             </div>
           </div>
-          <button
-            class="btn btn-sm btn-primary mt-2"
-            (click)="submitForeignCustomer(nav)"
-          >
+          <button class="btn btn-sm btn-primary mt-2" (click)="submitForeignCustomer(nav)">
             بعدی
           </button>
         </form>
@@ -1086,221 +678,132 @@
         <div class="row mt-3">
           <div class="col-md-3 my-2">
             <label for="mobileNumber"> شماره موبایل </label>
-            <input
-              id="mobileNumber"
-              (keypress)="numberOnly($event)"
-              type="text"
-              formControlName="mobileNumber"
-              class="form-control"
-              [ngClass]="{
+            <input id="mobileNumber" (keypress)="numberOnly($event)" type="text" formControlName="mobileNumber"
+              class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.mobileNumber.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="telephone"> تلفن </label>
-            <input
-              id="telephone"
-              (keypress)="numberOnly($event)"
-              type="text"
-              formControlName="telephone"
-              class="form-control"
-              [ngClass]="{
+            <input id="telephone" (keypress)="numberOnly($event)" type="text" formControlName="telephone"
+              class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.telephone.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="email"> رایانامه </label>
-            <input
-              id="email"
-              type="text"
-              formControlName="email"
-              class="form-control"
-              [ngClass]="{
+            <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.email.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="webSiteAddress"> وب سایت </label>
-            <input
-              id="webSiteAddress"
-              type="text"
-              formControlName="webSiteAddress"
-              class="form-control"
-              [ngClass]="{
+            <input id="webSiteAddress" type="text" formControlName="webSiteAddress" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.webSiteAddress.errors
-              }"
-            />
+              }" />
           </div>
 
           <div class="col-md-6 my-2">
             <label for="addressFa"> آدرس فارسی </label>
-            <input
-              id="addressFa"
-              type="text"
-              formControlName="addressFa"
-              class="form-control"
-              [ngClass]="{
+            <input id="addressFa" type="text" formControlName="addressFa" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.addressFa.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-6 my-2">
             <label for="addressEn"> آدرس انگلیسی </label>
-            <input
-              id="addressEn"
-              type="text"
-              formControlName="addressEn"
-              class="form-control"
-              [ngClass]="{
+            <input id="addressEn" type="text" formControlName="addressEn" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.addressEn.errors
-              }"
-            />
+              }" />
           </div>
 
           <div class="col-md-3 my-2">
             <label for="shopPostalCode"> کد پستی فروشگاه </label>
-            <input
-              id="shopPostalCode"
-              type="text"
-              (keypress)="numberOnly($event)"
-              formControlName="shopPostalCode"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopPostalCode" type="text" (keypress)="numberOnly($event)" formControlName="shopPostalCode"
+              class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopPostalCode.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopFaxNumber"> فکس فروشگاه </label>
-            <input
-              id="shopFaxNumber"
-              type="text"
-              (keypress)="numberOnly($event)"
-              formControlName="shopFaxNumber"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopFaxNumber" type="text" (keypress)="numberOnly($event)" formControlName="shopFaxNumber"
+              class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopFaxNumber.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopTelephoneNumber"> شماره تلفن فروشگاه </label>
-            <input
-              id="shopTelephoneNumber"
-              type="text"
-              formControlName="shopTelephoneNumber"
-              (keypress)="numberOnly($event)"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopTelephoneNumber" type="text" formControlName="shopTelephoneNumber"
+              (keypress)="numberOnly($event)" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopTelephoneNumber.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopCityPreCode"> پیش شماره شهر فروشگاه </label>
-            <input
-              id="shopCityPreCode"
-              type="text"
-              formControlName="shopCityPreCode"
-              class="form-control"
-              (keypress)="numberOnly($event)"
-              [ngClass]="{
+            <input id="shopCityPreCode" type="text" formControlName="shopCityPreCode" class="form-control"
+              (keypress)="numberOnly($event)" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopCityPreCode.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseNumber">شماره مجوز کسب و کار </label>
-            <input
-              id="shopBusinessLicenseNumber"
-              type="text"
-              formControlName="shopBusinessLicenseNumber"
-              (keypress)="numberOnly($event)"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopBusinessLicenseNumber" type="text" formControlName="shopBusinessLicenseNumber"
+              (keypress)="numberOnly($event)" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopBusinessLicenseNumber.errors
-              }"
-            />
+              }" />
           </div>
 
 
           <div class="col-md-3 my-2">
             <label for="shopEmail"> ایمیل فروشگاه </label>
-            <input
-              id="shopEmail"
-              type="text"
-              formControlName="shopEmail"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopEmail" type="text" formControlName="shopEmail" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopEmail.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-6 my-2">
             <label for="shopAddress"> آدرس فروشگاه </label>
-            <input
-              id="shopAddress"
-              type="text"
-              formControlName="shopAddress"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopAddress" type="text" formControlName="shopAddress" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopAddress.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseIssueDate">
               تاریخ صدور مجوز کسب و کار
             </label>
             <div class="input-group dir-ltr">
-              <input
-                id="shopBusinessLicenseIssueDate"
-                class="form-control"
-                name="dp"
-                ngbDatepicker
-                #shop="ngbDatepicker"
-                formControlName="shopBusinessLicenseIssueDate"
-                [ngClass]="{
+              <input id="shopBusinessLicenseIssueDate" class="form-control" name="dp" ngbDatepicker
+                #shop="ngbDatepicker" formControlName="shopBusinessLicenseIssueDate" [ngClass]="{
                   'is-invalid':
                     isLocationInfoFormSubmitted &&
                     locationInfoFormInfo.shopBusinessLicenseIssueDate.errors
-                }"
-              />
+                }" />
               <div class="input-group-append">
-                <button
-                  class="btn btn-primary py-0 px-2"
-                  (click)="shop.toggle()"
-                  type="button"
-                >
+                <button class="btn btn-primary py-0 px-2" (click)="shop.toggle()" type="button">
                   <i class="fa fa-calendar" aria-hidden="true"></i>
                 </button>
               </div>
@@ -1308,28 +811,16 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseExpireDate">
-              تاریخ انقضای مجوز کسب و کار</label
-            >
+              تاریخ انقضای مجوز کسب و کار</label>
             <div class="input-group dir-ltr">
-              <input
-                id="shopBusinessLicenseExpireDate"
-                class="form-control"
-                name="dp"
-                ngbDatepicker
-                #shopEp="ngbDatepicker"
-                formControlName="shopBusinessLicenseExpireDate"
-                [ngClass]="{
+              <input id="shopBusinessLicenseExpireDate" class="form-control" name="dp" ngbDatepicker
+                #shopEp="ngbDatepicker" formControlName="shopBusinessLicenseExpireDate" [ngClass]="{
                   'is-invalid':
                     isLocationInfoFormSubmitted &&
                     locationInfoFormInfo.shopBusinessLicenseExpireDate.errors
-                }"
-              />
+                }" />
               <div class="input-group-append">
-                <button
-                  class="btn btn-primary py-0 px-2"
-                  (click)="shopEp.toggle()"
-                  type="button"
-                >
+                <button class="btn btn-primary py-0 px-2" (click)="shopEp.toggle()" type="button">
                   <i class="fa fa-calendar" aria-hidden="true"></i>
                 </button>
               </div>
@@ -1337,30 +828,19 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="redirectUrl"> redirectUrl </label>
-            <input
-              id="redirectUrl"
-              type="text"
-              formControlName="redirectUrl"
-              class="form-control"
-              [ngClass]="{
+            <input id="redirectUrl" type="text" formControlName="redirectUrl" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.redirectUrl.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="guildId">صنف</label>
-            <select
-              id="guildId"
-              class="form-control"
-              formControlName="guildId"
-              [ngClass]="{
+            <select id="guildId" class="form-control" formControlName="guildId" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.guildId.errors
-              }"
-            >
+              }">
               <option *ngFor="let item of guildList" [value]="item.id">
                 {{ item.categoryName }}
               </option>
@@ -1369,101 +849,59 @@
 
           <div class="col-md-3 my-2">
             <label for="shopLogo"> لوگوی فروشگاه </label>
-            <input
-              id="shopLogo"
-              type="file"
-              formControlName="shopLogo"
-              accept=".png"
-              class="form-control"
-              (change)="changeListener($event)"
-              [ngClass]="{
+            <input id="shopLogo" type="file" formControlName="shopLogo" accept=".png" class="form-control"
+              (change)="changeListener($event)" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopLogo.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopNameFa">نام فروشگاه </label>
-            <input
-              id="shopNameFa"
-              type="text"
-              formControlName="shopNameFa"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopNameFa" type="text" formControlName="shopNameFa" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopNameFa.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="shopNameEn">نام فروشگاه انگلیسی </label>
-            <input
-              id="shopNameEn"
-              type="text"
-              formControlName="shopNameEn"
-              class="form-control"
-              [ngClass]="{
+            <input id="shopNameEn" type="text" formControlName="shopNameEn" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopNameEn.errors
-              }"
-            />
+              }" />
           </div>
           <div class="col-md-3 my-2">
             <label for="taxPayerCode"> کد مالیات دهنده </label>
-            <input
-              id="taxPayerCode"
-              type="text"
-              formControlName="taxPayerCode"
-              class="form-control"
-              [ngClass]="{
+            <input id="taxPayerCode" type="text" formControlName="taxPayerCode" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.taxPayerCode.errors
-              }"
-            />
+              }" />
           </div>
-         
+
 
           <div class="col-md-3 my-2">
             <label for="countryAbbreviation"> کشور</label>
-            <input
-              id="countryAbbreviation"
-              type="text"
-              class="form-control"
-              formControlName="countryAbbreviation"
-              [ngbTypeahead]="countries_Serach"
-              [resultFormatter]="countriesFormatter"
-              [inputFormatter]="countriesInputFormatter"
-              placement="bottom-right"
-              [ngClass]="{
+            <input id="countryAbbreviation" type="text" class="form-control" formControlName="countryAbbreviation"
+              [ngbTypeahead]="countries_Serach" [resultFormatter]="countriesFormatter"
+              [inputFormatter]="countriesInputFormatter" placement="bottom-right" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.countryAbbreviation.errors
-              }"
-            />
+              }" />
           </div>
 
           <div class="col-md-3 my-2">
             <label for="provinceAbbreviation">استان</label>
-            <select
-              #province
-              id="provinceAbbreviation"
-              class="form-control"
-              formControlName="provinceAbbreviation"
-              (change)="onProvinceSelected(LocationInfoForm)"
-              [ngClass]="{
+            <select #province id="provinceAbbreviation" class="form-control" formControlName="provinceAbbreviation"
+              (change)="onProvinceSelected(LocationInfoForm)" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.provinceAbbreviation.errors
-              }"
-            >
-              <option
-                *ngFor="let item of proviceList"
-                [value]="item.provinceId"
-              >
+              }">
+              <option *ngFor="let item of proviceList" [value]="item.provinceId">
                 {{ item.provinceName }}
               </option>
             </select>
@@ -1474,20 +912,12 @@
 
           <div class="col-md-3 my-2">
             <label for="cityCode">شهر</label>
-            <select
-              id="cityCode"
-              class="form-control"
-              formControlName="cityCode"
-              [ngClass]="{
+            <select id="cityCode" class="form-control" formControlName="cityCode" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.cityCode.errors
-              }"
-            >
-              <option
-                *ngFor="let item of proviceCitiesList"
-                [value]="item.cityId"
-              >
+              }">
+              <option *ngFor="let item of proviceCitiesList" [value]="item.cityId">
                 {{ item.cityName }}
               </option>
             </select>
@@ -1495,40 +925,24 @@
 
           <div class="form-group form-check col-md-4">
             <label class="form-check-label">
-              <input
-                formControlName="isSharedAccount"
-                class="form-check-input"
-                type="checkbox"
-              />
+              <input formControlName="isSharedAccount" class="form-check-input" type="checkbox" />
               حساب مشترک
             </label>
           </div>
 
           <div class="form-group form-check col-md-4">
             <label class="form-check-label">
-              <input
-                formControlName="isMultiAccount"
-                class="form-check-input"
-                type="checkbox"
-              />
+              <input formControlName="isMultiAccount" class="form-check-input" type="checkbox" />
               چند حسابی
             </label>
           </div>
         </div>
       </form>
 
-      <button
-        class="btn btn-sm btn-primary mt-2 mx-2"
-        [disabled]="active === 1"
-        (click)="nav.select(1)"
-      >
+      <button class="btn btn-sm btn-primary mt-2 mx-2" [disabled]="active === 1" (click)="nav.select(1)">
         قبلی
       </button>
-      <button
-        class="btn btn-sm btn-primary mt-2"
-        [disabled]="active === 3"
-        (click)="submitLocationInfo(nav)"
-      >
+      <button class="btn btn-sm btn-primary mt-2" [disabled]="active === 3" (click)="submitLocationInfo(nav)">
         بعدی
       </button>
     </ng-template>
@@ -1537,29 +951,132 @@
   <li [ngbNavItem]="3" [disabled]="disabledBankInfo">
     <a ngbNavLink>دریافت اطلاعات بانکی</a>
     <ng-template ngbNavContent>
-      <p>
-        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes
-        anderson artisan four loko farm-to-table craft beer twee. Qui photo
-        booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore
-        aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero
-        magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
-        anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
-        richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-        sint qui sapiente accusamus tattooed echo park.
-      </p>
-      <button
-        class="btn btn-sm btn-outline-primary mx-2"
-        [disabled]="active === 1"
-        (click)="nav.select(2)"
-      >
+
+      <div class="card">
+        <div class="card-header">
+          دریافت اطلاعات بانکی
+        </div>
+        <div class="card-body">
+          <form [formGroup]="BankInfoForm">
+          <div class="row mt-3">
+        
+              <div class="col-md-6">
+                <label for="iban"> شماره شبا </label>
+                <input id="iban" type="text" formControlName="iban" class="form-control"
+                  name="iban" [ngClass]="{
+                    'is-invalid':
+                    isBankInfoFormSubmitted &&
+                      bankAccountInfoForm.iban.errors
+                  }" />
+              </div>
+              <div class="col-md-6">
+                <label for="accountNumber"> شماره حساب </label>
+                <input id="accountNumber" (keypress)="numberOnly($event)" type="text" formControlName="accountNumber" class="form-control"
+                  name="accountNumber" [ngClass]="{
+                    'is-invalid':
+                    isBankInfoFormSubmitted &&
+                      bankAccountInfoForm.accountNumber.errors
+                  }" />
+              </div>
+              <div class="col-md-3">
+                <label for="shareType">نوع تسهیم</label>
+                <select id="shareType" class="form-control" formControlName="shareType" [ngClass]="{
+                    'is-invalid':
+                    isBankInfoFormSubmitted &&
+                    bankAccountInfoForm.shareType.errors
+                  }"
+                  (change)="onSharedTypeSelected(BankInfoForm)"
+                  >
+                  <option *ngFor="let item of sharedTypeList" [value]="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+              <ng-container *ngIf="hasPercentage">
+                <div class="col-md-3">
+                  <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
+                  <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text" formControlName="shareAmountMin" class="form-control"
+                    name="shareAmountMin" [ngClass]="{
+                      'is-invalid':
+                      isBankInfoFormSubmitted &&
+                        bankAccountInfoForm.shareAmountMax.errors
+                    }" />
+                </div>
+                <div class="col-md-3">
+                  <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
+                  <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text" formControlName="shareAmountMax" class="form-control"
+                    name="shareAmountMax" [ngClass]="{
+                      'is-invalid':
+                      isBankInfoFormSubmitted &&
+                        bankAccountInfoForm.shareAmountMax.errors
+                    }" />
+              </div>
+
+              </ng-container>
+              <div class="col-md-3" *ngIf="hasAmount">
+                <label for="sharedAmount"> مبلغ تسهیم</label>
+                <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount" class="form-control"
+                  name="sharedAmount" [ngClass]="{
+                    'is-invalid':
+                    isBankInfoFormSubmitted &&
+                      bankAccountInfoForm.sharedAmount.errors
+                  }" />
+            </div>
+
+            <div class="form-group form-check col-md-4 my-2">
+              <label class="form-check-label">
+                <input formControlName="isMain" class="form-check-input" type="checkbox" />
+                 حساب اصلی
+              </label>
+            </div>
+            <div class="col-md-12 my-2">
+
+              <button class="btn btn-success btn-sm" (click)="addBankInfo()">ثبت</button>
+            </div>
+
+          </div>
+        </form>
+
+        <div class="row mt-3" *ngIf="BankInfoList.length > 0">
+          <div class="col-sm-12">
+              <div class="table-responsive">
+              <table class="table table-bordered table-striped text-center">
+                  <thead>
+                          <tr>
+                              <th>شماره شبا</th>
+                              <th>شماره حساب</th>
+                              <th>نوع تسهیم</th>
+                              <th>مبلغ تسهیم</th>
+                              <th>کمترین مبلغ تسهیم</th>
+                              <th>بیشترین مبلغ تسهیم</th>
+                              <th>حساب اصلی</th>
+                          </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of BankInfoList">
+                          <td>{{item?.iban}}</td>
+                          <td>{{item?.accountNumber}}</td>
+                          <td>{{item?.shareType === 1 ? 'درصدی' : 'ثابت'}}</td>
+                          <td>{{item?.sharedAmount}}</td>
+                          <td>{{item?.shareAmountMin}}</td>
+                          <td>{{item?.shareAmountMax}}</td>
+                          <td>
+                             {{item?.isMain === true ? 'بله' : 'خیر'}}
+                          </td>
+
+                      </tr>
+                  </tbody>
+              </table>
+              </div>
+          </div>
+      </div>
+        </div>
+      </div>
+
+      <button class="btn btn-sm btn-primary mx-2 mt-2" (click)="nav.select(2)">
         قبلی
       </button>
-      <button
-        class="btn btn-sm btn-outline-primary"
-        [disabled]="active === 3"
-        (click)="nav.select(4)"
-      >
+      <button class="btn btn-sm btn-primary mt-2" (click)="submitBankInfo(nav)">
         بعدی
       </button>
     </ng-template>
@@ -1578,11 +1095,7 @@
         richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
         sint qui sapiente accusamus tattooed echo park.
       </p>
-      <button
-        class="btn btn-sm btn-outline-primary mx-2"
-        [disabled]="active === 1"
-        (click)="nav.select(3)"
-      >
+      <button class="btn btn-sm btn-outline-primary mx-2" [disabled]="active === 1" (click)="nav.select(3)">
         قبلی
       </button>
     </ng-template>
