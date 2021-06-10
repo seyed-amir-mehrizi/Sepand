@@ -96,6 +96,8 @@ export class BaseUrlInterceptor implements HttpInterceptor {
                     </span>`;
         if (isResponseOk &&
           req.url != 'Account/sign-in' &&
+          req.url != 'Customer/activate-terminals' &&
+          req.url != 'Customer/deactivate-terminals' &&
           (req.method == 'POST' || req.method == 'PUT' || req.method == 'DELETE')) {
           this.toastr.success(msg, '', { enableHtml: true });
         }

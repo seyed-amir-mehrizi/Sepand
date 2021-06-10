@@ -81,9 +81,6 @@ export class ActivateTerminalComponent implements OnInit {
     activateTerminal(item){
       this.service.activateTerminal(item.id)
       .subscribe((res:any)=>{
-        if(res){
-          this.toastr.success('درخواست فعال سازی با موفقیت ثبت گردید');
-        }
       })
     }
 

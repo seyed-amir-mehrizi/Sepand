@@ -33,11 +33,11 @@ export class CustomersService {
   }
 
   activateTerminal(data){
-    return this.http.post(this.customerApi + '/activate-terminals', data).pipe(map(response => response));
+    return this.http.post(this.customerApi + `/activate-terminals?customerId=${data}`, null).pipe(map(response => response));
 
   }
   deActivateTerminal(data){
-    return this.http.post(this.customerApi + '/deactivate-terminals', data).pipe(map(response => response));
+    return this.http.post(this.customerApi + `/deactivate-terminals?customerId=${data}` , null).pipe(map(response => response));
 
   }
 }
