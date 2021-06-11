@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="3" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
@@ -1000,7 +1000,7 @@
               <ng-container *ngIf="hasPercentage">
                 <div class="col-md-3">
                   <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
-                  <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
+                  <input id="shareAmountMin"  (keypress)="numberOnly($event)" (keyup)="checkMin($event)"  type="text"
                     formControlName="shareAmountMin" class="form-control" name="shareAmountMin" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&
@@ -1009,7 +1009,7 @@
                 </div>
                 <div class="col-md-3">
                   <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
-                  <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
+                  <input id="shareAmountMax" min="0" max="100" (keypress)="numberOnly($event)" (keyup)="checkMax($event)" type="text"
                     formControlName="shareAmountMax" class="form-control" name="shareAmountMax" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&

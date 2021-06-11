@@ -46,7 +46,7 @@
                         'is-invalid':
                         isBankInfoFormSubmitted &&
                           bankAccountInfoForm.shareAmountMax.errors
-                      }" />
+                      }" (keyup)="checkMin($event)" />
                   </div>
                   <div class="col-md-3">
                     <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
@@ -55,7 +55,7 @@
                         'is-invalid':
                         isBankInfoFormSubmitted &&
                           bankAccountInfoForm.shareAmountMax.errors
-                      }" />
+                      }" (keyup)="checkMax($event)" />
                   </div>
   
                 </ng-container>

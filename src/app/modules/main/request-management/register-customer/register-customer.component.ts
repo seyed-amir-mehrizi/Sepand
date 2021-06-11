@@ -301,6 +301,21 @@ export class RegisterCustomerComponent implements OnInit {
     return true;
   }
 
+  checkMax(event) {
+    const value =  parseInt(event.target.value);
+    if (value > 100) {
+      this.toastr.error('بیشترین مبلغ تسهیم 100 می باشد')
+      event.target.value = '';
+    }
+  }
+
+  checkMin(event) {
+    const value =  parseInt(event.target.value);
+    if (value < 0) {
+      event.target.value = '';
+    }
+  }
+
 
 
   splitGregorianToJalaliDate(date) {
@@ -703,7 +718,7 @@ export class RegisterCustomerComponent implements OnInit {
 
   initBankInfoForm(){
     this.BankInfoForm = this.fb.group({
-      iban : ['' , [Validators.required , Validators.minLength(24) , , Validators.max(24)]],
+      iban : ['' , [Validators.required , Validators.minLength(24)  , Validators.maxLength(24)]],
       accountNumber : ['' , Validators.required],
       shareType : ['' , Validators.required],
       shareAmountMax : [''],

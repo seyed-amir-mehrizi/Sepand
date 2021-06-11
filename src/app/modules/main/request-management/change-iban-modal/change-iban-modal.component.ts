@@ -74,6 +74,22 @@ export class ChangeIbanModalComponent implements OnInit {
     });
   }
 
+  checkMax(event) {
+    const value =  parseInt(event.target.value);
+    if (value > 100) {
+      this.toastr.error('بیشترین مبلغ تسهیم 100 می باشد')
+      event.target.value = '';
+    }
+  }
+
+  checkMin(event) {
+    const value =  parseInt(event.target.value);
+    if (value < 0) {
+      event.target.value = '';
+    }
+  }
+
+
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
