@@ -73,8 +73,6 @@ export class ChangeClassComponent implements OnInit {
         this.customerslist = result.data;
         this.totalRecords = result.totalRecord
       });
-
-
   }
 
   openChangeClass(item){

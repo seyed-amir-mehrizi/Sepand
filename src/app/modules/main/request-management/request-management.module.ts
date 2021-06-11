@@ -14,6 +14,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { ChangeClassModalComponent } from './change-class-modal/change-class-modal.component';
 import { ChangePostalCodeModalComponent } from './change-postal-code-modal/change-postal-code-modal.component';
+import { ChangeIbanComponent } from './change-iban/change-iban.component';
+import { ChangeIbanModalComponent } from './change-iban-modal/change-iban-modal.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ChangePostalCodeModalComponent } from './change-postal-code-modal/chang
     RegisterCustomerComponent,
     CustomerListComponent,
     ChangeClassModalComponent,
-    ChangePostalCodeModalComponent
+    ChangePostalCodeModalComponent,
+    ChangeIbanComponent,
+    ChangeIbanModalComponent
   ],
   imports: [
     NgbModule,

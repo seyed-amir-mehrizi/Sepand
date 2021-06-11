@@ -40,4 +40,17 @@ export class CustomersService {
     return this.http.post(this.customerApi + `/deactivate-terminals?customerId=${data}` , null).pipe(map(response => response));
 
   }
+
+  getAllIbansForCustomer(data){
+    let params = {
+      customerId : data.customerId,
+    }
+      return this.http.get(this.customerApi+'/get-customer-ibans' , {params});
+  }
+
+
+  changeIban(data){
+    return this.http.post(this.customerApi + '/change-ibans' , data).pipe(map(response => response));
+
+  }
 }

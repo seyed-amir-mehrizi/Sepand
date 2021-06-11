@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CustomersService } from './customers.service';
+import { ChangeIbanModalComponent } from '../change-iban-modal/change-iban-modal.component';
+import { CustomersService } from '../customer-list/customers.service';
 
 @Component({
-  selector: 'app-customer-list',
-  templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css']
+  selector: 'app-change-iban',
+  templateUrl: './change-iban.component.html',
+  styleUrls: ['./change-iban.component.css']
 })
-export class CustomerListComponent implements OnInit {
+export class ChangeIbanComponent implements OnInit {
 
   customerslist: any = [];
   page: number = 1;
@@ -65,6 +66,7 @@ export class CustomerListComponent implements OnInit {
 
   }
 
+
   serachCustomer(item: any) {
     item.Page = 1;
     this.service.getListOFCustomers(item)
@@ -74,6 +76,14 @@ export class CustomerListComponent implements OnInit {
       });
   }
 
+  opneIbanModal(item){
+    const modalRef = this.ngbModal.open(ChangeIbanModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.ibanInfo = item;
+    modalRef.result.then(() => {
+      this.getCustomers(this.params);
+    }, () => {
+    });
+  }
 
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;

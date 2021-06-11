@@ -41,7 +41,7 @@
 
     <div class="card border-dark">
         <div class="card-header bg-secondary text-white">
-            لیست مشتریان
+            تغییر شبا 
         </div>
         <div class="card-body bg-light">
             <div class="row">
@@ -78,7 +78,7 @@
                                     <td>{{item?.redirectUrl}}</td>
                                     <td>{{item?.guild}}</td>
                                     <td>
-                                        <button class="btn btn-warning btn-sm">عملیات</button>
+                                        <button class="btn btn-warning btn-sm" (click)="opneIbanModal(item)">تغییر شبا</button>
                                     </td>
                                 </tr>
                             </tbody>

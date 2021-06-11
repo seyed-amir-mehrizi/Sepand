@@ -1,0 +1,135 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        تغییر شماره شبا
+    </h4>
+</div>
+<div class="modal-body text-justify line-height-3">
+    <div class="row">
+        <div class="card-body">
+            <form [formGroup]="BankInfoForm">
+              <div class="row mt-3">
+  
+                <div class="col-md-6">
+                  <label for="iban"> شماره شبا </label>
+                  <input id="iban" (keypress)="numberOnly($event)" type="text" formControlName="iban" class="form-control" name="iban" [ngClass]="{
+                      'is-invalid':
+                      isBankInfoFormSubmitted &&
+                        bankAccountInfoForm.iban.errors
+                    }" />
+                </div>
+                <div class="col-md-6">
+                  <label for="accountNumber"> شماره حساب </label>
+                  <input id="accountNumber" (keypress)="numberOnly($event)" type="text" formControlName="accountNumber"
+                    class="form-control" name="accountNumber" [ngClass]="{
+                      'is-invalid':
+                      isBankInfoFormSubmitted &&
+                        bankAccountInfoForm.accountNumber.errors
+                    }" />
+                </div>
+                <div class="col-md-3">
+                  <label for="shareType">نوع تسهیم</label>
+                  <select id="shareType" class="form-control" formControlName="shareType" [ngClass]="{
+                      'is-invalid':
+                      isBankInfoFormSubmitted &&
+                      bankAccountInfoForm.shareType.errors
+                    }" (change)="onSharedTypeSelected(BankInfoForm)">
+                    <option *ngFor="let item of sharedTypeList" [value]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </div>
+                <ng-container *ngIf="hasPercentage">
+                  <div class="col-md-3">
+                    <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
+                    <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
+                      formControlName="shareAmountMin" class="form-control" name="shareAmountMin" [ngClass]="{
+                        'is-invalid':
+                        isBankInfoFormSubmitted &&
+                          bankAccountInfoForm.shareAmountMax.errors
+                      }" />
+                  </div>
+                  <div class="col-md-3">
+                    <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
+                    <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
+                      formControlName="shareAmountMax" class="form-control" name="shareAmountMax" [ngClass]="{
+                        'is-invalid':
+                        isBankInfoFormSubmitted &&
+                          bankAccountInfoForm.shareAmountMax.errors
+                      }" />
+                  </div>
+  
+                </ng-container>
+                <div class="col-md-3" *ngIf="hasAmount">
+                  <label for="sharedAmount"> مبلغ تسهیم</label>
+                  <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
+                    class="form-control" name="sharedAmount" [ngClass]="{
+                      'is-invalid':
+                      isBankInfoFormSubmitted &&
+                        bankAccountInfoForm.sharedAmount.errors
+                    }" />
+                </div>
+  
+                <div class="form-group form-check col-md-4 my-2">
+                  <label class="form-check-label">
+                    <input formControlName="isMain" class="form-check-input" type="checkbox" />
+                    حساب اصلی
+                  </label>
+                </div>
+                <div class="col-md-12 my-2">
+  
+                  <button class="btn btn-success btn-sm" (click)="addBankInfo(BankInfoForm.value)">ثبت</button>
+                </div>
+  
+              </div>
+            </form>
+  
+            <div class="row mt-3" *ngIf="listOfIbans.length > 0">
+              <div class="col-sm-12">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped text-center">
+                    <thead>
+                      <tr>
+                        <th>شماره شبا</th>
+                        <th>شماره حساب</th>
+                        <th>نوع تسهیم</th>
+                        <th>مبلغ تسهیم</th>
+                        <th>کمترین مبلغ تسهیم</th>
+                        <th>بیشترین مبلغ تسهیم</th>
+                        <th>حساب اصلی</th>
+                        <th>
+                            عملیات
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of listOfIbans ; index as i">
+                        <td>{{item?.iban}}</td>
+                        <td>{{item?.accountNumber}}</td>
+                        <td>{{item?.shareType === 1 ? 'درصدی' : 'ثابت'}}</td>
+                        <td>{{item?.sharedAmount}}</td>
+                        <td>{{item?.shareAmountMin}}</td>
+                        <td>{{item?.shareAmountMax}}</td>
+                        <td>
+                          {{item?.isMain === true ? 'بله' : 'خیر'}}
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="deleteIban(item,i)">حذف</button>
+                        </td>
+  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+        بستن
+    </button>
+    <button class="btn btn-success" type="button" (click)="editIban()">ویرایش</button>
+</div>
