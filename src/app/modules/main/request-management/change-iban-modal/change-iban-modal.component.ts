@@ -64,7 +64,7 @@ export class ChangeIbanModalComponent implements OnInit {
 
   initBankInfoForm(){
     this.BankInfoForm = this.fb.group({
-      iban : ['' , Validators.required],
+      iban : ['' , [Validators.required , Validators.minLength(24) , , Validators.max(24)]],
       accountNumber : ['' , Validators.required],
       shareType : ['' , Validators.required],
       shareAmountMax : [''],

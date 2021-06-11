@@ -202,8 +202,8 @@ export class RegisterCustomerComponent implements OnInit {
       birthCertificateSerial: ['', Validators.required],
       birthCertificateAlphabiticNoId: ['', Validators.required],
       birthCertificateNumericNo: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      isDisable: [''],
+      postalCode: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
+      // isDisable: [''],
     });
   }
   get registerRealCustomerFormInfo() {
@@ -233,7 +233,9 @@ export class RegisterCustomerComponent implements OnInit {
       dataSending.birthCertificateNumericNo
     );
     dataSending.degreeId = parseInt(dataSending.degreeId);
+    dataSending.isDisable=true;
     this.registerRealCustomerFormValue = dataSending;
+    
     nav.select(2);
     this.disabledLocationInfo = false;
   }
@@ -299,6 +301,8 @@ export class RegisterCustomerComponent implements OnInit {
     return true;
   }
 
+
+
   splitGregorianToJalaliDate(date) {
     return moment(date, 'YYYY/MM/DD')
       .locale('fa')
@@ -340,7 +344,7 @@ export class RegisterCustomerComponent implements OnInit {
             birthCertificateAlphabiticNoId: res.birthCertificateAlphabiticNoId,
             birthCertificateNumericNo: res.birthCertificateNumericNo,
             postalCode: res.postalCode,
-            isDisable: res.isDisable,
+            // isDisable: res.isDisable,
           });
         }
       });
@@ -375,9 +379,9 @@ export class RegisterCustomerComponent implements OnInit {
       birthCertificateSerial: ['', Validators.required],
       birthCertificateAlphabiticNoId: ['', Validators.required],
       birthCertificateNumericNo: ['', Validators.required],
-      postalCode: ['', Validators.required],
+      postalCode: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
       nationalLegalCode: ['', Validators.required],
-      isDisable: [''],
+      // isDisable: [''],
     });
   }
   get registerLegalCustomerFormInfo() {
@@ -386,10 +390,10 @@ export class RegisterCustomerComponent implements OnInit {
 
   checkRegisterNumber() {
     const dataSending = this.registerLegalCustomerForm.value;
-    if (dataSending.registerNo) {
+    if (dataSending.nationalLegalCode) {
       let data = {
         type: this.customerType,
-        uniqueIdentifier: dataSending.registerNo,
+        uniqueIdentifier: dataSending.nationalLegalCode,
       };
       this.hasRegisterNumber = true;
       this.service.getPersonData(data).subscribe((res: any) => {
@@ -419,7 +423,7 @@ export class RegisterCustomerComponent implements OnInit {
             birthCertificateAlphabiticNoId: res.birthCertificateAlphabiticNoId,
             birthCertificateNumericNo: res.birthCertificateNumericNo,
             postalCode: res.postalCode,
-            isDisable: res.isDisable,
+            // isDisable: res.isDisable,
             registerDate: {
               year: parseInt(
                 this.splitGregorianToJalaliDate(res.registerDate)[0]
@@ -441,7 +445,7 @@ export class RegisterCustomerComponent implements OnInit {
         }
       });
     } else {
-      this.toastr.error('ابتدا شماره ثبت خود را وارد کنید...');
+      this.toastr.error('ابتدا شماره شناسه ملی خود را وارد کنید...');
     }
   }
 
@@ -450,7 +454,7 @@ export class RegisterCustomerComponent implements OnInit {
       this.isRegisterLegalCustomerSubmitted = true;
       return;
     } else if (this.hasRegisterNumber === false) {
-      this.toastr.error('در ابتدا استعلام شماره ثبت شرکت را بررسی کنید');
+      this.toastr.error('در ابتدا استعلام شماره شناسه ملی شرکت را بررسی کنید');
       return;
     }
     const dataSending = this.registerLegalCustomerForm.value;
@@ -472,6 +476,7 @@ export class RegisterCustomerComponent implements OnInit {
     );
     dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.isLegal = true;
+    dataSending.isDisable=true;
     this.registerLegalCustomerFormValue = dataSending;
     nav.select(2);
     this.disabledLocationInfo = false;
@@ -525,7 +530,7 @@ export class RegisterCustomerComponent implements OnInit {
         }
       });
     } else {
-      this.toastr.error('ابتدا شماره ثبت خود را وارد کنید...');
+      this.toastr.error('ابتدا شماره اتباع خود را وارد کنید...');
     }
   }
 
@@ -570,7 +575,7 @@ export class RegisterCustomerComponent implements OnInit {
       sex: ['', Validators.required],
       degreeId: ['', Validators.required],
       commercialCode: ['', Validators.required],
-      postalCode: ['', Validators.required],
+      postalCode: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
     });
   }
   get registerForeignCustomerFormInfo() {
@@ -698,7 +703,7 @@ export class RegisterCustomerComponent implements OnInit {
 
   initBankInfoForm(){
     this.BankInfoForm = this.fb.group({
-      iban : ['' , Validators.required],
+      iban : ['' , [Validators.required , Validators.minLength(24) , , Validators.max(24)]],
       accountNumber : ['' , Validators.required],
       shareType : ['' , Validators.required],
       shareAmountMax : [''],

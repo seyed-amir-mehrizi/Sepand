@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="3" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
@@ -19,7 +19,7 @@
             <div class="col-md-4">
               <label for="nationalNumber">کد ملی</label>
               <div class="input-group mb-3 dir-ltr">
-                <span title="بررسی کد ملی" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                <span ngbPopover="استعلام شماره  ملی" triggers="mouseenter:mouseleave" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkNationalNumber()">?</span>
                 <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
                   formControlName="nationalNumber" class="form-control dir-ltr" (keypress)="numberOnly($event)"
@@ -52,7 +52,7 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.firstNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -60,7 +60,7 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.lastNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -113,7 +113,7 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.postalCode.errors
-                }" />
+                }"  (keypress)="numberOnly($event)"/>
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
@@ -129,7 +129,7 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.fatherNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -203,12 +203,12 @@
                       .errors
                 }" />
             </div>
-            <div class="form-group form-check col-md-4 my-2">
+            <!-- <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
                 <input formControlName="isDisable" class="form-check-input" type="checkbox" />
                 فعال است
               </label>
-            </div>
+            </div> -->
           </div>
           <button class="btn btn-sm btn-primary mt-2" (click)="submitRealCustomer(nav)">
             بعدی
@@ -219,16 +219,18 @@
         <form [formGroup]="registerLegalCustomerForm">
           <div class="row mt-4">
             <div class="col-md-4 my-2">
-              <label for="registerNo">شماره ثبت</label>
+              <label for="nationalLegalCode"> شماره شناسه ملی</label>
               <div class="input-group mb-3 dir-ltr">
-                <span title="بررسی  شماره ثبت" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                <span ngbPopover="استعلام شماره شناسه ملی" triggers="mouseenter:mouseleave" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkRegisterNumber()">?</span>
-                <input aria-label="Username" aria-describedby="basic-addon1" id="registerNo" type="text"
-                  formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
-                    'is-invalid':
-                      isRegisterLegalCustomerSubmitted &&
-                      registerLegalCustomerFormInfo.registerNo.errors
-                  }" />
+                    <input id="nationalLegalCode" type="text" formControlName="nationalLegalCode" class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          isRegisterLegalCustomerSubmitted &&
+                          registerLegalCustomerFormInfo.nationalLegalCode.errors
+                      }" aria-label="Username" aria-describedby="basic-addon1" (keypress)="numberOnly($event)"/>
+             
+
               </div>
             </div>
             <div class="col-md-4 my-2">
@@ -253,7 +255,7 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.firstNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "/>
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -261,7 +263,7 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.lastNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -341,7 +343,7 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.fatherNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "/>
             </div>
 
             <div class="col-md-4 my-2">
@@ -446,7 +448,7 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.comNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
@@ -457,20 +459,21 @@
                 }" />
             </div>
             <div class="col-md-4 my-2">
-              <label for="nationalLegalCode"> کد حقوقی ملی </label>
-              <input id="nationalLegalCode" type="text" formControlName="nationalLegalCode" class="form-control"
-                [ngClass]="{
-                  'is-invalid':
-                    isRegisterLegalCustomerSubmitted &&
-                    registerLegalCustomerFormInfo.nationalLegalCode.errors
-                }" />
+              <label for="commercialCode">  شماره ثبت </label>
+
+              <input aria-label="Username" aria-describedby="basic-addon1" id="registerNo" type="text"
+              formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
+                'is-invalid':
+                  isRegisterLegalCustomerSubmitted &&
+                  registerLegalCustomerFormInfo.registerNo.errors
+              }" />
             </div>
-            <div class="form-group form-check col-md-4 my-2">
+            <!-- <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
                 <input formControlName="isDisable" class="form-check-input" type="checkbox" />
                 فعال است
               </label>
-            </div>
+            </div> -->
           </div>
           <button class="btn btn-sm btn-primary mt-2" (click)="submitLegalCustomer(nav)">
             بعدی
@@ -483,7 +486,7 @@
             <div class="col-md-4 my-2">
               <label for="foreignPervasiveCode"> کد اتباع فراگیر </label>
               <div class="input-group mb-3 dir-ltr">
-                <span title="بررسی کد ملی" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                <span ngbPopover="استعلام  کد اتباع فراگیر" triggers="mouseenter:mouseleave" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkForeignPervasiveCode()">?</span>
                 <input id="foreignPervasiveCode" type="text" formControlName="foreignPervasiveCode" class="form-control"
                   [ngClass]="{
@@ -517,7 +520,7 @@
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.firstNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -577,7 +580,7 @@
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.fatherNameEn.errors
-                }" />
+                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -612,7 +615,7 @@
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.postalCode.errors
-                }" />
+                }"  />
             </div>
 
             <div class="col-md-4 my-2">
