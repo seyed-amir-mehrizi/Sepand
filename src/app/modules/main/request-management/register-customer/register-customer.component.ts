@@ -50,8 +50,8 @@ export class RegisterCustomerComponent implements OnInit {
   registerLegalCustomerForm: FormGroup;
   registerForeignForm: FormGroup;
   LocationInfoForm: FormGroup;
-  BankInfoForm:FormGroup;
-  contractFormInfo:FormGroup;
+  BankInfoForm: FormGroup;
+  contractFormInfo: FormGroup;
   isRegisterCustomerSubmitted: boolean = false;
   isRegisterLegalCustomerSubmitted: boolean = false;
   isRegisterForeignCustomerSubmitted: boolean = false;
@@ -64,28 +64,28 @@ export class RegisterCustomerComponent implements OnInit {
   isLegal: boolean = false;
   isForeign: boolean = false;
   isEmpty: boolean = true;
-  hasAmount:boolean = false;
+  hasAmount: boolean = false;
   degreeList: any = [];
   guildList: any = [];
   fileToUpload: File = null;
   proviceCitiesList: any = [];
   sharedTypeList: any = [];
   BankInfoList: any = [];
-  isProject:boolean = false;
-  sharedTypeId:number;
+  isProject: boolean = false;
+  sharedTypeId: number;
   isChangePasswordSubmitted: boolean = false;
   customerType: number;
   hasNationalNumber: boolean = false;
   hasRegisterNumber: boolean = false;
   hasForeignNumber: boolean = false;
-  hasPercentage : boolean = false;
+  hasPercentage: boolean = false;
   customerTypeValue;
   registerRealCustomerFormValue: any = {};
   registerLegalCustomerFormValue: any = {};
   registerForeignCustomerFormValue: any = {};
   locationInfoValue: any = {};
   contractInfoValue: any = {};
-  listOfProject:any = [];
+  listOfProject: any = [];
   imageUrl: any;
   disabledLocationInfo: boolean = true;
   disabledBankInfo: boolean = true;
@@ -202,7 +202,7 @@ export class RegisterCustomerComponent implements OnInit {
       birthCertificateSerial: ['', Validators.required],
       birthCertificateAlphabiticNoId: ['', Validators.required],
       birthCertificateNumericNo: ['', Validators.required],
-      postalCode: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
+      postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       // isDisable: [''],
     });
   }
@@ -233,9 +233,9 @@ export class RegisterCustomerComponent implements OnInit {
       dataSending.birthCertificateNumericNo
     );
     dataSending.degreeId = parseInt(dataSending.degreeId);
-    dataSending.isDisable=true;
+    dataSending.isDisable = true;
     this.registerRealCustomerFormValue = dataSending;
-    
+
     nav.select(2);
     this.disabledLocationInfo = false;
   }
@@ -302,7 +302,7 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   checkMax(event) {
-    const value =  parseInt(event.target.value);
+    const value = parseInt(event.target.value);
     if (value > 100) {
       this.toastr.error('بیشترین مبلغ تسهیم 100 می باشد')
       event.target.value = '';
@@ -310,10 +310,20 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   checkMin(event) {
-    const value =  parseInt(event.target.value);
+    const value = parseInt(event.target.value);
     if (value < 0) {
       event.target.value = '';
     }
+  }
+
+  FarsiOnly = (event) => {
+    const value = event.key;
+    var p = /^[\u0600-\u06FF\s]+$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
   }
 
 
@@ -394,7 +404,7 @@ export class RegisterCustomerComponent implements OnInit {
       birthCertificateSerial: ['', Validators.required],
       birthCertificateAlphabiticNoId: ['', Validators.required],
       birthCertificateNumericNo: ['', Validators.required],
-      postalCode: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
+      postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       nationalLegalCode: ['', Validators.required],
       // isDisable: [''],
     });
@@ -491,7 +501,7 @@ export class RegisterCustomerComponent implements OnInit {
     );
     dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.isLegal = true;
-    dataSending.isDisable=true;
+    dataSending.isDisable = true;
     this.registerLegalCustomerFormValue = dataSending;
     nav.select(2);
     this.disabledLocationInfo = false;
@@ -590,7 +600,7 @@ export class RegisterCustomerComponent implements OnInit {
       sex: ['', Validators.required],
       degreeId: ['', Validators.required],
       commercialCode: ['', Validators.required],
-      postalCode: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
+      postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     });
   }
   get registerForeignCustomerFormInfo() {
@@ -601,7 +611,7 @@ export class RegisterCustomerComponent implements OnInit {
     this.LocationInfoForm = this.fb.group({
       mobileNumber: ['', Validators.required],
       telephone: ['', Validators.required],
-      email: ['', [Validators.required , Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       addressFa: ['', Validators.required],
       addressEn: ['', Validators.required],
       shopPostalCode: ['', Validators.required],
@@ -611,7 +621,7 @@ export class RegisterCustomerComponent implements OnInit {
       shopBusinessLicenseNumber: ['', Validators.required],
       shopBusinessLicenseIssueDate: ['', Validators.required],
       shopBusinessLicenseExpireDate: ['', Validators.required],
-      shopEmail: ['', [Validators.required , Validators.email]],
+      shopEmail: ['', [Validators.required, Validators.email]],
       shopAddress: ['', Validators.required],
       redirectUrl: ['', Validators.required],
       guildId: ['', Validators.required],
@@ -669,14 +679,14 @@ export class RegisterCustomerComponent implements OnInit {
 
 
 
-  changeListener($event) : void {
+  changeListener($event): void {
     this.readThis($event.target);
   }
-  
+
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
-  
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
     myReader.onloadend = (e) => {
       this.image = myReader.result;
       this.LocationInfoForm.patchValue({
@@ -684,7 +694,7 @@ export class RegisterCustomerComponent implements OnInit {
       });
     }
     myReader.readAsDataURL(file);
-    
+
   }
 
   submitLocationInfo(nav: any) {
@@ -716,15 +726,15 @@ export class RegisterCustomerComponent implements OnInit {
     return this.BankInfoForm.controls;
   }
 
-  initBankInfoForm(){
+  initBankInfoForm() {
     this.BankInfoForm = this.fb.group({
-      iban : ['' , [Validators.required , Validators.minLength(24)  , Validators.maxLength(24)]],
-      accountNumber : ['' , Validators.required],
-      shareType : ['' , Validators.required],
-      shareAmountMax : [''],
-      shareAmountMin : [''],
-      sharedAmount : [''],
-      isMain : [false],
+      iban: ['', [Validators.required, Validators.minLength(24), Validators.maxLength(24)]],
+      accountNumber: ['', Validators.required],
+      shareType: ['', Validators.required],
+      shareAmountMax: [''],
+      shareAmountMin: [''],
+      sharedAmount: [''],
+      isMain: [false],
     });
   }
 
@@ -737,21 +747,21 @@ export class RegisterCustomerComponent implements OnInit {
 
         value.value.sharedAmount = 0;
         break;
-        case 2:
-          this.hasPercentage = false;
-          value.value.shareAmountMax = 0;
-          value.value.shareAmountMin = 0;
-          this.hasAmount = true;
+      case 2:
+        this.hasPercentage = false;
+        value.value.shareAmountMax = 0;
+        value.value.shareAmountMin = 0;
+        this.hasAmount = true;
         break;
-    
+
       default:
         break;
     }
-    
-    
+
+
   }
 
-  addBankInfo(){
+  addBankInfo() {
     if (this.BankInfoForm.invalid) {
       this.isBankInfoFormSubmitted = true;
       return;
@@ -760,18 +770,18 @@ export class RegisterCustomerComponent implements OnInit {
     switch (this.sharedTypeId) {
       case 1:
         dataSending.sharedAmount = 0;
-        if(dataSending.shareAmountMax === '' || dataSending.shareAmountMin === ''){
+        if (dataSending.shareAmountMax === '' || dataSending.shareAmountMin === '') {
           this.toastr.error('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
           return;
         }
         break;
-        case 2:
-          dataSending.shareAmountMax = 0;
-          dataSending.shareAmountMin = 0;
-          if(dataSending.sharedAmount=== '' ){
-            this.toastr.error(' مبلغ تسهیم را وارد کنید');
-            return;
-          }
+      case 2:
+        dataSending.shareAmountMax = 0;
+        dataSending.shareAmountMin = 0;
+        if (dataSending.sharedAmount === '') {
+          this.toastr.error(' مبلغ تسهیم را وارد کنید');
+          return;
+        }
         break;
       default:
         break;
@@ -787,10 +797,10 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
 
-  submitBankInfo(nav:any){
-    if(this.BankInfoList.length > 0){
+  submitBankInfo(nav: any) {
+    if (this.BankInfoList.length > 0) {
       nav.select(4)
-    }else{
+    } else {
       this.toastr.error('هیچ حساب بانکی وارد نشده است')
     }
   }
@@ -802,41 +812,41 @@ export class RegisterCustomerComponent implements OnInit {
     return this.contractFormInfo.controls;
   }
 
-  initContractInfo(){
+  initContractInfo() {
     this.contractFormInfo = this.fb.group({
-      contractNumber : ['' , Validators.required],
-      expireDate : ['' , Validators.required],
-      serviceStartDate : ['' , Validators.required],
-      description : ['' , Validators.required],
-      projectId : ['' , Validators.required],
-      shareType :  [''],
-      sharedAmount :  [''],
-      shareAmountMax :  [''],
-      shareAmountMin :  [''],
+      contractNumber: ['', Validators.required],
+      expireDate: ['', Validators.required],
+      serviceStartDate: ['', Validators.required],
+      description: ['', Validators.required],
+      projectId: ['', Validators.required],
+      shareType: [''],
+      sharedAmount: [''],
+      shareAmountMax: [''],
+      shareAmountMin: [''],
     })
   }
 
-  getAllProjects(){
+  getAllProjects() {
     this.baseInfoService.getListOfProjects()
-    .subscribe((res:any)=>{
-      this.listOfProject = res;
-    })
+      .subscribe((res: any) => {
+        this.listOfProject = res;
+      })
   }
 
-  onSelectProject(event){
+  onSelectProject(event) {
     this.isProject = true;
     let projectId = parseInt(event.target.value)
-    let selectedProject = this.listOfProject.filter(item=>item.id === projectId)[0];
+    let selectedProject = this.listOfProject.filter(item => item.id === projectId)[0];
     this.contractFormInfo.patchValue({
-      shareType :  selectedProject.shareType,
-      sharedAmount :  selectedProject.sharedAmount,
-      shareAmountMax :  selectedProject.shareAmountMax,
-      shareAmountMin :  selectedProject.shareAmountMin,
+      shareType: selectedProject.shareType,
+      sharedAmount: selectedProject.sharedAmount,
+      shareAmountMax: selectedProject.shareAmountMax,
+      shareAmountMin: selectedProject.shareAmountMin,
     })
   }
 
 
-  registerCustomer(){
+  registerCustomer() {
     if (this.contractFormInfo.invalid) {
       this.isContractInfoFormSubmitted = true;
       return;
@@ -850,19 +860,19 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.serviceStartDate = this.changeJalaliToGregorian(dataSending.serviceStartDate);
     this.contractInfoValue = dataSending;
     let data = {}
-    data = Object.assign(data ,this.registerRealCustomerFormValue , this.registerLegalCustomerFormValue , this.registerForeignCustomerFormValue);
+    data = Object.assign(data, this.registerRealCustomerFormValue, this.registerLegalCustomerFormValue, this.registerForeignCustomerFormValue);
     let customer = {};
-    customer = Object.assign(customer , this.locationInfoValue);
+    customer = Object.assign(customer, this.locationInfoValue);
     customer['ibans'] = this.BankInfoList;
     customer['contract'] = this.contractInfoValue;
-    data['customer'] = Object.assign(customer , this.locationInfoValue);
-    console.log("data : " , data);
-    
+    data['customer'] = Object.assign(customer, this.locationInfoValue);
+    console.log("data : ", data);
+
     this.service.defineAcceptor(data)
-    .subscribe((res=>{
-      this.toastr.success('مشتری با موفقیت ثبت گردید');
-      window.location.reload();
-    }))
-  
+      .subscribe((res => {
+        this.toastr.success('مشتری با موفقیت ثبت گردید');
+        window.location.reload();
+      }))
+
   }
 }
