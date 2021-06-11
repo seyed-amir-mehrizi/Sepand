@@ -36,8 +36,9 @@ export class ChangeIbanModalComponent implements OnInit {
     this.getAllIbansList();
     this.initBankInfoForm();
     this.getListOfSharedTypes();
-    console.log("this.ibanInfo.customerId : " , this.ibanInfo);
-    
+    this.toastr.info('لطفا شماره شبا را بدون IR ابتدایی وارد کنید' , 'توجه' , {
+      timeOut: 10000,
+    });
   }
 
   getAllIbansList() {
@@ -115,8 +116,6 @@ export class ChangeIbanModalComponent implements OnInit {
     let dataSending = this.BankInfoForm.value;
     switch (this.sharedTypeId) {
       case 1:
-        console.log("dataSending.shareAmountMax : " , dataSending.shareAmountMax);
-        
         dataSending.sharedAmount = 0;
         if((dataSending.shareAmountMax === null || dataSending.shareAmountMax === '')
          || (dataSending.shareAmountMin === null || dataSending.shareAmountMin === '')){
@@ -139,6 +138,7 @@ export class ChangeIbanModalComponent implements OnInit {
     dataSending.shareAmountMax = parseInt(dataSending.shareAmountMax);
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
+    dataSending.iban = `IR${dataSending.iban}`;
     dataSending.customerId = this.ibanInfo.id;
     dataSending.isMain = (dataSending.isMain === null) ? false : true;
 
