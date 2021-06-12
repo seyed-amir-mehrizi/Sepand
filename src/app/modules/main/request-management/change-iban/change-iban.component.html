@@ -18,11 +18,11 @@
                         </div>
                         <div class="col-md-3">
                             <label for="Name">نام </label>
-                            <input id="Name" type="text" formControlName="Name" class="form-control" />
+                            <input (keypress)="FarsiOnly($event)" id="Name" type="text" formControlName="Name" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label for="LastName">نام خانوادگی</label>
-                            <input id="LastName" type="text" formControlName="LastName" class="form-control" />
+                            <input (keypress)="FarsiOnly($event)" id="LastName" type="text" formControlName="LastName" class="form-control" />
                         </div>
                         <div class="col-md-3">
                             <label for="ShopName">نام فروشگاه</label>

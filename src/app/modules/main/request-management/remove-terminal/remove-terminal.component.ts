@@ -97,5 +97,14 @@ export class RemoveTerminalComponent implements OnInit {
         this.spinner.hide();
       })
   }
+  FarsiOnly = (event) => {
+    const value = event.key;
+    var p = /^[\u0600-\u06FF\s]+$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
+  }
 
 }

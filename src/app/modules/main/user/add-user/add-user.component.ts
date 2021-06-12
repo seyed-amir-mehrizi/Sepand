@@ -63,6 +63,24 @@ export class AddUserComponent implements OnInit {
       this.Roleslist = result;
     })
   }
+  FarsiOnly = (event) => {
+    const value = event.key;
+    var p = /^[\u0600-\u06FF\s]+$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
+  }
+
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
 }
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {

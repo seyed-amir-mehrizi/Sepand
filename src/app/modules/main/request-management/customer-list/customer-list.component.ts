@@ -90,5 +90,14 @@ export class CustomerListComponent implements OnInit {
     }
     return true;
   }
+  FarsiOnly = (event) => {
+    const value = event.key;
+    var p = /^[\u0600-\u06FF\s]+$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
+  }
 
 }

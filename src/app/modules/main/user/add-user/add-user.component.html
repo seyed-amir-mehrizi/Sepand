@@ -9,14 +9,14 @@
             <div class="col-md-4">
                 <div class="form-group mb-4">
                     <label for="firstName">نام</label>
-                    <input id="firstName" type="text" formControlName="firstName" class="form-control"
+                    <input (keypress)="FarsiOnly($event)" id="firstName" type="text" formControlName="firstName" class="form-control"
                         [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.firstName.errors}" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group mb-4">
                     <label for="lastName">نام خانوادگی</label>
-                    <input id="lastName" type="text" formControlName="lastName" class="form-control"
+                    <input (keypress)="FarsiOnly($event)" id="lastName" type="text" formControlName="lastName" class="form-control"
                         [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.lastName.errors}" />
                 </div>
             </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-4">
                 <label for="phoneNumber">تلفن همراه</label>
-                <input id="phoneNumber" type="text" formControlName="phoneNumber" class="form-control"
+                <input (keypress)="numberOnly($event)" id="phoneNumber" type="text" formControlName="phoneNumber" class="form-control"
                     [ngClass]="{'is-invalid': isAddUserSubmitted && addUserFormInfo.phoneNumber.errors}" />
             </div>
 
