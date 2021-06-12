@@ -10,6 +10,7 @@ import { CoreModule } from '../core/core.module';
 import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
 import { BaseUrlInterceptor } from '../core/interceptor/base.interceptor';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BaseUrlInterceptor } from '../core/interceptor/base.interceptor';
     SharedModule,
     CoreModule,
     LoginModule,
+    NgxSpinnerModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true }],

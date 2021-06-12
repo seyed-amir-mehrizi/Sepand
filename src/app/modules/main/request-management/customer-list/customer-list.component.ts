@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomersService } from './customers.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   constructor(private service: CustomersService, private fb: FormBuilder ,
+    private spinner: NgxSpinnerService,
     private ngbModal: NgbModal,
     ) { }
 
@@ -47,30 +49,36 @@ export class CustomerListComponent implements OnInit {
   }
 
 
-  getCustomers(params: any) {    
+  getCustomers(params: any) { 
+    this.spinner.show();   
     this.service.getListOFCustomers(params)
       .subscribe((result: any) => {
         this.customerslist = result.data;
-        this.totalRecords = result.totalRecord
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
       });
   }
 
   clickOnPage(pageNumber: any) {
     this.params.Page = pageNumber;
+    this.spinner.show();
     this.service.getListOFCustomers(this.params)
       .subscribe((result: any) => {
         this.customerslist = result.data;
-        this.totalRecords = result.totalRecord
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
       });
 
   }
 
   serachCustomer(item: any) {
     item.Page = 1;
+    this.spinner.show();   
     this.service.getListOFCustomers(item)
       .subscribe((result: any) => {
         this.customerslist = result.data;
-        this.totalRecords = result.totalRecord
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
       });
   }
 

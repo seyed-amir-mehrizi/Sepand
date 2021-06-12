@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ChangeIbanModalComponent } from '../change-iban-modal/change-iban-modal.component';
 import { CustomersService } from '../customer-list/customers.service';
 
@@ -28,7 +29,8 @@ export class ChangeIbanComponent implements OnInit {
   }
 
   constructor(private service: CustomersService, private fb: FormBuilder ,
-    private ngbModal: NgbModal,
+    private spinner: NgxSpinnerService,
+    private ngbModal: NgbModal, 
     ) { }
 
   ngOnInit(): void {
@@ -49,19 +51,23 @@ export class ChangeIbanComponent implements OnInit {
 
 
   getCustomers(params: any) {    
+    this.spinner.show();
     this.service.getListOFCustomers(params)
       .subscribe((result: any) => {
         this.customerslist = result.data;
-        this.totalRecords = result.totalRecord
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
       });
   }
 
   clickOnPage(pageNumber: any) {
     this.params.Page = pageNumber;
+    this.spinner.show();
     this.service.getListOFCustomers(this.params)
       .subscribe((result: any) => {
         this.customerslist = result.data;
-        this.totalRecords = result.totalRecord
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
       });
 
   }
@@ -69,10 +75,12 @@ export class ChangeIbanComponent implements OnInit {
 
   serachCustomer(item: any) {
     item.Page = 1;
+    this.spinner.show();
     this.service.getListOFCustomers(item)
       .subscribe((result: any) => {
         this.customerslist = result.data;
-        this.totalRecords = result.totalRecord
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
       });
   }
 

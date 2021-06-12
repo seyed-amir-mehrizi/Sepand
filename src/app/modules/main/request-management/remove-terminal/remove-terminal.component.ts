@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CustomersService } from '../customer-list/customers.service';
 
@@ -28,62 +29,73 @@ export class RemoveTerminalComponent implements OnInit {
 
   }
 
-  constructor(private service: CustomersService, private fb: FormBuilder ,
-    private ngbModal: NgbModal, private toastr : ToastrService
-    ) { }
+  constructor(private service: CustomersService, private fb: FormBuilder,
+    private spinner: NgxSpinnerService,
+    private ngbModal: NgbModal, private toastr: ToastrService,
+  ) { }
 
-    ngOnInit(): void {
-      this.getCustomers(this.params);
-      this.initForm();
-    }
-  
-    initForm() {
-      this.customerFilter = this.fb.group({
-        NationalId: [''],
-        ForeignPervasiveCode: [''],
-        RegisterNo: [''],
-        Name: [''] ,
-        LastName: [''] ,
-        ShopName: [''] ,
+  ngOnInit(): void {
+    this.getCustomers(this.params);
+    this.initForm();
+  }
+
+  initForm() {
+    this.customerFilter = this.fb.group({
+      NationalId: [''],
+      ForeignPervasiveCode: [''],
+      RegisterNo: [''],
+      Name: [''],
+      LastName: [''],
+      ShopName: [''],
+    });
+  }
+
+
+  getCustomers(params: any) {
+    this.spinner.show();
+    this.service.getListOFCustomers(params)
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
+
       });
-    }
-  
-  
-    getCustomers(params: any) {    
-      this.service.getListOFCustomers(params)
-        .subscribe((result: any) => {
-          this.customerslist = result.data;
-          this.totalRecords = result.totalRecord
-        });
-    }
-  
-    clickOnPage(pageNumber: any) {
-      this.params.Page = pageNumber;
-      this.service.getListOFCustomers(this.params)
-        .subscribe((result: any) => {
-          this.customerslist = result.data;
-          this.totalRecords = result.totalRecord
-        });
-  
-    }
-  
-  
-    serachCustomer(item: any) {
-      item.Page = 1;
-      this.service.getListOFCustomers(item)
-        .subscribe((result: any) => {
-          this.customerslist = result.data;
-          this.totalRecords = result.totalRecord
-        });
-  
-  
-    }
+  }
 
-    deActivateTerminal(item){
-      this.service.deActivateTerminal(item.id)
-      .subscribe((res:any)=>{
-        
+  clickOnPage(pageNumber: any) {
+    this.spinner.show();
+    this.params.Page = pageNumber;
+    this.service.getListOFCustomers(this.params)
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
+
+      });
+
+  }
+
+
+  serachCustomer(item: any) {
+    item.Page = 1;
+    this.spinner.show();
+    this.service.getListOFCustomers(item)
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord;
+        this.spinner.hide();
+
+      });
+
+
+  }
+
+  deActivateTerminal(item) {
+    this.spinner.show();
+    this.service.deActivateTerminal(item.id)
+      .subscribe((res: any) => {
+        this.spinner.hide();
       })
-    }
+  }
 
 }

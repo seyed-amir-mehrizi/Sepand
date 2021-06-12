@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { ChangePasswordModalComponent } from '../change-password-modal/change-password-modal.component';
 import { UserService } from '../service/user.service';
@@ -17,7 +18,7 @@ export class UsersListComponent implements OnInit {
 
     private ngbModal: NgbModal,
     private service : UserService,
-    private router : Router
+    private spinner: NgxSpinnerService
     
 
   ) { }
@@ -27,9 +28,11 @@ export class UsersListComponent implements OnInit {
   }
 
   getListOfUsers(){
+    this.spinner.show();
     this.service.getUserList()
     .subscribe((result:any)=>{
       this.userList = result;
+      this.spinner.hide();
     });
   }
 
