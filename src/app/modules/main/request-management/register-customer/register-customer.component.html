@@ -19,7 +19,8 @@
             <div class="col-md-4">
               <label for="nationalNumber">کد ملی</label>
               <div class="input-group mb-3 dir-ltr">
-                <span ngbPopover="استعلام شماره  ملی" triggers="mouseenter:mouseleave" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                <span ngbPopover="استعلام شماره  ملی" triggers="mouseenter:mouseleave"
+                  class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkNationalNumber()">?</span>
                 <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
                   formControlName="nationalNumber" class="form-control dir-ltr" (keypress)="numberOnly($event)"
@@ -32,7 +33,8 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
-              <input  (keypress)="FarsiOnly($event)"   id="firstNameFa" type="text" formControlName="firstNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="firstNameFa" type="text" formControlName="firstNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.firstNameFa.errors
@@ -40,7 +42,8 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
-              <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.lastNameFa.errors
@@ -52,7 +55,8 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.firstNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -60,7 +64,8 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.lastNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -113,11 +118,12 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.postalCode.errors
-                }"  (keypress)="numberOnly($event)"/>
+                }" (keypress)="numberOnly($event)" />
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
-              <input (keypress)="FarsiOnly($event)" id="fatherNameFa" type="text" formControlName="fatherNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="fatherNameFa" type="text" formControlName="fatherNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.fatherNameFa.errors
@@ -129,7 +135,8 @@
                   'is-invalid':
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.fatherNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -221,21 +228,23 @@
             <div class="col-md-4 my-2">
               <label for="nationalLegalCode"> شماره شناسه ملی</label>
               <div class="input-group mb-3 dir-ltr">
-                <span ngbPopover="استعلام شماره شناسه ملی" triggers="mouseenter:mouseleave" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                <span ngbPopover="استعلام شماره شناسه ملی" triggers="mouseenter:mouseleave"
+                  class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkRegisterNumber()">?</span>
-                    <input id="nationalLegalCode" type="text" formControlName="nationalLegalCode" class="form-control"
-                      [ngClass]="{
+                <input id="nationalLegalCode" type="text" formControlName="nationalLegalCode" class="form-control"
+                  [ngClass]="{
                         'is-invalid':
                           isRegisterLegalCustomerSubmitted &&
                           registerLegalCustomerFormInfo.nationalLegalCode.errors
-                      }" aria-label="Username" aria-describedby="basic-addon1" (keypress)="numberOnly($event)"/>
-             
+                      }" aria-label="Username" aria-describedby="basic-addon1" (keypress)="numberOnly($event)" />
+
 
               </div>
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
-              <input (keypress)="FarsiOnly($event)" id="firstNameFa" type="text" formControlName="firstNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="firstNameFa" type="text" formControlName="firstNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.firstNameFa.errors
@@ -243,7 +252,8 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
-              <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.lastNameFa.errors
@@ -255,7 +265,8 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.firstNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "/>
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -263,7 +274,8 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.lastNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -331,7 +343,8 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
-              <input (keypress)="FarsiOnly($event)" id="fatherNameFa" type="text" formControlName="fatherNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="fatherNameFa" type="text" formControlName="fatherNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.fatherNameFa.errors
@@ -343,7 +356,8 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.fatherNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "/>
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -448,7 +462,8 @@
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.comNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
@@ -459,10 +474,10 @@
                 }" />
             </div>
             <div class="col-md-4 my-2">
-              <label for="commercialCode">  شماره ثبت </label>
+              <label for="commercialCode"> شماره ثبت </label>
 
               <input aria-label="Username" aria-describedby="basic-addon1" id="registerNo" type="text"
-              formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
+                formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
                 'is-invalid':
                   isRegisterLegalCustomerSubmitted &&
                   registerLegalCustomerFormInfo.registerNo.errors
@@ -486,7 +501,8 @@
             <div class="col-md-4 my-2">
               <label for="foreignPervasiveCode"> کد اتباع فراگیر </label>
               <div class="input-group mb-3 dir-ltr">
-                <span ngbPopover="استعلام  کد اتباع فراگیر" triggers="mouseenter:mouseleave" class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
+                <span ngbPopover="استعلام  کد اتباع فراگیر" triggers="mouseenter:mouseleave"
+                  class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkForeignPervasiveCode()">?</span>
                 <input id="foreignPervasiveCode" type="text" formControlName="foreignPervasiveCode" class="form-control"
                   [ngClass]="{
@@ -500,7 +516,8 @@
 
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
-              <input (keypress)="FarsiOnly($event)" id="firstNameFa" type="text" formControlName="firstNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="firstNameFa" type="text" formControlName="firstNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.firstNameFa.errors
@@ -508,7 +525,8 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameFa">نام خانوادگی فارسی</label>
-              <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.lastNameFa.errors
@@ -520,7 +538,8 @@
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.firstNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -568,7 +587,8 @@
             </div>
             <div class="col-md-4 my-2">
               <label for="fatherNameFa"> نام پدر </label>
-              <input (keypress)="FarsiOnly($event)" id="fatherNameFa" type="text" formControlName="fatherNameFa" class="form-control" [ngClass]="{
+              <input (keypress)="FarsiOnly($event)" id="fatherNameFa" type="text" formControlName="fatherNameFa"
+                class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.fatherNameFa.errors
@@ -580,7 +600,8 @@
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.fatherNameEn.errors
-                }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
             </div>
 
             <div class="col-md-4 my-2">
@@ -615,7 +636,7 @@
                   'is-invalid':
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.postalCode.errors
-                }"  />
+                }" />
             </div>
 
             <div class="col-md-4 my-2">
@@ -716,7 +737,8 @@
 
           <div class="col-md-6 my-2">
             <label for="addressFa"> آدرس فارسی </label>
-            <input (keypress)="FarsiOnly($event)" id="addressFa" type="text" formControlName="addressFa" class="form-control" [ngClass]="{
+            <input (keypress)="FarsiOnly($event)" id="addressFa" type="text" formControlName="addressFa"
+              class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.addressFa.errors
@@ -724,7 +746,9 @@
           </div>
           <div class="col-md-6 my-2">
             <label for="addressEn"> آدرس انگلیسی </label>
-            <input onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " id="addressEn" type="text" formControlName="addressEn" class="form-control" [ngClass]="{
+            <input
+              onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "
+              id="addressEn" type="text" formControlName="addressEn" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.addressEn.errors
@@ -788,7 +812,8 @@
           </div>
           <div class="col-md-6 my-2">
             <label for="shopAddress"> آدرس فروشگاه </label>
-            <input (keypress)="FarsiOnly($event)" id="shopAddress" type="text" formControlName="shopAddress" class="form-control" [ngClass]="{
+            <input (keypress)="FarsiOnly($event)" id="shopAddress" type="text" formControlName="shopAddress"
+              class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopAddress.errors
@@ -839,7 +864,7 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="guildId">صنف</label>
-            <select id="guildId" class="form-control" formControlName="guildId" [ngClass]="{
+            <!-- <select id="guildId" class="form-control" formControlName="guildId" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.guildId.errors
@@ -847,13 +872,20 @@
               <option *ngFor="let item of guildList" [value]="item.id">
                 {{ item.categoryName }}
               </option>
-            </select>
+            </select> -->
+            <ng-select #select [items]="people$ | async" [multiple]="false" [maxSelectedItems]="3" bindLabel="categoryName"
+            formControlName="guildId" bindValue="id" [ngClass]="{
+              'is-invalid':
+                isLocationInfoFormSubmitted &&
+                locationInfoFormInfo.guildId.errors
+            }" required>
+            </ng-select>
           </div>
 
           <div class="col-md-3 my-2">
             <label for="shopLogo"> لوگوی فروشگاه </label>
-            <input id="shopLogo" type="file"  accept=".png" class="form-control"
-              (change)="changeListener($event)" [ngClass]="{
+            <input id="shopLogo" type="file" accept=".png" class="form-control" (change)="changeListener($event)"
+              [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopLogo.errors
@@ -873,7 +905,8 @@
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopNameEn.errors
-              }" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+              }"
+              onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
           </div>
           <div class="col-md-3 my-2">
             <label for="taxPayerCode"> کد مالیات دهنده </label>
@@ -969,12 +1002,18 @@
               </div>
 
               <div class="col-md-6">
+
                 <label for="iban"> شماره شبا </label>
-                <input id="iban" type="text"  (keypress)="numberOnly($event)" formControlName="iban" class="form-control" name="iban" [ngClass]="{
-                    'is-invalid':
-                    isBankInfoFormSubmitted &&
-                      bankAccountInfoForm.iban.errors
-                  }" />
+                <div class="input-group mb-3 dir-ltr">
+                  <span class="input-group-text dir-rtl" id="basic-addon1" (click)="checkRegisterNumber()">IR</span>
+                  <input id="iban" type="text" style="direction: ltr;" (keypress)="numberOnly($event)"
+                    formControlName="iban" class="form-control" name="iban" [ngClass]="{
+                        'is-invalid':
+                        isBankInfoFormSubmitted &&
+                          bankAccountInfoForm.iban.errors
+                      }" />
+                </div>
+
               </div>
               <div class="col-md-6">
                 <label for="accountNumber"> شماره حساب </label>
@@ -1000,7 +1039,7 @@
               <ng-container *ngIf="hasPercentage">
                 <div class="col-md-3">
                   <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
-                  <input id="shareAmountMin"  (keypress)="numberOnly($event)" (keyup)="checkMin($event)"  type="text"
+                  <input id="shareAmountMin" (keypress)="numberOnly($event)" (keyup)="checkMin($event)" type="text"
                     formControlName="shareAmountMin" class="form-control" name="shareAmountMin" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&
@@ -1009,8 +1048,9 @@
                 </div>
                 <div class="col-md-3">
                   <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
-                  <input id="shareAmountMax" min="0" max="100" (keypress)="numberOnly($event)" (keyup)="checkMax($event)" type="text"
-                    formControlName="shareAmountMax" class="form-control" name="shareAmountMax" [ngClass]="{
+                  <input id="shareAmountMax" min="0" max="100" (keypress)="numberOnly($event)"
+                    (keyup)="checkMax($event)" type="text" formControlName="shareAmountMax" class="form-control"
+                    name="shareAmountMax" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&
                         bankAccountInfoForm.shareAmountMax.errors
@@ -1117,7 +1157,7 @@
             </div>
           </div>
 
-           <div class="col-md-4 my-2">
+          <div class="col-md-4 my-2">
             <label for="serviceStartDate">تاریخ شروع خدمات</label>
             <div class="input-group dir-ltr">
               <input id="serviceStartDate" class="form-control" name="dp" ngbDatepicker #serviceDate="ngbDatepicker"
@@ -1135,67 +1175,64 @@
           </div>
           <div class="col-md-12 my-2">
             <label for="description">توضیحات</label>
-              <textarea  name="" id="" cols="30" rows="5"
-              id="description" class="form-control"
-                formControlName="description" [ngClass]="{
+            <textarea name="" id="" cols="30" rows="5" id="description" class="form-control"
+              formControlName="description" [ngClass]="{
                   'is-invalid':
                   isContractInfoFormSubmitted &&
                   contractInfo.description.errors
-                }"
-              ></textarea>
-            </div>
-            <div class="col-md-3 my-2">
+                }"></textarea>
+          </div>
+          <div class="col-md-3 my-2">
 
-              <label for="projectId">لیست پروژه ها</label>
-              <select #province id="projectId" class="form-control" formControlName="projectId"
-                [ngClass]="{
+            <label for="projectId">لیست پروژه ها</label>
+            <select #province id="projectId" class="form-control" formControlName="projectId" [ngClass]="{
                   'is-invalid':
                   isContractInfoFormSubmitted &&
                     contractInfo.projectId.errors
-                }"(change)="onSelectProject($event)">
-                <option *ngFor="let item of listOfProject" [value]="item.id" >
-                  {{ item.projectName }}
-                </option>
-              </select>
+                }" (change)="onSelectProject($event)">
+              <option *ngFor="let item of listOfProject" [value]="item.id">
+                {{ item.projectName }}
+              </option>
+            </select>
+          </div>
+          <ng-container *ngIf="isProject">
+            <div class="col-md-4 my-2">
+              <label for="shareType">نوع تسهیم</label>
+              <input id="shareType" type="text" formControlName="shareType" class="form-control dir-ltr"
+                [readonly]="true" />
             </div>
-            <ng-container *ngIf="isProject">
-              <div class="col-md-4 my-2">
-                <label for="shareType">نوع تسهیم</label>
-                <input id="shareType" type="text" formControlName="shareType" class="form-control dir-ltr"
-                [readonly]="true"/>
-              </div>
-              <ng-container>
-                <div class="col-md-3 my-2">
-                  <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
-                  <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
-                    formControlName="shareAmountMin" class="form-control" name="shareAmountMin" [ngClass]="{
+            <ng-container>
+              <div class="col-md-3 my-2">
+                <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
+                <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text" formControlName="shareAmountMin"
+                  class="form-control" name="shareAmountMin" [ngClass]="{
                       'is-invalid':
                       isContractInfoFormSubmitted &&
                         contractInfo.shareAmountMin.errors
                     }" />
-                </div>
-                <div class="col-md-3">
-                  <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
-                  <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
-                    formControlName="shareAmountMax" class="form-control" name="shareAmountMax" [ngClass]="{
+              </div>
+              <div class="col-md-3">
+                <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
+                <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text" formControlName="shareAmountMax"
+                  class="form-control" name="shareAmountMax" [ngClass]="{
                       'is-invalid':
                       isContractInfoFormSubmitted &&
                       contractInfo.shareAmountMax.errors
                     }" />
-                </div>
-  
-              </ng-container>
-              <div class="col-md-3">
-                <label for="sharedAmount"> مبلغ تسهیم</label>
-                <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
-                  class="form-control" name="sharedAmount" [ngClass]="{
+              </div>
+
+            </ng-container>
+            <div class="col-md-3">
+              <label for="sharedAmount"> مبلغ تسهیم</label>
+              <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
+                class="form-control" name="sharedAmount" [ngClass]="{
                     'is-invalid':
                     isContractInfoFormSubmitted &&
                     contractInfo.sharedAmount.errors
                   }" />
-              </div>
-            </ng-container>
-            
+            </div>
+          </ng-container>
+
 
 
         </div>
@@ -1205,7 +1242,7 @@
       <button class="btn btn-sm btn-primary mx-2 my-2" [disabled]="active === 1" (click)="nav.select(3)">
         قبلی
       </button>
-      <button class="btn btn-sm btn-success mx-2 my-2"  (click)="registerCustomer()">
+      <button class="btn btn-sm btn-success mx-2 my-2" (click)="registerCustomer()">
         ثبت اطلاعات
       </button>
     </ng-template>

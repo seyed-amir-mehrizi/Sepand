@@ -11,11 +11,16 @@
   
                 <div class="col-md-6">
                   <label for="iban"> شماره شبا </label>
-                  <input id="iban" (keypress)="numberOnly($event)" type="text" formControlName="iban" class="form-control" name="iban" [ngClass]="{
+                  <div class="input-group mb-3 dir-ltr">
+                    <span class="input-group-text dir-rtl" id="basic-addon1"
+                    >IR</span>
+                    <input id="iban" style="direction: ltr;" (keypress)="numberOnly($event)" type="text" formControlName="iban" class="form-control" name="iban" [ngClass]="{
                       'is-invalid':
                       isBankInfoFormSubmitted &&
                         bankAccountInfoForm.iban.errors
                     }" />
+                  </div>
+
                 </div>
                 <div class="col-md-6">
                   <label for="accountNumber"> شماره حساب </label>

@@ -43,7 +43,7 @@ export class RegisterCustomerComponent implements OnInit {
   disabled = true;
   public model: any;
   public image: any;
-
+  people$: Observable<Object | any[]>;
   allNationalities: any = [];
   personTypeList: any = [];
   registerRealCustomerForm: FormGroup;
@@ -653,9 +653,10 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   getListOfGuild() {
-    this.sharedService.getAllGuildsCategories().subscribe((res: any) => {
-      this.guildList = res;
-    });
+    // this.sharedService.getAllGuildsCategories().subscribe((res: any) => {
+    //   this.guildList = res;
+    // });
+    this.people$ =  this.sharedService.getAllGuildsCategories();
   }
   getListOfProvince() {
     this.sharedService.getAllProvince().subscribe((res: any) => {

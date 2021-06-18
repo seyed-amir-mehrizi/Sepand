@@ -50,14 +50,21 @@
                         <table class="table table-bordered table-striped text-center">
                             <thead>
                                 <tr>
-                                    <th>موبایل</th>
+                                    <th>نام و نام خانوادگی </th>
+                                    <th>
+                                        نوع مشتری
+                                    </th>
                                     <th>تلفن</th>
-                                    <th>رایانامه</th>
                                     <th>وب سایت</th>
                                     <th>کد پستی فروشگاه</th>
-                                    <th> رایانامه فروشگاه</th>
-                                    <th>redirect url</th>
-                                    <th>صنف</th>
+                                   
+                                    <th>کد صنف</th>
+                                    <th>
+                                        نام فروشگاه
+                                    </th>
+                                    <th>
+                                        نام کمپانی 
+                                    </th>
                                     <th>
                                         عملیات
                                     </th>
@@ -65,14 +72,24 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of customerslist">
-                                    <td>{{item?.mobileNumber}}</td>
-                                    <td>{{item?.telephone}}</td>
-                                    <td>{{item?.email}}</td>
+                                    <td>
+                                        {{item.person.isLegal ? item.person.comNameFa : item.person.firstNameFa + ' ' + item.person.lastNameFa }}
+                                    </td>
+                                    <td>
+                                        {{item.person.isLegal ? "حقوقی" : "حقیقی" }}
+
+                                    </td>
+                                    <td>{{item?.shopCityPreCode}}-{{item?.telephone}}</td>
                                     <td>{{item?.webSiteAddress}}</td>
                                     <td>{{item?.shopPostalCode}}</td>
-                                    <td>{{item?.shopEmail}}</td>
-                                    <td>{{item?.redirectUrl}}</td>
-                                    <td>{{item?.guild}}</td>
+                               
+                                    <td>{{item?.guildId}}</td>
+                                    <td>
+                                        {{item?.shopNameFa}}
+                                    </td>
+                                    <td>
+                                        {{item?.person.comNameFa}}
+                                    </td>
                                     <td>
                                         <button class="btn btn-warning btn-sm"  (click)="openChangeClass(item)">تغییر صنف</button>
                                     </td>
