@@ -30,6 +30,7 @@ export class RequestsComponent implements OnInit {
     Page: 1,
 
   }
+  tabId:number = 1;
 
   requestslist:any = [];
   constructor(private sharedDateService : SharedDataService 
@@ -73,34 +74,82 @@ export class RequestsComponent implements OnInit {
   serachRequest(item: any) {
     item.Page = 1;
     this.spinner.show();
-    this.requestService.getListOfFirstRegistration(item)
-      .subscribe((result: any) => {
-        this.requestslist = result.data;
-        this.totalRecords = result.totalRecord;
-        this.spinner.hide();
-      });
+    switch (this.tabId) {
+      case 1:
+        this.requestService.getListOfFirstRegistration(item)
+        .subscribe((result: any) => {
+          this.requestslist = result.data;
+          this.totalRecords = result.totalRecord;
+          this.spinner.hide();
+        });
+        break;
+      case 2:
+        this.requestService.getListOfSentToPsp(item)
+        .subscribe((result: any) => {
+          this.requestslist = result.data;
+          this.totalRecords = result.totalRecord;
+          this.spinner.hide();
+        });
+        break;
+      case 3:
+        this.requestService.getListOfShaparakProcess(item)
+        .subscribe((result: any) => {
+          this.requestslist = result.data;
+          this.totalRecords = result.totalRecord;
+          this.spinner.hide();
+        });
+        break;
+        case 4:
+          this.requestService.getListOfCompletedRequests(item)
+          .subscribe((result: any) => {
+            this.requestslist = result.data;
+            this.totalRecords = result.totalRecord;
+            this.spinner.hide();
+          });
+          break;
+
+      default:
+        break;
+    }
   }
 
 
-  onNavChange(changeEvent: NgbNavChangeEvent) {
-    switch (changeEvent.nextId) {
+  onNavChange(changeEvent: NgbNavChangeEvent ,item) {
+    this.tabId = changeEvent.nextId;
+    item.Page = 1;
+    this.spinner.show();
+    switch (this.tabId) {
       case 1:
-
-      //1
+        this.requestService.getListOfFirstRegistration(item)
+        .subscribe((result: any) => {
+          this.requestslist = result.data;
+          this.totalRecords = result.totalRecord;
+          this.spinner.hide();
+        });
         break;
       case 2:
-    //2
-
+        this.requestService.getListOfSentToPsp(item)
+        .subscribe((result: any) => {
+          this.requestslist = result.data;
+          this.totalRecords = result.totalRecord;
+          this.spinner.hide();
+        });
         break;
       case 3:
-      //3
-
-
+        this.requestService.getListOfShaparakProcess(item)
+        .subscribe((result: any) => {
+          this.requestslist = result.data;
+          this.totalRecords = result.totalRecord;
+          this.spinner.hide();
+        });
         break;
         case 4:
-        //4
-  
-  
+          this.requestService.getListOfCompletedRequests(item)
+          .subscribe((result: any) => {
+            this.requestslist = result.data;
+            this.totalRecords = result.totalRecord;
+            this.spinner.hide();
+          });
           break;
 
       default:

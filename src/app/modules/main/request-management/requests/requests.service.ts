@@ -23,5 +23,44 @@ export class RequestsService {
       return this.http.get(this.customerApi+'/first-registration' , {params});
   
 }
+getListOfSentToPsp(data:any){
+  let params = {
+    NationalId : data.NationalId,
+    ShopName:data.ShopName,
+    Page:data.Page,
+    RequestType : data.RequestType,
+    PspId:data.PspId,
+    LegalNationalCode:data.LegalNationalCode,
+    ForeignPervasiveCode:data.ForeignPervasiveCode,
+  }
+    return this.http.get(this.customerApi+'/sent-to-psp' , {params});
+
+}
+getListOfShaparakProcess(data:any){
+  let params = {
+    NationalId : data.NationalId,
+    ShopName:data.ShopName,
+    Page:data.Page,
+    RequestType : data.RequestType,
+    PspId:data.PspId,
+    LegalNationalCode:data.LegalNationalCode,
+    ForeignPervasiveCode:data.ForeignPervasiveCode,
+  }
+    return this.http.get(this.customerApi+'/shaparak-process' , {params});
+
+}
+getListOfCompletedRequests(data:any){
+  let params = {
+    NationalId : data.NationalId,
+    ShopName:data.ShopName,
+    Page:data.Page,
+    RequestType : data.RequestType,
+    PspId:data.PspId,
+    LegalNationalCode:data.LegalNationalCode,
+    ForeignPervasiveCode:data.ForeignPervasiveCode,
+  }
+    return this.http.get(this.customerApi+'/completed-requests' , {params});
+
+}
 
 }

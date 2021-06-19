@@ -25,7 +25,7 @@
                           </option>
                         </select>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 my-2">
                           <label for="LastName">Psp</label>
                           <select id="RequestType" class="form-control" formControlName="RequestType">
                             <option></option>
@@ -34,7 +34,7 @@
                             </option>
                           </select>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 my-2">
                           <label for="ShopName">نام فروشگاه</label>
                           <input id="ShopName" type="text" formControlName="ShopName" class="form-control" />
                       </div>
@@ -49,7 +49,7 @@
       </ngb-panel>
   </ngb-accordion>
   
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event , requestFilter.value)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>ثبت اولیه</a>
     <ng-template ngbNavContent>
