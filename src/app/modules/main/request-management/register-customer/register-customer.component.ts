@@ -609,8 +609,8 @@ export class RegisterCustomerComponent implements OnInit {
 
   initLocationInfoForm() {
     this.LocationInfoForm = this.fb.group({
-      mobileNumber: ['', Validators.required],
-      telephone: ['', Validators.required],
+      mobileNumber: ['', [Validators.required , Validators.minLength(11) , Validators.maxLength(11)]],
+      telephone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       addressFa: ['', Validators.required],
       addressEn: ['', Validators.required],

@@ -12,4 +12,9 @@ export class BaseInfoService {
   getListOfProjects() {
     return this.http.get(this.baseInfoApi + '/projects');
   }
+
+  getPspList(){
+    return this.http.get(this.baseInfoApi + '/psps');
+
+  }
 }

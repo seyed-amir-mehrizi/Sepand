@@ -16,6 +16,7 @@ import { ChangeClassModalComponent } from './change-class-modal/change-class-mod
 import { ChangePostalCodeModalComponent } from './change-postal-code-modal/change-postal-code-modal.component';
 import { ChangeIbanComponent } from './change-iban/change-iban.component';
 import { ChangeIbanModalComponent } from './change-iban-modal/change-iban-modal.component';
+import { RequestsComponent } from './requests/requests.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ChangeIbanModalComponent } from './change-iban-modal/change-iban-modal.
     ChangeClassModalComponent,
     ChangePostalCodeModalComponent,
     ChangeIbanComponent,
-    ChangeIbanModalComponent
+    ChangeIbanModalComponent,
+    RequestsComponent
   ],
   imports: [
     NgbModule,

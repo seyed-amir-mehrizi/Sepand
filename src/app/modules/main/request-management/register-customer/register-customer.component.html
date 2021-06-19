@@ -703,7 +703,7 @@
           <div class="col-md-3 my-2">
             <label for="mobileNumber"> شماره موبایل </label>
             <input id="mobileNumber" (keypress)="numberOnly($event)" type="text" formControlName="mobileNumber"
-              class="form-control" [ngClass]="{
+              class="form-control dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.mobileNumber.errors
@@ -712,7 +712,7 @@
           <div class="col-md-3 my-2">
             <label for="telephone"> تلفن </label>
             <input id="telephone" (keypress)="numberOnly($event)" type="text" formControlName="telephone"
-              class="form-control" [ngClass]="{
+              class="form-control dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.telephone.errors
@@ -720,7 +720,7 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="email"> رایانامه </label>
-            <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{
+            <input id="email" type="text" formControlName="email" class="form-control dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.email.errors
@@ -728,7 +728,7 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="webSiteAddress"> وب سایت </label>
-            <input id="webSiteAddress" type="text" formControlName="webSiteAddress" class="form-control" [ngClass]="{
+            <input id="webSiteAddress" type="text" formControlName="webSiteAddress" class="form-control dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.webSiteAddress.errors
@@ -748,7 +748,7 @@
             <label for="addressEn"> آدرس انگلیسی </label>
             <input
               onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "
-              id="addressEn" type="text" formControlName="addressEn" class="form-control" [ngClass]="{
+              id="addressEn" type="text" formControlName="addressEn" class="form-control dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.addressEn.errors

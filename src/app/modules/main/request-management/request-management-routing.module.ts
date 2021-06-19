@@ -8,6 +8,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { RemoveTerminalComponent } from './remove-terminal/remove-terminal.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
+import { RequestsComponent } from './requests/requests.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'changheIban' ,
     component: ChangeIbanComponent
+  },
+  {
+    path: 'requests' ,
+    component: RequestsComponent
   }
 ];
 

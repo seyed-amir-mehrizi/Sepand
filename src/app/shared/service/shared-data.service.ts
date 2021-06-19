@@ -53,4 +53,8 @@ export class SharedDataService {
       params,
     });
   }
+
+  getAllRequestType() {
+    return this.http.get(this.sharedDataApi + '/request-types');
+  }
 }
