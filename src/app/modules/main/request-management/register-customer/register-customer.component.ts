@@ -610,13 +610,13 @@ export class RegisterCustomerComponent implements OnInit {
   initLocationInfoForm() {
     this.LocationInfoForm = this.fb.group({
       mobileNumber: ['', [Validators.required , Validators.minLength(11) , Validators.maxLength(11)]],
-      telephone: ['', [Validators.required]],
+      telephone: ['', [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       addressFa: ['', Validators.required],
       addressEn: ['', Validators.required],
-      shopPostalCode: ['', Validators.required],
-      shopFaxNumber: ['', Validators.required],
-      shopTelephoneNumber: ['', Validators.required],
+      shopPostalCode: ['',[Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
+      shopFaxNumber: ['',  [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
+      shopTelephoneNumber: ['', [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       shopCityPreCode: ['', Validators.required],
       shopBusinessLicenseNumber: ['', Validators.required],
       shopBusinessLicenseIssueDate: ['', Validators.required],

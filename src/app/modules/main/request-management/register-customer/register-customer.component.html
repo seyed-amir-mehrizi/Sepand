@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="3" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
@@ -758,7 +758,7 @@
           <div class="col-md-3 my-2">
             <label for="shopPostalCode"> کد پستی فروشگاه </label>
             <input id="shopPostalCode" type="text" (keypress)="numberOnly($event)" formControlName="shopPostalCode"
-              class="form-control" [ngClass]="{
+              class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopPostalCode.errors
@@ -767,7 +767,7 @@
           <div class="col-md-3 my-2">
             <label for="shopFaxNumber"> فکس فروشگاه </label>
             <input id="shopFaxNumber" type="text" (keypress)="numberOnly($event)" formControlName="shopFaxNumber"
-              class="form-control" [ngClass]="{
+              class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopFaxNumber.errors
@@ -776,7 +776,7 @@
           <div class="col-md-3 my-2">
             <label for="shopTelephoneNumber"> شماره تلفن فروشگاه </label>
             <input id="shopTelephoneNumber" type="text" formControlName="shopTelephoneNumber"
-              (keypress)="numberOnly($event)" class="form-control" [ngClass]="{
+              (keypress)="numberOnly($event)" class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopTelephoneNumber.errors
@@ -784,7 +784,7 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="shopCityPreCode"> پیش شماره شهر فروشگاه </label>
-            <input id="shopCityPreCode" type="text" formControlName="shopCityPreCode" class="form-control"
+            <input id="shopCityPreCode" type="text" formControlName="shopCityPreCode" class="form-control  dir-ltr"
               (keypress)="numberOnly($event)" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -794,7 +794,7 @@
           <div class="col-md-3 my-2">
             <label for="shopBusinessLicenseNumber">شماره مجوز کسب و کار </label>
             <input id="shopBusinessLicenseNumber" type="text" formControlName="shopBusinessLicenseNumber"
-              (keypress)="numberOnly($event)" class="form-control" [ngClass]="{
+              (keypress)="numberOnly($event)" class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopBusinessLicenseNumber.errors
@@ -804,7 +804,7 @@
 
           <div class="col-md-3 my-2">
             <label for="shopEmail"> ایمیل فروشگاه </label>
-            <input id="shopEmail" type="text" formControlName="shopEmail" class="form-control" [ngClass]="{
+            <input id="shopEmail" type="text" formControlName="shopEmail" class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopEmail.errors
@@ -856,7 +856,7 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="redirectUrl"> redirectUrl </label>
-            <input id="redirectUrl" type="text" formControlName="redirectUrl" class="form-control" [ngClass]="{
+            <input id="redirectUrl" type="text" formControlName="redirectUrl" class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.redirectUrl.errors
@@ -884,7 +884,7 @@
 
           <div class="col-md-3 my-2">
             <label for="shopLogo"> لوگوی فروشگاه </label>
-            <input id="shopLogo" type="file" accept=".png" class="form-control" (change)="changeListener($event)"
+            <input id="shopLogo" type="file" accept=".png, .jpg" class="form-control" (change)="changeListener($event)"
               [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -901,7 +901,7 @@
           </div>
           <div class="col-md-3 my-2">
             <label for="shopNameEn">نام فروشگاه انگلیسی </label>
-            <input id="shopNameEn" type="text" formControlName="shopNameEn" class="form-control" [ngClass]="{
+            <input id="shopNameEn" type="text" formControlName="shopNameEn" class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopNameEn.errors
@@ -909,7 +909,7 @@
               onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
           </div>
           <div class="col-md-3 my-2">
-            <label for="taxPayerCode"> کد مالیات دهنده </label>
+            <label for="taxPayerCode"> کد  رهگیری مالیاتی </label>
             <input id="taxPayerCode" type="text" formControlName="taxPayerCode" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
