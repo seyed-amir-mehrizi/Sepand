@@ -49,14 +49,52 @@
       </ngb-panel>
   </ngb-accordion>
   
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event , requestFilter.value)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event , requestFilter.value)" class="nav-tabs mt-3">
   <li [ngbNavItem]="1">
     <a ngbNavLink>ثبت اولیه</a>
     <ng-template ngbNavContent>
-      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-        keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
-        salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>کد مشتری</th>
+                <th>
+                  نام پذیرنده ( شخص/شرکت)
+                </th>
+                <th>نام فروشگاه</th>
+                <th>نام psp </th>
+                <th>وضعیت </th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of firstRegisterList">
+                <td>
+                    {{item?.customerId }}
+                </td>
+                <td>
+                    {{item.customer.person.isLegal ? item.customer.person.comNameFa :  item.customer.person.firstNameFa +' ' + item.customer.person.lastNameFa}}
+                </td>
+                <td>{{item?.customer.shopNameFa}}</td>
+                <td>{{item?.psp}}</td>
+                <td>
+                    {{item?.requestType}}
+                </td>
+                <td>
+                    <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"  (click)="onOpenModalFirstRegister(item)">ویرایش</button>
+                    <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2">در حال ویرایش توسط {{item?.editedBy}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="w-100 d-flex justify-content-center">
+      <ngb-pagination (pageChange)="clickOnPageFirstRegister($event)" [pageSize]="10" [boundaryLinks]="true"
+          [collectionSize]="totalRecordsFirstRegister" [maxSize]="5" [(page)]="page">
+          <ng-template ngbPaginationPrevious>قبلی</ng-template>
+          <ng-template ngbPaginationNext>بعدی</ng-template>
+          <ng-template ngbPaginationFirst>ابتدا</ng-template>
+          <ng-template ngbPaginationLast>انتها</ng-template>
+      </ngb-pagination>
+  </span>
     </ng-template>
   </li>
   <li [ngbNavItem]="2">

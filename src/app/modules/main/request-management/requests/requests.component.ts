@@ -15,11 +15,17 @@ export class RequestsComponent implements OnInit {
   active;
   disabled = true;
   reqestTypeList:any = [];
+  firstRegisterList : any = [];
+  sendToPspList : any = [];
+  shaparakList : any = [];
+  completedList : any = [];
+
   pspList:any = [];
   page: number = 1;
   requestFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
+  totalRecordsFirstRegister:number;
   params = {
     NationalId: '',
     ForeignPervasiveCode: '',
@@ -43,6 +49,14 @@ export class RequestsComponent implements OnInit {
     this.initForm();
     this.getRequestTypeList();
     this.getPspList();
+    this.spinner.show();
+    this.requestService.getListOfFirstRegistration(this.params)
+        .subscribe((result: any) => {
+          this.firstRegisterList = result.data;
+          this.totalRecordsFirstRegister = result.totalRecord;
+          this.spinner.hide();
+        });
+
 
   }
 
@@ -78,8 +92,8 @@ export class RequestsComponent implements OnInit {
       case 1:
         this.requestService.getListOfFirstRegistration(item)
         .subscribe((result: any) => {
-          this.requestslist = result.data;
-          this.totalRecords = result.totalRecord;
+          this.firstRegisterList = result.data;
+          this.totalRecordsFirstRegister = result.totalRecord;
           this.spinner.hide();
         });
         break;
@@ -122,8 +136,8 @@ export class RequestsComponent implements OnInit {
       case 1:
         this.requestService.getListOfFirstRegistration(item)
         .subscribe((result: any) => {
-          this.requestslist = result.data;
-          this.totalRecords = result.totalRecord;
+          this.firstRegisterList = result.data;
+          this.totalRecordsFirstRegister = result.totalRecord;
           this.spinner.hide();
         });
         break;
@@ -155,6 +169,22 @@ export class RequestsComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  clickOnPageFirstRegister(e){
+    this.spinner.show();
+    this.requestService.getListOfFirstRegistration(this.params)
+        .subscribe((result: any) => {
+          this.firstRegisterList = result.data;
+          this.totalRecordsFirstRegister = result.totalRecord;
+          this.spinner.hide();
+        });
+
+  }
+
+  onOpenModalFirstRegister(item){
+    console.log("item : " , item);
+    
   }
 
 
