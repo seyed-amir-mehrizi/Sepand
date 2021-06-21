@@ -18,6 +18,7 @@ export class CustomersService {
         Name:data.Name,
         RegisterNo:data.RegisterNo,
         ForeignPervasiveCode:data.ForeignPervasiveCode,
+        CustomerId:data.CustomerId
       }
         return this.http.get(this.customerApi+'/customers' , {params});
     

@@ -23,6 +23,7 @@ export class CustomerListComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
+    CustomerId:'',
     Page: 1,
 
   }
@@ -45,6 +46,8 @@ export class CustomerListComponent implements OnInit {
       Name: [''] ,
       LastName: [''] ,
       ShopName: [''] ,
+      CustomerId: [''] ,
+
     });
   }
 

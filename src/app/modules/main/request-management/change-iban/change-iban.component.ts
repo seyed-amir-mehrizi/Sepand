@@ -24,6 +24,8 @@ export class ChangeIbanComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
+    CustomerId:'',
+
     Page: 1,
 
   }
@@ -46,6 +48,8 @@ export class ChangeIbanComponent implements OnInit {
       Name: [''] ,
       LastName: [''] ,
       ShopName: [''] ,
+      CustomerId: [''] ,
+
     });
   }
 

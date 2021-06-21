@@ -25,6 +25,8 @@ export class RemoveTerminalComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
+    CustomerId:'',
+
     Page: 1,
 
   }
@@ -44,9 +46,11 @@ export class RemoveTerminalComponent implements OnInit {
       NationalId: [''],
       ForeignPervasiveCode: [''],
       RegisterNo: [''],
-      Name: [''],
-      LastName: [''],
-      ShopName: [''],
+      Name: [''] ,
+      LastName: [''] ,
+      ShopName: [''] ,
+      CustomerId: [''] ,
+
     });
   }
 

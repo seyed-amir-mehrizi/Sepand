@@ -16,6 +16,7 @@ export class ChangePostalCodeComponent implements OnInit {
   customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
+  
   params = {
     NationalId: '',
     ForeignPervasiveCode: '',
@@ -23,6 +24,8 @@ export class ChangePostalCodeComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
+    CustomerId:'',
+
     Page: 1,
 
   }
@@ -36,15 +39,16 @@ export class ChangePostalCodeComponent implements OnInit {
     this.getCustomers(this.params);
     this.initForm();
   }
-
   initForm() {
     this.customerFilter = this.fb.group({
       NationalId: [''],
       ForeignPervasiveCode: [''],
       RegisterNo: [''],
-      Name: [''],
-      LastName: [''],
-      ShopName: [''],
+      Name: [''] ,
+      LastName: [''] ,
+      ShopName: [''] ,
+      CustomerId: [''] ,
+
     });
   }
 

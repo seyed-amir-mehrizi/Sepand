@@ -23,6 +23,8 @@ export class ChangeClassComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
+    CustomerId:'',
+
     Page: 1,
 
   }
@@ -45,8 +47,11 @@ export class ChangeClassComponent implements OnInit {
       Name: [''] ,
       LastName: [''] ,
       ShopName: [''] ,
+      CustomerId: [''] ,
+
     });
   }
+  
 
 
   getCustomers(params: any) {    

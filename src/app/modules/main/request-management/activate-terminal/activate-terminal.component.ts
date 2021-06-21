@@ -24,6 +24,8 @@ export class ActivateTerminalComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
+    CustomerId:'',
+
     Page: 1,
 
   }
@@ -43,9 +45,11 @@ export class ActivateTerminalComponent implements OnInit {
       NationalId: [''],
       ForeignPervasiveCode: [''],
       RegisterNo: [''],
-      Name: [''],
-      LastName: [''],
-      ShopName: [''],
+      Name: [''] ,
+      LastName: [''] ,
+      ShopName: [''] ,
+      CustomerId: [''] ,
+
     });
   }
 
@@ -107,6 +111,14 @@ export class ActivateTerminalComponent implements OnInit {
   }
   return true;
 
+  }
+  
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
 }
