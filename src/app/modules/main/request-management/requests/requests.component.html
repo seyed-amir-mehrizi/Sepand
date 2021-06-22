@@ -1,250 +1,344 @@
 <div id="customerList">
   <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-      <ngb-panel title="فیلتر جستجو">
-          <ng-template ngbPanelContent>
-              <form [formGroup]="requestFilter">
-                  <div class="row">
-                      <div class="col-md-3">
-                          <label for="NationalId">کد ملی</label>
-                          <input (keypress)="numberOnly($event)" id="NationalId" type="text" formControlName="NationalId" class="form-control" />
-                      </div>
-                      <div class="col-md-3">
-                          <label for="ForeignPervasiveCode">کد اتباع</label>
-                          <input (keypress)="numberOnly($event)" id="ForeignPervasiveCode" type="text" formControlName="ForeignPervasiveCode" class="form-control" />
-                      </div>
-                      <div class="col-md-3">
-                          <label for="LegalNationalCode"> شناسه ملی حقوقی</label>
-                          <input (keypress)="numberOnly($event)" id="LegalNationalCode" type="text" formControlName="LegalNationalCode" class="form-control" />
-                      </div>
-                      <div class="col-md-3">
-                          <label for="RequestType">نوع درخواست </label>
-                          <select id="RequestType" class="form-control" formControlName="RequestType">
-                            <option></option>
-                          <option *ngFor="let item of reqestTypeList" [value]="item.id">
-                            {{ item.name }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-3 my-2">
-                          <label for="LastName">Psp</label>
-                          <select id="RequestType" class="form-control" formControlName="RequestType">
-                            <option></option>
-                            <option *ngFor="let item of pspList" [value]="item.id">
-                              {{ item.name }}
-                            </option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 my-2">
-                          <label for="ShopName">نام فروشگاه</label>
-                          <input id="ShopName" type="text" formControlName="ShopName" class="form-control" />
-                      </div>
-                      <div class="col-md-12 mt-2">
-                          <button class="btn btn-primary" type="submit"
-                              (click)="serachRequest(requestFilter.value)">جستجو</button>
-                      </div>
-                  </div>
-
-              </form>
-          </ng-template>
-      </ngb-panel>
+    <ngb-panel title="فیلتر جستجو">
+      <ng-template ngbPanelContent>
+        <form [formGroup]="requestFilter">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="NationalId">کد ملی</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="NationalId"
+                type="text"
+                formControlName="NationalId"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="ForeignPervasiveCode">کد اتباع</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="ForeignPervasiveCode"
+                type="text"
+                formControlName="ForeignPervasiveCode"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="LegalNationalCode"> شناسه ملی حقوقی</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="LegalNationalCode"
+                type="text"
+                formControlName="LegalNationalCode"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="RequestType">نوع درخواست </label>
+              <select
+                id="RequestType"
+                class="form-control"
+                formControlName="RequestType"
+              >
+                <option></option>
+                <option *ngFor="let item of reqestTypeList" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-3 my-2">
+              <label for="LastName">Psp</label>
+              <select
+                id="RequestType"
+                class="form-control"
+                formControlName="RequestType"
+              >
+                <option></option>
+                <option *ngFor="let item of pspList" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-3 my-2">
+              <label for="ShopName">نام فروشگاه</label>
+              <input
+                id="ShopName"
+                type="text"
+                formControlName="ShopName"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-12 mt-2">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                (click)="serachRequest(requestFilter.value)"
+              >
+                جستجو
+              </button>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </ngb-panel>
   </ngb-accordion>
-  
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event , requestFilter.value)" class="nav-tabs mt-3">
-  <li [ngbNavItem]="1">
-    <a ngbNavLink>ثبت اولیه</a>
-    <ng-template ngbNavContent>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
+
+  <ul
+    ngbNav
+    #nav="ngbNav"
+    [(activeId)]="active"
+    (navChange)="onNavChange($event, requestFilter.value)"
+    class="nav-tabs mt-3"
+  >
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>ثبت اولیه</a>
+      <ng-template ngbNavContent>
+        <table class="table table-bordered table-striped text-center">
+          <thead>
             <tr>
-                <th>کد مشتری</th>
-                <th>
-                  نام پذیرنده ( شخص/شرکت)
-                </th>
-                <th>نام فروشگاه</th>
-                <th>نام psp </th>
-                <th>وضعیت </th>
-                <th>عملیات</th>
+              <th>کد مشتری</th>
+              <th>نام پذیرنده ( شخص/شرکت)</th>
+              <th>نام فروشگاه</th>
+              <th>نام psp</th>
+              <th>وضعیت</th>
+              <th>عملیات</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let item of firstRegisterList">
-                <td>
-                    {{item?.customerId }}
-                </td>
-                <td>
-                    {{item.customer.person.isLegal ? item.customer.person.comNameFa :  item.customer.person.firstNameFa +' ' + item.customer.person.lastNameFa}}
-                </td>
-                <td>{{item?.customer.shopNameFa}}</td>
-                <td>{{item?.psp}}</td>
-                <td>
-                    {{item?.requestType}}
-                </td>
-                <td>
-                    <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"  (click)="onOpenModalFirstRegister(item)">ویرایش</button>
-                    <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2">در حال ویرایش توسط {{item?.editedBy}}</span>
-                </td>
+              <td>
+                {{ item?.customerId }}
+              </td>
+              <td>
+                {{
+                  item.customer.person.isLegal
+                    ? item.customer.person.comNameFa
+                    : item.customer.person.firstNameFa +
+                      " " +
+                      item.customer.person.lastNameFa
+                }}
+              </td>
+              <td>{{ item?.customer.shopNameFa }}</td>
+              <td>{{ item?.psp }}</td>
+              <td>
+                {{ item?.requestType }}
+              </td>
+              <td>
+                <button
+                  [disabled]="item.editedBy !== null"
+                  class="btn btn-warning btn-sm"
+                  (click)="onOpenModalFirstRegister(item)"
+                >
+                  ویرایش
+                </button>
+                <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2"
+                  >در حال ویرایش توسط {{ item?.editedBy }}</span
+                >
+              </td>
             </tr>
-        </tbody>
-    </table>
-    <span class="w-100 d-flex justify-content-center">
-      <ngb-pagination (pageChange)="clickOnPageFirstRegister($event)" [pageSize]="10" [boundaryLinks]="true"
-          [collectionSize]="totalRecordsFirstRegister" [maxSize]="5" [(page)]="page">
-          <ng-template ngbPaginationPrevious>قبلی</ng-template>
-          <ng-template ngbPaginationNext>بعدی</ng-template>
-          <ng-template ngbPaginationFirst>ابتدا</ng-template>
-          <ng-template ngbPaginationLast>انتها</ng-template>
-      </ngb-pagination>
-  </span>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="2">
-    <a ngbNavLink>ارسال شده به psp</a>
-    <ng-template ngbNavContent>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
+          </tbody>
+        </table>
+        <span class="w-100 d-flex justify-content-center">
+          <ngb-pagination
+            (pageChange)="clickOnPageFirstRegister($event)"
+            [pageSize]="10"
+            [boundaryLinks]="true"
+            [collectionSize]="totalRecordsFirstRegister"
+            [maxSize]="5"
+            [(page)]="page"
+          >
+            <ng-template ngbPaginationPrevious>قبلی</ng-template>
+            <ng-template ngbPaginationNext>بعدی</ng-template>
+            <ng-template ngbPaginationFirst>ابتدا</ng-template>
+            <ng-template ngbPaginationLast>انتها</ng-template>
+          </ngb-pagination>
+        </span>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>ارسال شده به psp</a>
+      <ng-template ngbNavContent>
+        <table class="table table-bordered table-striped text-center">
+          <thead>
             <tr>
-                <th>کد مشتری</th>
-                <th>
-                  نام پذیرنده ( شخص/شرکت)
-                </th>
-                <th>نام فروشگاه</th>
-                <th>نام psp </th>
-                <th>وضعیت </th>
-                <th>عملیات</th>
+              <th>کد مشتری</th>
+              <th>نام پذیرنده ( شخص/شرکت)</th>
+              <th>نام فروشگاه</th>
+              <th>نام psp</th>
+              <th>وضعیت</th>
+              <th>عملیات</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let item of sendToPspList">
-                <td>
-                    {{item?.customerId }}
-                </td>
-                <td>
-                    {{item.customer.person.isLegal ? item.customer.person.comNameFa :  item.customer.person.firstNameFa +' ' + item.customer.person.lastNameFa}}
-                </td>
-                <td>{{item?.customer.shopNameFa}}</td>
-                <td>{{item?.psp}}</td>
-                <td>
-                    {{item?.requestType}}
-                </td>
-                <td>
-                    <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"  (click)="onOpenModalFirstRegister(item)">ویرایش</button>
-                    <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2">در حال ویرایش توسط {{item?.editedBy}}</span>
-                </td>
+              <td>
+                {{ item?.customerId }}
+              </td>
+              <td>
+                {{
+                  item.customer.person.isLegal
+                    ? item.customer.person.comNameFa
+                    : item.customer.person.firstNameFa +
+                      " " +
+                      item.customer.person.lastNameFa
+                }}
+              </td>
+              <td>{{ item?.customer.shopNameFa }}</td>
+              <td>{{ item?.psp }}</td>
+              <td>
+                {{ item?.requestType }}
+              </td>
+              <td>
+                <button
+                  [disabled]="item.editedBy !== null"
+                  class="btn btn-warning btn-sm"
+                  (click)="onOpenModalFirstRegister(item)"
+                >
+                  ویرایش
+                </button>
+                <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2"
+                  >در حال ویرایش توسط {{ item?.editedBy }}</span
+                >
+              </td>
             </tr>
-        </tbody>
-    </table>
-    <span class="w-100 d-flex justify-content-center">
-      <ngb-pagination (pageChange)="clickOnPageSendToPsp($event)" [pageSize]="10" [boundaryLinks]="true"
-          [collectionSize]="totalRecordsSendToPsp" [maxSize]="5" [(page)]="page">
-          <ng-template ngbPaginationPrevious>قبلی</ng-template>
-          <ng-template ngbPaginationNext>بعدی</ng-template>
-          <ng-template ngbPaginationFirst>ابتدا</ng-template>
-          <ng-template ngbPaginationLast>انتها</ng-template>
-      </ngb-pagination>
-  </span>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="3">
-    <a ngbNavLink>فرآیند شاپرک</a>
-    <ng-template ngbNavContent>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
+          </tbody>
+        </table>
+        <span class="w-100 d-flex justify-content-center">
+          <ngb-pagination
+            (pageChange)="clickOnPageSendToPsp($event)"
+            [pageSize]="10"
+            [boundaryLinks]="true"
+            [collectionSize]="totalRecordsSendToPsp"
+            [maxSize]="5"
+            [(page)]="page"
+          >
+            <ng-template ngbPaginationPrevious>قبلی</ng-template>
+            <ng-template ngbPaginationNext>بعدی</ng-template>
+            <ng-template ngbPaginationFirst>ابتدا</ng-template>
+            <ng-template ngbPaginationLast>انتها</ng-template>
+          </ngb-pagination>
+        </span>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>فرآیند شاپرک</a>
+      <ng-template ngbNavContent>
+        <table class="table table-bordered table-striped text-center">
+          <thead>
             <tr>
-                <th>کد مشتری</th>
-                <th>
-                  نام پذیرنده ( شخص/شرکت)
-                </th>
-                <th>نام فروشگاه</th>
-                <th>نام psp </th>
-                <th>وضعیت </th>
-                <th>عملیات</th>
+              <th>کد مشتری</th>
+              <th>نام پذیرنده ( شخص/شرکت)</th>
+              <th>نام فروشگاه</th>
+              <th>نام psp</th>
+              <th>وضعیت</th>
+              <th>عملیات</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let item of shaparakList">
-                <td>
-                    {{item?.customerId }}
-                </td>
-                <td>
-                    {{item.customer.person.isLegal ? item.customer.person.comNameFa :  item.customer.person.firstNameFa +' ' + item.customer.person.lastNameFa}}
-                </td>
-                <td>{{item?.customer.shopNameFa}}</td>
-                <td>{{item?.psp}}</td>
-                <td>
-                    {{item?.requestType}}
-                </td>
-                <td>
-                    <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"  (click)="onOpenModalFirstRegister(item)">ویرایش</button>
-                    <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2">در حال ویرایش توسط {{item?.editedBy}}</span>
-                </td>
+              <td>
+                {{ item?.customerId }}
+              </td>
+              <td>
+                {{
+                  item.customer.person.isLegal
+                    ? item.customer.person.comNameFa
+                    : item.customer.person.firstNameFa +
+                      " " +
+                      item.customer.person.lastNameFa
+                }}
+              </td>
+              <td>{{ item?.customer.shopNameFa }}</td>
+              <td>{{ item?.psp }}</td>
+              <td>
+                {{ item?.requestType }}
+              </td>
+              <td>
+                <button
+                  [disabled]="item.editedBy !== null"
+                  class="btn btn-warning btn-sm"
+                  (click)="onOpenModalFirstRegister(item)"
+                >
+                  ویرایش
+                </button>
+                <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2"
+                  >در حال ویرایش توسط {{ item?.editedBy }}</span
+                >
+              </td>
             </tr>
-        </tbody>
-    </table>
-    <span class="w-100 d-flex justify-content-center">
-      <ngb-pagination (pageChange)="clickOnPageShaparak($event)" [pageSize]="10" [boundaryLinks]="true"
-          [collectionSize]="totalRecordsShaparak" [maxSize]="5" [(page)]="page">
-          <ng-template ngbPaginationPrevious>قبلی</ng-template>
-          <ng-template ngbPaginationNext>بعدی</ng-template>
-          <ng-template ngbPaginationFirst>ابتدا</ng-template>
-          <ng-template ngbPaginationLast>انتها</ng-template>
-      </ngb-pagination>
-  </span>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="4">
-    <a ngbNavLink>تکمیل شده</a>
-    <ng-template ngbNavContent>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
+          </tbody>
+        </table>
+        <span class="w-100 d-flex justify-content-center">
+          <ngb-pagination
+            (pageChange)="clickOnPageShaparak($event)"
+            [pageSize]="10"
+            [boundaryLinks]="true"
+            [collectionSize]="totalRecordsShaparak"
+            [maxSize]="5"
+            [(page)]="page"
+          >
+            <ng-template ngbPaginationPrevious>قبلی</ng-template>
+            <ng-template ngbPaginationNext>بعدی</ng-template>
+            <ng-template ngbPaginationFirst>ابتدا</ng-template>
+            <ng-template ngbPaginationLast>انتها</ng-template>
+          </ngb-pagination>
+        </span>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>تکمیل شده</a>
+      <ng-template ngbNavContent>
+        <table class="table table-bordered table-striped text-center">
+          <thead>
             <tr>
-                <th>کد مشتری</th>
-                <th>
-                  نام پذیرنده ( شخص/شرکت)
-                </th>
-                <th>نام فروشگاه</th>
-                <th>نام psp </th>
-                <th>وضعیت </th>
-                <th>عملیات</th>
+              <th>کد مشتری</th>
+              <th>نام پذیرنده ( شخص/شرکت)</th>
+              <th>نام فروشگاه</th>
+              <th>نام psp</th>
+              <th>وضعیت</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let item of completedList">
-                <td>
-                    {{item?.customerId }}
-                </td>
-                <td>
-                    {{item.customer.person.isLegal ? item.customer.person.comNameFa :  item.customer.person.firstNameFa +' ' + item.customer.person.lastNameFa}}
-                </td>
-                <td>{{item?.customer.shopNameFa}}</td>
-                <td>{{item?.psp}}</td>
-                <td>
-                    {{item?.requestType}}
-                </td>
-                <td>
-                    <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"  (click)="onOpenModalFirstRegister(item)">ویرایش</button>
-                    <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2">در حال ویرایش توسط {{item?.editedBy}}</span>
-                </td>
+              <td>
+                {{ item?.customerId }}
+              </td>
+              <td>
+                {{
+                  item.customer.person.isLegal
+                    ? item.customer.person.comNameFa
+                    : item.customer.person.firstNameFa +
+                      " " +
+                      item.customer.person.lastNameFa
+                }}
+              </td>
+              <td>{{ item?.customer.shopNameFa }}</td>
+              <td>{{ item?.psp }}</td>
+              <td>
+                {{ item?.requestType }}
+              </td>
             </tr>
-        </tbody>
-    </table>
-    <span class="w-100 d-flex justify-content-center">
-      <ngb-pagination (pageChange)="clickOnPageCompleted($event)" [pageSize]="10" [boundaryLinks]="true"
-          [collectionSize]="totalRecordsCompleted" [maxSize]="5" [(page)]="page">
-          <ng-template ngbPaginationPrevious>قبلی</ng-template>
-          <ng-template ngbPaginationNext>بعدی</ng-template>
-          <ng-template ngbPaginationFirst>ابتدا</ng-template>
-          <ng-template ngbPaginationLast>انتها</ng-template>
-      </ngb-pagination>
-  </span>
-    </ng-template>
-  </li>
-</ul>
+          </tbody>
+        </table>
+        <span class="w-100 d-flex justify-content-center">
+          <ngb-pagination
+            (pageChange)="clickOnPageCompleted($event)"
+            [pageSize]="10"
+            [boundaryLinks]="true"
+            [collectionSize]="totalRecordsCompleted"
+            [maxSize]="5"
+            [(page)]="page"
+          >
+            <ng-template ngbPaginationPrevious>قبلی</ng-template>
+            <ng-template ngbPaginationNext>بعدی</ng-template>
+            <ng-template ngbPaginationFirst>ابتدا</ng-template>
+            <ng-template ngbPaginationLast>انتها</ng-template>
+          </ngb-pagination>
+        </span>
+      </ng-template>
+    </li>
+  </ul>
 
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
-
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>
-
-
-
-  
- 

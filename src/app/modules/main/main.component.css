@@ -8,7 +8,7 @@
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 280px;
+    width:240px;
     background-color: #34495e;
     position: fixed;
     height: 100%;
@@ -16,17 +16,17 @@
   }
 
   .content{
-      margin-right: 280px;
+      margin-right: 240px;
       position: relative;
       min-height: 100%;
   }
 
   footer {
-    background-color: orange;
-    position: absolute;
-    left: 0;
+    position: fixed;
+    height: 30px;
     bottom: 0;
-    height: 100px;
-    width: 100%;
-    overflow: hidden;
+   margin-right: 242px;
+   background-color: #E7E9EB!important;
+   font-size: 12px;
+   direction: ltr;
 }

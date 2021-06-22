@@ -8,6 +8,7 @@ import { UsersListComponent } from './user/users-list/users-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestManagementModule } from './request-management/request-management.module';
 import { BasicInfoModule } from './basic-info/basic-info.module';
+import { MainPageComponent } from './main-page/main-page.component';
 
 
 
@@ -16,7 +17,8 @@ import { BasicInfoModule } from './basic-info/basic-info.module';
 @NgModule({
   declarations: [
     MainComponent,
-    UsersListComponent
+    UsersListComponent,
+    MainPageComponent
   ],
   imports: [
     CommonModule,

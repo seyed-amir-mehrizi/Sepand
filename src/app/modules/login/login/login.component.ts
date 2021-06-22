@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.service.login(credential)
     .subscribe((result: any) => {
       if (result){
-        window.location.href = '/main';
+        window.location.href = '/main/mainPage';
       }
     });
   }
