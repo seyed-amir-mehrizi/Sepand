@@ -1,17 +1,14 @@
+<div class="main">
+  <div class="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
 
- <div class="main">
-     <div class="sidebar">
-        <app-sidebar></app-sidebar>
-     </div>
-
-     <div class="content">
-       <header>
-         <app-navbar></app-navbar>
-       </header>
-       <div class="px-4 mb-5">
-        <router-outlet ></router-outlet>
-       </div>
-     </div>
-
-
- </div>
+  <div class="content">
+    <header>
+      <app-navbar></app-navbar>
+    </header>
+    <div class="px-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
