@@ -35,6 +35,8 @@ export class ProjectListComponent implements OnInit {
     modalRef.componentInstance.projectInfo = item;
     modalRef.result.then(() => {
       this.getListOfPorjects();
+    },()=>{
+      
     });
   }
 

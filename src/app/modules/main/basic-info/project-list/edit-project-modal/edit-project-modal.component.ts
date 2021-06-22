@@ -23,7 +23,7 @@ export class EditProjectModalComponent implements OnInit {
     private fb: FormBuilder,
     private sharedService: SharedDataService,
     private toastr: ToastrService,
-    private baseInfoService : BaseInfoService,
+    private baseInfoService: BaseInfoService,
     public ngbActiveModal: NgbActiveModal,
 
   ) { }
@@ -100,31 +100,37 @@ export class EditProjectModalComponent implements OnInit {
     return true;
   }
 
-  setValueForForm(){
-   this.registerProjectInfo.setValue({
-    projectName: this.projectInfo.projectName,
-    shareType: this.projectInfo.shareType,
-    shareAmountMax: this.projectInfo.shareAmountMax,
-    shareAmountMin:this.projectInfo.shareAmountMin,
-    sharedAmount: this.projectInfo.sharedAmount,
-   })
-   switch (this.projectInfo.shareType) {
-     case "1":
-      this.hasPercentage = true;
-      this.hasAmount = false;
-       break;
-       case "2":
+  setValueForForm() {
+    this.registerProjectInfo.setValue({
+      projectName: this.projectInfo.projectName,
+      shareType: this.projectInfo.shareType,
+      shareAmountMax: this.projectInfo.shareAmountMax,
+      shareAmountMin: this.projectInfo.shareAmountMin,
+      sharedAmount: this.projectInfo.sharedAmount,
+    })
+    console.log("this.projectInfo : " , this.projectInfo);
+    
+    switch (this.projectInfo.shareType) {
+      case "1":
+        console.log("1");
+        
+        this.hasPercentage = true;
+        this.hasAmount = false;
+        break;
+      case "static":
+        console.log("2");
+
         this.hasPercentage = false;
         this.hasAmount = true;
-         break;
-   
-     default:
-       break;
-   }
-    
+        break;
+
+      default:
+        break;
+    }
+
   }
 
-  editProject(item){
+  editProject(item) {
     if (this.registerProjectInfo.invalid) {
       this.isRegisterProjectInfoFormSubmitted = true;
       return;
@@ -133,23 +139,23 @@ export class EditProjectModalComponent implements OnInit {
     switch (this.sharedTypeId) {
       case 1:
         dataSending.sharedAmount = 0;
-        if((dataSending.shareAmountMax === null || dataSending.shareAmountMax === '')
-         || (dataSending.shareAmountMin === null || dataSending.shareAmountMin === '')){
+        if ((dataSending.shareAmountMax === null || dataSending.shareAmountMax === '')
+          || (dataSending.shareAmountMin === null || dataSending.shareAmountMin === '')) {
           this.toastr.error('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
           return;
         }
-        else if(dataSending.shareAmountMin > dataSending.shareAmountMax){
+        else if (dataSending.shareAmountMin > dataSending.shareAmountMax) {
           this.toastr.error('کمترین مبلغ تسهیم نمی تواند از بیشترین مبلغ تسهیم بیشتر باشد');
           return;
         }
         break;
-        case 2:
-          dataSending.shareAmountMax = 0;
-          dataSending.shareAmountMin = 0;
-          if(dataSending.sharedAmount=== null || dataSending.sharedAmount=== '' ){
-            this.toastr.error(' مبلغ تسهیم را وارد کنید');
-            return;
-          }
+      case 2:
+        dataSending.shareAmountMax = 0;
+        dataSending.shareAmountMin = 0;
+        if (dataSending.sharedAmount === null || dataSending.sharedAmount === '') {
+          this.toastr.error(' مبلغ تسهیم را وارد کنید');
+          return;
+        }
         break;
       default:
         break;
@@ -159,12 +165,12 @@ export class EditProjectModalComponent implements OnInit {
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
     dataSending.id = this.projectInfo.id;
-    console.log("dataSending : " , dataSending);
-    
+    console.log("dataSending : ", dataSending);
+
     this.baseInfoService.editProject(dataSending)
-    .subscribe((res=>{
-      this.ngbActiveModal.close();
-    }))
+      .subscribe((res => {
+        this.ngbActiveModal.close();
+      }))
   }
 
 }
