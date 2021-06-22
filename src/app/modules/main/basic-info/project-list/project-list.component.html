@@ -7,8 +7,11 @@
           <th>نام پروژه</th>
           <th>نوع تسهیم</th>
           <th>مبلغ تسهیم</th>
-          <th>بیشترین مبلغ تسهیم</th>
           <th>کمترین مبلغ تسهیم</th>
+          <th>بیشترین مبلغ تسهیم</th>
+          <th>
+            عملیات
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -17,16 +20,19 @@
             {{ item.projectName }}
           </td>
           <td>
-            {{ item.shareType }}
+            {{ item.shareTypeTitle }}
           </td>
           <td>
             {{ item.sharedAmount }}
           </td>
           <td>
+            {{ item.shareAmountMin }}
+          </td>
+          <td>
             {{ item.shareAmountMax }}
           </td>
           <td>
-            {{ item.shareAmountMin }}
+            <button class="btn btn-warning btn-sm" (click)="onEditModalOpen(item)">ویرایش</button>
           </td>
         </tr>
       </tbody>

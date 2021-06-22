@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+         ویرایش پروژه
+    </h4>
+</div>
+<div class="modal-body text-justify line-height-3">
+    <form [formGroup]="registerProjectInfo" autocomplete="off" role="form">
+        <div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <label for="projectName">نام پروژه </label>
+                        <input id="projectName" type="text" formControlName="projectName" class="form-control"
+                            [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <label for="shareType">نوع تسهیم</label>
+                        <select id="shareType" class="form-control" formControlName="shareType" [ngClass]="{
+                  'is-invalid':
+                  isRegisterProjectInfoFormSubmitted &&
+                  registerProjectInfoFormSubmittedInfo.shareType.errors
+                }" (change)="onSharedTypeSelected(registerProjectInfo)">
+                            <option *ngFor="let item of sharedTypeList" [value]="item.id">
+                                {{ item.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <ng-container *ngIf="hasPercentage">
+                    <div class="col-md-3">
+                      <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
+                      <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
+                        formControlName="shareAmountMin" class="form-control dir-ltr" name="shareAmountMin" [ngClass]="{
+                          'is-invalid':
+                          isRegisterProjectInfoFormSubmitted &&
+                            registerProjectInfoFormSubmittedInfo.shareAmountMax.errors
+                        }" (keyup)="checkMin($event)" />
+                    </div>
+                    <div class="col-md-3">
+                      <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
+                      <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
+                        formControlName="shareAmountMax" class="form-control dir-ltr" name="shareAmountMax" [ngClass]="{
+                          'is-invalid':
+                          isRegisterProjectInfoFormSubmitted &&
+                            registerProjectInfoFormSubmittedInfo.shareAmountMax.errors
+                        }" (keyup)="checkMax($event)" />
+                    </div>
+    
+                  </ng-container>
+                  <div class="col-md-3" *ngIf="hasAmount">
+                    <label for="sharedAmount"> مبلغ تسهیم</label>
+                    <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
+                      class="form-control dir-ltr" name="sharedAmount" [ngClass]="{
+                        'is-invalid':
+                        isRegisterProjectInfoFormSubmitted &&
+                          registerProjectInfoFormSubmittedInfo.sharedAmount.errors
+                      }" />
+                  </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+        بستن
+    </button>
+    <button class="btn btn-success" type="button" (click)="editProject(registerProjectInfo.value)">ویرایش</button>
+</div>

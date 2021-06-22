@@ -21,4 +21,9 @@ export class BaseInfoService {
   addNewProject(data){
     return this.http.post(this.baseInfoApi + '/add-project' , data)
   }
+
+  editProject(data){
+    return this.http.put(this.baseInfoApi + '/edit-project' , data)
+
+  }
 }

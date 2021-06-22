@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseInfoService } from '../base-info.service';
+import { EditProjectModalComponent } from './edit-project-modal/edit-project-modal.component';
 
 @Component({
   selector: 'app-project-list',
@@ -10,7 +12,10 @@ import { BaseInfoService } from '../base-info.service';
 export class ProjectListComponent implements OnInit {
 
   projectList: any = [];
-  constructor(private baseInfoService : BaseInfoService  , private spinner: NgxSpinnerService,) { }
+  constructor(private baseInfoService : BaseInfoService  , private spinner: NgxSpinnerService,
+    private ngbModal: NgbModal, 
+    
+    ) { }
 
   ngOnInit(): void {
     this.getListOfPorjects();
@@ -23,6 +28,14 @@ export class ProjectListComponent implements OnInit {
         this.spinner.hide();
         this.projectList = res;
     })
+  }
+
+  onEditModalOpen(item){
+    const modalRef = this.ngbModal.open(EditProjectModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.projectInfo = item;
+    modalRef.result.then(() => {
+      this.getListOfPorjects();
+    });
   }
 
 }
