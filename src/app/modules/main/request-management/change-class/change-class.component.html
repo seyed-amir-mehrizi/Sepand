@@ -1,50 +1,94 @@
 <div id="customerList">
-  <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <ngb-panel title="فیلتر جستجو">
-            <ng-template ngbPanelContent>
-                <form [formGroup]="customerFilter">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="NationalId">کد ملی</label>
-                            <input (keypress)="numberOnly($event)" id="NationalId" type="text" formControlName="NationalId" class="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="ForeignPervasiveCode">کد اتباع</label>
-                            <input (keypress)="numberOnly($event)" id="ForeignPervasiveCode" type="text" formControlName="ForeignPervasiveCode" class="form-control" />
-                        </div>
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="فیلتر جستجو">
+      <ng-template ngbPanelContent>
+        <form [formGroup]="customerFilter">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="NationalId">کد ملی</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="NationalId"
+                type="text"
+                formControlName="NationalId"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="ForeignPervasiveCode">کد اتباع</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="ForeignPervasiveCode"
+                type="text"
+                formControlName="ForeignPervasiveCode"
+                class="form-control"
+              />
+            </div>
 
-                        <div class="col-md-3">
-                            <label for="CustomerId">کد مشتری</label>
-                            <input (keypress)="numberOnly($event)" id="CustomerId" type="text" formControlName="CustomerId" class="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="RegisterNo">شماره ثبت</label>
-                            <input (keypress)="numberOnly($event)" id="RegisterNo" type="text" formControlName="RegisterNo" class="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="Name">نام </label>
-                            <input (keypress)="FarsiOnly($event)" id="Name" type="text" formControlName="Name" class="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="LastName">نام خانوادگی</label>
-                            <input (keypress)="FarsiOnly($event)" id="LastName" type="text" formControlName="LastName" class="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="ShopName">نام فروشگاه</label>
-                            <input id="ShopName" type="text" formControlName="ShopName" class="form-control" />
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <button class="btn btn-primary" type="submit"
-                                (click)="serachCustomer(customerFilter.value)">جستجو</button>
-                        </div>
-                    </div>
+            <div class="col-md-3">
+              <label for="CustomerId">کد مشتری</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="CustomerId"
+                type="text"
+                formControlName="CustomerId"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="RegisterNo">شماره ثبت</label>
+              <input
+                (keypress)="numberOnly($event)"
+                id="RegisterNo"
+                type="text"
+                formControlName="RegisterNo"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="Name">نام </label>
+              <input
+                (keypress)="FarsiOnly($event)"
+                id="Name"
+                type="text"
+                formControlName="Name"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="LastName">نام خانوادگی</label>
+              <input
+                (keypress)="FarsiOnly($event)"
+                id="LastName"
+                type="text"
+                formControlName="LastName"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="ShopName">نام فروشگاه</label>
+              <input
+                id="ShopName"
+                type="text"
+                formControlName="ShopName"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-12 mt-2">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                (click)="serachCustomer(customerFilter.value)"
+              >
+                جستجو
+              </button>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
 
-                </form>
-            </ng-template>
-        </ngb-panel>
-    </ngb-accordion> -->
-
-  <app-filter (getFilterData)="getDataFromFilter($event)"></app-filter>
   <div class="card border-dark">
     <div class="card-header bg-secondary text-white">تغییر صنف</div>
     <div class="card-body bg-light">

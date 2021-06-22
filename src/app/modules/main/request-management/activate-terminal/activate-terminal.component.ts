@@ -81,7 +81,14 @@ export class ActivateTerminalComponent implements OnInit {
 
   serachCustomer(item: any) {
     this.spinner.show();
-
+    this.params.CustomerId = item.CustomerId;
+    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
+    this.params.LastName = item.LastName;
+    this.params.Name = item.Name;
+    this.params.NationalId = item.NationalId;
+    this.params.RegisterNo = item.RegisterNo;
+    this.params.ShopName = item.ShopName;
+    item.Page = this.page;
     item.Page = 1;
     this.service.getListOFCustomers(item)
       .subscribe((result: any) => {

@@ -25,7 +25,6 @@ export class ChangeClassComponent implements OnInit {
     ShopName: '',
     CustomerId:'',
     Page: 1,
-
   }
   item;
 
@@ -36,16 +35,26 @@ export class ChangeClassComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomers(this.params);
-    console.log("this.item : " , this.item);
-    
+    this.initForm();
   }
 
   getDataFromFilter(item) {
-    console.log("item : " , item);
-    console.log("this.customerslist : ", this.customerslist);
     this.item = item;
     this.totalRecords = item.totalRecord;
     this.customerslist = item.data;
+  }
+
+  initForm() {
+    this.customerFilter = this.fb.group({
+      NationalId: [''],
+      ForeignPervasiveCode: [''],
+      RegisterNo: [''],
+      Name: [''] ,
+      LastName: [''] ,
+      ShopName: [''] ,
+      CustomerId: [''] ,
+
+    });
   }
 
 
@@ -71,17 +80,24 @@ export class ChangeClassComponent implements OnInit {
   }
 
 
-  // serachCustomer(item: any) {
-  //   item.Page = 1;
-  //   this.spinner.show();
-  //   this.service.getListOFCustomers(item)
-  //     .subscribe((result: any) => {
-  //       this.customerslist = result.data;
-  //       this.totalRecords = result.totalRecord;
-  //   this.spinner.hide();
+  serachCustomer(item: any) {
+    this.params.CustomerId = item.CustomerId;
+    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
+    this.params.LastName = item.LastName;
+    this.params.Name = item.Name;
+    this.params.NationalId = item.NationalId;
+    this.params.RegisterNo = item.RegisterNo;
+    this.params.ShopName = item.ShopName;
+    item.Page = this.page;
+    this.spinner.show();
+    this.service.getListOFCustomers(item)
+      .subscribe((result: any) => {
+        this.customerslist = result.data;
+        this.totalRecords = result.totalRecord;
+    this.spinner.hide();
 
-  //     });
-  // }
+      });
+  }
 
   openChangeClass(item){
     const modalRef = this.ngbModal.open(ChangeClassModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });

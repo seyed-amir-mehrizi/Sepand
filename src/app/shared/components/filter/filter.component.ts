@@ -46,6 +46,13 @@ export class FilterComponent implements OnInit {
   }
   serachCustomer(item: any) {
     item.Page = 1;
+    this.params.CustomerId = item.CustomerId;
+    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
+    this.params.LastName = item.LastName;
+    this.params.Name = item.Name;
+    this.params.NationalId = item.NationalId;
+    this.params.RegisterNo = item.RegisterNo;
+    this.params.ShopName = item.ShopName;
     this.spinner.show();
     this.service.getListOFCustomers(item)
       .subscribe((result: any) => {
