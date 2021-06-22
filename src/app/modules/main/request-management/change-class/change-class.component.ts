@@ -24,10 +24,10 @@ export class ChangeClassComponent implements OnInit {
     LastName: '',
     ShopName: '',
     CustomerId:'',
-
     Page: 1,
 
   }
+  item;
 
   constructor(private service: CustomersService, private fb: FormBuilder ,
     private spinner: NgxSpinnerService,
@@ -36,59 +36,52 @@ export class ChangeClassComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomers(this.params);
-    this.initForm();
+    console.log("this.item : " , this.item);
+    
   }
 
-  initForm() {
-    this.customerFilter = this.fb.group({
-      NationalId: [''],
-      ForeignPervasiveCode: [''],
-      RegisterNo: [''],
-      Name: [''] ,
-      LastName: [''] ,
-      ShopName: [''] ,
-      CustomerId: [''] ,
-
-    });
+  getDataFromFilter(item) {
+    console.log("item : " , item);
+    console.log("this.customerslist : ", this.customerslist);
+    this.item = item;
+    this.totalRecords = item.totalRecord;
+    this.customerslist = item.data;
   }
+
+
   
 
 
-  getCustomers(params: any) {    
+  getCustomers(params: any) {
     this.spinner.show();
     this.service.getListOFCustomers(params)
       .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-    this.spinner.hide();
-
+        this.customerslist = null;
+        this.totalRecords = null;
+        this.spinner.hide();
+          this.customerslist = result.data;
+          this.totalRecords = result.totalRecord;
       });
   }
 
   clickOnPage(pageNumber: any) {
     this.spinner.show();
     this.params.Page = pageNumber;
-    this.service.getListOFCustomers(this.params)
-      .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-    this.spinner.hide();
-      });
-
+    this.getCustomers(this.params);
   }
 
 
-  serachCustomer(item: any) {
-    item.Page = 1;
-    this.spinner.show();
-    this.service.getListOFCustomers(item)
-      .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-    this.spinner.hide();
+  // serachCustomer(item: any) {
+  //   item.Page = 1;
+  //   this.spinner.show();
+  //   this.service.getListOFCustomers(item)
+  //     .subscribe((result: any) => {
+  //       this.customerslist = result.data;
+  //       this.totalRecords = result.totalRecord;
+  //   this.spinner.hide();
 
-      });
-  }
+  //     });
+  // }
 
   openChangeClass(item){
     const modalRef = this.ngbModal.open(ChangeClassModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
@@ -115,5 +108,4 @@ export class ChangeClassComponent implements OnInit {
   return true;
 
   }
-
 }

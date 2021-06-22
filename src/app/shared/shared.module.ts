@@ -4,19 +4,23 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainRoutingModule } from '../modules/main/main-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
-    MainRoutingModule
+    MainRoutingModule,
+    ReactiveFormsModule,
   ],
-  exports: [SidebarComponent , NavbarComponent]
+  exports: [SidebarComponent , NavbarComponent , FilterComponent]
 })
 export class SharedModule { }

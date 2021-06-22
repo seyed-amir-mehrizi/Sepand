@@ -1,5 +1,5 @@
 <div id="customerList">
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <ngb-panel title="فیلتر جستجو">
             <ng-template ngbPanelContent>
                 <form [formGroup]="customerFilter">
@@ -42,78 +42,82 @@
                 </form>
             </ng-template>
         </ngb-panel>
-    </ngb-accordion>
+    </ngb-accordion> -->
 
-    <div class="card border-dark">
-        <div class="card-header bg-secondary text-white">
-            تغییر صنف 
+  <app-filter (getFilterData)="getDataFromFilter($event)"></app-filter>
+  <div class="card border-dark">
+    <div class="card-header bg-secondary text-white">تغییر صنف</div>
+    <div class="card-body bg-light">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center">
+              <thead>
+                <tr>
+                  <th>نام و نام خانوادگی</th>
+                  <th>نوع مشتری</th>
+                  <th>تلفن</th>
+                  <th>وب سایت</th>
+                  <th>کد پستی فروشگاه</th>
+
+                  <th>کد صنف</th>
+                  <th>نام فروشگاه</th>
+                  <th>نام کمپانی</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of customerslist">
+                  <td>
+                    {{
+                      item.person.isLegal
+                        ? item.person.comNameFa
+                        : item.person.firstNameFa + " " + item.person.lastNameFa
+                    }}
+                  </td>
+                  <td>
+                    {{ item.person.isLegal ? "حقوقی" : "حقیقی" }}
+                  </td>
+                  <td>{{ item?.shopCityPreCode }}-{{ item?.telephone }}</td>
+                  <td>{{ item?.webSiteAddress }}</td>
+                  <td>{{ item?.shopPostalCode }}</td>
+
+                  <td>{{ item?.guildId }}</td>
+                  <td>
+                    {{ item?.shopNameFa }}
+                  </td>
+                  <td>
+                    {{ item?.person.comNameFa }}
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-warning btn-sm"
+                      (click)="openChangeClass(item)"
+                    >
+                      تغییر صنف
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <span class="w-100 d-flex justify-content-center">
+            <ngb-pagination
+              (pageChange)="clickOnPage($event)"
+              [pageSize]="10"
+              [boundaryLinks]="true"
+              [collectionSize]="totalRecords"
+              [maxSize]="5"
+              [(page)]="page"
+            >
+              <ng-template ngbPaginationPrevious>قبلی</ng-template>
+              <ng-template ngbPaginationNext>بعدی</ng-template>
+              <ng-template ngbPaginationFirst>ابتدا</ng-template>
+              <ng-template ngbPaginationLast>انتها</ng-template>
+            </ngb-pagination>
+          </span>
         </div>
-        <div class="card-body bg-light">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped text-center">
-                            <thead>
-                                <tr>
-                                    <th>نام و نام خانوادگی </th>
-                                    <th>
-                                        نوع مشتری
-                                    </th>
-                                    <th>تلفن</th>
-                                    <th>وب سایت</th>
-                                    <th>کد پستی فروشگاه</th>
-                                   
-                                    <th>کد صنف</th>
-                                    <th>
-                                        نام فروشگاه
-                                    </th>
-                                    <th>
-                                        نام کمپانی 
-                                    </th>
-                                    <th>
-                                        عملیات
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of customerslist">
-                                    <td>
-                                        {{item.person.isLegal ? item.person.comNameFa : item.person.firstNameFa + ' ' + item.person.lastNameFa }}
-                                    </td>
-                                    <td>
-                                        {{item.person.isLegal ? "حقوقی" : "حقیقی" }}
-
-                                    </td>
-                                    <td>{{item?.shopCityPreCode}}-{{item?.telephone}}</td>
-                                    <td>{{item?.webSiteAddress}}</td>
-                                    <td>{{item?.shopPostalCode}}</td>
-                               
-                                    <td>{{item?.guildId}}</td>
-                                    <td>
-                                        {{item?.shopNameFa}}
-                                    </td>
-                                    <td>
-                                        {{item?.person.comNameFa}}
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm"  (click)="openChangeClass(item)">تغییر صنف</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <span class="w-100 d-flex justify-content-center">
-                        <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true"
-                            [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
-                            <ng-template ngbPaginationPrevious>قبلی</ng-template>
-                            <ng-template ngbPaginationNext>بعدی</ng-template>
-                            <ng-template ngbPaginationFirst>ابتدا</ng-template>
-                            <ng-template ngbPaginationLast>انتها</ng-template>
-                        </ngb-pagination>
-                    </span>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
