@@ -1,8 +1,8 @@
-<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="3" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
-      <div class="col-md-4 mb-5">
+      <div class="col-md-4 mb-2">
         <label for="customerType">نوع مشتری</label>
         <select [(ngModel)]="customerTypeValue" id="customerType" #mySelect class="form-control"
           (change)="onOptionsSelected(mySelect.value)" [value]="customerTypeValue">

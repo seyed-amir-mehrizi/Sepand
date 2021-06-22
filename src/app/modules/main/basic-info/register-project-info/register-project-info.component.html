@@ -4,58 +4,67 @@
     </div>
     <div class="card-body">
         <form [formGroup]="registerProjectInfo" autocomplete="off" role="form">
-            <div >
+            <div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group ">
                             <label for="projectName">نام پروژه </label>
                             <input id="projectName" type="text" formControlName="projectName" class="form-control"
                                 [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group ">
-                            <label for="projectName"> نوع تسهیم </label>
-                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                            <label for="shareType">نوع تسهیم</label>
+                            <select id="shareType" class="form-control" formControlName="shareType" [ngClass]="{
+                      'is-invalid':
+                      isRegisterProjectInfoFormSubmitted &&
+                      registerProjectInfoFormSubmittedInfo.shareType.errors
+                    }" (change)="onSharedTypeSelected(registerProjectInfo)">
+                                <option *ngFor="let item of sharedTypeList" [value]="item.id">
+                                    {{ item.name }}
+                                </option>
+                            </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group ">
-                            <label for="projectName"> مبلغ تسهیم </label>
-                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                    <ng-container *ngIf="hasPercentage">
+                        <div class="col-md-3">
+                          <label for="shareAmountMin">کمترین مبلغ تسهیم</label>
+                          <input id="shareAmountMin" (keypress)="numberOnly($event)" type="text"
+                            formControlName="shareAmountMin" class="form-control dir-ltr" name="shareAmountMin" [ngClass]="{
+                              'is-invalid':
+                              isRegisterProjectInfoFormSubmitted &&
+                                registerProjectInfoFormSubmittedInfo.shareAmountMax.errors
+                            }" (keyup)="checkMin($event)" />
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group ">
-                            <label for="projectName"> بیشترین مبلغ تسهیم </label>
-                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
+                        <div class="col-md-3">
+                          <label for="shareAmountMax">بیشترین مبلغ تسهیم </label>
+                          <input id="shareAmountMax" (keypress)="numberOnly($event)" type="text"
+                            formControlName="shareAmountMax" class="form-control dir-ltr" name="shareAmountMax" [ngClass]="{
+                              'is-invalid':
+                              isRegisterProjectInfoFormSubmitted &&
+                                registerProjectInfoFormSubmittedInfo.shareAmountMax.errors
+                            }" (keyup)="checkMax($event)" />
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group ">
-                            <label for="projectName">کمترین مبلغ تسهیم</label>
-                            <input id="projectName" type="text" formControlName="projectName" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterProjectInfoFormSubmitted && registerProjectInfoFormSubmittedInfo.projectName.errors}" />
-                        </div>
-                    </div>
+        
+                      </ng-container>
+                      <div class="col-md-3" *ngIf="hasAmount">
+                        <label for="sharedAmount"> مبلغ تسهیم</label>
+                        <input id="sharedAmount" (keypress)="numberOnly($event)" type="text" formControlName="sharedAmount"
+                          class="form-control dir-ltr" name="sharedAmount" [ngClass]="{
+                            'is-invalid':
+                            isRegisterProjectInfoFormSubmitted &&
+                              registerProjectInfoFormSubmittedInfo.sharedAmount.errors
+                          }" />
+                      </div>
+ 
                 </div>
             </div>
         </form>
     </div>
     <div class="card-footer float-left">
-        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
-        <button type="button" class="btn btn-secondary">
+        <button class="btn btn-success mx-2" type="button" (click)="registerNewProject()">ارسال</button>
+        <button type="button" class="btn btn-secondary" (click)="resetForm()">
             انصراف
         </button>
     </div>
