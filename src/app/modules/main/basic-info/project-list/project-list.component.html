@@ -1,26 +1,38 @@
-
-
 <div class="card">
-    <div class="card-header">
-        لیست پروژه ها
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped text-center">
-            <thead>
-                <tr>
-                    <th>نام پروژه</th>
-                    <th>نوع تسهیم</th>
-                    <th>مبلغ تسهیم</th>
-                    <th>بیشترین مبلغ تسهیم</th>
-                    <th>کمترین مبلغ تسهیم</th>
-                </tr>
-            </thead>
-            <tbody>
+  <div class="card-header">لیست پروژه ها</div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>نام پروژه</th>
+          <th>نوع تسهیم</th>
+          <th>مبلغ تسهیم</th>
+          <th>بیشترین مبلغ تسهیم</th>
+          <th>کمترین مبلغ تسهیم</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of projectList">
+          <td>
+            {{ item.projectName }}
+          </td>
+          <td>
+            {{ item.shareType }}
+          </td>
+          <td>
+            {{ item.sharedAmount }}
+          </td>
+          <td>
+            {{ item.shareAmountMax }}
+          </td>
+          <td>
+            {{ item.shareAmountMin }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-            </tbody>
-        </table>
-
-        <!-- <span class="w-100 d-flex justify-content-center"> 
+    <!-- <span class="w-100 d-flex justify-content-center"> 
                 <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true" [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
                     <ng-template ngbPaginationPrevious>قبلی</ng-template>
                     <ng-template ngbPaginationNext>بعدی</ng-template>
@@ -28,6 +40,5 @@
                     <ng-template ngbPaginationLast>انتها</ng-template>
                 </ngb-pagination>
             </span> -->
-
-    </div>
+  </div>
 </div>

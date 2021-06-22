@@ -1,28 +1,50 @@
-
 <div class="card">
-    <div class="card-header">
-        لیست شرکت های پرداخت
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped text-center">
-            <thead>
-                <tr>
-                    <th>یوزر شاپرک</th>
-                    <th>یوزر پورتال شرکت پرداخت</th>
-                    <th>نام</th>
-                    <th>Alias</th>
-                    <th>یوزر ftp شاپرک</th>
-                    <th>IIN</th>
-                    <th>شماره ترمینال</th>
-                    <th>شماره پذیرنده</th>
-                </tr>
-            </thead>
-            <tbody>
+  <div class="card-header">لیست شرکت های پرداخت</div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>یوزر شاپرک</th>
+          <th>یوزر پورتال شرکت پرداخت</th>
+          <th>نام</th>
+          <th>Alias</th>
+          <th>یوزر ftp شاپرک</th>
+          <th>IIN</th>
+          <th>شماره ترمینال</th>
+          <th>شماره پذیرنده</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pspList">
+          <td>
+            {{ item.userShaparak }}
+          </td>
+          <td>
+            {{ item.pspMmsUsername }}
+          </td>
+          <td>
+            {{ item.name }}
+          </td>
+          <td>
+            {{ item.alias }}
+          </td>
+          <td>
+            {{ item.shaparakFtpUsername }}
+          </td>
+          <td>
+            {{ item.iin }}
+          </td>
+          <td>
+            {{ item.terminalNo }}
+          </td>
+          <td>
+            {{ item.acceptorCode }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-            </tbody>
-        </table>
-
-        <!-- <span class="w-100 d-flex justify-content-center"> 
+    <!-- <span class="w-100 d-flex justify-content-center"> 
                 <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true" [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
                     <ng-template ngbPaginationPrevious>قبلی</ng-template>
                     <ng-template ngbPaginationNext>بعدی</ng-template>
@@ -30,6 +52,5 @@
                     <ng-template ngbPaginationLast>انتها</ng-template>
                 </ngb-pagination>
             </span> -->
-
-    </div>
+  </div>
 </div>

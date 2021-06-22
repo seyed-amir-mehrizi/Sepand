@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseInfoService } from '../base-info.service';
 
 @Component({
   selector: 'app-project-list',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor() { }
+  projectList: any = [];
+  constructor(private baseInfoService : BaseInfoService  , private spinner: NgxSpinnerService,) { }
 
   ngOnInit(): void {
+    this.getListOfPorjects();
+  }
+
+  getListOfPorjects() {
+    this.spinner.show();
+    this.baseInfoService.getListOfProjects()
+      .subscribe(res => {
+        this.spinner.hide();
+        this.projectList = res;
+    })
   }
 
 }
