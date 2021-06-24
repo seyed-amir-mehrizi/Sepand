@@ -56,18 +56,8 @@ export class RequestsComponent implements OnInit {
     this.initForm();
     this.getRequestTypeList();
     this.getPspList();
-    this.spinner.show();
-    this.requestService.getListOfFirstRegistration(this.params)
-      .subscribe((result: any) => {
-        this.firstRegisterList = result.data;
-        this.totalRecordsFirstRegister = result.totalRecord;
-        this.spinner.hide();
-      });
-
-
+    this.getListOfFirstRegister(this.params);
   }
-
-
   initForm() {
     this.requestFilter = this.fb.group({
       NationalId: [''],
@@ -84,6 +74,16 @@ export class RequestsComponent implements OnInit {
       .subscribe((res => {
         this.reqestTypeList = res;
       }))
+  }
+
+  getListOfFirstRegister(item) {
+    this.spinner.show();
+    this.requestService.getListOfFirstRegistration(item)
+      .subscribe((result: any) => {
+        this.firstRegisterList = result.data;
+        this.totalRecordsFirstRegister = result.totalRecord;
+        this.spinner.hide();
+      });
   }
   getPspList() {
     this.baseInfoService.getPspList()
@@ -141,12 +141,7 @@ export class RequestsComponent implements OnInit {
     this.spinner.show();
     switch (this.tabId) {
       case 1:
-        this.requestService.getListOfFirstRegistration(item)
-          .subscribe((result: any) => {
-            this.firstRegisterList = result.data;
-            this.totalRecordsFirstRegister = result.totalRecord;
-            this.spinner.hide();
-          });
+        this.getListOfFirstRegister(item);
         break;
       case 2:
         this.requestService.getListOfSentToPsp(item)
@@ -179,15 +174,8 @@ export class RequestsComponent implements OnInit {
   }
 
   clickOnPageFirstRegister(pageNumber) {
-    this.spinner.show();
     this.params.Page = pageNumber;
-    this.requestService.getListOfFirstRegistration(this.params)
-      .subscribe((result: any) => {
-        this.firstRegisterList = result.data;
-        this.totalRecordsFirstRegister = result.totalRecord;
-        this.spinner.hide();
-      });
-
+    this.getListOfFirstRegister(this.params);
   }
   clickOnPageSendToPsp(pageNumber) {
     this.spinner.show();
@@ -230,13 +218,7 @@ export class RequestsComponent implements OnInit {
     const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
     modalRef.componentInstance.rowInfo = item;
     modalRef.result.then(() => {
-      this.spinner.show();
-      this.requestService.getListOfFirstRegistration(this.params)
-      .subscribe((result: any) => {
-        this.firstRegisterList = result.data;
-        this.totalRecordsFirstRegister = result.totalRecord;
-        this.spinner.hide();
-      });
+      this.getListOfFirstRegister(this.params);
     }, () => {
     });
 
@@ -247,11 +229,11 @@ export class RequestsComponent implements OnInit {
     modalRef.result.then(() => {
       this.spinner.show();
       this.requestService.getListOfSentToPsp(this.params)
-      .subscribe((result: any) => {
-        this.sendToPspList = result.data;
-        this.totalRecordsSendToPsp = result.totalRecord;
-        this.spinner.hide();
-      });
+        .subscribe((result: any) => {
+          this.sendToPspList = result.data;
+          this.totalRecordsSendToPsp = result.totalRecord;
+          this.spinner.hide();
+        });
     }, () => {
     });
 
@@ -262,68 +244,62 @@ export class RequestsComponent implements OnInit {
     modalRef.result.then(() => {
       this.spinner.show();
       this.requestService.getListOfShaparakProcess(this.params)
-          .subscribe((result: any) => {
-            this.shaparakList = result.data;
-            this.totalRecordsShaparak = result.totalRecord;
-            this.spinner.hide();
-          });
+        .subscribe((result: any) => {
+          this.shaparakList = result.data;
+          this.totalRecordsShaparak = result.totalRecord;
+          this.spinner.hide();
+        });
     }, () => {
     });
 
   }
 
-  deleteFirstRegister(item){
-    this.spinner.show();
+  deleteFirstRegister(item) {
     this.requestService.deleteRequest(item)
-    .subscribe((res=>{
-      this.requestService.getListOfFirstRegistration(this.params)
-      .subscribe((result: any) => {
-        this.firstRegisterList = result.data;
-        this.totalRecordsFirstRegister = result.totalRecord;
-        this.spinner.hide();
-      });
-    }));
+      .subscribe((res => {
+        this.getListOfFirstRegister(this.params);
+      }));
   }
 
-  deletePsp(item){
+  deletePsp(item) {
     this.spinner.show();
     this.requestService.deleteRequest(item)
-    .subscribe((res=>{
-      this.requestService.getListOfSentToPsp(this.params)
+      .subscribe((res => {
+        this.requestService.getListOfSentToPsp(this.params)
           .subscribe((result: any) => {
             this.sendToPspList = result.data;
             this.totalRecordsSendToPsp = result.totalRecord;
             this.spinner.hide();
-   
-      });
-    }));
+
+          });
+      }));
   }
 
 
-  deleteShaparak(item){
+  deleteShaparak(item) {
     this.spinner.show();
     this.requestService.deleteRequest(item)
-    .subscribe((res=>{
-      this.requestService.getListOfShaparakProcess(this.params)
-      .subscribe((result: any) => {
-        this.shaparakList = result.data;
-        this.totalRecordsShaparak = result.totalRecord;
-        this.spinner.hide();
-      });
-    }));
+      .subscribe((res => {
+        this.requestService.getListOfShaparakProcess(this.params)
+          .subscribe((result: any) => {
+            this.shaparakList = result.data;
+            this.totalRecordsShaparak = result.totalRecord;
+            this.spinner.hide();
+          });
+      }));
   }
 
-  deleteCompleted(item){
+  deleteCompleted(item) {
     this.spinner.show();
     this.requestService.deleteRequest(item)
-    .subscribe((res=>{
-      this.requestService.getListOfCompletedRequests(this.params)
-      .subscribe((result: any) => {
-        this.completedList = result.data;
-        this.totalRecordsCompleted = result.totalRecord;
-        this.spinner.hide();
-      });
-    }));
+      .subscribe((res => {
+        this.requestService.getListOfCompletedRequests(this.params)
+          .subscribe((result: any) => {
+            this.completedList = result.data;
+            this.totalRecordsCompleted = result.totalRecord;
+            this.spinner.hide();
+          });
+      }));
   }
 
 

@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { concat, Observable, of } from 'rxjs';
 import { NgbCalendar, NgbCalendarPersian, NgbDatepickerI18n, NgbDateStruct, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { SharedDataService } from 'src/app/shared/service/shared-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'jalali-moment';
@@ -10,6 +10,7 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { BaseInfoService } from '../../basic-info/base-info.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { Subject } from 'rxjs';
 
 const WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
@@ -44,6 +45,8 @@ export class RegisterCustomerComponent implements OnInit {
   public model: any;
   public image: any;
   people$: Observable<Object | any[]>;
+  autocomplete$: Observable<Object | any[]>;
+  autocomplete_subject$ = new Subject<string>();
   allNationalities: any = [];
   personTypeList: any = [];
   registerRealCustomerForm: FormGroup;
@@ -79,6 +82,7 @@ export class RegisterCustomerComponent implements OnInit {
   hasRegisterNumber: boolean = false;
   hasForeignNumber: boolean = false;
   hasPercentage: boolean = false;
+  autocompleteLoading = false;
   customerTypeValue;
   registerRealCustomerFormValue: any = {};
   registerLegalCustomerFormValue: any = {};
@@ -112,6 +116,23 @@ export class RegisterCustomerComponent implements OnInit {
     this.getListOfSharedTypes();
     this.initContractInfo();
     this.getAllProjects();
+    this.loadNationalities();
+  }
+
+  private loadNationalities() {
+    this.autocomplete$ = concat(
+      of([]), // default items
+      this.autocomplete_subject$.pipe(
+        distinctUntilChanged(),
+        tap(() => (this.autocompleteLoading = true)),
+        switchMap((term) =>
+        this.sharedService.getNationalities(term).pipe(
+            catchError(() => of([])), // empty list on error
+            tap(() => (this.autocompleteLoading = false))
+          )
+        )
+      )
+    );
   }
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
@@ -183,15 +204,21 @@ export class RegisterCustomerComponent implements OnInit {
   countriesInputFormatter = (result: { farsiName: string }) =>
     result.farsiName || '';
 
+    nationalitySetValue(){
+      this.registerRealCustomerForm.setValue({
+        nationalityId : {id: 103, nationalName: "ایران", people: []}
+      })
+    }
+
   initRealForm() {
     this.registerRealCustomerForm = this.fb.group({
       degreeId: ['', Validators.required],
-      nationalNumber: ['', Validators.required],
+      nationalNumber: ['', [Validators.required , Validators.maxLength(10) , Validators.minLength(10)]],
       firstNameFa: ['', Validators.required],
       lastNameFa: ['', Validators.required],
       firstNameEn: ['', Validators.required],
       lastNameEn: ['', Validators.required],
-      nationalityId: ['', Validators.required],
+      nationalityId: ['ایران', Validators.required],
       birthLocation: ['', Validators.required],
       birthDate: ['', Validators.required],
       birthCertificatePlaceOfIssue: ['', Validators.required],
@@ -199,7 +226,7 @@ export class RegisterCustomerComponent implements OnInit {
       fatherNameEn: ['', Validators.required],
       sex: ['', Validators.required],
       birthCertificateNo: ['', Validators.required],
-      birthCertificateSerial: ['', Validators.required],
+      birthCertificateSerial: ['', [Validators.required , Validators.minLength(2) , Validators.maxLength(2)]],
       birthCertificateAlphabiticNoId: ['', Validators.required],
       birthCertificateNumericNo: ['', Validators.required],
       postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
@@ -252,6 +279,7 @@ export class RegisterCustomerComponent implements OnInit {
     switch (item) {
       case '1':
         this.initRealForm();
+        // this.nationalitySetValue();
         this.isReal = true;
         this.isLegal = false;
         this.isForeign = false;
@@ -599,7 +627,6 @@ export class RegisterCustomerComponent implements OnInit {
       fatherNameEn: ['', Validators.required],
       sex: ['', Validators.required],
       degreeId: ['', Validators.required],
-      commercialCode: ['', Validators.required],
       postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     });
   }
@@ -617,13 +644,13 @@ export class RegisterCustomerComponent implements OnInit {
       shopPostalCode: ['',[Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       shopFaxNumber: ['',  [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       shopTelephoneNumber: ['', [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
-      shopCityPreCode: ['', Validators.required],
+      shopCityPreCode: ['', [Validators.required , Validators.minLength(3)]],
       shopBusinessLicenseNumber: ['', Validators.required],
       shopBusinessLicenseIssueDate: ['', Validators.required],
       shopBusinessLicenseExpireDate: ['', Validators.required],
       shopEmail: ['', [Validators.required, Validators.email]],
       shopAddress: ['', Validators.required],
-      redirectUrl: ['', Validators.required],
+      redirectUrl: ['', [Validators.required , Validators.pattern(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)]],
       guildId: ['', Validators.required],
       shopLogo: ['', Validators.required],
       shopNameFa: ['', Validators.required],
@@ -795,6 +822,11 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.iban = `IR${dataSending.iban}`;
     this.BankInfoList.push(dataSending);
     this.BankInfoForm.reset();
+  }
+
+
+  deleteIbanList(index){
+    this.BankInfoList.splice(index , 1);
   }
 
 

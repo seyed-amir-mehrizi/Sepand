@@ -16,9 +16,9 @@
       <div *ngIf="isReal">
         <form [formGroup]="registerRealCustomerForm">
           <div class="row mt-3">
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
               <label for="nationalNumber">کد ملی</label>
-              <div class="input-group mb-3 dir-ltr">
+              <div class="input-group  dir-ltr">
                 <span ngbPopover="استعلام شماره  ملی" triggers="mouseenter:mouseleave"
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkNationalNumber()">?</span>
@@ -77,6 +77,17 @@
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.nationalityId.errors
                 }" />
+                <!-- <ng-select [items]="autocomplete$ | async"
+                bindLabel="nationalName" [addTag]="true"
+                 [multiple]="true" [hideSelected]="true"
+                 [trackByFn]="trackByFn" [minTermLength]="2"
+                 [loading]="autocompleteLoading"
+                 [typeahead]="autocomplete_subject$"
+                 formControlName="nationalityId"
+                 bindValue="id"
+                 
+                 >
+               </ng-select> -->
             </div>
             <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
@@ -217,7 +228,7 @@
               </label>
             </div> -->
           </div>
-          <button class="btn btn-sm btn-primary mt-2" (click)="submitRealCustomer(nav)">
+          <button class="btn btn-primary mt-2 float-left my-2" (click)="submitRealCustomer(nav)">
             بعدی
           </button>
         </form>
@@ -240,6 +251,58 @@
 
 
               </div>
+            </div>
+            <div class="col-md-4 my-2">
+              <label for="comNameFa"> نام شرکت </label>
+              <input id="comNameFa" type="text" formControlName="comNameFa" class="form-control" [ngClass]="{
+                  'is-invalid':
+                    isRegisterLegalCustomerSubmitted &&
+                    registerLegalCustomerFormInfo.comNameFa.errors
+                }" />
+            </div>
+            <div class="col-md-4 my-2">
+              <label for="registerDate"> تاریخ ثبت </label>
+              <div class="input-group dir-ltr">
+                <input id="registerDate" class="form-control" name="dp" ngbDatepicker #b="ngbDatepicker"
+                  formControlName="registerDate" [ngClass]="{
+                    'is-invalid':
+                      isRegisterLegalCustomerSubmitted &&
+                      registerLegalCustomerFormInfo.registerDate.errors
+                  }" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary py-0 px-2" (click)="b.toggle()" type="button">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 my-2">
+              <label for="comNameEn"> نام شرکت لاتین </label>
+              <input id="comNameEn" type="text" formControlName="comNameEn" class="form-control" [ngClass]="{
+                  'is-invalid':
+                    isRegisterLegalCustomerSubmitted &&
+                    registerLegalCustomerFormInfo.comNameEn.errors
+                }"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+            </div>
+            <div class="col-md-4 my-2">
+              <label for="commercialCode"> کد اقتصادی </label>
+              <input id="commercialCode" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
+                  'is-invalid':
+                    isRegisterLegalCustomerSubmitted &&
+                    registerLegalCustomerFormInfo.commercialCode.errors
+                }" />
+            </div>
+            <div class="col-md-4 my-2">
+              <label for="commercialCode"> شماره ثبت </label>
+
+              <input aria-label="Username" aria-describedby="basic-addon1" id="registerNo" type="text"
+                formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
+                'is-invalid':
+                  isRegisterLegalCustomerSubmitted &&
+                  registerLegalCustomerFormInfo.registerNo.errors
+              }" />
             </div>
             <div class="col-md-4 my-2">
               <label for="firstNameFa">نام فارسی</label>
@@ -298,6 +361,7 @@
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.nationalityId.errors
                 }" />
+               
             </div>
             <div class="col-md-4 my-2">
               <label for="birthLocation">محل تولد </label>
@@ -432,57 +496,7 @@
                 }" />
             </div>
 
-            <div class="col-md-4 my-2">
-              <label for="registerDate"> تاریخ ثبت </label>
-              <div class="input-group dir-ltr">
-                <input id="registerDate" class="form-control" name="dp" ngbDatepicker #b="ngbDatepicker"
-                  formControlName="registerDate" [ngClass]="{
-                    'is-invalid':
-                      isRegisterLegalCustomerSubmitted &&
-                      registerLegalCustomerFormInfo.registerDate.errors
-                  }" />
-                <div class="input-group-append">
-                  <button class="btn btn-primary py-0 px-2" (click)="b.toggle()" type="button">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 my-2">
-              <label for="comNameFa"> نام شرکت </label>
-              <input id="comNameFa" type="text" formControlName="comNameFa" class="form-control" [ngClass]="{
-                  'is-invalid':
-                    isRegisterLegalCustomerSubmitted &&
-                    registerLegalCustomerFormInfo.comNameFa.errors
-                }" />
-            </div>
-            <div class="col-md-4 my-2">
-              <label for="comNameEn"> نام شرکت لاتین </label>
-              <input id="comNameEn" type="text" formControlName="comNameEn" class="form-control" [ngClass]="{
-                  'is-invalid':
-                    isRegisterLegalCustomerSubmitted &&
-                    registerLegalCustomerFormInfo.comNameEn.errors
-                }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
-            </div>
-            <div class="col-md-4 my-2">
-              <label for="commercialCode"> کد اقتصادی </label>
-              <input id="commercialCode" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
-                  'is-invalid':
-                    isRegisterLegalCustomerSubmitted &&
-                    registerLegalCustomerFormInfo.commercialCode.errors
-                }" />
-            </div>
-            <div class="col-md-4 my-2">
-              <label for="commercialCode"> شماره ثبت </label>
 
-              <input aria-label="Username" aria-describedby="basic-addon1" id="registerNo" type="text"
-                formControlName="registerNo" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
-                'is-invalid':
-                  isRegisterLegalCustomerSubmitted &&
-                  registerLegalCustomerFormInfo.registerNo.errors
-              }" />
-            </div>
             <!-- <div class="form-group form-check col-md-4 my-2">
               <label class="form-check-label">
                 <input formControlName="isDisable" class="form-check-input" type="checkbox" />
@@ -490,7 +504,7 @@
               </label>
             </div> -->
           </div>
-          <button class="btn btn-sm btn-primary mt-2" (click)="submitLegalCustomer(nav)">
+          <button class="btn btn-primary mt-2 float-left my-2" (click)="submitLegalCustomer(nav)">
             بعدی
           </button>
         </form>
@@ -673,17 +687,8 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-md-4 my-2">
-              <label for="commercialCode"> کد اقتصادی </label>
-              <input id="commercialCode" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
-                  'is-invalid':
-                    isRegisterForeignCustomerSubmitted &&
-                    registerForeignCustomerFormInfo.commercialCode.errors
-                }" />
-            </div>
           </div>
-          <button class="btn btn-sm btn-primary mt-2" (click)="submitForeignCustomer(nav)">
+          <button class="btn btn-primary mt-2 float-left my-2" (click)="submitForeignCustomer(nav)">
             بعدی
           </button>
         </form>
@@ -974,13 +979,15 @@
           </div>
         </div>
       </form>
+      <div class="float-left my-2">
+        <button class="btn  btn-primary mt-2 mx-2" [disabled]="active === 1" (click)="nav.select(1)">
+          قبلی
+        </button>
+        <button class="btn  btn-primary mt-2" [disabled]="active === 3" (click)="submitLocationInfo(nav)">
+          بعدی
+        </button>
+      </div>
 
-      <button class="btn btn-sm btn-primary mt-2 mx-2" [disabled]="active === 1" (click)="nav.select(1)">
-        قبلی
-      </button>
-      <button class="btn btn-sm btn-primary mt-2" [disabled]="active === 3" (click)="submitLocationInfo(nav)">
-        بعدی
-      </button>
     </ng-template>
   </li>
 
@@ -1095,10 +1102,13 @@
                       <th>کمترین مبلغ تسهیم</th>
                       <th>بیشترین مبلغ تسهیم</th>
                       <th>حساب اصلی</th>
+                      <th>
+                        عملیات
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of BankInfoList">
+                    <tr *ngFor="let item of BankInfoList; index as i">
                       <td>{{item?.iban}}</td>
                       <td>{{item?.accountNumber}}</td>
                       <td>{{item?.shareType === 1 ? 'درصدی' : 'ثابت'}}</td>
@@ -1107,6 +1117,11 @@
                       <td>{{item?.shareAmountMax}}</td>
                       <td>
                         {{item?.isMain === true ? 'بله' : 'خیر'}}
+                      </td>
+                      <td>
+                        <button class="btn btn-danger btn-sm" (click)="deleteIbanList(i)">
+                          حذف
+                        </button>
                       </td>
 
                     </tr>
@@ -1117,13 +1132,15 @@
           </div>
         </div>
       </div>
-
-      <button class="btn btn-sm btn-primary mx-2 mt-2" (click)="nav.select(2)">
-        قبلی
-      </button>
-      <button class="btn btn-sm btn-primary mt-2" (click)="submitBankInfo(nav)">
-        بعدی
-      </button>
+      <div class="float-left my-2">
+        <button class="btn  btn-primary mx-2 mt-2" (click)="nav.select(2)">
+          قبلی
+        </button>
+        <button class="btn btn-primary mt-2" (click)="submitBankInfo(nav)">
+          بعدی
+        </button>
+      </div>
+    
     </ng-template>
   </li>
   <li [ngbNavItem]="4" [disabled]="disabledContractInfo">
@@ -1238,13 +1255,15 @@
         </div>
       </form>
 
+      <div class="float-left my-2">
+        <button class="btn  btn-primary mx-2 my-2" [disabled]="active === 1" (click)="nav.select(3)">
+          قبلی
+        </button>
+        <button class="btn  btn-success mx-2 my-2" (click)="registerCustomer()">
+          ثبت اطلاعات
+        </button>
+      </div>
 
-      <button class="btn btn-sm btn-primary mx-2 my-2" [disabled]="active === 1" (click)="nav.select(3)">
-        قبلی
-      </button>
-      <button class="btn btn-sm btn-success mx-2 my-2" (click)="registerCustomer()">
-        ثبت اطلاعات
-      </button>
     </ng-template>
   </li>
 </ul>
