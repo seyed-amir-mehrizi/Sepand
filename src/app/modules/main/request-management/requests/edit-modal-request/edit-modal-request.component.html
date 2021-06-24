@@ -1,0 +1,122 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+       ویرایش درخواست
+    </h4>
+</div>
+<div class="modal-body text-justify line-height-3">
+  
+        <div class="card-body">
+            <form [formGroup]="editRequestForm">
+                <div class="row">
+                <div class="col-md-4 my-2">
+                    <label for="firstNameFa">نام فارسی</label>
+                    <input (keypress)="FarsiOnly($event)" id="firstNameFa" type="text" formControlName="firstNameFa"
+                      class="form-control" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.firstNameFa.errors
+                      }" />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="lastNameFa">نام خانوادگی فارسی</label>
+                    <input (keypress)="FarsiOnly($event)" id="lastNameFa" type="text" formControlName="lastNameFa"
+                      class="form-control" [ngClass]="{
+                        'is-invalid':
+                        isEditRequestFormSubmitted &&
+                          getRequestFormInfo.lastNameFa.errors
+                      }" />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="comNameFa"> نام شرکت </label>
+                    <input id="comNameFa" type="text" formControlName="comNameFa" class="form-control" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.comNameFa.errors
+                      }" [readonly]="isCompanyNameDisable"/>
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="comNameEn"> نام شرکت لاتین </label>
+                    <input id="comNameEn" type="text" formControlName="comNameEn" class="form-control" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.comNameEn.errors
+                      }"
+                      onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="shopPostalCode"> کد پستی فروشگاه </label>
+                    <input id="shopPostalCode" type="text" (keypress)="numberOnly($event)" formControlName="shopPostalCode"
+                      class="form-control  dir-ltr" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.shopPostalCode.errors
+                      }" />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="shopTelephoneNumber"> شماره تلفن فروشگاه </label>
+                    <input id="shopTelephoneNumber" type="text" formControlName="shopTelephoneNumber"
+                      (keypress)="numberOnly($event)" class="form-control  dir-ltr" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.shopTelephoneNumber.errors
+                      }" />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="shopCityPreCode"> پیش شماره شهر فروشگاه </label>
+                    <input id="shopCityPreCode" type="text" formControlName="shopCityPreCode" class="form-control  dir-ltr"
+                      (keypress)="numberOnly($event)" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.shopCityPreCode.errors
+                      }" />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="redirectUrl"> redirectUrl </label>
+                    <input id="redirectUrl" type="text" formControlName="redirectUrl" class="form-control  dir-ltr" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.redirectUrl.errors
+                      }" />
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="guildId">صنف</label>
+                    <!-- <select id="guildId" class="form-control" formControlName="guildId" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.guildId.errors
+                      }">
+                      <option *ngFor="let item of guildList" [value]="item.id">
+                        {{ item.categoryName }}
+                      </option>
+                    </select> -->
+                    <ng-select #select [items]="people$ | async" [multiple]="false" [maxSelectedItems]="3" bindLabel="categoryName"
+                    formControlName="guildId" bindValue="id" [ngClass]="{
+                      'is-invalid':
+                        isEditRequestFormSubmitted &&
+                        getRequestFormInfo.guildId.errors
+                    }" required>
+                    </ng-select>
+                  </div>
+                  <div class="col-md-4 my-2">
+                    <label for="taxPayerCode"> کد  رهگیری مالیاتی </label>
+                    <input (keypress)="numberOnly($event)" id="taxPayerCode" type="text" formControlName="taxPayerCode" class="form-control" [ngClass]="{
+                        'is-invalid':
+                          isEditRequestFormSubmitted &&
+                          getRequestFormInfo.taxPayerCode.errors
+                      }" />
+                  </div>
+                </div>
+            </form>
+  
+
+          </div>
+
+
+  
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+        بستن
+    </button>
+    <button class="btn btn-success" type="button" (click)="editRequest()">ویرایش</button>
+</div>

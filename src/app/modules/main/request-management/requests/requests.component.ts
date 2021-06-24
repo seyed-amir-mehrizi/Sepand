@@ -4,6 +4,7 @@ import { NgbModal, NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedDataService } from 'src/app/shared/service/shared-data.service';
 import { BaseInfoService } from '../../basic-info/base-info.service';
+import { EditModalRequestComponent } from './edit-modal-request/edit-modal-request.component';
 import { RequestsService } from './requests.service';
 
 @Component({
@@ -29,6 +30,8 @@ export class RequestsComponent implements OnInit {
   totalRecordsSendToPsp: number;
   totalRecordsShaparak: number;
   totalRecordsCompleted: number;
+
+
 
   params = {
     NationalId: '',
@@ -224,7 +227,48 @@ export class RequestsComponent implements OnInit {
 
 
   onOpenModalFirstRegister(item) {
-    console.log("item : ", item);
+    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.rowInfo = item;
+    modalRef.result.then(() => {
+      this.spinner.show();
+      this.requestService.getListOfFirstRegistration(this.params)
+      .subscribe((result: any) => {
+        this.firstRegisterList = result.data;
+        this.totalRecordsFirstRegister = result.totalRecord;
+        this.spinner.hide();
+      });
+    }, () => {
+    });
+
+  }
+  onOpenModalPsp(item) {
+    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.rowInfo = item;
+    modalRef.result.then(() => {
+      this.spinner.show();
+      this.requestService.getListOfSentToPsp(this.params)
+      .subscribe((result: any) => {
+        this.sendToPspList = result.data;
+        this.totalRecordsSendToPsp = result.totalRecord;
+        this.spinner.hide();
+      });
+    }, () => {
+    });
+
+  }
+  onOpenModalShaparak(item) {
+    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.rowInfo = item;
+    modalRef.result.then(() => {
+      this.spinner.show();
+      this.requestService.getListOfShaparakProcess(this.params)
+          .subscribe((result: any) => {
+            this.shaparakList = result.data;
+            this.totalRecordsShaparak = result.totalRecord;
+            this.spinner.hide();
+          });
+    }, () => {
+    });
 
   }
 

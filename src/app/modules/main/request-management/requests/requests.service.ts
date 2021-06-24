@@ -70,4 +70,9 @@ deleteRequest(data){
   return this.http.delete(this.customerApi+'/remove-request' , {params});
 }
 
+
+editrequest(data){
+  return this.http.put(this.customerApi+'/edit-request' , data);
+}
+
 }

@@ -18,6 +18,7 @@ import { ChangeIbanComponent } from './change-iban/change-iban.component';
 import { ChangeIbanModalComponent } from './change-iban-modal/change-iban-modal.component';
 import { RequestsComponent } from './requests/requests.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditModalRequestComponent } from './requests/edit-modal-request/edit-modal-request.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ChangePostalCodeModalComponent,
     ChangeIbanComponent,
     ChangeIbanModalComponent,
-    RequestsComponent
+    RequestsComponent,
+    EditModalRequestComponent
   ],
   imports: [
     NgbModule,

@@ -130,7 +130,7 @@
                     حذف
                   </button>
                 
-                <button
+                <button *ngIf="item.requestTypeId === 1"
                   [disabled]="item.editedBy !== null"
                   class="btn btn-warning btn-sm"
                   (click)="onOpenModalFirstRegister(item)"
@@ -198,10 +198,10 @@
                 <button  class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
                   حذف
                 </button>
-                <button
+                <button *ngIf="item.requestTypeId === 1"
                   [disabled]="item.editedBy !== null"
                   class="btn btn-warning btn-sm"
-                  (click)="onOpenModalFirstRegister(item)"
+                  (click)="onOpenModalPsp(item)"
                 >
                   ویرایش
                 </button>
@@ -266,10 +266,10 @@
                 <button  class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
                   حذف
                 </button>
-                <button
+                <button *ngIf="item.requestTypeId === 1"
                   [disabled]="item.editedBy !== null"
                   class="btn btn-warning btn-sm"
-                  (click)="onOpenModalFirstRegister(item)"
+                  (click)="onOpenModalShaparak(item)"
                 >
                   ویرایش
                 </button>
