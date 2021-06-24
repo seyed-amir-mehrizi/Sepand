@@ -228,5 +228,59 @@ export class RequestsComponent implements OnInit {
 
   }
 
+  deleteFirstRegister(item){
+    this.spinner.show();
+    this.requestService.deleteRequest(item)
+    .subscribe((res=>{
+      this.requestService.getListOfFirstRegistration(this.params)
+      .subscribe((result: any) => {
+        this.firstRegisterList = result.data;
+        this.totalRecordsFirstRegister = result.totalRecord;
+        this.spinner.hide();
+      });
+    }));
+  }
+
+  deletePsp(item){
+    this.spinner.show();
+    this.requestService.deleteRequest(item)
+    .subscribe((res=>{
+      this.requestService.getListOfSentToPsp(this.params)
+          .subscribe((result: any) => {
+            this.sendToPspList = result.data;
+            this.totalRecordsSendToPsp = result.totalRecord;
+            this.spinner.hide();
+   
+      });
+    }));
+  }
+
+
+  deleteShaparak(item){
+    this.spinner.show();
+    this.requestService.deleteRequest(item)
+    .subscribe((res=>{
+      this.requestService.getListOfShaparakProcess(this.params)
+      .subscribe((result: any) => {
+        this.shaparakList = result.data;
+        this.totalRecordsShaparak = result.totalRecord;
+        this.spinner.hide();
+      });
+    }));
+  }
+
+  deleteCompleted(item){
+    this.spinner.show();
+    this.requestService.deleteRequest(item)
+    .subscribe((res=>{
+      this.requestService.getListOfCompletedRequests(this.params)
+      .subscribe((result: any) => {
+        this.completedList = result.data;
+        this.totalRecordsCompleted = result.totalRecord;
+        this.spinner.hide();
+      });
+    }));
+  }
+
 
 }

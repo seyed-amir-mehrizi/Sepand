@@ -103,7 +103,7 @@ export class EditProjectModalComponent implements OnInit {
   setValueForForm() {
     this.registerProjectInfo.setValue({
       projectName: this.projectInfo.projectName,
-      shareType: this.projectInfo.shareType,
+      shareType: this.projectInfo.shareTypeEnum,
       shareAmountMax: this.projectInfo.shareAmountMax,
       shareAmountMin: this.projectInfo.shareAmountMin,
       sharedAmount: this.projectInfo.sharedAmount,

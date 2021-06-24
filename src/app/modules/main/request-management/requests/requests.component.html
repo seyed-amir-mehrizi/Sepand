@@ -125,6 +125,11 @@
                 {{ item?.requestType }}
               </td>
               <td>
+                
+                  <button  class="btn btn-danger btn-sm mx-2" (click)="deleteFirstRegister(item)">
+                    حذف
+                  </button>
+                
                 <button
                   [disabled]="item.editedBy !== null"
                   class="btn btn-warning btn-sm"
@@ -132,7 +137,7 @@
                 >
                   ویرایش
                 </button>
-                <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2"
+                <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
                   >در حال ویرایش توسط {{ item?.editedBy }}</span
                 >
               </td>
@@ -190,6 +195,9 @@
                 {{ item?.requestType }}
               </td>
               <td>
+                <button  class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
+                  حذف
+                </button>
                 <button
                   [disabled]="item.editedBy !== null"
                   class="btn btn-warning btn-sm"
@@ -197,7 +205,7 @@
                 >
                   ویرایش
                 </button>
-                <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2"
+                <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
                   >در حال ویرایش توسط {{ item?.editedBy }}</span
                 >
               </td>
@@ -255,6 +263,9 @@
                 {{ item?.requestType }}
               </td>
               <td>
+                <button  class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
+                  حذف
+                </button>
                 <button
                   [disabled]="item.editedBy !== null"
                   class="btn btn-warning btn-sm"
@@ -262,7 +273,7 @@
                 >
                   ویرایش
                 </button>
-                <span *ngIf="item.editedBy" class="badge badge-danger mx-2 p-2"
+                <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
                   >در حال ویرایش توسط {{ item?.editedBy }}</span
                 >
               </td>
@@ -297,6 +308,9 @@
               <th>نام فروشگاه</th>
               <th>نام psp</th>
               <th>وضعیت</th>
+              <th>
+                عملیات
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -317,6 +331,11 @@
               <td>{{ item?.psp }}</td>
               <td>
                 {{ item?.requestType }}
+              </td>
+              <td>
+                <button  class="btn btn-danger btn-sm mx-2" (click)="deleteCompleted(item)">
+                  حذف
+                </button>
               </td>
             </tr>
           </tbody>

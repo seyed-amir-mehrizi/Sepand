@@ -63,4 +63,11 @@ getListOfCompletedRequests(data:any){
 
 }
 
+deleteRequest(data){
+  let params = {
+    id : data.id
+  }
+  return this.http.delete(this.customerApi+'/remove-request' , {params});
+}
+
 }
