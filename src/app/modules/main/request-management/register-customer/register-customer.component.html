@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="2" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
@@ -19,9 +19,9 @@
             <div class="col-md-4 my-2">
               <label for="nationalNumber">کد ملی</label>
               <div class="input-group  dir-ltr">
-                <span ngbPopover="استعلام شماره  ملی" triggers="mouseenter:mouseleave"
+                <!-- <span ngbPopover="استعلام شماره  ملی" triggers="mouseenter:mouseleave"
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
-                  (click)="checkNationalNumber()">?</span>
+                  (click)="checkNationalNumber()">?</span> -->
                 <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
                   formControlName="nationalNumber" (blur)="checkNationalNumber()" class="form-control dir-ltr" (keypress)="numberOnly($event)"
                   [ngClass]="{
@@ -238,9 +238,9 @@
             <div class="col-md-4 my-2">
               <label for="nationalLegalCode"> شماره شناسه ملی</label>
               <div class="input-group mb-3 dir-ltr">
-                <span ngbPopover="استعلام شماره شناسه ملی" triggers="mouseenter:mouseleave"
+                <!-- <span ngbPopover="استعلام شماره شناسه ملی" triggers="mouseenter:mouseleave"
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
-                  (click)="checkRegisterNumber()">?</span>
+                  (click)="checkRegisterNumber()">?</span> -->
                 <input id="nationalLegalCode" (blur)="checkRegisterNumber()" type="text" formControlName="nationalLegalCode" class="form-control"
                   [ngClass]="{
                         'is-invalid':
@@ -514,9 +514,9 @@
             <div class="col-md-4 my-2">
               <label for="foreignPervasiveCode"> کد اتباع فراگیر </label>
               <div class="input-group mb-3 dir-ltr">
-                <span ngbPopover="استعلام  کد اتباع فراگیر" triggers="mouseenter:mouseleave"
+                <!-- <span ngbPopover="استعلام  کد اتباع فراگیر" triggers="mouseenter:mouseleave"
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
-                  (click)="checkForeignPervasiveCode()">?</span>
+                  (click)="checkForeignPervasiveCode()">?</span> -->
                 <input id="foreignPervasiveCode" (blur)="checkForeignPervasiveCode()" type="text" formControlName="foreignPervasiveCode" class="form-control"
                   [ngClass]="{
                     'is-invalid':

@@ -9,3 +9,10 @@
     border-color: rgba(25,118,210,.5);
     box-shadow: 0 8px 8px rgb(1 131 163 / 24%), 0 0 8px rgb(1 67 163 / 12%), 0 6px 18px rgb(43 133 231 / 12%);
 }
+
+
+.card-position{
+    margin: 0 auto;
+    position: relative;
+    top: 30vh;
+}

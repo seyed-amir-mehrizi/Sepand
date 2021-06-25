@@ -10,7 +10,9 @@
 }
 
 html , body{
-    min-height: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
     width: 100%;
     direction: rtl;
     text-align: right;
@@ -42,7 +44,10 @@ html , body{
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0.01px;
+  }
+  :root{
+    scrollbar-width: thin !important;
   }
   
   /* Track */

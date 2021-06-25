@@ -5,7 +5,7 @@
     background-color: #34495e;
     position: fixed;
     height: 100%;
-    overflow: auto;
+    overflow-y: scroll;
   }
   
   .sidebar a {
@@ -63,21 +63,24 @@
 }
 
 /* width */
-::-webkit-scrollbar {
-  width: 10px;
+#sidebar ::-webkit-scrollbar {
+  width: 1px;
+}
+#sidebar :root{
+  scrollbar-width: thin !important;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+#sidebar ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+#sidebar ::-webkit-scrollbar-thumb {
   background: #888;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+#sidebar ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

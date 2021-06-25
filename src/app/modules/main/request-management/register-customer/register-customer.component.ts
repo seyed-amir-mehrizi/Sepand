@@ -242,7 +242,7 @@ export class RegisterCustomerComponent implements OnInit {
       this.isRegisterCustomerSubmitted = true;
       return;
     } else if (this.hasNationalNumber === false) {
-      this.toastr.error('در ابتدا استعلام کد ملی خود را بررسی کنید');
+      this.toastr.info('در ابتدا استعلام کد ملی خود را بررسی کنید');
       return;
     }
     const dataSending = this.registerRealCustomerForm.value;
@@ -332,7 +332,7 @@ export class RegisterCustomerComponent implements OnInit {
   checkMax(event) {
     const value = parseInt(event.target.value);
     if (value > 100) {
-      this.toastr.error('بیشترین مبلغ تسهیم 100 می باشد')
+      this.toastr.info('بیشترین مبلغ تسهیم 100 می باشد')
       event.target.value = '';
     }
   }
@@ -422,7 +422,7 @@ export class RegisterCustomerComponent implements OnInit {
         }
       });
     } else {
-      this.toastr.error('ابتدا کد ملی خود را وارد کنید...');
+      this.toastr.info('ابتدا کد ملی خود را وارد کنید...');
     }
   }
 
@@ -518,7 +518,7 @@ export class RegisterCustomerComponent implements OnInit {
         }
       });
     } else {
-      this.toastr.error('ابتدا شماره شناسه ملی خود را وارد کنید...');
+      this.toastr.info('ابتدا شماره شناسه ملی خود را وارد کنید...');
     }
   }
 
@@ -527,7 +527,7 @@ export class RegisterCustomerComponent implements OnInit {
       this.isRegisterLegalCustomerSubmitted = true;
       return;
     } else if (this.hasRegisterNumber === false) {
-      this.toastr.error('در ابتدا استعلام شماره شناسه ملی شرکت را بررسی کنید');
+      this.toastr.info('در ابتدا استعلام شماره شناسه ملی شرکت را بررسی کنید');
       return;
     }
     const dataSending = this.registerLegalCustomerForm.value;
@@ -603,7 +603,7 @@ export class RegisterCustomerComponent implements OnInit {
         }
       });
     } else {
-      this.toastr.error('ابتدا شماره اتباع خود را وارد کنید...');
+      this.toastr.info('ابتدا شماره اتباع خود را وارد کنید...');
     }
   }
 
@@ -612,7 +612,7 @@ export class RegisterCustomerComponent implements OnInit {
       this.isRegisterForeignCustomerSubmitted = true;
       return;
     } else if (this.hasForeignNumber === false) {
-      this.toastr.error('در ابتدا استعلام شماره اتباع را بررسی کنید');
+      this.toastr.info('در ابتدا استعلام شماره اتباع را بررسی کنید');
       return;
     }
     const dataSending = this.registerForeignForm.value;
@@ -822,7 +822,7 @@ export class RegisterCustomerComponent implements OnInit {
       case 1:
         dataSending.sharedAmount = 0;
         if (dataSending.shareAmountMax === '' || dataSending.shareAmountMin === '') {
-          this.toastr.error('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
+          this.toastr.info('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
           return;
         }
         break;
@@ -830,7 +830,7 @@ export class RegisterCustomerComponent implements OnInit {
         dataSending.shareAmountMax = 0;
         dataSending.shareAmountMin = 0;
         if (dataSending.sharedAmount === '') {
-          this.toastr.error(' مبلغ تسهیم را وارد کنید');
+          this.toastr.info(' مبلغ تسهیم را وارد کنید');
           return;
         }
         break;
@@ -860,7 +860,7 @@ export class RegisterCustomerComponent implements OnInit {
     if (this.BankInfoList.length > 0) {
       nav.select(4)
     } else {
-      this.toastr.error('هیچ حساب بانکی وارد نشده است')
+      this.toastr.info('هیچ حساب بانکی وارد نشده است')
     }
   }
 
@@ -876,7 +876,7 @@ export class RegisterCustomerComponent implements OnInit {
       contractNumber: ['', Validators.required],
       expireDate: ['', Validators.required],
       serviceStartDate: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
       projectId: ['', Validators.required],
       shareType: [''],
       sharedAmount: [''],

@@ -21,7 +21,7 @@
       min-height: 100%;
   }
 
-  footer {
+  /* footer {
     position: fixed;
     height: 30px;
     bottom: 0;
@@ -29,4 +29,33 @@
    background-color: #E7E9EB!important;
    font-size: 12px;
    direction: ltr;
+} */
+
+
+
+.page {
+  margin: 0;
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: tomato;
+  flex: 0 0 auto;
+}
+
+.footer {
+  background: lightgreen;
+  flex: 0 0 auto;
+}
+
+.content {
+
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;
 }
