@@ -215,7 +215,7 @@ export class RequestsComponent implements OnInit {
 
 
   onOpenModalFirstRegister(item) {
-    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' , keyboard:false });
     modalRef.componentInstance.rowInfo = item;
     modalRef.result.then(() => {
       this.getListOfFirstRegister(this.params);
@@ -224,7 +224,7 @@ export class RequestsComponent implements OnInit {
 
   }
   onOpenModalPsp(item) {
-    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' , keyboard:false });
     modalRef.componentInstance.rowInfo = item;
     modalRef.result.then(() => {
       this.spinner.show();
@@ -239,7 +239,7 @@ export class RequestsComponent implements OnInit {
 
   }
   onOpenModalShaparak(item) {
-    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    const modalRef = this.ngbModal.open(EditModalRequestComponent, { size: 'xl', scrollable: true, backdrop: 'static'  , keyboard:false});
     modalRef.componentInstance.rowInfo = item;
     modalRef.result.then(() => {
       this.spinner.show();

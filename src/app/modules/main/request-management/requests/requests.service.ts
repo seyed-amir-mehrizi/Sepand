@@ -75,4 +75,9 @@ editrequest(data){
   return this.http.put(this.customerApi+'/edit-request' , data);
 }
 
+startEditRequest(data){
+  return this.http.post(this.customerApi + '/start-edit', data).pipe(map(response => response));
+
+}
+
 }

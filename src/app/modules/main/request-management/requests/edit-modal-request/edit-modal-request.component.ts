@@ -31,7 +31,7 @@ export class EditModalRequestComponent implements OnInit {
     this.initFrom();
     this.setValueForInput();
     this.getListOfGuild();
-
+    this.startToEditRequest();
   }
 
   getListOfGuild() {
@@ -41,7 +41,13 @@ export class EditModalRequestComponent implements OnInit {
     this.people$ =  this.sharedService.getAllGuildsCategories();
   }
 
+  startToEditRequest(){
+    let data = this.rowInfo.id;
+    this.requestService.startEditRequest(data)
+    .subscribe((res=>{
 
+    }))
+  }
   initFrom(){
     this.editRequestForm = this.fb.group({
       firstNameFa: [''],
