@@ -11,6 +11,14 @@
 }
 
 
+.card-height{
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .card-position{
     margin: 0 auto;
     position: relative;

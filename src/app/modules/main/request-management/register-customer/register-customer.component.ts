@@ -929,7 +929,7 @@ export class RegisterCustomerComponent implements OnInit {
 
     this.service.defineAcceptor(data)
       .subscribe((res => {
-        this.toastr.success('مشتری با موفقیت ثبت گردید');
+        // this.toastr.success('مشتری با موفقیت ثبت گردید');
         window.location.reload();
       }))
 

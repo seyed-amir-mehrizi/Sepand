@@ -16,11 +16,14 @@ export class MainPageComponent implements OnInit {
   goToUsersList() {
     this.router.navigate(['main/userList'])
   }
-  goToRegisterCustomer() {
-    this.router.navigate(['main/requestManagement/registerCustomer'])
+  goToCustomersList() {
+    this.router.navigate(['main/requestManagement/customersList'])
   }
-  goToRegisterProjectInfo() {
-    this.router.navigate(['main/basicInfo/registerProject'])
+  goToContractList() {
+    this.router.navigate(['main/basicInfo/ContractList'])
+  }
+  goToCompaniesPage() {
+    this.router.navigate(['main/basicInfo/PspList'])
   }
 
 }
