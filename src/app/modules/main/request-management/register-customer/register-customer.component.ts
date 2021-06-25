@@ -765,6 +765,8 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.guildId = parseInt(dataSending.guildId);
     dataSending.shopLogo = dataSending.shopLogo ? dataSending.shopLogo : '',
     dataSending.shopEmail = dataSending.email;
+    dataSending.isSharedAccount = false;
+    dataSending.isMultiAccount = false;
     this.locationInfoValue = dataSending;
     nav.select(3);
   }
