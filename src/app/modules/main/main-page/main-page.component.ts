@@ -20,7 +20,7 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(['main/requestManagement/customersList'])
   }
   goToContractList() {
-    this.router.navigate(['main/basicInfo/ContractList'])
+    this.router.navigate(['main/basicInfo/ProjectList'])
   }
   goToCompaniesPage() {
     this.router.navigate(['main/basicInfo/PspList'])
