@@ -108,7 +108,7 @@
           <tbody>
             <tr *ngFor="let item of firstRegisterList">
               <td>
-                {{ item?.customerId }}
+                {{ item?.customer.customerKey }}
               </td>
               <td>
                 {{
@@ -178,7 +178,8 @@
           <tbody>
             <tr *ngFor="let item of sendToPspList">
               <td>
-                {{ item?.customerId }}
+                {{ item?.customer.customerKey }}
+
               </td>
               <td>
                 {{
@@ -246,7 +247,8 @@
           <tbody>
             <tr *ngFor="let item of shaparakList">
               <td>
-                {{ item?.customerId }}
+                {{ item?.customer.customerKey }}
+
               </td>
               <td>
                 {{
@@ -316,7 +318,7 @@
           <tbody>
             <tr *ngFor="let item of completedList">
               <td>
-                {{ item?.customerId }}
+                {{ item?.customer.customerKey }}
               </td>
               <td>
                 {{
