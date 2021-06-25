@@ -25,5 +25,21 @@ export class MainPageComponent implements OnInit {
   goToCompaniesPage() {
     this.router.navigate(['main/basicInfo/PspList'])
   }
+  goToChangeIban(){
+    this.router.navigate(['main/requestManagement/changheIban'])
+
+  }
+  goToChangeClass(){
+    this.router.navigate(['main/requestManagement/changeClass'])
+
+  }
+  goToChangePostalcode(){
+    this.router.navigate(['main/requestManagement/changePostalcode'])
+
+  }
+  goToRequest(){
+    this.router.navigate(['main/requestManagement/requests'])
+
+  }
 
 }
