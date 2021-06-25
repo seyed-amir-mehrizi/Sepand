@@ -1,4 +1,4 @@
-<ul ngbNav #nav="ngbNav" [activeId]="1" (navChange)="onNavChange($event)" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [activeId]="2" (navChange)="onNavChange($event)" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
@@ -23,7 +23,7 @@
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkNationalNumber()">?</span>
                 <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
-                  formControlName="nationalNumber" class="form-control dir-ltr" (keypress)="numberOnly($event)"
+                  formControlName="nationalNumber" (blur)="checkNationalNumber()" class="form-control dir-ltr" (keypress)="numberOnly($event)"
                   [ngClass]="{
                     'is-invalid':
                       isRegisterCustomerSubmitted &&
@@ -56,7 +56,7 @@
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.firstNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -65,7 +65,7 @@
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.lastNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
 
             <div class="col-md-4 my-2">
@@ -147,7 +147,7 @@
                     isRegisterCustomerSubmitted &&
                     registerRealCustomerFormInfo.fatherNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
 
             <div class="col-md-4 my-2">
@@ -241,7 +241,7 @@
                 <span ngbPopover="استعلام شماره شناسه ملی" triggers="mouseenter:mouseleave"
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkRegisterNumber()">?</span>
-                <input id="nationalLegalCode" type="text" formControlName="nationalLegalCode" class="form-control"
+                <input id="nationalLegalCode" (blur)="checkRegisterNumber()" type="text" formControlName="nationalLegalCode" class="form-control"
                   [ngClass]="{
                         'is-invalid':
                           isRegisterLegalCustomerSubmitted &&
@@ -283,11 +283,11 @@
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.comNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
             <div class="col-md-4 my-2">
               <label for="commercialCode"> کد اقتصادی </label>
-              <input id="commercialCode" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
+              <input id="commercialCode" (keypress)="numberOnly($event)" type="text" formControlName="commercialCode" class="form-control" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.commercialCode.errors
@@ -328,7 +328,7 @@
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.firstNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -337,17 +337,17 @@
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.lastNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
 
             <div class="col-md-4 my-2">
               <label for="nationalNumber">کد ملی</label>
 
-              <input aria-label="Username" aria-describedby="basic-addon1" id="nationalNumber" type="text"
+              <input id="nationalNumber" type="text"
                 formControlName="nationalNumber" class="form-control dir-ltr" (keypress)="numberOnly($event)" [ngClass]="{
                   'is-invalid':
                     isRegisterLegalCustomerSubmitted &&
-                    registerLegalCustomerFormInfo.nationalityId.errors
+                    registerLegalCustomerFormInfo.nationalNumber.errors
                 }" />
             </div>
 
@@ -420,7 +420,7 @@
                     isRegisterLegalCustomerSubmitted &&
                     registerLegalCustomerFormInfo.fatherNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
 
             <div class="col-md-4 my-2">
@@ -517,7 +517,7 @@
                 <span ngbPopover="استعلام  کد اتباع فراگیر" triggers="mouseenter:mouseleave"
                   class="input-group-text dir-rtl cursor-pointer" id="basic-addon1"
                   (click)="checkForeignPervasiveCode()">?</span>
-                <input id="foreignPervasiveCode" type="text" formControlName="foreignPervasiveCode" class="form-control"
+                <input id="foreignPervasiveCode" (blur)="checkForeignPervasiveCode()" type="text" formControlName="foreignPervasiveCode" class="form-control"
                   [ngClass]="{
                     'is-invalid':
                       isRegisterForeignCustomerSubmitted &&
@@ -552,7 +552,7 @@
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.firstNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
             <div class="col-md-4 my-2">
               <label for="lastNameEn">نام خانوادگی لاتین</label>
@@ -614,7 +614,7 @@
                     isRegisterForeignCustomerSubmitted &&
                     registerForeignCustomerFormInfo.fatherNameEn.errors
                 }"
-                onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+                (keypress)="englishOnly($event)" />
             </div>
 
             <div class="col-md-4 my-2">
@@ -736,7 +736,7 @@
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.webSiteAddress.errors
-              }" />
+              }" placeholder="www.example.com" (keypress)="webSiteOnly($event)" />
           </div>
 
           <div class="col-md-6 my-2">
@@ -751,7 +751,7 @@
           <div class="col-md-6 my-2">
             <label for="addressEn"> آدرس انگلیسی </label>
             <input
-              onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) "
+              (keypress)="englishOnly($event)"
               id="addressEn" type="text" formControlName="addressEn" class="form-control dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
@@ -806,14 +806,14 @@
           </div>
 
 
-          <div class="col-md-3 my-2">
+          <!-- <div class="col-md-3 my-2">
             <label for="shopEmail"> ایمیل فروشگاه </label>
             <input id="shopEmail" type="text" formControlName="shopEmail" class="form-control  dir-ltr" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopEmail.errors
               }" />
-          </div>
+          </div> -->
           <div class="col-md-6 my-2">
             <label for="shopAddress"> آدرس فروشگاه </label>
             <input (keypress)="FarsiOnly($event)" id="shopAddress" type="text" formControlName="shopAddress"
@@ -864,7 +864,7 @@
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.redirectUrl.errors
-              }" />
+              }" placeholder="www.example.com" (keypress)="webSiteOnly($event)" />
           </div>
           <div class="col-md-3 my-2">
             <label for="guildId">صنف</label>
@@ -910,11 +910,11 @@
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.shopNameEn.errors
               }"
-              onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) " />
+              (keypress)="englishOnly($event)" />
           </div>
           <div class="col-md-3 my-2">
             <label for="taxPayerCode"> کد  رهگیری مالیاتی </label>
-            <input id="taxPayerCode" type="text" formControlName="taxPayerCode" class="form-control" [ngClass]="{
+            <input id="taxPayerCode"  (keypress)="numberOnly($event)" type="text" formControlName="taxPayerCode" class="form-control" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.taxPayerCode.errors
@@ -1082,7 +1082,7 @@
               </div>
               <div class="col-md-12 my-2">
 
-                <button class="btn btn-success btn-sm" (click)="addBankInfo()">ثبت</button>
+                <button class="btn btn-success btn-sm" (click)="addBankInfo()">افزودن</button>
               </div>
 
             </div>

@@ -226,9 +226,9 @@ export class RegisterCustomerComponent implements OnInit {
       fatherNameEn: ['', Validators.required],
       sex: ['', Validators.required],
       birthCertificateNo: ['', Validators.required],
-      birthCertificateSerial: ['', [Validators.required , Validators.minLength(2) , Validators.maxLength(2)]],
+      birthCertificateSerial: ['', [Validators.required]],
       birthCertificateAlphabiticNoId: ['', Validators.required],
-      birthCertificateNumericNo: ['', Validators.required],
+      birthCertificateNumericNo: ['', [Validators.required , , Validators.minLength(2) , Validators.maxLength(2)]],
       postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       // isDisable: [''],
     });
@@ -354,6 +354,26 @@ export class RegisterCustomerComponent implements OnInit {
 
   }
 
+  englishOnly = (event) => {
+    const value = event.key;
+    var p = /^[a-zA-Z0-9, ]*$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
+  }
+
+  webSiteOnly = (event) => {
+    const value = event.key;
+    var p = /^[a-zA-Z0-9,:/@.? ]*$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
+  }
+
 
 
   splitGregorianToJalaliDate(date) {
@@ -418,7 +438,7 @@ export class RegisterCustomerComponent implements OnInit {
       comNameFa: ['', Validators.required],
       commercialCode: ['', Validators.required],
       degreeId: ['', Validators.required],
-      nationalNumber: ['', Validators.required],
+      nationalNumber: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
       lastNameFa: ['', Validators.required],
       lastNameEn: ['', Validators.required],
       nationalityId: ['', Validators.required],
@@ -431,7 +451,7 @@ export class RegisterCustomerComponent implements OnInit {
       birthCertificateNo: ['', Validators.required],
       birthCertificateSerial: ['', Validators.required],
       birthCertificateAlphabiticNoId: ['', Validators.required],
-      birthCertificateNumericNo: ['', Validators.required],
+      birthCertificateNumericNo: ['', [Validators.required , Validators.minLength(2) , Validators.maxLength(2)]],
       postalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       nationalLegalCode: ['', Validators.required],
       // isDisable: [''],
@@ -601,11 +621,12 @@ export class RegisterCustomerComponent implements OnInit {
       dataSending.passportExpireDate
     );
     dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
-    dataSending.countryCode = parseInt(dataSending.countryCode['id']);
+    dataSending.countryCode =String(dataSending.countryCode['id']);
     dataSending.sex = parseInt(dataSending.sex);
     dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.rsidencyType = true;
     dataSending.vitalStatus = true;
+    dataSending.isForeign = true;
     this.registerForeignCustomerFormValue = dataSending;
     nav.select(2);
   }
@@ -648,18 +669,18 @@ export class RegisterCustomerComponent implements OnInit {
       shopBusinessLicenseNumber: ['', Validators.required],
       shopBusinessLicenseIssueDate: ['', Validators.required],
       shopBusinessLicenseExpireDate: ['', Validators.required],
-      shopEmail: ['', [Validators.required, Validators.email]],
+      // shopEmail: ['', [Validators.required, Validators.email]],
       shopAddress: ['', Validators.required],
-      redirectUrl: ['', [Validators.required , Validators.pattern(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)]],
+      redirectUrl: ['', [Validators.required]],
       guildId: ['', Validators.required],
-      shopLogo: ['', Validators.required],
+      shopLogo: [''],
       shopNameFa: ['', Validators.required],
       shopNameEn: ['', Validators.required],
-      webSiteAddress: ['', Validators.required],
+      webSiteAddress: ['', [Validators.required ]],
       provinceAbbreviation: ['', Validators.required],
       countryAbbreviation: ['', Validators.required],
       cityCode: ['', Validators.required],
-      taxPayerCode: ['', Validators.required],
+      taxPayerCode: ['',[ Validators.required , Validators.maxLength(10)]],
       isSharedAccount: [false],
       isMultiAccount: [false],
     });
@@ -742,6 +763,8 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.countryAbbreviation = dataSending.countryAbbreviation['abbrivation'];
     dataSending.cityCode = parseInt(dataSending.cityCode);
     dataSending.guildId = parseInt(dataSending.guildId);
+    dataSending.shopLogo = dataSending.shopLogo ? dataSending.shopLogo : '',
+    dataSending.shopEmail = dataSending.email;
     this.locationInfoValue = dataSending;
     nav.select(3);
   }
@@ -762,7 +785,7 @@ export class RegisterCustomerComponent implements OnInit {
       shareAmountMax: [''],
       shareAmountMin: [''],
       sharedAmount: [''],
-      isMain: [false],
+      isMain: [true],
     });
   }
 
@@ -822,6 +845,9 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.iban = `IR${dataSending.iban}`;
     this.BankInfoList.push(dataSending);
     this.BankInfoForm.reset();
+    this.BankInfoForm.patchValue({
+      isMain : true
+    });
   }
 
 
