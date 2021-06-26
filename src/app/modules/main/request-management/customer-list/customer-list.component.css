@@ -1,10 +1,10 @@
-#customerList  ::ng-deep .card  {
+/* #customerList  ::ng-deep .card  {
     border: none;
   }
   #customerList  ::ng-deep .card .card-header  {
    
     border: none;
-  }
+  } */
   
   #customerList ::ng-deep .card .card-header> button  {
     color: black;

@@ -1,33 +1,23 @@
 <div id="sidebar" class="sidebar h-100">
-  <div
-    class="
+  <div class="
       d-flex
       flex-column
       align-items-center
       justify-content-around
       mt-2
-      logo-container
-    "
-  >
-    <div class="site_title">
-      <!-- <i class="fa fa-send arrow-style"></i> -->
-      <img
-        src="../../../assets/image/melal_logo.png"
-        class="rounded-circle bg-white my-4"
-        style="width: 90px"
-      />
+      
+    ">
+    <div class="text-white mt-2">
+      سامانه مدیریت درخواست ها
+    </div>
+    <div>
+      <img src="../../../assets/image/melal_logo.png" class="rounded-circle bg-white my-4" style="width: 100px" />
     </div>
     <div>
       <h6 class="text-white">موسسه اعتباری ملل</h6>
     </div>
-  </div>
-  <div class="d-flex align-items-center justify-content-around mt-2 user-info">
     <div>
-      <!-- <img src="../../../assets/image/personel.jpg"  class="rounded-circle" style="width:60px;"> -->
-      <h6 class="text-white">خوش آمدید</h6>
-    </div>
-    <div>
-      <h5 class="text-white">admin</h5>
+      <h6 class="text-white mt-2">admin</h6>
     </div>
   </div>
   <ngb-accordion #acc="ngbAccordion">
@@ -44,83 +34,37 @@
         <span class="size-16"> <i class="fa fa-user mx-2"></i> کاربران</span>
       </ng-template>
       <ng-template ngbPanelContent>
-        <a routerLink="/main/userList" routerLinkActive="active"
-          >لیست کاربران</a
-        >
+        <a routerLink="/main/userList" routerLinkActive="active">لیست کاربران</a>
       </ng-template>
     </ngb-panel>
     <ngb-panel>
       <ng-template ngbPanelTitle>
         <span class="size-16">
-          <i class="fa fa-barcode mx-2"></i> مدیریت درخواست ها</span
-        >
+          <i class="fa fa-barcode mx-2"></i> مدیریت درخواست ها</span>
       </ng-template>
       <ng-template ngbPanelContent>
-        <a
-          routerLink="/main/requestManagement/registerCustomer"
-          routerLinkActive="active"
-          >ثبت مشتری</a
-        >
-        <a
-          routerLink="/main/requestManagement/customersList"
-          routerLinkActive="active"
-          >مشتریان</a
-        >
+        <a routerLink="/main/requestManagement/registerCustomer" routerLinkActive="active">ثبت مشتری</a>
+        <a routerLink="/main/requestManagement/customersList" routerLinkActive="active">مشتریان</a>
         <!-- <a routerLink="/main/requestManagement/status" routerLinkActive="active">وضعیت درخواست</a> -->
-        <a
-          routerLink="/main/requestManagement/changheIban"
-          routerLinkActive="active"
-          >تغییر شماره شبا</a
-        >
-        <a
-          routerLink="/main/requestManagement/changeClass"
-          routerLinkActive="active"
-          >تغییر صنف</a
-        >
-        <a
-          routerLink="/main/requestManagement/changePostalcode"
-          routerLinkActive="active"
-          >تغییر کد پستی</a
-        >
-        <a
-          routerLink="/main/requestManagement/removeTerminal"
-          routerLinkActive="active"
-          >ابطال ترمینال</a
-        >
-        <a
-          routerLink="/main/requestManagement/activateTerminal"
-          routerLinkActive="active"
-          >فعال کردن ترمینال</a
-        >
-        <a
-          routerLink="/main/requestManagement/requests"
-          routerLinkActive="active"
-          >درخواست ها</a
-        >
+        <a routerLink="/main/requestManagement/changheIban" routerLinkActive="active">تغییر شماره شبا</a>
+        <a routerLink="/main/requestManagement/changeClass" routerLinkActive="active">تغییر صنف</a>
+        <a routerLink="/main/requestManagement/changePostalcode" routerLinkActive="active">تغییر کد پستی</a>
+        <a routerLink="/main/requestManagement/removeTerminal" routerLinkActive="active">ابطال ترمینال</a>
+        <a routerLink="/main/requestManagement/activateTerminal" routerLinkActive="active">فعال کردن ترمینال</a>
+        <a routerLink="/main/requestManagement/requests" routerLinkActive="active">درخواست ها</a>
       </ng-template>
     </ngb-panel>
 
     <ngb-panel>
       <ng-template ngbPanelTitle>
         <span class="size-16">
-          <i class="fa fa-dashboard mx-2"></i>اطلاعات پایه</span
-        >
+          <i class="fa fa-dashboard mx-2"></i>اطلاعات پایه</span>
       </ng-template>
       <ng-template ngbPanelContent>
-        <a
-          routerLink="/main/basicInfo/registerProject"
-          routerLinkActive="active"
-          >ثبت اطلاعات پروژه</a
-        >
-        <a routerLink="/main/basicInfo/ProjectList" routerLinkActive="active"
-          >لیست پروژه ها</a
-        >
-        <a routerLink="/main/basicInfo/PspAdd" routerLinkActive="active"
-          >ثبت اطلاعات شرکت پرداخت</a
-        >
-        <a routerLink="/main/basicInfo/PspList" routerLinkActive="active"
-          >لیست شرکت پرداخت</a
-        >
+        <a routerLink="/main/basicInfo/registerProject" routerLinkActive="active">ثبت اطلاعات پروژه</a>
+        <a routerLink="/main/basicInfo/ProjectList" routerLinkActive="active">لیست پروژه ها</a>
+        <a routerLink="/main/basicInfo/PspAdd" routerLinkActive="active">ثبت اطلاعات شرکت پرداخت</a>
+        <a routerLink="/main/basicInfo/PspList" routerLinkActive="active">لیست شرکت پرداخت</a>
         <!-- <a routerLink="/main/basicInfo/ContractList" routerLinkActive="active"
           >لیست قراردادها</a
         >
