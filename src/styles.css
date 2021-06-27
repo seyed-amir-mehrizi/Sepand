@@ -64,3 +64,27 @@ html , body{
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  table th{
+    background-color: #2e3640;
+    color: #f1f1f1;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+
+  }
+  table td{
+
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+
+  }
+
+  .pagination .page-item .page-link {
+    border-radius: 10px !important;
+    margin:0 5px ;
+  }
+  .pagination .page-item .page-link:active {
+    background-color: #428bca;
+  }

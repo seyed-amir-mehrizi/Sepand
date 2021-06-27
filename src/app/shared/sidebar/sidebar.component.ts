@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+ openById = {};
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  test(event){
+    this.openById[event.panelId] = event.nextState;
   }
 
 }

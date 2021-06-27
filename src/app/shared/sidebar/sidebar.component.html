@@ -4,10 +4,9 @@
       flex-column
       align-items-center
       justify-content-around
-      mt-2
       
-    ">
-    <div class="text-white mt-2">
+    " style="background-color:#1b2631 ;">
+    <div class="text-white mt-4">
       سامانه مدیریت درخواست ها
     </div>
     <div>
@@ -20,10 +19,19 @@
       <h6 class="text-white mt-2">admin</h6>
     </div>
   </div>
-  <ngb-accordion #acc="ngbAccordion">
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" (panelChange)="test($event)">
     <ngb-panel>
       <ng-template ngbPanelTitle>
-        <span class="size-16"> <i class="fa fa-home mx-2"></i> خانه</span>
+        <div class="d-flex justify-content-between">
+          <span class="size-16"> <i class="fa fa-home mx-2"></i> خانه</span>
+          <div *ngIf="openById['ngb-panel-0']">
+            <div><i class="fa fa-angle-up text-white"></i></div>
+          </div>
+          <div *ngIf="!openById['ngb-panel-0']">
+            <div><i class="fa fa-angle-down text-white"></i></div>
+          </div>
+      </div>
+      
       </ng-template>
       <ng-template ngbPanelContent>
         <a routerLink="/main/mainPage" routerLinkActive="active">داشبورد</a>
@@ -31,7 +39,15 @@
     </ngb-panel>
     <ngb-panel>
       <ng-template ngbPanelTitle>
-        <span class="size-16"> <i class="fa fa-user mx-2"></i> کاربران</span>
+        <div class="d-flex justify-content-between">
+          <span class="size-16"> <i class="fa fa-user mx-2"></i> کاربران</span>
+          <div *ngIf="openById['ngb-panel-1']">
+            <div><i class="fa fa-angle-up text-white"></i></div>
+          </div>
+          <div *ngIf="!openById['ngb-panel-1']">
+            <div><i class="fa fa-angle-down text-white"></i></div>
+          </div>
+      </div>
       </ng-template>
       <ng-template ngbPanelContent>
         <a routerLink="/main/userList" routerLinkActive="active">لیست کاربران</a>
@@ -39,8 +55,17 @@
     </ngb-panel>
     <ngb-panel>
       <ng-template ngbPanelTitle>
-        <span class="size-16">
-          <i class="fa fa-barcode mx-2"></i> مدیریت درخواست ها</span>
+        <div class="d-flex justify-content-between">
+          <span class="size-16">
+            <i class="fa fa-barcode mx-2"></i> مدیریت درخواست ها</span>
+          <div *ngIf="openById['ngb-panel-2']">
+            <div><i class="fa fa-angle-up text-white"></i></div>
+          </div>
+          <div *ngIf="!openById['ngb-panel-2']">
+            <div><i class="fa fa-angle-down text-white"></i></div>
+          </div>
+      </div>
+        
       </ng-template>
       <ng-template ngbPanelContent>
         <a routerLink="/main/requestManagement/registerCustomer" routerLinkActive="active">ثبت مشتری</a>
@@ -57,8 +82,18 @@
 
     <ngb-panel>
       <ng-template ngbPanelTitle>
-        <span class="size-16">
-          <i class="fa fa-dashboard mx-2"></i>اطلاعات پایه</span>
+        <div class="d-flex justify-content-between">
+
+            <span class="size-16">
+              <i class="fa fa-dashboard mx-2"></i>اطلاعات پایه</span>
+          <div *ngIf="openById['ngb-panel-3']">
+            <div><i class="fa fa-angle-up text-white"></i></div>
+          </div>
+          <div *ngIf="!openById['ngb-panel-3']">
+            <div><i class="fa fa-angle-down text-white"></i></div>
+          </div>
+      </div>
+
       </ng-template>
       <ng-template ngbPanelContent>
         <a routerLink="/main/basicInfo/registerProject" routerLinkActive="active">ثبت اطلاعات پروژه</a>

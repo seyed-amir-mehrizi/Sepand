@@ -1,8 +1,8 @@
 .sidebar {
     margin: 0;
     padding: 0;
-  
-    background-color: #34495e;
+    width: 280px;
+    background-color: #1b2631;
     position: fixed;
     height: 100%;
     overflow-y: scroll;
@@ -17,7 +17,7 @@
   }
   .active {
 
-    background-color: #59636d	;
+    background-color: #039be5	;
     border-radius: 15px;
     
   }
@@ -36,8 +36,9 @@
   border: none;
 }
 #sidebar  ::ng-deep .card .card-header  {
-  background-color: #34495e;
+  background-color: #1b2631;
   border: none;
+  width: 100%;
 }
 
 #sidebar ::ng-deep .card .card-header> button  {
@@ -51,7 +52,7 @@
 }
 
 #sidebar  ::ng-deep .card .card-body  {
-  background-color: #697b8e;
+  background-color: #3C4252;
 
 }
 .logo-container{
@@ -83,4 +84,11 @@
 /* Handle on hover */
 #sidebar ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+ngb-accordion ::ng-deep .card-header button {
+  width: 100%;
+  text-decoration: none;
+  text-align: left;
+
 }
