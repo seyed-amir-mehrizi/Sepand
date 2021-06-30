@@ -1,5 +1,17 @@
 <div class="card border-dark  mb-3">
-  <div class="card-header">لیست شرکت های پرداخت</div>
+  <div class="card-header">
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <div>
+        لیست شرکت های پرداخت
+      </div>
+      <div>
+        <input placeholder="جستجو در  نام یوزر شاپرک" class="form-control" type="text" #searchCompany/>
+
+      </div>
+    </div>
+
+
+  </div>
   <div class="card-body  ">
     <table class="table table-bordered table-striped text-center">
       <thead>
@@ -18,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of pspList">
+        <tr *ngFor="let item of pspList | searchBox: searchCompany.value;">
           <td>
             {{ item.userShaparak }}
           </td>

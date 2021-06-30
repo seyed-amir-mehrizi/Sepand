@@ -1,5 +1,17 @@
 <div class="card">
-  <div class="card-header">لیست پروژه ها</div>
+  <div class="card-header">
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <div>
+        لیست پروژه ها
+
+      </div>
+      <div>
+        <input placeholder="جستجو در  نام پروژه" class="form-control" type="text" #searchProject/>
+
+      </div>
+    </div>
+
+  </div>
   <div class="card-body">
     <table class="table table-bordered table-striped text-center">
       <thead>
@@ -15,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of projectList">
+        <tr *ngFor="let item of projectList | searchBox: searchProject.value;">
           <td>
             {{ item.projectName }}
           </td>

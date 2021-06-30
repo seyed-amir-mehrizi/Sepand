@@ -13,6 +13,7 @@ import { RepresentativeContractsListComponent } from './representative-contracts
 import { RegisterNewRepresentativeContractComponent } from './register-new-representative-contract/register-new-representative-contract.component';
 import { EditProjectModalComponent } from './project-list/edit-project-modal/edit-project-modal.component';
 import { EditCompanyPayListModalComponent } from './companies-pay-list/edit-company-pay-list-modal/edit-company-pay-list-modal.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { EditCompanyPayListModalComponent } from './companies-pay-list/edit-comp
   ],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     BasicInfoRoutingModule
