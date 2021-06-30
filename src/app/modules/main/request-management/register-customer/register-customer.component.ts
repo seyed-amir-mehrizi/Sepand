@@ -847,6 +847,7 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.iban = `IR${dataSending.iban}`;
     this.BankInfoList.push(dataSending);
     this.BankInfoForm.reset();
+    this.isBankInfoFormSubmitted = false;
     this.BankInfoForm.patchValue({
       isMain : true
     });
