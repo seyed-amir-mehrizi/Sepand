@@ -26,4 +26,9 @@ export class BaseInfoService {
     return this.http.put(this.baseInfoApi + '/edit-project' , data)
 
   }
+
+  addNewPsp(data){
+    return this.http.post(this.baseInfoApi + '/add-psp' , data)
+  }
+
 }

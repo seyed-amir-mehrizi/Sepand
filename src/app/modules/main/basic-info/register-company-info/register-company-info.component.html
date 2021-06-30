@@ -3,120 +3,117 @@
         ثبت اطلاعات شرکت پرداخت
     </div>
     <div class="card-body">
-        <form [formGroup]="registerShaCompanyForm" autocomplete="off" role="form">
+        <form [formGroup]="addPspForm" autocomplete="off" role="form">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">یوزر شاپرک</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="userShaparak">یوزر شاپرک</label>
+                            <input id="userShaparak" type="text" formControlName="userShaparak" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.userShaparak.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">پسورد شاپرک</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="passwordShaparak">پسورد شاپرک</label>
+                            <input id="passwordShaparak" type="text" formControlName="passwordShaparak" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.passwordShaparak.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">یوزر پورتال شرکت پرداخت</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="pspMmsUsername">یوزر پورتال شرکت پرداخت</label>
+                            <input id="pspMmsUsername" type="text" formControlName="pspMmsUsername" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.pspMmsUsername.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">پسورد پورتال شرکت پرداخت </label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="pspMmsPassword">پسورد پورتال شرکت پرداخت </label>
+                            <input id="pspMmsPassword" type="text" formControlName="pspMmsPassword" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.pspMmsPassword.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">کلید عمومی پورتال شرکت پرداخت </label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="pspMmsPublicKey">کلید عمومی پورتال شرکت پرداخت </label>
+                            <input id="pspMmsPublicKey" type="text" formControlName="pspMmsPublicKey" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.pspMmsPublicKey.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">کلید خصوصی پورتال شرکت پرداخت</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="pspMmsPrivateKey">کلید خصوصی پورتال شرکت پرداخت</label>
+                            <input id="pspMmsPrivateKey" type="text" formControlName="pspMmsPrivateKey" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.pspMmsPrivateKey.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">کلید عمومی ftp شاپرک</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="shaparakFtpPublicKey">کلید عمومی ftp شاپرک</label>
+                            <input id="shaparakFtpPublicKey" type="text" formControlName="shaparakFtpPublicKey" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.shaparakFtpPublicKey.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">کلید خصوصی ftp شاپرک</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="shaparakFtpPrivateKey">کلید خصوصی ftp شاپرک</label>
+                            <input id="shaparakFtpPrivateKey" type="text" formControlName="shaparakFtpPrivateKey" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.shaparakFtpPrivateKey.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">  نام  </label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="name">  نام  </label>
+                            <input id="name" type="text" formControlName="name" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.name.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">Alias </label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="alias">Alias </label>
+                            <input id="alias" type="text" formControlName="alias" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.alias.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">یوزر ftp شاپرک</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="shaparakFtpUsername">یوزر ftp شاپرک</label>
+                            <input id="shaparakFtpUsername" type="text" formControlName="shaparakFtpUsername" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.shaparakFtpUsername.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">پسورد ftp شاپرک </label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="shaparakFtpPassword">پسورد ftp شاپرک </label>
+                            <input id="shaparakFtpPassword" type="text" formControlName="shaparakFtpPassword" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.shaparakFtpPassword.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">IIN  </label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="iin">IIN  </label>
+                            <input id="iin" type="text" formControlName="iin" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.iin.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">شماره ترمینال</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="terminalNo">شماره ترمینال</label>
+                            <input id="terminalNo" type="text" formControlName="terminalNo" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.terminalNo.errors}" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="shaUser">شماره پذیرنده</label>
-                            <input id="shaUser" type="text" formControlName="shaUser" class="form-control"
-                                [ngClass]="{'is-invalid': isRegisterShaCompanyFormSubmitted && registerShaCompanyFormSubmittedInfo.shaUser.errors}" />
+                            <label for="acceptorCode">شماره پذیرنده</label>
+                            <input id="acceptorCode" type="text" formControlName="acceptorCode" class="form-control"
+                                [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.acceptorCode.errors}" />
                         </div>
                     </div>
                 </div>
         </form>
     </div>
     <div class="card-footer float-left">
-        <button class="btn btn-success mx-2" type="button" (click)="addRequest()">ارسال</button>
-        <button type="button" class="btn btn-secondary">
-            انصراف
-        </button>
+        <button class="btn btn-success mx-2" type="button" (click)="addRequest(addPspForm.value)">ارسال</button>
     </div>
 </div>
