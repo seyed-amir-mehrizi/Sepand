@@ -55,6 +55,11 @@ export class EditProjectModalComponent implements OnInit {
   }
 
   onSharedTypeSelected(value: any) {
+    this.registerProjectInfo.patchValue({
+      shareAmountMax: '',
+      shareAmountMin:'',
+      sharedAmount: '',
+    });
     this.sharedTypeId = parseInt(value.value.shareType);
     switch (this.sharedTypeId) {
       case 1:
@@ -108,18 +113,12 @@ export class EditProjectModalComponent implements OnInit {
       shareAmountMin: this.projectInfo.shareAmountMin,
       sharedAmount: this.projectInfo.sharedAmount,
     })
-    console.log("this.projectInfo : " , this.projectInfo);
-    
     switch (this.projectInfo.shareType) {
       case "1":
-        console.log("1");
-        
         this.hasPercentage = true;
         this.hasAmount = false;
         break;
       case "static":
-        console.log("2");
-
         this.hasPercentage = false;
         this.hasAmount = true;
         break;
@@ -144,7 +143,7 @@ export class EditProjectModalComponent implements OnInit {
           this.toastr.error('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
           return;
         }
-        else if (dataSending.shareAmountMin > dataSending.shareAmountMax) {
+        else if (parseInt(dataSending.shareAmountMin) > parseInt(dataSending.shareAmountMax)) {
           this.toastr.error('کمترین مبلغ تسهیم نمی تواند از بیشترین مبلغ تسهیم بیشتر باشد');
           return;
         }
@@ -165,8 +164,6 @@ export class EditProjectModalComponent implements OnInit {
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
     dataSending.id = this.projectInfo.id;
-    console.log("dataSending : ", dataSending);
-
     this.baseInfoService.editProject(dataSending)
       .subscribe((res => {
         this.ngbActiveModal.close();

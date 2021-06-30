@@ -136,6 +136,8 @@ export class RegisterProjectInfoComponent implements OnInit {
     .subscribe((res=>{
       this.registerProjectInfo.reset();
       this.isRegisterProjectInfoFormSubmitted = false;
+      this.hasPercentage = false;
+      this.hasAmount = false;
     }))
   }
 }
