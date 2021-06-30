@@ -42,7 +42,6 @@ export class CompaniesPayListComponent implements OnInit {
   }
 
   deleteCompanyPay(id){
-    console.log("id : " , id);    
     this.baseInfoService.deletePsp(id)
     .subscribe(res=>{
       this.getAllPspList();

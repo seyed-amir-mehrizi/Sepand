@@ -40,4 +40,11 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
+  deleteProject(item){
+    this.baseInfoService.deleteProject(item.id)
+    .subscribe(res=>{
+      this.getListOfPorjects();
+    })
+  }
+
 }

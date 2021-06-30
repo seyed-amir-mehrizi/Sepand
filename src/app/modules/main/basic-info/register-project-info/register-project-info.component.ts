@@ -135,11 +135,7 @@ export class RegisterProjectInfoComponent implements OnInit {
     this.baseInfoService.addNewProject(dataSending)
     .subscribe((res=>{
       this.registerProjectInfo.reset();
+      this.isRegisterProjectInfoFormSubmitted = false;
     }))
   }
-
-  resetForm(){
-    this.registerProjectInfo.reset();
-  }
-
 }

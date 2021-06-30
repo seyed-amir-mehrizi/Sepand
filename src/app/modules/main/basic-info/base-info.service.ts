@@ -39,9 +39,14 @@ export class BaseInfoService {
     let params = {
       id : rowId
     }
-    console.log(params);
-    
     return this.http.delete(this.baseInfoApi + '/remove-psp' , {params})
+
+  }
+  deleteProject(rowId){
+    let params = {
+      id : rowId
+    }
+    return this.http.delete(this.baseInfoApi + '/remove-project' , {params})
 
   }
 
