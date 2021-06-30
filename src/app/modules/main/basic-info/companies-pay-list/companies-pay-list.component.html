@@ -12,6 +12,9 @@
           <th>IIN</th>
           <th>شماره ترمینال</th>
           <th>شماره پذیرنده</th>
+          <th>
+            عملیات
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +42,14 @@
           </td>
           <td>
             {{ item.acceptorCode }}
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="onOpenEditModal(item)">
+              <i class="fa fa-edit"></i> 
+            </button>
+            <button class="btn btn-danger btn-sm mx-2" (click)="deleteCompanyPay(item.id)">
+              <i class="fa fa-trash"></i> 
+            </button>
           </td>
         </tr>
       </tbody>

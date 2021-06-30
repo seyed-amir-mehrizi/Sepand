@@ -31,4 +31,18 @@ export class BaseInfoService {
     return this.http.post(this.baseInfoApi + '/add-psp' , data)
   }
 
+  editPsp(data){
+    return this.http.put(this.baseInfoApi + '/edit-psp' , data)
+
+  }
+  deletePsp(rowId){
+    let params = {
+      id : rowId
+    }
+    console.log(params);
+    
+    return this.http.delete(this.baseInfoApi + '/remove-psp' , {params})
+
+  }
+
 }

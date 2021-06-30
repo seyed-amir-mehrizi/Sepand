@@ -12,6 +12,7 @@ import { RegisterNewContractComponent } from './register-new-contract/register-n
 import { RepresentativeContractsListComponent } from './representative-contracts-list/representative-contracts-list.component';
 import { RegisterNewRepresentativeContractComponent } from './register-new-representative-contract/register-new-representative-contract.component';
 import { EditProjectModalComponent } from './project-list/edit-project-modal/edit-project-modal.component';
+import { EditCompanyPayListModalComponent } from './companies-pay-list/edit-company-pay-list-modal/edit-company-pay-list-modal.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { EditProjectModalComponent } from './project-list/edit-project-modal/edi
     RegisterNewContractComponent,
     RepresentativeContractsListComponent,
     RegisterNewRepresentativeContractComponent,
-    EditProjectModalComponent
+    EditProjectModalComponent,
+    EditCompanyPayListModalComponent
   ],
   imports: [
     CommonModule,
