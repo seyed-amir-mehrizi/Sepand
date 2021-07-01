@@ -80,7 +80,7 @@
       </ng-template>
     </ngb-panel>
 
-    <ngb-panel>
+    <ngb-panel *ngIf="userRole === 'admin'">
       <ng-template ngbPanelTitle>
         <div class="d-flex justify-content-between">
 

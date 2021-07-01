@@ -107,7 +107,7 @@
                   <th>کد صنف</th>
                   <th>نام فروشگاه</th>
                   <th>نام کمپانی</th>
-                  <th>عملیات</th>
+                  <th *ngIf="userRole === 'admin'">عملیات</th>
                 </tr>
               </thead>
               <tbody>
@@ -133,7 +133,7 @@
                   <td>
                     {{ item?.person.comNameFa }}
                   </td>
-                  <td>
+                  <td *ngIf="userRole === 'admin'">
                     <button
                       class="btn btn-warning btn-sm"
                       (click)="openChangeClass(item)"

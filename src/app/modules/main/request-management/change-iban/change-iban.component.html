@@ -70,7 +70,7 @@
                                     <th>
                                         نام کمپانی 
                                     </th>
-                                    <th>
+                                    <th  *ngIf="userRole === 'admin'">
                                         عملیات
                                     </th>
                                 </tr>
@@ -95,7 +95,7 @@
                                     <td>
                                         {{item?.person.comNameFa}}
                                     </td>
-                                    <td>
+                                    <td  *ngIf="userRole === 'admin'">
                                         <button class="btn btn-warning btn-sm" (click)="opneIbanModal(item)">تغییر شبا</button>
                                     </td>
                                 </tr>

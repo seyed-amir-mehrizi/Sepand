@@ -3,7 +3,7 @@
         لیست  کاربران
     </div>
     <div class="card-body bg-light">
-        <div class="float-left" (click)="addUser()">
+        <div *ngIf="userRole === 'admin'" class="float-left" (click)="addUser()">
             <i class="fa fa-plus-square cursor-pointer" aria-hidden="true" style="font-size: 2rem;"></i>
         </div>
         <br>
@@ -21,8 +21,8 @@
                                 <th>تلفن همراه</th>
                                 <th>رایانامه</th>
                                 <th>نقش کاربر</th>
-                                <th>فعال|غیرفعال</th>
-                                <th>عوض کردن کلمه عبور</th>
+                                <th  *ngIf="userRole === 'admin'">فعال|غیرفعال</th>
+                                <th  *ngIf="userRole === 'admin'">عوض کردن کلمه عبور</th>
                             </tr>
                     </thead>
                     <tbody>
@@ -33,11 +33,11 @@
                             <td>{{item?.phoneNumber}}</td>
                             <td>{{item?.email}}</td>
                             <td>{{item?.role}}</td>
-                            <td>
+                            <td  *ngIf="userRole === 'admin'">
                                 <button *ngIf="!item.isActive" class="btn btn-success btn-sm" (click)="changeUserStatus(item)">فعال کردن</button>
                                 <button *ngIf="item.isActive" class="btn btn-danger btn-sm mx-2" (click)="changeUserStatus(item)">غیر فعال کردن</button>
                             </td>
-                            <td>
+                            <td  *ngIf="userRole === 'admin'">
                                 <button class="btn btn-warning btn-sm" (click)="changePasswordOpen(item)">بازنشانی کلمه عبور</button>
                             </td>
                         </tr>

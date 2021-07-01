@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LoginService } from 'src/app/modules/login/login/login.service';
+import { TransferRole } from 'src/app/shared/service/transfer-role.service';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { ChangePasswordModalComponent } from '../change-password-modal/change-password-modal.component';
 import { UserService } from '../service/user.service';
@@ -13,18 +15,21 @@ import { UserService } from '../service/user.service';
 })
 export class UsersListComponent implements OnInit {
   userList:any= [];
-
+  userRole;
   constructor(
 
     private ngbModal: NgbModal,
     private service : UserService,
-    private spinner: NgxSpinnerService
-    
+    private spinner: NgxSpinnerService,
+    private loginService : LoginService,
+     private roleService : TransferRole
 
   ) { }
 
   ngOnInit(): void {
+    this.userRole = localStorage.getItem('r') ;
     this.getListOfUsers();
+
   }
 
   getListOfUsers(){
@@ -63,5 +68,8 @@ export class UsersListComponent implements OnInit {
       });
     }
   }
+
+
+  
 
 }

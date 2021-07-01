@@ -17,6 +17,7 @@ export class ChangeIbanComponent implements OnInit {
   customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
+  userRole;
   params = {
     NationalId: '',
     ForeignPervasiveCode: '',
@@ -38,6 +39,8 @@ export class ChangeIbanComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers(this.params);
     this.initForm();
+    this.userRole = localStorage.getItem('r') ;
+
   }
 
   initForm() {

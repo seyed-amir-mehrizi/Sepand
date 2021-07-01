@@ -29,7 +29,7 @@ export class ActivateTerminalComponent implements OnInit {
     Page: 1,
 
   }
-
+  userRole;
   constructor(private service: CustomersService, private fb: FormBuilder,
     private spinner: NgxSpinnerService,
     private ngbModal: NgbModal, private toastr: ToastrService,
@@ -38,6 +38,7 @@ export class ActivateTerminalComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers(this.params);
     this.initForm();
+    this.userRole = localStorage.getItem('r') ;
   }
 
   initForm() {

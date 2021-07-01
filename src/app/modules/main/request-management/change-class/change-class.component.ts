@@ -13,6 +13,7 @@ import { CustomersService } from '../customer-list/customers.service';
 export class ChangeClassComponent implements OnInit {
   customerslist: any = [];
   page: number = 1;
+  userRole;
   customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
@@ -36,6 +37,7 @@ export class ChangeClassComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers(this.params);
     this.initForm();
+    this.userRole = localStorage.getItem('r') ;
   }
 
   getDataFromFilter(item) {

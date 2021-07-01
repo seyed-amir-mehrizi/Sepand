@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/modules/login/login/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
  openById = {};
-
-  constructor() { }
+  userRole;
+  constructor(public loginService:LoginService) { }
 
   ngOnInit(): void {
+    this.userRole = localStorage.getItem('r') ;
+    console.log("this.userRole : " , this.userRole);
+    
   }
 
   test(event){
