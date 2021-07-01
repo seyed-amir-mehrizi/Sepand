@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CustomersService } from '../customer-list/customers.service';
+import { ActiveTerminalModalComponent } from './active-terminal-modal/active-terminal-modal.component';
 
 @Component({
   selector: 'app-activate-terminal',
@@ -104,11 +105,9 @@ export class ActivateTerminalComponent implements OnInit {
 
   activateTerminal(item) {
     this.spinner.show();
-
     this.service.activateTerminal(item.id)
       .subscribe((res: any) => {
         this.spinner.hide();
-
       })
   }
   FarsiOnly = (event) => {
@@ -127,6 +126,15 @@ export class ActivateTerminalComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  onOpenActiveTerminalModal(item){
+    const modalRef = this.ngbModal.open(ActiveTerminalModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.terminalInfo = item;
+    modalRef.result.then(() => {
+      this.getCustomers(this.params);
+    }, () => {
+    });
   }
 
 }
