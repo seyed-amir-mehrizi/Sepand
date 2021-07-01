@@ -30,7 +30,7 @@ export class RequestsComponent implements OnInit {
   totalRecordsSendToPsp: number;
   totalRecordsShaparak: number;
   totalRecordsCompleted: number;
-
+  userRole;
 
 
   params = {
@@ -57,6 +57,8 @@ export class RequestsComponent implements OnInit {
     this.getRequestTypeList();
     this.getPspList();
     this.getListOfFirstRegister(this.params);
+    this.userRole = localStorage.getItem('r') ;
+
   }
   initForm() {
     this.requestFilter = this.fb.group({
