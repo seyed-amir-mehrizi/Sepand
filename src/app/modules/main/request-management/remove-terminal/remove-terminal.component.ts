@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CustomersService } from '../customer-list/customers.service';
+import { RemoveTerminalModalComponent } from './remove-terminal-modal/remove-terminal-modal.component';
 
 @Component({
   selector: 'app-remove-terminal',
@@ -119,6 +120,15 @@ export class RemoveTerminalComponent implements OnInit {
   }
   return true;
 
+  }
+
+  onOpenDeActivateTerminalModal(item){
+    const modalRef = this.ngbModal.open(RemoveTerminalModalComponent, { size: 'lg', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.removeTerminalInfo = item;
+    modalRef.result.then(() => {
+      this.getCustomers(this.params);
+    }, () => {
+    });
   }
 
 }

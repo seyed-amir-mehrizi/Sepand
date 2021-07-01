@@ -20,6 +20,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditModalRequestComponent } from './requests/edit-modal-request/edit-modal-request.component';
 import { ActiveTerminalModalComponent } from './activate-terminal/active-terminal-modal/active-terminal-modal.component';
+import { RemoveTerminalModalComponent } from './remove-terminal/remove-terminal-modal/remove-terminal-modal.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ActiveTerminalModalComponent } from './activate-terminal/active-termina
     ChangeIbanModalComponent,
     RequestsComponent,
     EditModalRequestComponent,
-    ActiveTerminalModalComponent
+    ActiveTerminalModalComponent,
+    RemoveTerminalModalComponent
   ],
   imports: [
     NgbModule,

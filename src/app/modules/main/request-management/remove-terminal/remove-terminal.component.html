@@ -95,7 +95,7 @@
                                         {{item?.person.comNameFa}}
                                     </td>
                                     <td *ngIf="userRole === 'admin'">
-                                        <button class="btn btn-warning btn-sm"  (click)="deActivateTerminal(item)"> ابطال ترمینال</button>
+                                        <button class="btn btn-warning btn-sm"  (click)="onOpenDeActivateTerminalModal(item)"> ابطال ترمینال</button>
                                     </td>
                                 </tr>
                             </tbody>
