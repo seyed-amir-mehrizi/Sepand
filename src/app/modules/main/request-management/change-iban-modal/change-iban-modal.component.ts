@@ -127,8 +127,6 @@ export class ChangeIbanModalComponent implements OnInit {
       this.isBankInfoFormSubmitted = true;
       return;
     }
-    console.log(value);
-
     let dataSending = this.BankInfoForm.value;
     switch (this.sharedTypeId) {
       case 1:

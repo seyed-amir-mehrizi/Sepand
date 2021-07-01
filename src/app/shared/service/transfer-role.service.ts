@@ -11,8 +11,6 @@ export class TransferRole {
     }
 
     setProfileObs(profile) {
-        console.log("profile : " , profile);
-        
         this.profileObs$.next(profile);
     }
 

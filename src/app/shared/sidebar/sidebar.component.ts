@@ -12,9 +12,7 @@ export class SidebarComponent implements OnInit {
   constructor(public loginService:LoginService) { }
 
   ngOnInit(): void {
-    this.userRole = localStorage.getItem('r') ;
-    console.log("this.userRole : " , this.userRole);
-    
+    this.userRole = localStorage.getItem('r');
   }
 
   test(event){

@@ -42,7 +42,6 @@ export class ChangeClassModalComponent implements OnInit {
   getListOFGuilds() {
     this.sharedService.getAllGuildsCategories()
       .subscribe((res => {
-        console.log(res);
         this.listOfGuild = res;
 
       }))

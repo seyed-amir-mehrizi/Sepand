@@ -928,8 +928,6 @@ export class RegisterCustomerComponent implements OnInit {
     customer['ibans'] = this.BankInfoList;
     customer['contract'] = this.contractInfoValue;
     data['customer'] = Object.assign(customer, this.locationInfoValue);
-    console.log("data : ", data);
-
     this.service.defineAcceptor(data)
       .subscribe((res => {
         // this.toastr.success('مشتری با موفقیت ثبت گردید');

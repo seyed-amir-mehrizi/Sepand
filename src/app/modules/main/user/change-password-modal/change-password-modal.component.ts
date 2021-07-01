@@ -16,8 +16,6 @@ export class ChangePasswordModalComponent implements OnInit {
   constructor(    private fb: FormBuilder , private service : UserService,   public ngbActiveModal: NgbActiveModal, ) { }
 
   ngOnInit(): void {
-    console.log("this.userInfo : " , this.userInfo);
-    
     this.initLoginform();
   }
 
