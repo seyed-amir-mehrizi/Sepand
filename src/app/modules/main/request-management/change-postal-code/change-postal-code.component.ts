@@ -29,7 +29,7 @@ export class ChangePostalCodeComponent implements OnInit {
     Page: 1,
 
   }
-
+  userRole;
   constructor(private service: CustomersService, private fb: FormBuilder,
     private spinner: NgxSpinnerService,
     private ngbModal: NgbModal,
@@ -38,6 +38,8 @@ export class ChangePostalCodeComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers(this.params);
     this.initForm();
+    this.userRole = localStorage.getItem('r') ;
+
   }
   initForm() {
     this.customerFilter = this.fb.group({

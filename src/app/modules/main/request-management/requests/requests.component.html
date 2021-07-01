@@ -102,7 +102,7 @@
               <th>نام فروشگاه</th>
               <th>نام psp</th>
               <th>وضعیت</th>
-              <th>عملیات</th>
+              <th  *ngIf="userRole === 'admin'">عملیات</th>
             </tr>
           </thead>
           <tbody>
@@ -124,7 +124,7 @@
               <td>
                 {{ item?.requestType }}
               </td>
-              <td>
+              <td  *ngIf="userRole === 'admin'">
                 
                   <button  class="btn btn-danger btn-sm mx-2" (click)="deleteFirstRegister(item)">
                     حذف
@@ -172,7 +172,7 @@
               <th>نام فروشگاه</th>
               <th>نام psp</th>
               <th>وضعیت</th>
-              <th>عملیات</th>
+              <th  *ngIf="userRole === 'admin'">عملیات</th>
             </tr>
           </thead>
           <tbody>
@@ -195,7 +195,7 @@
               <td>
                 {{ item?.requestType }}
               </td>
-              <td>
+              <td  *ngIf="userRole === 'admin'">
                 <button  class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
                   حذف
                 </button>
@@ -241,7 +241,7 @@
               <th>نام فروشگاه</th>
               <th>نام psp</th>
               <th>وضعیت</th>
-              <th>عملیات</th>
+              <th  *ngIf="userRole === 'admin'">عملیات</th>
             </tr>
           </thead>
           <tbody>
@@ -264,7 +264,7 @@
               <td>
                 {{ item?.requestType }}
               </td>
-              <td>
+              <td  *ngIf="userRole === 'admin'">
                 <button  class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
                   حذف
                 </button>
@@ -310,7 +310,7 @@
               <th>نام فروشگاه</th>
               <th>نام psp</th>
               <th>وضعیت</th>
-              <th>
+              <th  *ngIf="userRole === 'admin'">
                 عملیات
               </th>
             </tr>
@@ -334,7 +334,7 @@
               <td>
                 {{ item?.requestType }}
               </td>
-              <td>
+              <td  *ngIf="userRole === 'admin'">
                 <button  class="btn btn-danger btn-sm mx-2" (click)="deleteCompleted(item)">
                   حذف
                 </button>

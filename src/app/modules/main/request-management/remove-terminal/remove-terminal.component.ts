@@ -30,7 +30,7 @@ export class RemoveTerminalComponent implements OnInit {
     Page: 1,
 
   }
-
+  userRole;
   constructor(private service: CustomersService, private fb: FormBuilder,
     private spinner: NgxSpinnerService,
     private ngbModal: NgbModal, private toastr: ToastrService,
@@ -39,6 +39,8 @@ export class RemoveTerminalComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers(this.params);
     this.initForm();
+    this.userRole = localStorage.getItem('r') ;
+
   }
 
   initForm() {
