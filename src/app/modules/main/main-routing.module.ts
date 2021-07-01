@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MainComponent } from './main.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -25,6 +26,10 @@ const routes: Routes = [
         path: 'basicInfo' ,
         loadChildren: () => import('./basic-info/basic-info.module').then(m => m.BasicInfoModule)
       },
+      // {
+      //   path:'**' , 
+      //   component:NotFoundComponent
+      // }
     ]
   },
 

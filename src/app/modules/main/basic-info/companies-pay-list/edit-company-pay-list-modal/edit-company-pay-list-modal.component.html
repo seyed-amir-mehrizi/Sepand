@@ -93,21 +93,21 @@
             <div class="col-md-4">
                 <div class="form-group ">
                     <label for="iin">IIN  </label>
-                    <input id="iin" type="text" formControlName="iin" class="form-control"
+                    <input (keypress)="englishOnly($event)" id="iin" type="text" formControlName="iin" class="form-control"
                         [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.iin.errors}" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group ">
                     <label for="terminalNo">شماره ترمینال</label>
-                    <input id="terminalNo" type="text" formControlName="terminalNo" class="form-control"
+                    <input (keypress)="englishOnly($event)" id="terminalNo" type="text" formControlName="terminalNo" class="form-control"
                         [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.terminalNo.errors}" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group ">
                     <label for="acceptorCode">شماره پذیرنده</label>
-                    <input id="acceptorCode" type="text" formControlName="acceptorCode" class="form-control"
+                    <input (keypress)="englishOnly($event)" id="acceptorCode" type="text" formControlName="acceptorCode" class="form-control"
                         [ngClass]="{'is-invalid': isAddPspFormSubmitted && addPspFormInfo.acceptorCode.errors}" />
                 </div>
             </div>

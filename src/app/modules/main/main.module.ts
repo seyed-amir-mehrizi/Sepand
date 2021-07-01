@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestManagementModule } from './request-management/request-management.module';
 import { BasicInfoModule } from './basic-info/basic-info.module';
 import { MainPageComponent } from './main-page/main-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -18,7 +19,8 @@ import { MainPageComponent } from './main-page/main-page.component';
   declarations: [
     MainComponent,
     UsersListComponent,
-    MainPageComponent
+    MainPageComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

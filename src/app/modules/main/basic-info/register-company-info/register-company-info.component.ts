@@ -57,4 +57,14 @@ export class RegisterCompanyInfoComponent implements OnInit {
     });
   }
 
+  englishOnly = (event) => {
+    const value = event.key;
+    var p = /^[a-zA-Z0-9, ]*$/;
+    if (!p.test(value)) {
+      return false
+  }
+  return true;
+
+  }
+
 }
