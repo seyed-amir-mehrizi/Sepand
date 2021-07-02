@@ -2,6 +2,11 @@
   <li [ngbNavItem]="1">
     <a ngbNavLink>دریافت اطلاعات شخصی</a>
     <ng-template ngbNavContent>
+      <div *ngIf="isEmpty">
+        <div class="alert alert-info w-50 mt-4">
+          لطفا یک نوع از <strong>مشتری</strong> را انتخاب کنید
+        </div>
+      </div>
       <div class="col-md-4 mb-2">
         <label for="customerType">نوع مشتری</label>
         <select [(ngModel)]="customerTypeValue" id="customerType" #mySelect class="form-control"
@@ -692,11 +697,7 @@
           </button>
         </form>
       </div>
-      <div *ngIf="isEmpty">
-        <div class="alert alert-info w-50">
-          لطفا یک نوع از <strong>مشتری</strong> را انتخاب کنید
-        </div>
-      </div>
+
     </ng-template>
   </li>
   <li [ngbNavItem]="2" [disabled]="disabledLocationInfo">

@@ -10,6 +10,7 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
   isLoginClicked = false;
   loginForm: FormGroup;
+  currentYear;
 
   constructor(
     private fb: FormBuilder ,
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initLoginform();
+    this.displayToday();
   }
 
   initLoginform(){
@@ -40,6 +42,14 @@ export class LoginComponent implements OnInit {
         window.location.href = '/main/mainPage';
       }
     });
+  }
+
+  displayToday() {
+    const faDateTime = new Intl.DateTimeFormat("fa", {
+      year: "numeric",
+    }).format;
+    const now = Date.now();
+    this.currentYear = faDateTime(now);
   }
 
 }
