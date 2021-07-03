@@ -436,7 +436,7 @@ export class RegisterCustomerComponent implements OnInit {
       registerDate: ['', Validators.required],
       comNameEn: ['', Validators.required],
       comNameFa: ['', Validators.required],
-      commercialCode: ['', Validators.required],
+      commercialCode: ['',[ Validators.required , Validators.maxLength(10)]],
       degreeId: ['', Validators.required],
       nationalNumber: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
       lastNameFa: ['', Validators.required],
