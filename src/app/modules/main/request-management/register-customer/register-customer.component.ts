@@ -810,6 +810,10 @@ export class RegisterCustomerComponent implements OnInit {
       default:
         break;
     }
+    if(this.BankInfoList.length > 0){
+      this.BankInfoList = [];
+    }
+    
 
 
   }
@@ -846,7 +850,9 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.customerId = 0;
     dataSending.iban = `IR${dataSending.iban}`;
     this.BankInfoList.push(dataSending);
-    this.BankInfoForm.reset();
+    this.BankInfoForm.reset({
+      shareType: this.BankInfoForm.get('shareType').value,
+    });
     this.isBankInfoFormSubmitted = false;
     this.BankInfoForm.patchValue({
       isMain : true
