@@ -41,10 +41,6 @@ export class SharedDataService {
   getSharedTypeCategories() {
     return this.http.get(this.sharedDataApi + '/share-type');
   }
-
-
-  getSharedType
-
   getCitiesOfProvince(data: any) {
     let params = {
       provinceId: data,
@@ -57,4 +53,8 @@ export class SharedDataService {
   getAllRequestType() {
     return this.http.get(this.sharedDataApi + '/request-types');
   }
+  getAllDocumentType() {
+    return this.http.get(this.sharedDataApi + '/document-types');
+  }
+
 }

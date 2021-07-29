@@ -9,6 +9,7 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
 import { RemoveTerminalComponent } from './remove-terminal/remove-terminal.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { RequestsComponent } from './requests/requests.component';
+import { SendingDocumentsComponent } from './sending-documents/sending-documents.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'requests' ,
     component: RequestsComponent
+  },
+  {
+    path: 'sendingDocuments' ,
+    component: SendingDocumentsComponent
   }
 ];
 

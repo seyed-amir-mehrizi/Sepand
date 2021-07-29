@@ -21,6 +21,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EditModalRequestComponent } from './requests/edit-modal-request/edit-modal-request.component';
 import { ActiveTerminalModalComponent } from './activate-terminal/active-terminal-modal/active-terminal-modal.component';
 import { RemoveTerminalModalComponent } from './remove-terminal/remove-terminal-modal/remove-terminal-modal.component';
+import { SendingDocumentsComponent } from './sending-documents/sending-documents.component';
+import { SendingDocumentsModalComponent } from './sending-documents-modal/sending-documents-modal.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { RemoveTerminalModalComponent } from './remove-terminal/remove-terminal-
     RequestsComponent,
     EditModalRequestComponent,
     ActiveTerminalModalComponent,
-    RemoveTerminalModalComponent
+    RemoveTerminalModalComponent,
+    SendingDocumentsComponent,
+    SendingDocumentsModalComponent
   ],
   imports: [
     NgbModule,

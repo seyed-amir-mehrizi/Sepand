@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+         بارگزاری مدارک
+    </h4>
+</div>
+<div class="modal-body text-justify line-height-3">
+    <form [formGroup]="uploadDocumentForm" autocomplete="off" role="form">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="DocTypeId">نوع مدرک</label>
+                <select id="DocTypeId" class="form-control" formControlName="DocTypeId" [ngClass]="{
+                    'is-invalid':
+                    isUploadDocumentSubmitted &&
+                    uploadDocumentsFormInfo.DocTypeId.errors
+                  }">
+                  <option *ngFor="let item of listOfAllDocuments" [value]="item.id">
+                    {{ item.typeName }}
+                  </option>
+                </select>
+        </div>
+        <div class="col-md-6">
+            <label for="FormFile">انتخاب مدرک</label>
+            <input id="FormFile" type="file" accept=".jpeg" class="form-control" (change)="changeListener($event)"
+              [ngClass]="{
+                'is-invalid':
+                isUploadDocumentSubmitted &&
+                  uploadDocumentsFormInfo.FormFile.errors
+              }" />
+          </div>
+    </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+        بستن
+    </button>
+    <button class="btn btn-success" type="button" (click)="uploadDocument(uploadDocumentForm.value)">بارگزاری</button>
+</div>

@@ -54,4 +54,14 @@ export class CustomersService {
     return this.http.post(this.customerApi + '/change-ibans' , data).pipe(map(response => response));
 
   }
+
+  uploadDocument(data){
+    const formData: FormData = new FormData();
+    formData.append('DocTypeId', data.DocTypeId);
+    formData.append('CustomerId', data.CustomerId);
+    formData.append('FormFile', data.FormFile);
+// formData.append('ComponentId', componentId);
+    return this.http.post(this.customerApi + '/upload-file' , formData).pipe(map(response => response));
+
+  }
 }
