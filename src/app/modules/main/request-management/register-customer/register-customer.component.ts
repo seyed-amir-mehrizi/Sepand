@@ -864,12 +864,17 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.customerId = 0;
     dataSending.iban = `IR${dataSending.iban}`;
     this.BankInfoList.push(dataSending);
+    this.BankInfoList[0].sharedAmount = -1;
+    this.BankInfoList[0].shareAmountMax = -1;
+    this.BankInfoList[0].shareAmountMin = -1;
+    this.BankInfoList[0].isMain =true;
+
     this.BankInfoForm.reset({
       shareType: this.BankInfoForm.get('shareType').value,
     });
     this.isBankInfoFormSubmitted = false;
     this.BankInfoForm.patchValue({
-      isMain : true
+      isMain : false
     });
   }
 

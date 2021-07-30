@@ -1085,12 +1085,12 @@
                   }" />
               </div>
 
-              <div class="form-group form-check col-md-4 my-2">
+              <!-- <div class="form-group form-check col-md-4 my-2">
                 <label class="form-check-label">
                   <input formControlName="isMain" class="form-check-input" type="checkbox" />
                   حساب اصلی
                 </label>
-              </div>
+              </div> -->
               <div class="col-md-12 my-2">
 
                 <button class="btn btn-success btn-sm" (click)="addBankInfo()">افزودن</button>
@@ -1122,9 +1122,9 @@
                       <td>{{item?.iban}}</td>
                       <td>{{item?.accountNumber}}</td>
                       <td>{{item?.shareType === 1 ? 'درصدی' : 'ثابت'}}</td>
-                      <td>{{item?.sharedAmount}}</td>
-                      <td>{{item?.shareAmountMin}}</td>
-                      <td>{{item?.shareAmountMax}}</td>
+                      <td><bdi>{{item?.sharedAmount}}</bdi> </td>
+                      <td><bdi>{{item?.shareAmountMin}}</bdi> </td>
+                      <td><bdi>{{item?.shareAmountMax}}</bdi> </td>
                       <td>
                         {{item?.isMain === true ? 'بله' : 'خیر'}}
                       </td>
