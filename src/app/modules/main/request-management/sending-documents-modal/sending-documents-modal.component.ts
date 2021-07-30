@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedDataService } from 'src/app/shared/service/shared-data.service';
 import { CustomersService } from '../customer-list/customers.service';
 
@@ -11,18 +12,22 @@ import { CustomersService } from '../customer-list/customers.service';
 })
 export class SendingDocumentsModalComponent implements OnInit {
   @Input() rowInfo;
-  uploadDocumentForm:FormGroup;
-  isUploadDocumentSubmitted:boolean = false;
-  listOfAllDocuments:any = [];
+  uploadDocumentForm: FormGroup;
+  isUploadDocumentSubmitted: boolean = false;
+  listOfAllDocuments: any = [];
+  listOfAllUploadedDocument: any = [];
+
   image;
-  constructor(private sharedDataService : SharedDataService ,     private fb: FormBuilder,
-    public ngbActiveModal: NgbActiveModal, private customerService : CustomersService) { }
+  blob;
+  constructor(private sharedDataService: SharedDataService, private fb: FormBuilder,
+    private spinner: NgxSpinnerService,
+    public ngbActiveModal: NgbActiveModal, private customerService: CustomersService,) { }
 
   ngOnInit(): void {
-    console.log("rowInfo : " , this.rowInfo);
     this.getListOfAllDocuments();
     this.initUploadform();
-    
+    this.getListOfCustomerDocument();
+
   }
   initUploadform() {
     this.uploadDocumentForm = this.fb.group({
@@ -36,12 +41,12 @@ export class SendingDocumentsModalComponent implements OnInit {
     return this.uploadDocumentForm.controls;
   }
 
-  getListOfAllDocuments(){
+  getListOfAllDocuments() {
     this.sharedDataService.getAllDocumentType()
-    .subscribe(res=>{
-      this.listOfAllDocuments = res;
-      
-    })
+      .subscribe(res => {
+        this.listOfAllDocuments = res;
+
+      })
   }
 
   changeListener($event): void {
@@ -65,21 +70,52 @@ export class SendingDocumentsModalComponent implements OnInit {
   }
 
 
-  uploadDocument(item){
+  uploadDocument(item) {
     if (this.uploadDocumentForm.invalid) {
       this.isUploadDocumentSubmitted = true;
       return;
     }
+    this.spinner.show();
     const dataSending = this.uploadDocumentForm.value;
     dataSending.CustomerId = parseInt(this.rowInfo.id);
     dataSending.DocTypeId = parseInt(dataSending.DocTypeId);
-    console.log("dataSending : " , dataSending);
     this.customerService.uploadDocument(dataSending)
-    .subscribe((res=>{
-      this.ngbActiveModal.close();
-    }))
-    
+      .subscribe((res => {
+        this.getListOfCustomerDocument();
+        this.spinner.hide();
 
+        // this.ngbActiveModal.close();
+      }))
   }
+
+  getListOfCustomerDocument() {
+    let data = {
+      customerId: parseInt(this.rowInfo.id),
+    }
+    this.customerService.getListOfUploadedDocument(data)
+      .subscribe(res => {
+        this.listOfAllUploadedDocument = res;
+      });
+  }
+
+  downloadDocument(item) {
+    let data = {
+      id: parseInt(item.id),
+    }
+    this.spinner.show();
+    this.customerService.downloadDocument(data)
+      .subscribe((res: any) => {
+        this.blob = new Blob([res], { type: 'image/jpeg' });
+        var downloadURL = window.URL.createObjectURL(res);
+        var link = document.createElement('a');
+        link.href = downloadURL;
+        link.download = "image.jpeg";
+        link.click();
+        this.spinner.hide();
+
+      });
+  }
+
+
 
 }

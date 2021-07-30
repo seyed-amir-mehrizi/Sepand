@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-         بارگزاری مدارک
+        بارگزاری مدارک
     </h4>
 </div>
 <div class="modal-body text-justify line-height-3">
@@ -13,22 +13,44 @@
                     isUploadDocumentSubmitted &&
                     uploadDocumentsFormInfo.DocTypeId.errors
                   }">
-                  <option *ngFor="let item of listOfAllDocuments" [value]="item.id">
-                    {{ item.typeName }}
-                  </option>
+                    <option *ngFor="let item of listOfAllDocuments" [value]="item.id">
+                        {{ item.typeName }}
+                    </option>
                 </select>
-        </div>
-        <div class="col-md-6">
-            <label for="FormFile">انتخاب مدرک</label>
-            <input id="FormFile" type="file" accept=".jpeg" class="form-control" (change)="changeListener($event)"
-              [ngClass]="{
+            </div>
+            <div class="col-md-6">
+                <label for="FormFile">انتخاب مدرک</label>
+                <input id="FormFile" type="file" accept=".jpeg" class="form-control" (change)="changeListener($event)"
+                    [ngClass]="{
                 'is-invalid':
                 isUploadDocumentSubmitted &&
                   uploadDocumentsFormInfo.FormFile.errors
               }" />
-          </div>
-    </div>
+            </div>
+        </div>
     </form>
+    <table *ngIf="listOfAllUploadedDocument.length > 0" class="table table-bordered table-striped text-center my-5">
+        <thead>
+            <tr>
+                <th>نوع مدرک</th>
+                <th>
+                     عملیات
+                </th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listOfAllUploadedDocument">
+                <td>
+                    {{item.typeName}}
+                </td>
+                <td>
+                    <button class="btn btn-info btn-sm" (click)="downloadDocument(item)">دانلود مدرک</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">

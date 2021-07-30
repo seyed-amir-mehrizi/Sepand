@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -63,5 +63,25 @@ export class CustomersService {
 // formData.append('ComponentId', componentId);
     return this.http.post(this.customerApi + '/upload-file' , formData).pipe(map(response => response));
 
+  }
+
+  getListOfUploadedDocument(data){
+    let params = {
+      customerId : data.customerId,
+    }
+      return this.http.get(this.customerApi+'/customer-files' , {params});
+  }
+
+  downloadDocument(data){
+    const httpOptions = {
+      responseType: 'blob' as 'json',
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    let params = {
+      id : data.id,
+    }
+      return this.http.get(this.customerApi+`/download-file?id=${data.id}` , httpOptions);
   }
 }
