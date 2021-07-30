@@ -38,6 +38,9 @@ export class SharedDataService {
   getAllGuildsCategories() {
     return this.http.get(this.sharedDataApi + '/guilds-categories');
   }
+  getAllCountries() {
+    return this.http.get(this.sharedDataApi + '/countries');
+  }
   getSharedTypeCategories() {
     return this.http.get(this.sharedDataApi + '/share-type');
   }

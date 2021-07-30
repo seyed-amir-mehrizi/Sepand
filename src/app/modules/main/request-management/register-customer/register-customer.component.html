@@ -917,13 +917,29 @@
 
           <div class="col-md-3 my-2">
             <label for="countryAbbreviation"> کشور</label>
-            <input id="countryAbbreviation" type="text" class="form-control" formControlName="countryAbbreviation"
+            <!-- <input id="countryAbbreviation" type="text" class="form-control" formControlName="countryAbbreviation"
               [ngbTypeahead]="countries_Serach" [resultFormatter]="countriesFormatter"
               [inputFormatter]="countriesInputFormatter" placement="bottom-right" [ngClass]="{
                 'is-invalid':
                   isLocationInfoFormSubmitted &&
                   locationInfoFormInfo.countryAbbreviation.errors
-              }" />
+              }" /> -->
+              <!-- <ng-select #select2 [items]="country$ | async" [multiple]="false" [maxSelectedItems]="3"
+              bindLabel="farsiName" formControlName="countryAbbreviation" bindValue="countryAbbreviation" [ngClass]="{
+              'is-invalid':
+                isLocationInfoFormSubmitted &&
+                locationInfoFormInfo.countryAbbreviation.errors
+            }">
+            </ng-select> -->
+            <select id="countryAbbreviation" class="form-control" formControlName="countryAbbreviation" [ngClass]="{
+              'is-invalid':
+                isLocationInfoFormSubmitted &&
+                locationInfoFormInfo.countryAbbreviation.errors
+            }">
+            <option *ngFor="let item of listOfCountries" [value]="item.countryAbbreviation">
+              {{ item.farsiName }}
+            </option>
+          </select>
           </div>
 
           <div class="col-md-3 my-2">

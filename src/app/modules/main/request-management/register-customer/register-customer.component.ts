@@ -45,6 +45,8 @@ export class RegisterCustomerComponent implements OnInit {
   public model: any;
   public image: any;
   people$: Observable<Object | any[]>;
+  country$: Observable<Object | any[]>;
+
   autocomplete$: Observable<Object | any[]>;
   autocomplete_subject$ = new Subject<string>();
   allNationalities: any = [];
@@ -90,6 +92,7 @@ export class RegisterCustomerComponent implements OnInit {
   locationInfoValue: any = {};
   contractInfoValue: any = {};
   listOfProject: any = [];
+  listOfCountries:any = [];
   imageUrl: any;
   disabledLocationInfo: boolean = true;
   disabledBankInfo: boolean = true;
@@ -112,6 +115,7 @@ export class RegisterCustomerComponent implements OnInit {
     this.initLocationInfoForm();
     this.getListOfProvince();
     this.getListOfGuild();
+    this.getListOfCountries();
     this.initBankInfoForm();
     this.getListOfSharedTypes();
     this.initContractInfo();
@@ -705,6 +709,16 @@ export class RegisterCustomerComponent implements OnInit {
     //   this.guildList = res;
     // });
     this.people$ =  this.sharedService.getAllGuildsCategories();
+  }
+
+  getListOfCountries() {
+    // this.sharedService.getAllGuildsCategories().subscribe((res: any) => {
+    //   this.guildList = res;
+    // });
+    this.sharedService.getAllCountries()
+    .subscribe(res=>{
+      this.listOfCountries = res;
+    })
   }
   getListOfProvince() {
     this.sharedService.getAllProvince().subscribe((res: any) => {
