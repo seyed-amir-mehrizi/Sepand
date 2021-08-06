@@ -862,7 +862,7 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
     dataSending.customerId = 0;
-    dataSending.iban = `IR${dataSending.iban}`;
+    dataSending.iban = (`IR${dataSending.iban}`).replace(/\s+/g, "");
     this.BankInfoList.push(dataSending);
     this.BankInfoList[0].sharedAmount = -1;
     this.BankInfoList[0].shareAmountMax = -1;

@@ -152,7 +152,7 @@ export class ChangeIbanModalComponent implements OnInit {
     dataSending.shareAmountMax = parseInt(dataSending.shareAmountMax);
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
-    dataSending.iban = `IR${dataSending.iban}`;
+    dataSending.iban = (`IR${dataSending.iban}`).replace(/\s+/g, "");
     dataSending.customerId = this.ibanInfo.id;
     dataSending.isMain = (dataSending.isMain === null) ? false : true;
     this.isBankInfoFormSubmitted = false;
@@ -169,9 +169,6 @@ export class ChangeIbanModalComponent implements OnInit {
     .subscribe(res=>{
       this.ngbActiveModal.close();
     })
-    
-
-
   }
 
 }
