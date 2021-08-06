@@ -1,7 +1,18 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-       ویرایش درخواست
-    </h4>
+  <div class="d-flex justify-content-between w-100">
+    <div>
+      <h4 class="modal-title" id="modal-basic-title">
+        ویرایش درخواست
+     </h4>
+    </div>
+    <div>
+      <button type="button" class="close" aria-label="Close" (click)="ngbActiveModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
+
 </div>
 <div class="modal-body text-justify line-height-3">
   
@@ -115,8 +126,8 @@
   
 </div>
 <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
         بستن
-    </button> -->
+    </button>
     <button class="btn btn-success" type="button" (click)="editRequest()">ویرایش</button>
 </div>

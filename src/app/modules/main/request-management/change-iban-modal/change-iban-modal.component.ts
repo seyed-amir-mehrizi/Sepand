@@ -77,7 +77,7 @@ export class ChangeIbanModalComponent implements OnInit {
   checkMax(event) {
     const value =  parseInt(event.target.value);
     if (value > 100) {
-      this.toastr.error('بیشترین مبلغ تسهیم 100 می باشد')
+      this.toastr.info('بیشترین مبلغ تسهیم 100 می باشد')
       event.target.value = '';
     }
   }
@@ -133,7 +133,7 @@ export class ChangeIbanModalComponent implements OnInit {
         dataSending.sharedAmount = 0;
         if((dataSending.shareAmountMax === null || dataSending.shareAmountMax === '')
          || (dataSending.shareAmountMin === null || dataSending.shareAmountMin === '')){
-          this.toastr.error('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
+          this.toastr.info('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
           return;
         }
         break;
@@ -141,7 +141,7 @@ export class ChangeIbanModalComponent implements OnInit {
           dataSending.shareAmountMax = 0;
           dataSending.shareAmountMin = 0;
           if(dataSending.sharedAmount=== null || dataSending.sharedAmount=== '' ){
-            this.toastr.error(' مبلغ تسهیم را وارد کنید');
+            this.toastr.info(' مبلغ تسهیم را وارد کنید');
             return;
           }
         break;
@@ -155,7 +155,7 @@ export class ChangeIbanModalComponent implements OnInit {
     dataSending.iban = `IR${dataSending.iban}`;
     dataSending.customerId = this.ibanInfo.id;
     dataSending.isMain = (dataSending.isMain === null) ? false : true;
-
+    this.isBankInfoFormSubmitted = false;
     this.listOfIbans.push(dataSending);
     this.BankInfoForm.reset();
   }
