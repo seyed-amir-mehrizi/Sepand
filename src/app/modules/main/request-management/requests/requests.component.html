@@ -94,57 +94,60 @@
     <li [ngbNavItem]="1">
       <a ngbNavLink>ثبت اولیه</a>
       <ng-template ngbNavContent>
-        <table class="table table-bordered table-striped text-center">
-          <thead>
-            <tr>
-              <th>کد مشتری</th>
-              <th>نام پذیرنده ( شخص/شرکت)</th>
-              <th>نام فروشگاه</th>
-              <th>نام psp</th>
-              <th>وضعیت</th>
-              <th  *ngIf="userRole === 'admin'">عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of firstRegisterList">
-              <td>
-                {{ item?.customer.customerKey }}
-              </td>
-              <td>
-                {{
-                  item.customer.person.comNameFa
-                    ? item.customer.person.comNameFa
-                    : item.customer.person.firstNameFa +
-                      " " +
-                      item.customer.person.lastNameFa
-                }}
-              </td>
-              <td>{{ item?.customer.shopNameFa }}</td>
-              <td>{{ item?.psp }}</td>
-              <td>
-                {{ item?.requestType }}
-              </td>
-              <td  *ngIf="userRole === 'admin'">
-                
-                  <button  class="btn btn-danger btn-sm mx-2" (click)="deleteFirstRegister(item)">
-                    حذف
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped text-center">
+            <thead>
+              <tr>
+                <th>کد مشتری</th>
+                <th>نام پذیرنده ( شخص/شرکت)</th>
+                <th>نام فروشگاه</th>
+                <th>نام psp</th>
+                <th>وضعیت</th>
+                <th  *ngIf="userRole === 'admin'">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of firstRegisterList">
+                <td>
+                  {{ item?.customer.customerKey }}
+                </td>
+                <td>
+                  {{
+                    item.customer.person.comNameFa
+                      ? item.customer.person.comNameFa
+                      : item.customer.person.firstNameFa +
+                        " " +
+                        item.customer.person.lastNameFa
+                  }}
+                </td>
+                <td>{{ item?.customer.shopNameFa }}</td>
+                <td>{{ item?.psp }}</td>
+                <td>
+                  {{ item?.requestType }}
+                </td>
+                <td  *ngIf="userRole === 'admin'">
+                  
+                    <button  class="btn btn-danger btn-sm mx-2" (click)="deleteFirstRegister(item)">
+                      حذف
+                    </button>
+                  
+                  <button 
+                    [disabled]="item.editedBy !== null"
+                    class="btn btn-warning btn-sm"
+                    (click)="onOpenModalFirstRegister(item)"
+                  >
+                    ویرایش
                   </button>
-                
-                <button 
-                  [disabled]="item.editedBy !== null"
-                  class="btn btn-warning btn-sm"
-                  (click)="onOpenModalFirstRegister(item)"
-                >
-                  ویرایش
-                </button>
-                <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
-                  >در حال ویرایش توسط {{ item?.editedBy }}</span
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <span class="w-100 d-flex justify-content-center">
+                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
+                    >در حال ویرایش توسط {{ item?.editedBy }}</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <span class="w-100 d-flex justify-content-center mt-2">
           <ngb-pagination
             (pageChange)="clickOnPageFirstRegister($event)"
             [pageSize]="10"
@@ -164,56 +167,59 @@
     <li [ngbNavItem]="2">
       <a ngbNavLink>ارسال شده به psp</a>
       <ng-template ngbNavContent>
-        <table class="table table-bordered table-striped text-center">
-          <thead>
-            <tr>
-              <th>کد مشتری</th>
-              <th>نام پذیرنده ( شخص/شرکت)</th>
-              <th>نام فروشگاه</th>
-              <th>نام psp</th>
-              <th>وضعیت</th>
-              <th  *ngIf="userRole === 'admin'">عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of sendToPspList">
-              <td>
-                {{ item?.customer.customerKey }}
+        <div class="table-responsive">
 
-              </td>
-              <td>
-                {{
-                  item.customer.person.comNameFa
-                    ? item.customer.person.comNameFa
-                    : item.customer.person.firstNameFa +
-                      " " +
-                      item.customer.person.lastNameFa
-                }}
-              </td>
-              <td>{{ item?.customer.shopNameFa }}</td>
-              <td>{{ item?.psp }}</td>
-              <td>
-                {{ item?.requestType }}
-              </td>
-              <td  *ngIf="userRole === 'admin'">
-                <button  class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
-                  حذف
-                </button>
-                <button 
-                  [disabled]="item.editedBy !== null"
-                  class="btn btn-warning btn-sm"
-                  (click)="onOpenModalPsp(item)"
-                >
-                  ویرایش
-                </button>
-                <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
-                  >در حال ویرایش توسط {{ item?.editedBy }}</span
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <span class="w-100 d-flex justify-content-center">
+          <table class="table table-bordered table-striped text-center">
+            <thead>
+              <tr>
+                <th>کد مشتری</th>
+                <th>نام پذیرنده ( شخص/شرکت)</th>
+                <th>نام فروشگاه</th>
+                <th>نام psp</th>
+                <th>وضعیت</th>
+                <th  *ngIf="userRole === 'admin'">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of sendToPspList">
+                <td>
+                  {{ item?.customer.customerKey }}
+  
+                </td>
+                <td>
+                  {{
+                    item.customer.person.comNameFa
+                      ? item.customer.person.comNameFa
+                      : item.customer.person.firstNameFa +
+                        " " +
+                        item.customer.person.lastNameFa
+                  }}
+                </td>
+                <td>{{ item?.customer.shopNameFa }}</td>
+                <td>{{ item?.psp }}</td>
+                <td>
+                  {{ item?.requestType }}
+                </td>
+                <td  *ngIf="userRole === 'admin'">
+                  <button  class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
+                    حذف
+                  </button>
+                  <button 
+                    [disabled]="item.editedBy !== null"
+                    class="btn btn-warning btn-sm"
+                    (click)="onOpenModalPsp(item)"
+                  >
+                    ویرایش
+                  </button>
+                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
+                    >در حال ویرایش توسط {{ item?.editedBy }}</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="w-100 d-flex justify-content-center mt-2">
           <ngb-pagination
             (pageChange)="clickOnPageSendToPsp($event)"
             [pageSize]="10"
@@ -233,56 +239,61 @@
     <li [ngbNavItem]="3">
       <a ngbNavLink>فرآیند شاپرک</a>
       <ng-template ngbNavContent>
-        <table class="table table-bordered table-striped text-center">
-          <thead>
-            <tr>
-              <th>کد مشتری</th>
-              <th>نام پذیرنده ( شخص/شرکت)</th>
-              <th>نام فروشگاه</th>
-              <th>نام psp</th>
-              <th>وضعیت</th>
-              <th  *ngIf="userRole === 'admin'">عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of shaparakList">
-              <td>
-                {{ item?.customer.customerKey }}
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped text-center">
+            <thead>
+              <tr>
+                <th>کد مشتری</th>
+                <th>نام پذیرنده ( شخص/شرکت)</th>
+                <th>نام فروشگاه</th>
+                <th>نام psp</th>
+                <th>وضعیت</th>
+                <th  *ngIf="userRole === 'admin'">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of shaparakList">
+                <td>
+                  {{ item?.customer.customerKey }}
+  
+                </td>
+                <td>
+                  {{
+                    item.customer.person.comNameFa
+                      ? item.customer.person.comNameFa
+                      : item.customer.person.firstNameFa +
+                        " " +
+                        item.customer.person.lastNameFa
+                  }}
+                </td>
+                <td>{{ item?.customer.shopNameFa }}</td>
+                <td>{{ item?.psp }}</td>
+                <td>
+                  {{ item?.requestType }}
+                </td>
+                <td  *ngIf="userRole === 'admin'">
+                  <button  class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
+                    حذف
+                  </button>
+                  <button 
+                    [disabled]="item.editedBy !== null"
+                    class="btn btn-warning btn-sm"
+                    (click)="onOpenModalShaparak(item)"
+                  >
+                    ویرایش
+                  </button>
+                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
+                    >در حال ویرایش توسط {{ item?.editedBy }}</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-              </td>
-              <td>
-                {{
-                  item.customer.person.comNameFa
-                    ? item.customer.person.comNameFa
-                    : item.customer.person.firstNameFa +
-                      " " +
-                      item.customer.person.lastNameFa
-                }}
-              </td>
-              <td>{{ item?.customer.shopNameFa }}</td>
-              <td>{{ item?.psp }}</td>
-              <td>
-                {{ item?.requestType }}
-              </td>
-              <td  *ngIf="userRole === 'admin'">
-                <button  class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
-                  حذف
-                </button>
-                <button 
-                  [disabled]="item.editedBy !== null"
-                  class="btn btn-warning btn-sm"
-                  (click)="onOpenModalShaparak(item)"
-                >
-                  ویرایش
-                </button>
-                <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
-                  >در حال ویرایش توسط {{ item?.editedBy }}</span
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <span class="w-100 d-flex justify-content-center">
+          </div>
+
+
+        <span class="w-100 d-flex justify-content-center mt-2">
           <ngb-pagination
             (pageChange)="clickOnPageShaparak($event)"
             [pageSize]="10"
@@ -302,47 +313,50 @@
     <li [ngbNavItem]="4">
       <a ngbNavLink>تکمیل شده</a>
       <ng-template ngbNavContent>
-        <table class="table table-bordered table-striped text-center">
-          <thead>
-            <tr>
-              <th>کد مشتری</th>
-              <th>نام پذیرنده ( شخص/شرکت)</th>
-              <th>نام فروشگاه</th>
-              <th>نام psp</th>
-              <th>وضعیت</th>
-              <th  *ngIf="userRole === 'admin'">
-                عملیات
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of completedList">
-              <td>
-                {{ item?.customer.customerKey }}
-              </td>
-              <td>
-                {{
-                  item.customer.person.comNameFa
-                    ? item.customer.person.comNameFa
-                    : item.customer.person.firstNameFa +
-                      " " +
-                      item.customer.person.lastNameFa
-                }}
-              </td>
-              <td>{{ item?.customer.shopNameFa }}</td>
-              <td>{{ item?.psp }}</td>
-              <td>
-                {{ item?.requestType }}
-              </td>
-              <td  *ngIf="userRole === 'admin'">
-                <button  class="btn btn-danger btn-sm mx-2" (click)="deleteCompleted(item)">
-                  حذف
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <span class="w-100 d-flex justify-content-center">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped text-center">
+            <thead>
+              <tr>
+                <th>کد مشتری</th>
+                <th>نام پذیرنده ( شخص/شرکت)</th>
+                <th>نام فروشگاه</th>
+                <th>نام psp</th>
+                <th>وضعیت</th>
+                <th  *ngIf="userRole === 'admin'">
+                  عملیات
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of completedList">
+                <td>
+                  {{ item?.customer.customerKey }}
+                </td>
+                <td>
+                  {{
+                    item.customer.person.comNameFa
+                      ? item.customer.person.comNameFa
+                      : item.customer.person.firstNameFa +
+                        " " +
+                        item.customer.person.lastNameFa
+                  }}
+                </td>
+                <td>{{ item?.customer.shopNameFa }}</td>
+                <td>{{ item?.psp }}</td>
+                <td>
+                  {{ item?.requestType }}
+                </td>
+                <td  *ngIf="userRole === 'admin'">
+                  <button  class="btn btn-danger btn-sm mx-2" (click)="deleteCompleted(item)">
+                    حذف
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+        <span class="w-100 d-flex justify-content-center mt-2">
           <ngb-pagination
             (pageChange)="clickOnPageCompleted($event)"
             [pageSize]="10"

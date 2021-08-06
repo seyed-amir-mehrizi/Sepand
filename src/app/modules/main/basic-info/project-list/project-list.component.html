@@ -13,44 +13,48 @@
 
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-striped text-center">
-      <thead>
-        <tr>
-          <th>نام پروژه</th>
-          <th>نوع تسهیم</th>
-          <th>مبلغ تسهیم</th>
-          <th>کمترین مبلغ تسهیم</th>
-          <th>بیشترین مبلغ تسهیم</th>
-          <th>
-            عملیات
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of projectList | searchBox: searchProject.value;">
-          <td>
-            {{ item.projectName }}
-          </td>
-          <td>
-            {{ item.shareTypeTitle }}
-          </td>
-          <td>
-            {{ item.sharedAmount }}
-          </td>
-          <td>
-            {{ item.shareAmountMin }}
-          </td>
-          <td>
-            {{ item.shareAmountMax }}
-          </td>
-          <td>
-            <button class="btn btn-warning btn-sm" (click)="onEditModalOpen(item)">ویرایش</button>
-            <button class="btn btn-danger btn-sm mx-2" (click)="deleteProject(item)">حذف</button>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>نام پروژه</th>
+            <th>نوع تسهیم</th>
+            <th>مبلغ تسهیم</th>
+            <th>کمترین مبلغ تسهیم</th>
+            <th>بیشترین مبلغ تسهیم</th>
+            <th>
+              عملیات
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of projectList | searchBox: searchProject.value;">
+            <td>
+              {{ item.projectName }}
+            </td>
+            <td>
+              {{ item.shareTypeTitle }}
+            </td>
+            <td>
+              {{ item.sharedAmount }}
+            </td>
+            <td>
+              {{ item.shareAmountMin }}
+            </td>
+            <td>
+              {{ item.shareAmountMax }}
+            </td>
+            <td>
+              <button class="btn btn-warning btn-sm" (click)="onEditModalOpen(item)">ویرایش</button>
+              <button class="btn btn-danger btn-sm mx-2" (click)="deleteProject(item)">حذف</button>
+  
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      </div>
+
 
     <!-- <span class="w-100 d-flex justify-content-center"> 
                 <ngb-pagination (pageChange)="clickOnPage($event)" [pageSize]="10" [boundaryLinks]="true" [collectionSize]="totalRecords" [maxSize]="5" [(page)]="page">
