@@ -88,3 +88,8 @@ html , body{
   .pagination .page-item .page-link:active {
     background-color: #428bca;
   }
+
+  .view-card{
+    border-right: 5px solid green;
+    background-color: rgb(235, 235, 235);
+  }

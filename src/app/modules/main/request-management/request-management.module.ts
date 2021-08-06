@@ -23,6 +23,7 @@ import { ActiveTerminalModalComponent } from './activate-terminal/active-termina
 import { RemoveTerminalModalComponent } from './remove-terminal/remove-terminal-modal/remove-terminal-modal.component';
 import { SendingDocumentsComponent } from './sending-documents/sending-documents.component';
 import { SendingDocumentsModalComponent } from './sending-documents-modal/sending-documents-modal.component';
+import { CustomerListInfoModalComponent } from './customer-list/customer-list-info-modal/customer-list-info-modal.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { SendingDocumentsModalComponent } from './sending-documents-modal/sendin
     ActiveTerminalModalComponent,
     RemoveTerminalModalComponent,
     SendingDocumentsComponent,
-    SendingDocumentsModalComponent
+    SendingDocumentsModalComponent,
+    CustomerListInfoModalComponent
   ],
   imports: [
     NgbModule,

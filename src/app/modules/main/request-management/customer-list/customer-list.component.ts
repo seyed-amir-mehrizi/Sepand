@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CustomerListInfoModalComponent } from './customer-list-info-modal/customer-list-info-modal.component';
 import { CustomersService } from './customers.service';
 
 @Component({
@@ -109,6 +110,11 @@ export class CustomerListComponent implements OnInit {
   }
   return true;
 
+  }
+
+  displayCustomerInfo(item){
+    const modalRef = this.ngbModal.open(CustomerListInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.customerInfo = item;    
   }
 
 }
