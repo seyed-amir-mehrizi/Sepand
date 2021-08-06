@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal, NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedDataService } from 'src/app/shared/service/shared-data.service';
@@ -50,7 +51,9 @@ export class RequestsComponent implements OnInit {
     , private fb: FormBuilder, private spinner: NgxSpinnerService,
     private requestService: RequestsService,
     private ngbModal: NgbModal,
-    private baseInfoService: BaseInfoService) { }
+    private baseInfoService: BaseInfoService , 
+    private router : Router
+    ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -305,4 +308,7 @@ export class RequestsComponent implements OnInit {
   }
 
 
+  goToCustomerPage(){
+    this.router.navigate(['main/requestManagement/customersList']);
+  }
 }

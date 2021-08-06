@@ -10,9 +10,7 @@ export class CustomerListInfoModalComponent implements OnInit {
   @Input() customerInfo;
   constructor(    public ngbActiveModal: NgbActiveModal,) { }
 
-  ngOnInit(): void {
-    console.log(this.customerInfo);
-    
+  ngOnInit(): void {    
   }
 
 }
