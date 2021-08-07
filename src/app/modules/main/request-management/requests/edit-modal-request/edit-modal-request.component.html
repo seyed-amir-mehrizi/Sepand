@@ -6,7 +6,7 @@
      </h4>
     </div>
     <div>
-      <button type="button" class="close" aria-label="Close" (click)="ngbActiveModal.dismiss()">
+      <button type="button" class="close" aria-label="Close" (click)="cancelEditMode()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -126,7 +126,7 @@
   
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="ngbActiveModal.dismiss()">
+    <button type="button" class="btn btn-secondary" (click)="cancelEditMode()">
         بستن
     </button>
     <button class="btn btn-success" type="button" (click)="editRequest()">ویرایش</button>

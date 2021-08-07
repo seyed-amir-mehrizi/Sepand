@@ -99,6 +99,8 @@ export class BaseUrlInterceptor implements HttpInterceptor {
           req.url != 'Customer/activate-terminals' &&
           req.url != 'Customer/deactivate-terminals' &&
           req.url != 'Customer/start-edit' &&
+          req.url != 'Customer/cancel-edit' &&
+
 
           (req.method == 'POST' || req.method == 'PUT' || req.method == 'DELETE')) {
           this.toastr.success(msg, '', { enableHtml: true });

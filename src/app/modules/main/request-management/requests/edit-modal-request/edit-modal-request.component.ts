@@ -118,4 +118,14 @@ export class EditModalRequestComponent implements OnInit {
 
   }
 
+  cancelEditMode(){
+    let data = {
+      id : this.rowInfo.id
+    }
+    this.requestService.cancelEditRequest(data)
+    .subscribe((res=>{
+      this.ngbActiveModal.close();
+    }));
+  }
+
 }

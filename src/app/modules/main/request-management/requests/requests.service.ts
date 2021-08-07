@@ -79,5 +79,10 @@ startEditRequest(data){
   return this.http.post(this.customerApi + '/start-edit', data).pipe(map(response => response));
 
 }
+cancelEditRequest(data){
+  return this.http.post(this.customerApi + '/cancel-edit', data).pipe(map(response => response));
+
+}
+
 
 }
