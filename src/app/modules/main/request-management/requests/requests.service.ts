@@ -19,6 +19,8 @@ export class RequestsService {
       PspId:data.PspId,
       LegalNationalCode:data.LegalNationalCode,
       ForeignPervasiveCode:data.ForeignPervasiveCode,
+      CustomerKey:data.customerkey,
+
     }
       return this.http.get(this.customerApi+'/first-registration' , {params});
   

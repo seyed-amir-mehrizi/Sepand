@@ -41,6 +41,7 @@ export class RequestsComponent implements OnInit {
     RequestType: '',
     PspId: '',
     ShopName: '',
+    customerkey:'',
     Page: 1,
 
   }
@@ -71,6 +72,7 @@ export class RequestsComponent implements OnInit {
       RequestType: [''],
       PspId: [''],
       ShopName: [''],
+      customerkey:['']
     });
   }
 
@@ -105,6 +107,9 @@ export class RequestsComponent implements OnInit {
     this.params.PspId = item.PspId;
     this.params.NationalId = item.NationalId;
     this.params.ShopName = item.ShopName;
+    this.params.customerkey = item.customerkey;
+
+
     item.Page = this.page;
     this.spinner.show();
     switch (this.tabId) {
