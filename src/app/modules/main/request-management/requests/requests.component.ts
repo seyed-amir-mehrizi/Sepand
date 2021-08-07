@@ -99,6 +99,13 @@ export class RequestsComponent implements OnInit {
 
   serachRequest(item: any) {
     item.Page = 1;
+    this.params.LegalNationalCode = item.LegalNationalCode;
+    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
+    this.params.RequestType = item.RequestType;
+    this.params.PspId = item.PspId;
+    this.params.NationalId = item.NationalId;
+    this.params.ShopName = item.ShopName;
+    item.Page = this.page;
     this.spinner.show();
     switch (this.tabId) {
       case 1:
@@ -310,5 +317,12 @@ export class RequestsComponent implements OnInit {
 
   goToCustomerPage(){
     this.router.navigate(['main/requestManagement/customersList']);
+  }
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 }
