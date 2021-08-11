@@ -5,6 +5,7 @@ import { NgbModal, NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedDataService } from 'src/app/shared/service/shared-data.service';
 import { BaseInfoService } from '../../basic-info/base-info.service';
+import { CustomerInfoModalComponent } from './customer-info-modal/customer-info-modal.component';
 import { EditModalRequestComponent } from './edit-modal-request/edit-modal-request.component';
 import { RequestsService } from './requests.service';
 
@@ -329,5 +330,23 @@ export class RequestsComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  customerInfoFirstRegister(item){
+    const modalRef = this.ngbModal.open(CustomerInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.customerInfo = item;    
+  }
+  customerInfoPsp(item){
+    const modalRef = this.ngbModal.open(CustomerInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.customerInfo = item;    
+  }
+  customerInfoShaparak(item){
+    const modalRef = this.ngbModal.open(CustomerInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.customerInfo = item;    
+  }
+
+  customerInfoCompleted(item){
+    const modalRef = this.ngbModal.open(CustomerInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
+    modalRef.componentInstance.customerInfo = item;    
   }
 }

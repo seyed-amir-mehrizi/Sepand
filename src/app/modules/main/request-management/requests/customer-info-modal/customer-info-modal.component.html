@@ -10,81 +10,81 @@
             نام :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.person.firstNameFa}}
+            {{customerInfo.customer.person.firstNameFa}}
         </div>
         <div class="col-md-2 p-2 my-2">
             نام خانوادگی :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.person.lastNameFa}}
+            {{customerInfo.customer.person.lastNameFa}}
         </div>
         <div class="col-md-2 p-2 my-2">
             نوع مشتری :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.person.isLegal ? "حقوقی" : "حقیقی"}}
+            {{customerInfo.customer.person.isLegal ? "حقوقی" : "حقیقی"}}
         </div>
         <div class="col-md-2 p-2 my-2">
             اتباع :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.person.isForeign ? "بله" : "خیر"}}
+            {{customerInfo.customer.person.isForeign ? "بله" : "خیر"}}
         </div>
         <div class="col-md-2 p-2 my-2">
             ایمیل :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.email}}
+            {{customerInfo.customer.email}}
         </div>
         <div class="col-md-2 p-2 my-2">
             صنف :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.guild}}
+            {{customerInfo.customer.guild}}
         </div>
         <div class="col-md-2 p-2 my-2">
             موبایل :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.mobileNumber}}
+            {{customerInfo.customer.mobileNumber}}
         </div>
         <div class="col-md-2 p-2 my-2">
             تلفن :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.telephone}}
+            {{customerInfo.customer.telephone}}
         </div>
         <div class="col-md-2 p-2 my-2">
             نام فروشگاه :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.shopNameFa}}
+            {{customerInfo.customer.shopNameFa}}
         </div>
         <div class="col-md-2 p-2 my-2">
             ایمیل فروشگاه :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.shopEmail}}
+            {{customerInfo.customer.shopEmail}}
         </div>
         <div class="col-md-2 p-2 my-2">
             تلفن فروشگاه :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.shopTelephoneNumber}} - {{customerInfo.shopCityPreCode}}
+            {{customerInfo.customer.shopTelephoneNumber}} - {{customerInfo.customer.shopCityPreCode}}
         </div>
         <div class="col-md-2 p-2 my-2">
             شماره فکس فروشگاه :
         </div>
         <div class="col-md-4 view-card p-2 my-2">
-            {{customerInfo.shopFaxNumber}}
+            {{customerInfo.customer.shopFaxNumber}}
         </div>
         <div class="col-md-2 p-2 my-2">
              آدرس فروشگاه :
         </div>
         <div class="col-md-10 view-card p-2 my-2">
-            {{customerInfo.shopAddress}}
+            {{customerInfo.customer.shopAddress}}
         </div>
-        <div *ngIf="customerInfo.merchants.length > 0" class="col-md-12 p-2 my-2">
+        <div *ngIf="customerInfo.customer.merchants.length > 0" class="col-md-12 p-2 my-2">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
@@ -99,7 +99,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of customerInfo.merchants">
+                        <tr *ngFor="let item of customerInfo.customer.merchants">
                             <td>{{item?.acceptorCode}}</td>
                             <td>{{item?.statusTitle}}</td>
                             <td>{{item?.pspTitle}}</td>

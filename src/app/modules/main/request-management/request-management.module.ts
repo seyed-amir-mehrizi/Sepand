@@ -24,6 +24,7 @@ import { RemoveTerminalModalComponent } from './remove-terminal/remove-terminal-
 import { SendingDocumentsComponent } from './sending-documents/sending-documents.component';
 import { SendingDocumentsModalComponent } from './sending-documents-modal/sending-documents-modal.component';
 import { CustomerListInfoModalComponent } from './customer-list/customer-list-info-modal/customer-list-info-modal.component';
+import { CustomerInfoModalComponent } from './requests/customer-info-modal/customer-info-modal.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { CustomerListInfoModalComponent } from './customer-list/customer-list-in
     RemoveTerminalModalComponent,
     SendingDocumentsComponent,
     SendingDocumentsModalComponent,
-    CustomerListInfoModalComponent
+    CustomerListInfoModalComponent,
+    CustomerInfoModalComponent
   ],
   imports: [
     NgbModule,

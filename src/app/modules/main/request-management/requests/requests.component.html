@@ -6,50 +6,26 @@
           <div class="row">
             <div class="col-md-3">
               <label for="NationalId">کد ملی</label>
-              <input
-                (keypress)="numberOnly($event)"
-                id="NationalId"
-                type="text"
-                formControlName="NationalId"
-                class="form-control"
-              />
+              <input (keypress)="numberOnly($event)" id="NationalId" type="text" formControlName="NationalId"
+                class="form-control" />
             </div>
             <div class="col-md-3">
               <label for="ForeignPervasiveCode">کد اتباع</label>
-              <input
-                (keypress)="numberOnly($event)"
-                id="ForeignPervasiveCode"
-                type="text"
-                formControlName="ForeignPervasiveCode"
-                class="form-control"
-              />
+              <input (keypress)="numberOnly($event)" id="ForeignPervasiveCode" type="text"
+                formControlName="ForeignPervasiveCode" class="form-control" />
             </div>
             <div class="col-md-3">
               <label for="LegalNationalCode"> شناسه ملی حقوقی</label>
-              <input
-                (keypress)="numberOnly($event)"
-                id="LegalNationalCode"
-                type="text"
-                formControlName="LegalNationalCode"
-                class="form-control"
-              />
+              <input (keypress)="numberOnly($event)" id="LegalNationalCode" type="text"
+                formControlName="LegalNationalCode" class="form-control" />
             </div>
             <div class="col-md-3">
               <label for="customerkey">کد مشتری</label>
-              <input
-                id="customerkey"
-                type="text"
-                formControlName="customerkey"
-                class="form-control"
-              />
+              <input id="customerkey" type="text" formControlName="customerkey" class="form-control" />
             </div>
             <div class="col-md-3">
               <label for="RequestType">نوع درخواست </label>
-              <select
-                id="RequestType"
-                class="form-control"
-                formControlName="RequestType"
-              >
+              <select id="RequestType" class="form-control" formControlName="RequestType">
                 <option></option>
                 <option *ngFor="let item of reqestTypeList" [value]="item.id">
                   {{ item.name }}
@@ -58,11 +34,7 @@
             </div>
             <div class="col-md-3 my-2">
               <label for="LastName">Psp</label>
-              <select
-                id="PspId"
-                class="form-control"
-                formControlName="PspId"
-              >
+              <select id="PspId" class="form-control" formControlName="PspId">
                 <option></option>
                 <option *ngFor="let item of pspList" [value]="item.id">
                   {{ item.name }}
@@ -71,19 +43,10 @@
             </div>
             <div class="col-md-3 my-2">
               <label for="ShopName">نام فروشگاه</label>
-              <input
-                id="ShopName"
-                type="text"
-                formControlName="ShopName"
-                class="form-control"
-              />
+              <input id="ShopName" type="text" formControlName="ShopName" class="form-control" />
             </div>
             <div class="col-md-12 mt-2">
-              <button
-                class="btn btn-primary"
-                type="submit"
-                (click)="serachRequest(requestFilter.value)"
-              >
+              <button class="btn btn-primary" type="submit" (click)="serachRequest(requestFilter.value)">
                 جستجو
               </button>
             </div>
@@ -92,16 +55,8 @@
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-  <button class="btn btn-primary float-left my-2" (click)="goToCustomerPage()">
-    مشتریان
-  </button>
-  <ul
-    ngbNav
-    #nav="ngbNav"
-    [(activeId)]="active"
-    (navChange)="onNavChange($event, requestFilter.value)"
-    class="nav-tabs mt-3"
-  >
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event, requestFilter.value)"
+    class="nav-tabs mt-3">
     <li [ngbNavItem]="1">
       <a ngbNavLink>ثبت اولیه</a>
       <ng-template ngbNavContent>
@@ -114,7 +69,7 @@
                 <th>نام فروشگاه</th>
                 <th>نام psp</th>
                 <th>وضعیت</th>
-                <th  *ngIf="userRole === 'admin'">عملیات</th>
+                <th *ngIf="userRole === 'admin'">عملیات</th>
               </tr>
             </thead>
             <tbody>
@@ -124,11 +79,11 @@
                 </td>
                 <td>
                   {{
-                    item.customer.person.comNameFa
-                      ? item.customer.person.comNameFa
-                      : item.customer.person.firstNameFa +
-                        " " +
-                        item.customer.person.lastNameFa
+                  item.customer.person.comNameFa
+                  ? item.customer.person.comNameFa
+                  : item.customer.person.firstNameFa +
+                  " " +
+                  item.customer.person.lastNameFa
                   }}
                 </td>
                 <td>{{ item?.customer.shopNameFa }}</td>
@@ -136,22 +91,23 @@
                 <td>
                   {{ item?.requestType }}
                 </td>
-                <td  *ngIf="userRole === 'admin'">
-                  
-                    <button  class="btn btn-danger btn-sm mx-2" (click)="deleteFirstRegister(item)">
-                      حذف
-                    </button>
-                  
-                  <button 
-                    [disabled]="item.editedBy !== null"
-                    class="btn btn-warning btn-sm"
-                    (click)="onOpenModalFirstRegister(item)"
-                  >
+                <td *ngIf="userRole === 'admin'">
+
+                  <button class="btn btn-danger btn-sm mx-2" (click)="deleteFirstRegister(item)">
+                    حذف
+                  </button>
+
+                  <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"
+                    (click)="onOpenModalFirstRegister(item)">
                     ویرایش
                   </button>
-                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
-                    >در حال ویرایش توسط {{ item?.editedBy }}</span
-                  >
+                  <button class="btn btn-info btn-sm mx-2" (click)="customerInfoFirstRegister(item)">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button>
+                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2">در حال ویرایش توسط {{ item?.editedBy
+                    }}</span>
+
+
                 </td>
               </tr>
             </tbody>
@@ -159,14 +115,8 @@
         </div>
 
         <span class="w-100 d-flex justify-content-center mt-2">
-          <ngb-pagination
-            (pageChange)="clickOnPageFirstRegister($event)"
-            [pageSize]="10"
-            [boundaryLinks]="true"
-            [collectionSize]="totalRecordsFirstRegister"
-            [maxSize]="5"
-            [(page)]="page"
-          >
+          <ngb-pagination (pageChange)="clickOnPageFirstRegister($event)" [pageSize]="10" [boundaryLinks]="true"
+            [collectionSize]="totalRecordsFirstRegister" [maxSize]="5" [(page)]="page">
             <ng-template ngbPaginationPrevious>قبلی</ng-template>
             <ng-template ngbPaginationNext>بعدی</ng-template>
             <ng-template ngbPaginationFirst>ابتدا</ng-template>
@@ -188,22 +138,22 @@
                 <th>نام فروشگاه</th>
                 <th>نام psp</th>
                 <th>وضعیت</th>
-                <th  *ngIf="userRole === 'admin'">عملیات</th>
+                <th *ngIf="userRole === 'admin'">عملیات</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of sendToPspList">
                 <td>
                   {{ item?.customer.customerKey }}
-  
+
                 </td>
                 <td>
                   {{
-                    item.customer.person.comNameFa
-                      ? item.customer.person.comNameFa
-                      : item.customer.person.firstNameFa +
-                        " " +
-                        item.customer.person.lastNameFa
+                  item.customer.person.comNameFa
+                  ? item.customer.person.comNameFa
+                  : item.customer.person.firstNameFa +
+                  " " +
+                  item.customer.person.lastNameFa
                   }}
                 </td>
                 <td>{{ item?.customer.shopNameFa }}</td>
@@ -211,34 +161,27 @@
                 <td>
                   {{ item?.requestType }}
                 </td>
-                <td  *ngIf="userRole === 'admin'">
-                  <button  class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
+                <td *ngIf="userRole === 'admin'">
+                  <button class="btn btn-danger btn-sm mx-2" (click)="deletePsp(item)">
                     حذف
                   </button>
-                  <button 
-                    [disabled]="item.editedBy !== null"
-                    class="btn btn-warning btn-sm"
-                    (click)="onOpenModalPsp(item)"
-                  >
+                  <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"
+                    (click)="onOpenModalPsp(item)">
                     ویرایش
                   </button>
-                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
-                    >در حال ویرایش توسط {{ item?.editedBy }}</span
-                  >
+                  <button class="btn btn-info btn-sm mx-2" (click)="customerInfoPsp(item)">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button>
+                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2">در حال ویرایش توسط {{ item?.editedBy
+                    }}</span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <span class="w-100 d-flex justify-content-center mt-2">
-          <ngb-pagination
-            (pageChange)="clickOnPageSendToPsp($event)"
-            [pageSize]="10"
-            [boundaryLinks]="true"
-            [collectionSize]="totalRecordsSendToPsp"
-            [maxSize]="5"
-            [(page)]="page"
-          >
+          <ngb-pagination (pageChange)="clickOnPageSendToPsp($event)" [pageSize]="10" [boundaryLinks]="true"
+            [collectionSize]="totalRecordsSendToPsp" [maxSize]="5" [(page)]="page">
             <ng-template ngbPaginationPrevious>قبلی</ng-template>
             <ng-template ngbPaginationNext>بعدی</ng-template>
             <ng-template ngbPaginationFirst>ابتدا</ng-template>
@@ -259,22 +202,22 @@
                 <th>نام فروشگاه</th>
                 <th>نام psp</th>
                 <th>وضعیت</th>
-                <th  *ngIf="userRole === 'admin'">عملیات</th>
+                <th *ngIf="userRole === 'admin'">عملیات</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of shaparakList">
                 <td>
                   {{ item?.customer.customerKey }}
-  
+
                 </td>
                 <td>
                   {{
-                    item.customer.person.comNameFa
-                      ? item.customer.person.comNameFa
-                      : item.customer.person.firstNameFa +
-                        " " +
-                        item.customer.person.lastNameFa
+                  item.customer.person.comNameFa
+                  ? item.customer.person.comNameFa
+                  : item.customer.person.firstNameFa +
+                  " " +
+                  item.customer.person.lastNameFa
                   }}
                 </td>
                 <td>{{ item?.customer.shopNameFa }}</td>
@@ -282,37 +225,30 @@
                 <td>
                   {{ item?.requestType }}
                 </td>
-                <td  *ngIf="userRole === 'admin'">
-                  <button  class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
+                <td *ngIf="userRole === 'admin'">
+                  <button class="btn btn-danger btn-sm mx-2" (click)="deleteShaparak(item)">
                     حذف
                   </button>
-                  <button 
-                    [disabled]="item.editedBy !== null"
-                    class="btn btn-warning btn-sm"
-                    (click)="onOpenModalShaparak(item)"
-                  >
+                  <button [disabled]="item.editedBy !== null" class="btn btn-warning btn-sm"
+                    (click)="onOpenModalShaparak(item)">
                     ویرایش
                   </button>
-                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2"
-                    >در حال ویرایش توسط {{ item?.editedBy }}</span
-                  >
+                  <button class="btn btn-info btn-sm mx-2" (click)="customerInfoShaparak(item)">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button>
+                  <span *ngIf="item.editedBy" class="badge badge-info mx-2 p-2">در حال ویرایش توسط {{ item?.editedBy
+                    }}</span>
                 </td>
               </tr>
             </tbody>
           </table>
 
-          </div>
+        </div>
 
 
         <span class="w-100 d-flex justify-content-center mt-2">
-          <ngb-pagination
-            (pageChange)="clickOnPageShaparak($event)"
-            [pageSize]="10"
-            [boundaryLinks]="true"
-            [collectionSize]="totalRecordsShaparak"
-            [maxSize]="5"
-            [(page)]="page"
-          >
+          <ngb-pagination (pageChange)="clickOnPageShaparak($event)" [pageSize]="10" [boundaryLinks]="true"
+            [collectionSize]="totalRecordsShaparak" [maxSize]="5" [(page)]="page">
             <ng-template ngbPaginationPrevious>قبلی</ng-template>
             <ng-template ngbPaginationNext>بعدی</ng-template>
             <ng-template ngbPaginationFirst>ابتدا</ng-template>
@@ -333,7 +269,7 @@
                 <th>نام فروشگاه</th>
                 <th>نام psp</th>
                 <th>وضعیت</th>
-                <th  *ngIf="userRole === 'admin'">
+                <th *ngIf="userRole === 'admin'">
                   عملیات
                 </th>
               </tr>
@@ -345,11 +281,11 @@
                 </td>
                 <td>
                   {{
-                    item.customer.person.comNameFa
-                      ? item.customer.person.comNameFa
-                      : item.customer.person.firstNameFa +
-                        " " +
-                        item.customer.person.lastNameFa
+                  item.customer.person.comNameFa
+                  ? item.customer.person.comNameFa
+                  : item.customer.person.firstNameFa +
+                  " " +
+                  item.customer.person.lastNameFa
                   }}
                 </td>
                 <td>{{ item?.customer.shopNameFa }}</td>
@@ -357,25 +293,22 @@
                 <td>
                   {{ item?.requestType }}
                 </td>
-                <td  *ngIf="userRole === 'admin'">
-                  <button  class="btn btn-danger btn-sm mx-2" (click)="deleteCompleted(item)">
+                <td *ngIf="userRole === 'admin'">
+                  <button class="btn btn-danger btn-sm mx-2" (click)="deleteCompleted(item)">
                     حذف
+                  </button>
+                  <button class="btn btn-info btn-sm mx-2" (click)="customerInfoCompleted(item)">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
 
-          </div>
+        </div>
         <span class="w-100 d-flex justify-content-center mt-2">
-          <ngb-pagination
-            (pageChange)="clickOnPageCompleted($event)"
-            [pageSize]="10"
-            [boundaryLinks]="true"
-            [collectionSize]="totalRecordsCompleted"
-            [maxSize]="5"
-            [(page)]="page"
-          >
+          <ngb-pagination (pageChange)="clickOnPageCompleted($event)" [pageSize]="10" [boundaryLinks]="true"
+            [collectionSize]="totalRecordsCompleted" [maxSize]="5" [(page)]="page">
             <ng-template ngbPaginationPrevious>قبلی</ng-template>
             <ng-template ngbPaginationNext>بعدی</ng-template>
             <ng-template ngbPaginationFirst>ابتدا</ng-template>
