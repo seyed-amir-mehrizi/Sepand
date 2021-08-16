@@ -21,9 +21,8 @@ export class FilterComponent implements OnInit {
   }
   customerFilter: FormGroup;
   data;
-  @Input() customerslist: any = [];
-  @Input() totalRecords: number;
   @Output() getFilterData = new EventEmitter();
+  @Output() getFilters = new EventEmitter();
 
 
 
@@ -44,7 +43,7 @@ export class FilterComponent implements OnInit {
 
     });
   }
-  serachCustomer(item: any) {
+  serachCustomer(item: any , acc) {
     item.Page = 1;
     this.params.CustomerId = item.CustomerId;
     this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
@@ -56,12 +55,13 @@ export class FilterComponent implements OnInit {
     this.spinner.show();
     this.service.getListOFCustomers(item)
       .subscribe((result: any) => {
-        this.data = result;
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
         this.spinner.hide();
         this.getFilterData.emit(result);
+        this.getFilters.emit(this.params);
+        acc.collapseAll();
+
       });
+
   }
 
   numberOnly(event): boolean {

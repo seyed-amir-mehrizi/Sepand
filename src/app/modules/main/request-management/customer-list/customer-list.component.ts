@@ -14,7 +14,6 @@ export class CustomerListComponent implements OnInit {
 
   customerslist: any = [];
   page: number = 1;
-  customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
   params = {
@@ -26,32 +25,18 @@ export class CustomerListComponent implements OnInit {
     ShopName: '',
     CustomerId:'',
     Page: 1,
-
   }
 
-  constructor(private service: CustomersService, private fb: FormBuilder ,
+  gridResult:any=  {};
+
+  constructor(private service: CustomersService,
     private spinner: NgxSpinnerService,
     private ngbModal: NgbModal,
     ) { }
 
   ngOnInit(): void {
     this.getCustomers(this.params);
-    this.initForm();
   }
-
-  initForm() {
-    this.customerFilter = this.fb.group({
-      NationalId: [''],
-      ForeignPervasiveCode: [''],
-      RegisterNo: [''],
-      Name: [''] ,
-      LastName: [''] ,
-      ShopName: [''] ,
-      CustomerId: [''] ,
-
-    });
-  }
-
 
   getCustomers(params: any) { 
     this.spinner.show();   
@@ -74,47 +59,19 @@ export class CustomerListComponent implements OnInit {
       });
 
   }
-
-  serachCustomer(item: any) {
-    item.Page = 1;
-    this.params.CustomerId = item.CustomerId;
-    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
-    this.params.LastName = item.LastName;
-    this.params.Name = item.Name;
-    this.params.NationalId = item.NationalId;
-    this.params.RegisterNo = item.RegisterNo;
-    this.params.ShopName = item.ShopName;
-    item.Page = this.page;
-    this.spinner.show();   
-    this.service.getListOFCustomers(item)
-      .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-        this.spinner.hide();
-      });
-  }
-
-
-  numberOnly(event): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
-  }
-  FarsiOnly = (event) => {
-    const value = event.key;
-    var p = /^[\u0600-\u06FF\s]+$/;
-    if (!p.test(value)) {
-      return false
-  }
-  return true;
-
-  }
-
   displayCustomerInfo(item){
     const modalRef = this.ngbModal.open(CustomerListInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
     modalRef.componentInstance.customerInfo = item;    
+  }
+
+  receiveDataFromFilter(data){
+    this.customerslist = data.data;
+    this.totalRecords = data.totalRecord;
+  }
+  receiveFilters(items){
+    console.log("items : " , items);
+    this.params = items;
+    
   }
 
 }
