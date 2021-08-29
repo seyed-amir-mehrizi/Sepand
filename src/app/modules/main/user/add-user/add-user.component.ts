@@ -12,17 +12,17 @@ import { UserService } from '../service/user.service';
 export class AddUserComponent implements OnInit {
   createUserForm: FormGroup;
   isAddUserSubmitted = false;
-  Roleslist:any = [];
+  Roleslist: any = [];
   constructor(
     public ngbActiveModal: NgbActiveModal,
     private fb: FormBuilder,
-    private service : UserService,
- 
+    private service: UserService,
+
   ) { }
 
   ngOnInit(): void {
 
-   
+
     this.getAllRolesList();
     this.initFormBuilder();
   }
@@ -59,17 +59,17 @@ export class AddUserComponent implements OnInit {
   }
   getAllRolesList(){
     this.service.getRolesList()
-    .subscribe((result:any)=>{
+    .subscribe((result: any) => {
       this.Roleslist = result;
-    })
+    });
   }
   FarsiOnly = (event) => {
     const value = event.key;
-    var p = /^[\u0600-\u06FF\s]+$/;
+    let p = /^[\u0600-\u06FF\s]+$/;
     if (!p.test(value)) {
-      return false
+      return false;
   }
-  return true;
+    return true;
 
   }
 

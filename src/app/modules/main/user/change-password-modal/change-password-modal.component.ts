@@ -10,10 +10,10 @@ import { UserService } from '../service/user.service';
 })
 export class ChangePasswordModalComponent implements OnInit {
 
-  changePasswordForm:FormGroup;
-  isChangePasswordSubmitted:boolean = false;
-  @Input () userInfo:any;
-  constructor(    private fb: FormBuilder , private service : UserService,   public ngbActiveModal: NgbActiveModal, ) { }
+  changePasswordForm: FormGroup;
+  isChangePasswordSubmitted = false;
+  @Input () userInfo: any;
+  constructor(    private fb: FormBuilder , private service: UserService,   public ngbActiveModal: NgbActiveModal, ) { }
 
   ngOnInit(): void {
     this.initLoginform();
@@ -32,16 +32,16 @@ export class ChangePasswordModalComponent implements OnInit {
   get changePasswordFormInfo(){
     return this.changePasswordForm.controls;
   }
-  changePassword(item:any){
+  changePassword(item: any){
     if (this.changePasswordForm.invalid) {
       this.isChangePasswordSubmitted = true;
       return;
     }
     const dataSending = this.changePasswordForm.value;
     this.service.changePassword(dataSending)
-    .subscribe((resuslt:any)=>{
+    .subscribe((resuslt: any) => {
       this.ngbActiveModal.close();
-    })
+    });
   }
 }
 

@@ -11,7 +11,7 @@ export class RequestsService {
   constructor(private http: HttpClient) { }
 
   getListOfFirstRegistration(data:any){
-    let params = {
+    const params = {
       NationalId : data.NationalId,
       ShopName:data.ShopName,
       Page:data.Page,
@@ -23,10 +23,10 @@ export class RequestsService {
 
     }
       return this.http.get(this.customerApi+'/first-registration' , {params});
-  
+
 }
 getListOfSentToPsp(data:any){
-  let params = {
+  const params = {
     NationalId : data.NationalId,
     ShopName:data.ShopName,
     Page:data.Page,
@@ -39,7 +39,7 @@ getListOfSentToPsp(data:any){
 
 }
 getListOfShaparakProcess(data:any){
-  let params = {
+  const params = {
     NationalId : data.NationalId,
     ShopName:data.ShopName,
     Page:data.Page,
@@ -52,7 +52,7 @@ getListOfShaparakProcess(data:any){
 
 }
 getListOfCompletedRequests(data:any){
-  let params = {
+  const params = {
     NationalId : data.NationalId,
     ShopName:data.ShopName,
     Page:data.Page,
@@ -66,7 +66,7 @@ getListOfCompletedRequests(data:any){
 }
 
 deleteRequest(data){
-  let params = {
+  const params = {
     id : data.id
   }
   return this.http.delete(this.customerApi+'/remove-request' , {params});

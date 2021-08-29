@@ -14,15 +14,15 @@ export class ChangeIbanModalComponent implements OnInit {
 
   @Input() ibanInfo;
   listOfIbans: any = [];
-  BankInfoForm:FormGroup;
-  isBankInfoFormSubmitted: boolean = false;
+  BankInfoForm: FormGroup;
+  isBankInfoFormSubmitted = false;
   sharedTypeList: any = [];
-  hasPercentage : boolean = false;
-  sharedTypeId:number;
-  hasAmount:boolean = false;
+  hasPercentage = false;
+  sharedTypeId: number;
+  hasAmount = false;
   BankInfoList: any = [];
 
-  
+
   constructor(
     private customerService: CustomersService,
     private fb: FormBuilder,
@@ -42,9 +42,9 @@ export class ChangeIbanModalComponent implements OnInit {
   }
 
   getAllIbansList() {
-    let data = {
+    const data = {
       customerId: this.ibanInfo.id
-    }
+    };
     this.customerService.getAllIbansForCustomer(data)
       .subscribe((result: any) => {
         this.listOfIbans = result;
@@ -77,7 +77,7 @@ export class ChangeIbanModalComponent implements OnInit {
   checkMax(event) {
     const value =  parseInt(event.target.value);
     if (value > 100) {
-      this.toastr.info('بیشترین مبلغ تسهیم 100 می باشد')
+      this.toastr.info('بیشترین مبلغ تسهیم 100 می باشد');
       event.target.value = '';
     }
   }
@@ -112,26 +112,26 @@ export class ChangeIbanModalComponent implements OnInit {
           value.value.shareAmountMax = 0;
           value.value.shareAmountMin = 0;
           this.hasAmount = true;
-        break;
-    
+          break;
+
       default:
         break;
     }
-    
-    
+
+
   }
 
   addBankInfo(value){
-    
+
     if (this.BankInfoForm.invalid) {
       this.isBankInfoFormSubmitted = true;
       return;
     }
-    let dataSending = this.BankInfoForm.value;
+    const dataSending = this.BankInfoForm.value;
     switch (this.sharedTypeId) {
       case 1:
         dataSending.sharedAmount = 0;
-        if((dataSending.shareAmountMax === null || dataSending.shareAmountMax === '')
+        if ((dataSending.shareAmountMax === null || dataSending.shareAmountMax === '')
          || (dataSending.shareAmountMin === null || dataSending.shareAmountMin === '')){
           this.toastr.info('کمترین مبلغ تسهیم و بیشترین مبلغ تسهیم را وارد کنید');
           return;
@@ -140,11 +140,11 @@ export class ChangeIbanModalComponent implements OnInit {
         case 2:
           dataSending.shareAmountMax = 0;
           dataSending.shareAmountMin = 0;
-          if(dataSending.sharedAmount=== null || dataSending.sharedAmount=== '' ){
+          if (dataSending.sharedAmount === null || dataSending.sharedAmount === '' ){
             this.toastr.info(' مبلغ تسهیم را وارد کنید');
             return;
           }
-        break;
+          break;
       default:
         break;
     }
@@ -152,7 +152,7 @@ export class ChangeIbanModalComponent implements OnInit {
     dataSending.shareAmountMax = parseInt(dataSending.shareAmountMax);
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
-    dataSending.iban = (`IR${dataSending.iban}`).replace(/\s+/g, "");
+    dataSending.iban = (`IR${dataSending.iban}`).replace(/\s+/g, '');
     dataSending.customerId = this.ibanInfo.id;
     dataSending.isMain = (dataSending.isMain === null) ? false : true;
     this.isBankInfoFormSubmitted = false;
@@ -166,9 +166,9 @@ export class ChangeIbanModalComponent implements OnInit {
 
   editIban(){
     this.customerService.changeIban(this.listOfIbans)
-    .subscribe(res=>{
+    .subscribe(res => {
       this.ngbActiveModal.close();
-    })
+    });
   }
 
 }

@@ -14,11 +14,11 @@ export class ChangeClassModalComponent implements OnInit {
   @Input() classInfo;
   listOfGuild: any = [];
   editGuildForm: FormGroup;
-  isGuildSubmitted: boolean = false;
+  isGuildSubmitted = false;
   constructor(private sharedService: SharedDataService,
-    private fb: FormBuilder,
-    public ngbActiveModal: NgbActiveModal,
-    private customerService: CustomersService
+              private fb: FormBuilder,
+              public ngbActiveModal: NgbActiveModal,
+              private customerService: CustomersService
 
   ) { }
 
@@ -44,23 +44,23 @@ export class ChangeClassModalComponent implements OnInit {
       .subscribe((res => {
         this.listOfGuild = res;
 
-      }))
+      }));
   }
 
 
   setValueForGuild() {
     this.editGuildForm.setValue({
       guildId: this.classInfo.guildId
-    })
+    });
   }
 
 
   editGuild(item) {
 
-    let data = {
+    const data = {
       customerId: this.classInfo.id,
       guildId: parseInt(this.editGuildForm.value.guildId)
-    }
+    };
 
     this.customerService.editGuild(data)
       .subscribe((res => {

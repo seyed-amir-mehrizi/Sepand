@@ -19,34 +19,34 @@ export class BaseInfoService {
   }
 
   addNewProject(data){
-    return this.http.post(this.baseInfoApi + '/add-project' , data)
+    return this.http.post(this.baseInfoApi + '/add-project' , data);
   }
 
   editProject(data){
-    return this.http.put(this.baseInfoApi + '/edit-project' , data)
+    return this.http.put(this.baseInfoApi + '/edit-project' , data);
 
   }
 
   addNewPsp(data){
-    return this.http.post(this.baseInfoApi + '/add-psp' , data)
+    return this.http.post(this.baseInfoApi + '/add-psp' , data);
   }
 
   editPsp(data){
-    return this.http.put(this.baseInfoApi + '/edit-psp' , data)
+    return this.http.put(this.baseInfoApi + '/edit-psp' , data);
 
   }
   deletePsp(rowId){
-    let params = {
+    const params = {
       id : rowId
-    }
-    return this.http.delete(this.baseInfoApi + '/remove-psp' , {params})
+    };
+    return this.http.delete(this.baseInfoApi + '/remove-psp' , {params});
 
   }
   deleteProject(rowId){
-    let params = {
+    const params = {
       id : rowId
-    }
-    return this.http.delete(this.baseInfoApi + '/remove-project' , {params})
+    };
+    return this.http.delete(this.baseInfoApi + '/remove-project' , {params});
 
   }
 

@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
   }
 
   displayToday() {
-    const faDateTime = new Intl.DateTimeFormat("fa", {
-      year: "numeric",
+    const faDateTime = new Intl.DateTimeFormat('fa', {
+      year: 'numeric',
     }).format;
     const now = Date.now();
     this.currentYear = faDateTime(now);

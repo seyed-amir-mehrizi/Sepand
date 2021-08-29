@@ -57,33 +57,33 @@ export class RegisterCustomerComponent implements OnInit {
   LocationInfoForm: FormGroup;
   BankInfoForm: FormGroup;
   contractFormInfo: FormGroup;
-  isRegisterCustomerSubmitted: boolean = false;
-  isRegisterLegalCustomerSubmitted: boolean = false;
-  isRegisterForeignCustomerSubmitted: boolean = false;
-  isLocationInfoFormSubmitted: boolean = false;
-  isBankInfoFormSubmitted: boolean = false;
-  isContractInfoFormSubmitted: boolean = false;
+  isRegisterCustomerSubmitted = false;
+  isRegisterLegalCustomerSubmitted = false;
+  isRegisterForeignCustomerSubmitted = false;
+  isLocationInfoFormSubmitted = false;
+  isBankInfoFormSubmitted = false;
+  isContractInfoFormSubmitted = false;
   listOfAlphabets: any = [];
   proviceList: any = [];
-  isReal: boolean = false;
-  isLegal: boolean = false;
-  isForeign: boolean = false;
-  isEmpty: boolean = true;
-  hasAmount: boolean = false;
+  isReal = false;
+  isLegal = false;
+  isForeign = false;
+  isEmpty = true;
+  hasAmount = false;
   degreeList: any = [];
   guildList: any = [];
   fileToUpload: File = null;
   proviceCitiesList: any = [];
   sharedTypeList: any = [];
   BankInfoList: any = [];
-  isProject: boolean = false;
+  isProject = false;
   sharedTypeId: number;
-  isChangePasswordSubmitted: boolean = false;
+  isChangePasswordSubmitted = false;
   customerType: number;
-  hasNationalNumber: boolean = false;
-  hasRegisterNumber: boolean = false;
-  hasForeignNumber: boolean = false;
-  hasPercentage: boolean = false;
+  hasNationalNumber = false;
+  hasRegisterNumber = false;
+  hasForeignNumber = false;
+  hasPercentage = false;
   autocompleteLoading = false;
   customerTypeValue;
   registerRealCustomerFormValue: any = {};
@@ -92,11 +92,11 @@ export class RegisterCustomerComponent implements OnInit {
   locationInfoValue: any = {};
   contractInfoValue: any = {};
   listOfProject: any = [];
-  listOfCountries:any = [];
+  listOfCountries: any = [];
   imageUrl: any;
-  disabledLocationInfo: boolean = true;
-  disabledBankInfo: boolean = true;
-  disabledContractInfo: boolean = true;
+  disabledLocationInfo = true;
+  disabledBankInfo = true;
+  disabledContractInfo = true;
   provinceId: number;
   constructor(
     private sharedService: SharedDataService,
@@ -170,7 +170,7 @@ export class RegisterCustomerComponent implements OnInit {
       switchMap((searchText) =>
         searchText.length < 2 ? [] : this.getAllNationalities(searchText)
       )
-    );
+    )
   getAllNationalities(searchText: string): Observable<any[]> {
     return this.sharedService
       .getNationalities(searchText)
@@ -178,12 +178,12 @@ export class RegisterCustomerComponent implements OnInit {
   }
   // display in show box
   nationalitiesFormatter = (result: { nationalName: string }) =>
-    result.nationalName || '';
+    result.nationalName || ''
 
   // select in input
 
   nationalitiesInputFormatter = (result: { nationalName: string }) =>
-    result.nationalName || '';
+    result.nationalName || ''
 
   countries_Serach = (text$: Observable<string>) =>
     text$.pipe(
@@ -193,7 +193,7 @@ export class RegisterCustomerComponent implements OnInit {
       switchMap((searchText) =>
         searchText.length < 2 ? [] : this.getAllcountries(searchText)
       )
-    );
+    )
   getAllcountries(searchText: string): Observable<any[]> {
     return this.sharedService
       .getCountriesList(searchText)
@@ -201,17 +201,17 @@ export class RegisterCustomerComponent implements OnInit {
   }
   // display in show box
   countriesFormatter = (result: { farsiName: string }) =>
-    result.farsiName || '';
+    result.farsiName || ''
 
   // select in input
 
   countriesInputFormatter = (result: { farsiName: string }) =>
-    result.farsiName || '';
+    result.farsiName || ''
 
     nationalitySetValue(){
       this.registerRealCustomerForm.setValue({
-        nationalityId : {id: 103, nationalName: "ایران", people: []}
-      })
+        nationalityId : {id: 103, nationalName: 'ایران', people: []}
+      });
     }
 
   initRealForm() {
@@ -251,7 +251,7 @@ export class RegisterCustomerComponent implements OnInit {
     }
     const dataSending = this.registerRealCustomerForm.value;
     dataSending.birthDate = this.changeJalaliToGregorian(dataSending.birthDate);
-    dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    dataSending.nationalityId = parseInt(dataSending.nationalityId.id);
     dataSending.sex = parseInt(dataSending.sex);
     dataSending.birthCertificateNo = parseInt(dataSending.birthCertificateNo);
     dataSending.birthCertificateSerial = parseInt(
@@ -336,7 +336,7 @@ export class RegisterCustomerComponent implements OnInit {
   checkMax(event) {
     const value = parseInt(event.target.value);
     if (value > 100) {
-      this.toastr.info('بیشترین مبلغ تسهیم 100 می باشد')
+      this.toastr.info('بیشترین مبلغ تسهیم 100 می باشد');
       event.target.value = '';
     }
   }
@@ -350,31 +350,31 @@ export class RegisterCustomerComponent implements OnInit {
 
   FarsiOnly = (event) => {
     const value = event.key;
-    var p = /^[\u0600-\u06FF\s]+$/;
+    const p = /^[\u0600-\u06FF\s]+$/;
     if (!p.test(value)) {
-      return false
+      return false;
   }
-  return true;
+    return true;
 
   }
 
   englishOnly = (event) => {
     const value = event.key;
-    var p = /^[a-zA-Z0-9, ]*$/;
+    const p = /^[a-zA-Z0-9, ]*$/;
     if (!p.test(value)) {
-      return false
+      return false;
   }
-  return true;
+    return true;
 
   }
 
   webSiteOnly = (event) => {
     const value = event.key;
-    var p = /^[a-zA-Z0-9,:/@.? ]*$/;
+    const p = /^[a-zA-Z0-9,:/@.? ]*$/;
     if (!p.test(value)) {
-      return false
+      return false;
   }
-  return true;
+    return true;
 
   }
 
@@ -389,7 +389,7 @@ export class RegisterCustomerComponent implements OnInit {
   checkNationalNumber() {
     const dataSending = this.registerRealCustomerForm.value;
     if (dataSending.nationalNumber) {
-      let data = {
+      const data = {
         type: this.customerType,
         uniqueIdentifier: dataSending.nationalNumber,
       };
@@ -440,7 +440,7 @@ export class RegisterCustomerComponent implements OnInit {
       registerDate: ['', Validators.required],
       comNameEn: ['', Validators.required],
       comNameFa: ['', Validators.required],
-      commercialCode: ['',[ Validators.required , Validators.maxLength(10)]],
+      commercialCode: ['', [ Validators.required , Validators.maxLength(10)]],
       degreeId: ['', Validators.required],
       nationalNumber: ['', [Validators.required , Validators.minLength(10) , Validators.maxLength(10)]],
       lastNameFa: ['', Validators.required],
@@ -468,7 +468,7 @@ export class RegisterCustomerComponent implements OnInit {
   checkRegisterNumber() {
     const dataSending = this.registerLegalCustomerForm.value;
     if (dataSending.nationalLegalCode) {
-      let data = {
+      const data = {
         type: this.customerType,
         uniqueIdentifier: dataSending.nationalLegalCode,
       };
@@ -539,7 +539,7 @@ export class RegisterCustomerComponent implements OnInit {
       dataSending.registerDate
     );
     dataSending.birthDate = this.changeJalaliToGregorian(dataSending.birthDate);
-    dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
+    dataSending.nationalityId = parseInt(dataSending.nationalityId.id);
     dataSending.sex = parseInt(dataSending.sex);
     dataSending.birthCertificateNo = parseInt(dataSending.birthCertificateNo);
     dataSending.birthCertificateSerial = parseInt(
@@ -562,7 +562,7 @@ export class RegisterCustomerComponent implements OnInit {
   checkForeignPervasiveCode() {
     const dataSending = this.registerForeignForm.value;
     if (dataSending.foreignPervasiveCode) {
-      let data = {
+      const data = {
         type: this.customerType,
         uniqueIdentifier: dataSending.foreignPervasiveCode,
       };
@@ -624,8 +624,8 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.passportExpireDate = this.changeJalaliToGregorian(
       dataSending.passportExpireDate
     );
-    dataSending.nationalityId = parseInt(dataSending.nationalityId['id']);
-    dataSending.countryCode =String(dataSending.countryCode['id']);
+    dataSending.nationalityId = parseInt(dataSending.nationalityId.id);
+    dataSending.countryCode = String(dataSending.countryCode.id);
     dataSending.sex = parseInt(dataSending.sex);
     dataSending.degreeId = parseInt(dataSending.degreeId);
     dataSending.rsidencyType = true;
@@ -666,7 +666,7 @@ export class RegisterCustomerComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       addressFa: ['', Validators.required],
       addressEn: ['', Validators.required],
-      shopPostalCode: ['',[Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
+      shopPostalCode: ['', [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       shopFaxNumber: ['',  [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       shopTelephoneNumber: ['', [Validators.required , Validators.pattern(/^[1-9][0-9]*$/)]],
       shopCityPreCode: ['', [Validators.required , Validators.minLength(3)]],
@@ -684,7 +684,7 @@ export class RegisterCustomerComponent implements OnInit {
       provinceAbbreviation: ['', Validators.required],
       countryAbbreviation: ['', Validators.required],
       cityCode: ['', Validators.required],
-      taxPayerCode: ['',[ Validators.required , Validators.maxLength(10)]],
+      taxPayerCode: ['', [ Validators.required , Validators.maxLength(10)]],
       isSharedAccount: [false],
       isMultiAccount: [false],
     });
@@ -716,9 +716,9 @@ export class RegisterCustomerComponent implements OnInit {
     //   this.guildList = res;
     // });
     this.sharedService.getAllCountries()
-    .subscribe(res=>{
+    .subscribe(res => {
       this.listOfCountries = res;
-    })
+    });
   }
   getListOfProvince() {
     this.sharedService.getAllProvince().subscribe((res: any) => {
@@ -747,15 +747,15 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   readThis(inputValue: any): void {
-    var file: File = inputValue.files[0];
-    var myReader: FileReader = new FileReader();
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
       this.image = myReader.result;
       this.LocationInfoForm.patchValue({
         shopLogo: myReader.result
       });
-    }
+    };
     myReader.readAsDataURL(file);
 
   }
@@ -774,7 +774,7 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.shopBusinessLicenseExpireDate = this.changeJalaliToGregorian(
       dataSending.shopBusinessLicenseExpireDate
     );
-    dataSending.countryAbbreviation = dataSending.countryAbbreviation['abbrivation'];
+    dataSending.countryAbbreviation = dataSending.countryAbbreviation.abbrivation;
     dataSending.cityCode = parseInt(dataSending.cityCode);
     dataSending.guildId = parseInt(dataSending.guildId);
     dataSending.shopLogo = dataSending.shopLogo ? dataSending.shopLogo : '',
@@ -824,10 +824,10 @@ export class RegisterCustomerComponent implements OnInit {
       default:
         break;
     }
-    if(this.BankInfoList.length > 0){
+    if (this.BankInfoList.length > 0){
       this.BankInfoList = [];
     }
-    
+
 
 
   }
@@ -837,7 +837,7 @@ export class RegisterCustomerComponent implements OnInit {
       this.isBankInfoFormSubmitted = true;
       return;
     }
-    let dataSending = this.BankInfoForm.value;
+    const dataSending = this.BankInfoForm.value;
     switch (this.sharedTypeId) {
       case 1:
         dataSending.sharedAmount = 0;
@@ -862,12 +862,12 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.shareAmountMin = parseInt(dataSending.shareAmountMin);
     dataSending.shareType = parseInt(dataSending.shareType);
     dataSending.customerId = 0;
-    dataSending.iban = (`IR${dataSending.iban}`).replace(/\s+/g, "");
+    dataSending.iban = (`IR${dataSending.iban}`).replace(/\s+/g, '');
     this.BankInfoList.push(dataSending);
     this.BankInfoList[0].sharedAmount = -1;
     this.BankInfoList[0].shareAmountMax = -1;
     this.BankInfoList[0].shareAmountMin = -1;
-    this.BankInfoList[0].isMain =true;
+    this.BankInfoList[0].isMain = true;
 
     this.BankInfoForm.reset({
       shareType: this.BankInfoForm.get('shareType').value,
@@ -886,9 +886,9 @@ export class RegisterCustomerComponent implements OnInit {
 
   submitBankInfo(nav: any) {
     if (this.BankInfoList.length > 0) {
-      nav.select(4)
+      nav.select(4);
     } else {
-      this.toastr.info('هیچ حساب بانکی وارد نشده است')
+      this.toastr.info('هیچ حساب بانکی وارد نشده است');
     }
   }
 
@@ -910,26 +910,26 @@ export class RegisterCustomerComponent implements OnInit {
       sharedAmount: [''],
       shareAmountMax: [''],
       shareAmountMin: [''],
-    })
+    });
   }
 
   getAllProjects() {
     this.baseInfoService.getListOfProjects()
       .subscribe((res: any) => {
         this.listOfProject = res;
-      })
+      });
   }
 
   onSelectProject(event) {
     this.isProject = true;
-    let projectId = parseInt(event.target.value)
-    let selectedProject = this.listOfProject.filter(item => item.id === projectId)[0];
+    const projectId = parseInt(event.target.value);
+    const selectedProject = this.listOfProject.filter(item => item.id === projectId)[0];
     this.contractFormInfo.patchValue({
       shareType: selectedProject.shareType,
       sharedAmount: selectedProject.sharedAmount,
       shareAmountMax: selectedProject.shareAmountMax,
       shareAmountMin: selectedProject.shareAmountMin,
-    })
+    });
   }
 
 
@@ -938,26 +938,26 @@ export class RegisterCustomerComponent implements OnInit {
       this.isContractInfoFormSubmitted = true;
       return;
     }
-    let dataSending = this.contractFormInfo.value;
+    const dataSending = this.contractFormInfo.value;
     dataSending.introduced = 0;
-    dataSending.introducedSharedType = "";
+    dataSending.introducedSharedType = '';
     dataSending.introducedSharedAmount = 0;
-    dataSending.projectId = parseInt(dataSending.projectId)
+    dataSending.projectId = parseInt(dataSending.projectId);
     dataSending.expireDate = this.changeJalaliToGregorian(dataSending.expireDate);
     dataSending.serviceStartDate = this.changeJalaliToGregorian(dataSending.serviceStartDate);
     this.contractInfoValue = dataSending;
-    let data = {}
+    let data = {};
     data = Object.assign(data, this.registerRealCustomerFormValue, this.registerLegalCustomerFormValue, this.registerForeignCustomerFormValue);
     let customer = {};
     customer = Object.assign(customer, this.locationInfoValue);
-    customer['ibans'] = this.BankInfoList;
-    customer['contract'] = this.contractInfoValue;
-    data['customer'] = Object.assign(customer, this.locationInfoValue);
+    customer.ibans = this.BankInfoList;
+    customer.contract = this.contractInfoValue;
+    data.customer = Object.assign(customer, this.locationInfoValue);
     this.service.defineAcceptor(data)
       .subscribe((res => {
         // this.toastr.success('مشتری با موفقیت ثبت گردید');
         window.location.reload();
-      }))
+      }));
 
   }
 }

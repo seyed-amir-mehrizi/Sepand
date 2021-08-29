@@ -13,7 +13,7 @@ import { CustomersService } from './customers.service';
 export class CustomerListComponent implements OnInit {
 
   customerslist: any = [];
-  page: number = 1;
+  page = 1;
   maxSize: number;
   totalRecords: number;
   params = {
@@ -23,23 +23,23 @@ export class CustomerListComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
-    CustomerId:'',
+    CustomerId: '',
     Page: 1,
-  }
+  };
 
-  gridResult:any=  {};
+  gridResult: any =  {};
 
   constructor(private service: CustomersService,
-    private spinner: NgxSpinnerService,
-    private ngbModal: NgbModal,
+              private spinner: NgxSpinnerService,
+              private ngbModal: NgbModal,
     ) { }
 
   ngOnInit(): void {
     this.getCustomers(this.params);
   }
 
-  getCustomers(params: any) { 
-    this.spinner.show();   
+  getCustomers(params: any) {
+    this.spinner.show();
     this.service.getListOFCustomers(params)
       .subscribe((result: any) => {
         this.customerslist = result.data;
@@ -61,7 +61,7 @@ export class CustomerListComponent implements OnInit {
   }
   displayCustomerInfo(item){
     const modalRef = this.ngbModal.open(CustomerListInfoModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
-    modalRef.componentInstance.customerInfo = item;    
+    modalRef.componentInstance.customerInfo = item;
   }
 
   receiveDataFromFilter(data){
@@ -69,9 +69,7 @@ export class CustomerListComponent implements OnInit {
     this.totalRecords = data.totalRecord;
   }
   receiveFilters(items){
-    console.log("items : " , items);
     this.params = items;
-    
   }
 
 }

@@ -11,27 +11,27 @@ export class UserService {
     }
 
     getUserList(){
-        return this.http.get(this.acouuntApi+'/get-users')
+        return this.http.get(this.acouuntApi + '/get-users');
     }
 
-    changePassword(data:any){
+    changePassword(data: any){
         return this.http.post(this.acouuntApi + '/change-password', data).pipe(map(response => response));
     }
 
     getRolesList(){
-        return this.http.get(this.acouuntApi+'/get-roles')
+        return this.http.get(this.acouuntApi + '/get-roles');
     }
-    
-    createNewUser(data:any){
+
+    createNewUser(data: any){
         return this.http.post(this.acouuntApi + '/create-user', data).pipe(map(response => response));
     }
-    lockUser(data:any){
+    lockUser(data: any){
         return this.http.post(this.acouuntApi + '/user-lock', data).pipe(map(response => response));
     }
-    unlockUser(data:any){
+    unlockUser(data: any){
         return this.http.post(this.acouuntApi + '/user-unlock', data).pipe(map(response => response));
     }
 
 
-    
+
 }

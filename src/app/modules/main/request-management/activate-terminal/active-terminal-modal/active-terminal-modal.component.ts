@@ -9,7 +9,7 @@ import { CustomersService } from '../../customer-list/customers.service';
 })
 export class ActiveTerminalModalComponent implements OnInit {
 @Input() terminalInfo;
-  constructor(private service: CustomersService  , public ngbActiveModal: NgbActiveModal,) { }
+  constructor(private service: CustomersService  , public ngbActiveModal: NgbActiveModal, ) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +18,7 @@ export class ActiveTerminalModalComponent implements OnInit {
     this.service.activateTerminal(this.terminalInfo.id)
       .subscribe((res: any) => {
         this.ngbActiveModal.close();
-      })
+      });
   }
 
 }

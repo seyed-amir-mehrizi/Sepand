@@ -8,37 +8,37 @@ import { Router } from '@angular/router';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   goToUsersList() {
-    this.router.navigate(['main/userList'])
+    this.router.navigate(['main/userList']);
   }
   goToCustomersList() {
-    this.router.navigate(['main/requestManagement/customersList'])
+    this.router.navigate(['main/requestManagement/customersList']);
   }
   goToContractList() {
-    this.router.navigate(['main/basicInfo/ProjectList'])
+    this.router.navigate(['main/basicInfo/ProjectList']);
   }
   goToCompaniesPage() {
-    this.router.navigate(['main/basicInfo/PspList'])
+    this.router.navigate(['main/basicInfo/PspList']);
   }
   goToChangeIban(){
-    this.router.navigate(['main/requestManagement/changheIban'])
+    this.router.navigate(['main/requestManagement/changheIban']);
 
   }
   goToChangeClass(){
-    this.router.navigate(['main/requestManagement/changeClass'])
+    this.router.navigate(['main/requestManagement/changeClass']);
 
   }
   goToChangePostalcode(){
-    this.router.navigate(['main/requestManagement/changePostalcode'])
+    this.router.navigate(['main/requestManagement/changePostalcode']);
 
   }
   goToRequest(){
-    this.router.navigate(['main/requestManagement/requests'])
+    this.router.navigate(['main/requestManagement/requests']);
 
   }
 

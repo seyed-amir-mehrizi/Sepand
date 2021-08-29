@@ -12,11 +12,11 @@ import { CustomersService } from '../customer-list/customers.service';
 })
 export class ChangePostalCodeComponent implements OnInit {
   customerslist: any = [];
-  page: number = 1;
+  page = 1;
   customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
-  
+
   params = {
     NationalId: '',
     ForeignPervasiveCode: '',
@@ -24,37 +24,22 @@ export class ChangePostalCodeComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
-    CustomerId:'',
+    CustomerId: '',
 
     Page: 1,
 
-  }
+  };
   userRole;
   constructor(private service: CustomersService, private fb: FormBuilder,
-    private spinner: NgxSpinnerService,
-    private ngbModal: NgbModal,
+              private spinner: NgxSpinnerService,
+              private ngbModal: NgbModal,
   ) { }
 
   ngOnInit(): void {
     this.getCustomers(this.params);
-    this.initForm();
-    this.userRole = localStorage.getItem('r') ;
+    this.userRole = localStorage.getItem('r');
 
   }
-  initForm() {
-    this.customerFilter = this.fb.group({
-      NationalId: [''],
-      ForeignPervasiveCode: [''],
-      RegisterNo: [''],
-      Name: [''] ,
-      LastName: [''] ,
-      ShopName: [''] ,
-      CustomerId: [''] ,
-
-    });
-  }
-
-
   getCustomers(params: any) {
     this.spinner.show();
     this.service.getListOFCustomers(params)
@@ -74,34 +59,8 @@ export class ChangePostalCodeComponent implements OnInit {
         this.customerslist = result.data;
         this.totalRecords = result.totalRecord;
         this.spinner.hide();
-
       });
-
   }
-
-
-  serachCustomer(item: any) {
-    this.spinner.show();
-    this.params.CustomerId = item.CustomerId;
-    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
-    this.params.LastName = item.LastName;
-    this.params.Name = item.Name;
-    this.params.NationalId = item.NationalId;
-    this.params.RegisterNo = item.RegisterNo;
-    this.params.ShopName = item.ShopName;
-    item.Page = this.page;
-    item.Page = 1;
-    this.service.getListOFCustomers(item)
-      .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-        this.spinner.hide();
-
-      });
-
-
-  }
-
   openChangePostalCodeModal(item) {
     const modalRef = this.ngbModal.open(ChangePostalCodeModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
     modalRef.componentInstance.postalCodeInfo = item;
@@ -110,24 +69,15 @@ export class ChangePostalCodeComponent implements OnInit {
     }, () => {
     });
   }
+  receiveDataFromFilter(data) {
+    this.customerslist = data.data;
+    this.totalRecords = data.totalRecord;
+  }
+  receiveFilters(items) {
+    this.params = items;
+  }
 
 
-  numberOnly(event): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
-  }
-  FarsiOnly = (event) => {
-    const value = event.key;
-    var p = /^[\u0600-\u06FF\s]+$/;
-    if (!p.test(value)) {
-      return false
-  }
-  return true;
-
-  }
 
 }
 

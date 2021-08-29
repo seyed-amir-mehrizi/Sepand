@@ -9,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class CustomerInfoModalComponent implements OnInit {
 
   @Input() customerInfo;
-  constructor(    public ngbActiveModal: NgbActiveModal,) { }
+  constructor(    public ngbActiveModal: NgbActiveModal, ) { }
 
   ngOnInit(): void {
   }

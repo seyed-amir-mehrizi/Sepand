@@ -9,19 +9,19 @@ export class CustomersService {
   customerApi = 'Customer';
   constructor(private http: HttpClient) { }
 
-  getListOFCustomers(data:any){
-      let params = {
+  getListOFCustomers(data: any){
+      const params = {
         NationalId : data.NationalId,
-        ShopName:data.ShopName,
-        Page:data.Page,
+        ShopName: data.ShopName,
+        Page: data.Page,
         LastName : data.LastName,
-        Name:data.Name,
-        RegisterNo:data.RegisterNo,
-        ForeignPervasiveCode:data.ForeignPervasiveCode,
-        CustomerId:data.CustomerId
-      }
-        return this.http.get(this.customerApi+'/customers' , {params});
-    
+        Name: data.Name,
+        RegisterNo: data.RegisterNo,
+        ForeignPervasiveCode: data.ForeignPervasiveCode,
+        CustomerId: data.CustomerId
+      };
+      return this.http.get(this.customerApi + '/customers' , {params});
+
   }
 
   editGuild(data){
@@ -43,10 +43,10 @@ export class CustomersService {
   }
 
   getAllIbansForCustomer(data){
-    let params = {
+    const params = {
       customerId : data.customerId,
-    }
-      return this.http.get(this.customerApi+'/get-customer-ibans' , {params});
+    };
+    return this.http.get(this.customerApi + '/get-customer-ibans' , {params});
   }
 
 
@@ -66,22 +66,22 @@ export class CustomersService {
   }
 
   getListOfUploadedDocument(data){
-    let params = {
+    const params = {
       customerId : data.customerId,
-    }
-      return this.http.get(this.customerApi+'/customer-files' , {params});
+    };
+    return this.http.get(this.customerApi + '/customer-files' , {params});
   }
 
   downloadDocument(data){
     const httpOptions = {
       responseType: 'blob' as 'json',
       headers: new HttpHeaders({
-        'Authorization': localStorage.getItem('token'),
+        Authorization: localStorage.getItem('token'),
       })
     };
-    let params = {
+    const params = {
       id : data.id,
-    }
-      return this.http.get(this.customerApi+`/download-file?id=${data.id}` , httpOptions);
+    };
+    return this.http.get(this.customerApi + `/download-file?id=${data.id}` , httpOptions);
   }
 }

@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import {Observable} from 'rxjs'; 
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ export class SharedDataService {
   constructor(private http: HttpClient) {}
   sharedDataApi = 'SharedData';
   getNationalities(data: any) {
-    let params = {
+    const params = {
       search: data,
     };
     return this.http.get(this.sharedDataApi + '/search-nationalities', {
@@ -18,7 +18,7 @@ export class SharedDataService {
     });
   }
   getCountriesList(data: any) {
-    let params = {
+    const params = {
       name: data,
     };
     return this.http.get(this.sharedDataApi + '/search-countries', { params });
@@ -45,7 +45,7 @@ export class SharedDataService {
     return this.http.get(this.sharedDataApi + '/share-type');
   }
   getCitiesOfProvince(data: any) {
-    let params = {
+    const params = {
       provinceId: data,
     };
     return this.http.get(this.sharedDataApi + '/cities', {

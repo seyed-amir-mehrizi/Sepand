@@ -13,7 +13,7 @@ import { CustomersService } from '../customer-list/customers.service';
 export class ChangeIbanComponent implements OnInit {
 
   customerslist: any = [];
-  page: number = 1;
+  page = 1;
   customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
@@ -25,15 +25,13 @@ export class ChangeIbanComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
-    CustomerId:'',
-
+    CustomerId: '',
     Page: 1,
-
-  }
+  };
 
   constructor(private service: CustomersService, private fb: FormBuilder ,
-    private spinner: NgxSpinnerService,
-    private ngbModal: NgbModal, 
+              private spinner: NgxSpinnerService,
+              private ngbModal: NgbModal,
     ) { }
 
   ngOnInit(): void {
@@ -57,7 +55,7 @@ export class ChangeIbanComponent implements OnInit {
   }
 
 
-  getCustomers(params: any) {    
+  getCustomers(params: any) {
     this.spinner.show();
     this.service.getListOFCustomers(params)
       .subscribe((result: any) => {
@@ -78,26 +76,6 @@ export class ChangeIbanComponent implements OnInit {
       });
 
   }
-
-
-  serachCustomer(item: any) {
-    this.params.CustomerId = item.CustomerId;
-    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
-    this.params.LastName = item.LastName;
-    this.params.Name = item.Name;
-    this.params.NationalId = item.NationalId;
-    this.params.RegisterNo = item.RegisterNo;
-    this.params.ShopName = item.ShopName;
-    item.Page = this.page;
-    this.spinner.show();
-    this.service.getListOFCustomers(item)
-      .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-        this.spinner.hide();
-      });
-  }
-
   opneIbanModal(item){
     const modalRef = this.ngbModal.open(ChangeIbanModalComponent, { size: 'xl', scrollable: true, backdrop: 'static' });
     modalRef.componentInstance.ibanInfo = item;
@@ -106,22 +84,12 @@ export class ChangeIbanComponent implements OnInit {
     }, () => {
     });
   }
-
-  numberOnly(event): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
+  receiveDataFromFilter(data){
+    this.customerslist = data.data;
+    this.totalRecords = data.totalRecord;
   }
-  FarsiOnly = (event) => {
-    const value = event.key;
-    var p = /^[\u0600-\u06FF\s]+$/;
-    if (!p.test(value)) {
-      return false
-  }
-  return true;
-
+  receiveFilters(items){
+    this.params = items;
   }
 
 }

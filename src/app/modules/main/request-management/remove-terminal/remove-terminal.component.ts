@@ -15,7 +15,7 @@ export class RemoveTerminalComponent implements OnInit {
 
 
   customerslist: any = [];
-  page: number = 1;
+  page = 1;
   customerFilter: FormGroup;
   maxSize: number;
   totalRecords: number;
@@ -26,38 +26,22 @@ export class RemoveTerminalComponent implements OnInit {
     Name: '',
     LastName: '',
     ShopName: '',
-    CustomerId:'',
+    CustomerId: '',
 
     Page: 1,
 
-  }
+  };
   userRole;
   constructor(private service: CustomersService, private fb: FormBuilder,
-    private spinner: NgxSpinnerService,
-    private ngbModal: NgbModal, private toastr: ToastrService,
+              private spinner: NgxSpinnerService,
+              private ngbModal: NgbModal, private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.getCustomers(this.params);
-    this.initForm();
     this.userRole = localStorage.getItem('r') ;
 
   }
-
-  initForm() {
-    this.customerFilter = this.fb.group({
-      NationalId: [''],
-      ForeignPervasiveCode: [''],
-      RegisterNo: [''],
-      Name: [''] ,
-      LastName: [''] ,
-      ShopName: [''] ,
-      CustomerId: [''] ,
-
-    });
-  }
-
-
   getCustomers(params: any) {
     this.spinner.show();
     this.service.getListOFCustomers(params)
@@ -81,45 +65,12 @@ export class RemoveTerminalComponent implements OnInit {
       });
 
   }
-
-
-  serachCustomer(item: any) {
-    item.Page = 1;
-    this.params.CustomerId = item.CustomerId;
-    this.params.ForeignPervasiveCode = item.ForeignPervasiveCode;
-    this.params.LastName = item.LastName;
-    this.params.Name = item.Name;
-    this.params.NationalId = item.NationalId;
-    this.params.RegisterNo = item.RegisterNo;
-    this.params.ShopName = item.ShopName;
-    item.Page = this.page;
-    this.spinner.show();
-    this.service.getListOFCustomers(item)
-      .subscribe((result: any) => {
-        this.customerslist = result.data;
-        this.totalRecords = result.totalRecord;
-        this.spinner.hide();
-
-      });
-
-
-  }
-
   deActivateTerminal(item) {
     this.spinner.show();
     this.service.deActivateTerminal(item.id)
       .subscribe((res: any) => {
         this.spinner.hide();
-      })
-  }
-  FarsiOnly = (event) => {
-    const value = event.key;
-    var p = /^[\u0600-\u06FF\s]+$/;
-    if (!p.test(value)) {
-      return false
-  }
-  return true;
-
+      });
   }
 
   onOpenDeActivateTerminalModal(item){
@@ -130,5 +81,13 @@ export class RemoveTerminalComponent implements OnInit {
     }, () => {
     });
   }
+  receiveDataFromFilter(data){
+    this.customerslist = data.data;
+    this.totalRecords = data.totalRecord;
+  }
+  receiveFilters(items){
+    this.params = items;
+  }
+
 
 }

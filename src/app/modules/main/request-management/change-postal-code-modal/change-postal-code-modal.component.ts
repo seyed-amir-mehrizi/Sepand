@@ -12,11 +12,11 @@ import { CustomersService } from '../customer-list/customers.service';
 export class ChangePostalCodeModalComponent implements OnInit {
   @Input() postalCodeInfo;
   editPostalcodeForm: FormGroup;
-  isPostalcodeSubmitted: boolean = false;
+  isPostalcodeSubmitted = false;
   constructor(private sharedService: SharedDataService,
-    private fb: FormBuilder,
-    public ngbActiveModal: NgbActiveModal,
-    private customerService: CustomersService
+              private fb: FormBuilder,
+              public ngbActiveModal: NgbActiveModal,
+              private customerService: CustomersService
 
   ) { }
   ngOnInit(): void {
@@ -35,18 +35,18 @@ export class ChangePostalCodeModalComponent implements OnInit {
   setValueForPostalCode() {
     this.editPostalcodeForm.setValue({
       shopPostalCode: this.postalCodeInfo.shopPostalCode
-    })
+    });
   }
 
   editPostalcode(item) {
-    if(this.editPostalcodeForm.invalid){
+    if (this.editPostalcodeForm.invalid){
       this.isPostalcodeSubmitted = true;
       return;
     }
-    let data = {
+    const data = {
       customerId: this.postalCodeInfo.id,
       shopPostalCode: this.editPostalcodeForm.value.shopPostalCode
-    }
+    };
     this.customerService.editPostalCode(data)
       .subscribe((res => {
         this.ngbActiveModal.close();

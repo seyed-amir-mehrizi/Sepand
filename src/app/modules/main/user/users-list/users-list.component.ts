@@ -14,15 +14,15 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-  userList:any= [];
+  userList: any = [];
   userRole;
   constructor(
 
     private ngbModal: NgbModal,
-    private service : UserService,
+    private service: UserService,
     private spinner: NgxSpinnerService,
-    private loginService : LoginService,
-     private roleService : TransferRole
+    private loginService: LoginService,
+    private roleService: TransferRole
 
   ) { }
 
@@ -35,7 +35,7 @@ export class UsersListComponent implements OnInit {
   getListOfUsers(){
     this.spinner.show();
     this.service.getUserList()
-    .subscribe((result:any)=>{
+    .subscribe((result: any) => {
       this.userList = result;
       this.spinner.hide();
     });
@@ -54,22 +54,22 @@ export class UsersListComponent implements OnInit {
     modalRef.componentInstance.userInfo = item;
   }
 
-  changeUserStatus(item:any){
-    let data = {username : item.username};
-    if(item.isActive){
+  changeUserStatus(item: any){
+    const data = {username : item.username};
+    if (item.isActive){
       this.service.lockUser(data)
-      .subscribe((result:any)=>{
+      .subscribe((result: any) => {
         this.getListOfUsers();
       });
     }else{
       this.service.unlockUser(data)
-      .subscribe((result:any)=>{
+      .subscribe((result: any) => {
         this.getListOfUsers();
       });
     }
   }
 
 
-  
+
 
 }
