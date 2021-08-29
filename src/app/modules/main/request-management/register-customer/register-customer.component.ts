@@ -946,9 +946,9 @@ export class RegisterCustomerComponent implements OnInit {
     dataSending.expireDate = this.changeJalaliToGregorian(dataSending.expireDate);
     dataSending.serviceStartDate = this.changeJalaliToGregorian(dataSending.serviceStartDate);
     this.contractInfoValue = dataSending;
-    let data = {};
+    let data:any = {};
     data = Object.assign(data, this.registerRealCustomerFormValue, this.registerLegalCustomerFormValue, this.registerForeignCustomerFormValue);
-    let customer = {};
+    let customer:any = {};
     customer = Object.assign(customer, this.locationInfoValue);
     customer.ibans = this.BankInfoList;
     customer.contract = this.contractInfoValue;

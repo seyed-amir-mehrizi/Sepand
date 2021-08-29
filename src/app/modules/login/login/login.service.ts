@@ -11,7 +11,7 @@ export class LoginService {
     public token;
 
 
-    constructor(private http: HttpClient , private roleService: TransferRole) {
+    constructor(private http: HttpClient) {
     }
 
     login(credential: any) {
